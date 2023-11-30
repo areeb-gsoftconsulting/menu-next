@@ -233,8 +233,14 @@ http://ionicframework.com/docs/theming/ */
     --ion-card-background: #1e1e1e;
   }
 }
-:host {
-  --inner-padding-end: 0px;
+
+@font-face {
+  font-family: "poppins";
+  src: url("../assets/fonts/Poppins-Light.ttf");
+}
+@font-face {
+  font-family: "poppins-bold";
+  src: url("../assets/fonts/Poppins-Black.ttf");
 }
 
 html {

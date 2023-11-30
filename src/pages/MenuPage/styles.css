@@ -18,6 +18,7 @@
   height: 170px;
 }
 .restName {
+  font-family: "poppins";
   padding-top: 55px;
   color: rgba(140, 136, 136, 1);
   font-style: normal;
@@ -35,6 +36,7 @@ ion-content {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  font-family: "poppins-bold";
 }
 .card {
   height: fit-content;
@@ -49,6 +51,7 @@ ion-content {
   overflow: hidden;
 }
 .labelContainer {
+  font-family: "poppins";
   background: rgb(255, 255, 255);
   position: absolute;
   bottom: 20px;
@@ -61,12 +64,4 @@ ion-content {
 }
 .menuLabel {
   color: #0c0c0c;
-}
-ion-item {
-  --padding-start: 0px;
-  --padding-end: 0px;
-  --background: red;
-}
-:host {
-  --inner-padding-end: 0px !important;
 }
