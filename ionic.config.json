@@ -1,0 +1,9 @@
+{
+  "name": "menu-next",
+  "integrations": {
+    "capacitor": {},
+    "webDir": "./dist"
+  },
+
+  "type": "react-vite"
+}
