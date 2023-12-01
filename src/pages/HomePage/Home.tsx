@@ -16,12 +16,12 @@ import {
   IonToggle,
   IonToolbar,
 } from "@ionic/react";
-import ExploreContainer from "../components/ExploreContainer";
 import styles from "./Home.module.css";
-import lightLogo from "../assets/logoLight.png";
-import darkLogo from "../assets/logoDark.png";
+import lightLogo from "../../assets/logoLight.png";
+import darkLogo from "../../assets/logoDark.png";
 import { logoIonic, heartOutline, cartOutline } from "ionicons/icons";
 import { useState } from "react";
+import CategorySlider from "../../components/CategorySlider";
 
 const Home: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
@@ -71,6 +71,8 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+        <IonTitle>Vegetarian</IonTitle>
+        <CategorySlider />
         <IonList>
           <IonItem lines="none">
             <IonIcon slot="start" />

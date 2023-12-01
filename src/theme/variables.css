@@ -285,6 +285,12 @@ body {
   src: url("../assets/fonts/Poppins-Black.ttf");
 }
 
+.segment-button-checked > div {
+  border: 2px solid red;
+  padding: 3px;
+  border-radius: 50%;
+}
+
 html {
   /* For more information on dynamic font scaling, visit the documentation: 
   https://ionicframework.com/docs/layout/dynamic-font-scaling */

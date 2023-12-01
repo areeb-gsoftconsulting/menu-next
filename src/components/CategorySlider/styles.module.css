@@ -1,0 +1,14 @@
+.toolbar {
+  --background: trasparent;
+}
+.image {
+  height: 75px;
+  width: 75px;
+  object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
+}
+ion-segment-button {
+  --color-checked: trasparent;
+  color: var(--ion-text-color);
+}

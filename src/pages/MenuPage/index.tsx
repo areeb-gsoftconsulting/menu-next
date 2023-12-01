@@ -31,7 +31,7 @@ const Menu = () => {
       >
         <IonImg className={styles.bannerImage} src={bannerImage} />
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent className={styles.container} fullscreen>
         <IonText className={styles.restName}>
           <p>Amsterdam</p>
         </IonText>
