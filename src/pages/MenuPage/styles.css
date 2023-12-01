@@ -20,7 +20,7 @@
 .restName {
   font-family: "poppins";
   padding-top: 55px;
-  color: rgba(140, 136, 136, 1);
+  /* color: rgba(140, 136, 136, 1); */
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -29,9 +29,9 @@ ion-content {
   --padding-top: 55px;
   --padding-start: 20px;
   --padding-end: 20px;
+  --background: var(--ion-page-background-color);
 }
 .selectMenu {
-  color: #0c0c0c;
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
