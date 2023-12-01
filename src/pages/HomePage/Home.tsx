@@ -71,7 +71,7 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonTitle>Vegetarian</IonTitle>
+        <IonTitle className={styles.menu}>Vegetarian</IonTitle>
         <CategorySlider />
         <IonList>
           <IonItem lines="none">

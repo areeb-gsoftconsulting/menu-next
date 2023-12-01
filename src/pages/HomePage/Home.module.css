@@ -63,3 +63,9 @@ ion-searchbar.custom {
   border-radius: 50px;
   background: var(--ion-searchbar-background);
 }
+.menu {
+  font-family: "poppins";
+  padding: 10px 0px;
+  font-size: 20px;
+  font-weight: 800;
+}

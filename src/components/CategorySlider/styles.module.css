@@ -11,4 +11,5 @@
 ion-segment-button {
   --color-checked: trasparent;
   color: var(--ion-text-color);
+  font-family: "poppins";
 }
