@@ -1,5 +1,4 @@
 ion-content {
-  --padding-top: 55px;
   --padding-start: 20px;
   --padding-end: 20px;
   --background: var(--ion-page-background-color);
@@ -23,11 +22,44 @@ ion-content {
   padding: 1px 15px;
   color: #ffffff;
   width: fit-content;
+  margin-bottom: 0px;
 }
 
-.header {
-  padding: 0px 20px 0px 20px;
-}
 .toolbar {
   --background: var(--ion-page-background-color);
+  padding: 0px 20px 0px 20px;
+}
+.badge {
+  position: absolute;
+  top: 0px;
+  left: 15px;
+  border-radius: 20px;
+  font-size: 8px;
+  padding: 4px;
+  background-color: red;
+}
+.cartIcon {
+  color: red;
+  font-size: 1.5em;
+}
+.heartIcon {
+  color: var(--ion-text-color);
+  font-size: 1.5em;
+}
+.searchBar {
+  border: 1px solid black;
+  --border-radius: 4px;
+}
+ion-searchbar.custom {
+  --background: var(--ion-searchbar-background);
+  --color: var(--ion-text-color);
+  /* --placeholder-color: #fff;
+  --icon-color: #fff; */
+  --border-radius: 20px;
+  --box-shadow: none;
+}
+.customSearchbar {
+  border: 1px solid gray;
+  border-radius: 50px;
+  background: var(--ion-searchbar-background);
 }

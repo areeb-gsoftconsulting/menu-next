@@ -198,6 +198,7 @@ body {
   --ion-page-background-color: rgb(255, 255, 255);
   --ion-background-color: #fbf7f7;
   --ion-background-color-rgb: 18, 18, 18;
+  --ion-searchbar-background: rgb(255, 255, 255);
 
   --ion-text-color: #000000;
   --ion-text-color-rgb: 255, 255, 255;
@@ -234,6 +235,8 @@ body {
 }
 /* dark colors */
 .md body.dark {
+  --ion-searchbar-background: rgba(43, 46, 50, 1);
+
   --ion-page-background-color: rgb(0, 0, 0);
 
   --ion-background-color: #ffffff;

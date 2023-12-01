@@ -1,11 +1,16 @@
 import {
+  IonBadge,
+  IonCol,
   IonContent,
   IonHeader,
   IonIcon,
+  IonImg,
   IonItem,
   IonLabel,
   IonList,
   IonPage,
+  IonRow,
+  IonSearchbar,
   IonText,
   IonTitle,
   IonToggle,
@@ -13,26 +18,59 @@ import {
 } from "@ionic/react";
 import ExploreContainer from "../components/ExploreContainer";
 import styles from "./Home.module.css";
+import lightLogo from "../assets/logoLight.png";
+import darkLogo from "../assets/logoDark.png";
+import { logoIonic, heartOutline, cartOutline } from "ionicons/icons";
+import { useState } from "react";
 
 const Home: React.FC = () => {
-  const toggleDarkModeHandler = () => document.body.classList.toggle("dark");
+  const [isDark, setIsDark] = useState(false);
+  const toggleDarkModeHandler = () => {
+    document.body.classList.toggle("dark");
+    return document.body.classList.contains("dark")
+      ? setIsDark(true)
+      : setIsDark(false);
+  };
+
+  // Example usage
+  console.log("Current theme:", isDark);
 
   return (
     <IonPage className={styles.page}>
-      <IonHeader className={`ion-no-border ${styles.header}`}>
+      <IonHeader mode="ios" className={`ion-no-border`} translucent={true}>
         <IonToolbar className={`${styles.toolbar}`}>
           <IonText>
             <p className={styles.labelContainer}>Amsterdam</p>
           </IonText>
+
+          <IonRow class="ion-justify-content-between">
+            <IonImg src={isDark ? lightLogo : darkLogo} />
+            {/*  */}
+            <IonRow class="ion-justify-content-between ion-align-items-center">
+              <IonCol size="6">
+                <IonIcon
+                  className={styles.heartIcon}
+                  icon={heartOutline}
+                ></IonIcon>
+              </IonCol>
+              <IonCol size="6">
+                <IonBadge className={styles.badge}>11</IonBadge>
+                <IonIcon
+                  className={styles.cartIcon}
+                  icon={cartOutline}
+                ></IonIcon>
+              </IonCol>
+            </IonRow>
+          </IonRow>
+
+          <IonSearchbar
+            mode="md"
+            className={`${styles.custom} ${styles.customSearchbar}`} // Applying the custom styles
+            placeholder="Custom Placeholder"
+          ></IonSearchbar>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank Application</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer />
         <IonList>
           <IonItem lines="none">
             <IonIcon slot="start" />
@@ -44,6 +82,204 @@ const Home: React.FC = () => {
             />
           </IonItem>
         </IonList>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio
+          placeat, sequi commodi obcaecati tempore fugiat quas maiores eligendi
+          dolorem est facilis vel, error maxime non nesciunt aspernatur, eos
+          quidem. Debitis?
+        </p>
       </IonContent>
     </IonPage>
   );
