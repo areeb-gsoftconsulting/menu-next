@@ -33,7 +33,7 @@ const App: React.FC = () => (
           <Home />
         </Route>
         <Route exact path="/">
-          <Redirect to="/home" />
+          <Redirect to="/menu" />
         </Route>
         <Route exact path="/menu">
           <Menu />

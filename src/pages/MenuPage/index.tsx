@@ -16,7 +16,7 @@ import {
   IonTitle,
   IonToggle,
 } from "@ionic/react";
-import "./styles.css";
+import styles from "./styles.module.css";
 import bannerImage from "../../assets/bannerImage.png";
 import menuImg from "../../assets/menuImg.png";
 
@@ -24,15 +24,18 @@ const Menu = () => {
   // const toggleDarkModeHandler = () => document.body.classList.toggle("dark");
 
   return (
-    <IonPage className="page">
-      <IonHeader className="ion-no-border header" translucent={true}>
-        <IonImg className="bannerImage" src={bannerImage} />
+    <IonPage className={styles.page}>
+      <IonHeader
+        className={`${styles.header} ion-no-border`}
+        translucent={true}
+      >
+        <IonImg className={styles.bannerImage} src={bannerImage} />
       </IonHeader>
       <IonContent fullscreen>
-        <IonText className="restName">
+        <IonText className={styles.restName}>
           <p>Amsterdam</p>
         </IonText>
-        <IonText className="selectMenu">
+        <IonText className={styles.selectMenu}>
           <h2>Select Menu</h2>
         </IonText>
         {/* <IonList>
@@ -48,13 +51,13 @@ const Menu = () => {
         </IonList> */}
 
         <IonCol>
-          <IonImg className="menuImg" src={menuImg} />
-          <p className="labelContainer">non-veg</p>
+          <IonImg className={styles.menuImg} src={menuImg} />
+          <p className={styles.labelContainer}>non-veg</p>
         </IonCol>
 
         <IonCol>
-          <IonImg className="menuImg" src={menuImg} />
-          <p className="labelContainer">non-veg</p>
+          <IonImg className={styles.menuImg} src={menuImg} />
+          <p className={styles.labelContainer}>non-veg</p>
         </IonCol>
       </IonContent>
     </IonPage>

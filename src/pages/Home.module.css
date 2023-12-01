@@ -1,0 +1,33 @@
+ion-content {
+  --padding-top: 55px;
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --background: var(--ion-page-background-color);
+}
+.page {
+  max-width: 100%;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .page {
+    max-width: 600px; /* Set a maximum width of 600px for larger screens */
+  }
+}
+.labelContainer {
+  font-family: "poppins";
+  background: var(
+    --pr,
+    linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%)
+  );
+  border-radius: 30px;
+  padding: 1px 15px;
+  color: #ffffff;
+  width: fit-content;
+}
+
+.header {
+  padding: 0px 20px 0px 20px;
+}
+.toolbar {
+  --background: var(--ion-page-background-color);
+}
