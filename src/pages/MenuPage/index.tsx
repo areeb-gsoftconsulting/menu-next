@@ -19,6 +19,7 @@ import {
 import styles from "./styles.module.css";
 import bannerImage from "../../assets/bannerImage.png";
 import menuImg from "../../assets/menuImg.png";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
   // const toggleDarkModeHandler = () => document.body.classList.toggle("dark");
@@ -50,15 +51,18 @@ const Menu = () => {
           </IonItem>
         </IonList> */}
 
-        <IonCol>
-          <IonImg className={styles.menuImg} src={menuImg} />
-          <p className={styles.labelContainer}>non-veg</p>
-        </IonCol>
-
-        <IonCol>
-          <IonImg className={styles.menuImg} src={menuImg} />
-          <p className={styles.labelContainer}>non-veg</p>
-        </IonCol>
+        <Link to="/home">
+          <IonCol>
+            <IonImg className={styles.menuImg} src={menuImg} />
+            <p className={styles.labelContainer}>non-veg</p>
+          </IonCol>
+        </Link>
+        <Link to="/home">
+          <IonCol>
+            <IonImg className={styles.menuImg} src={menuImg} />
+            <p className={styles.labelContainer}>non-veg</p>
+          </IonCol>
+        </Link>
       </IonContent>
     </IonPage>
   );
