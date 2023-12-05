@@ -23,6 +23,7 @@ import { logoIonic, heartOutline, cartOutline } from "ionicons/icons";
 import { useState } from "react";
 import CategorySlider from "../../components/CategorySlider";
 import ItemCard from "../../components/ItemCard";
+import ItemDetailsCard from "../../components/ItemDetailsCard";
 
 const Home: React.FC = () => {
   const [isDark, setIsDark] = useState(false);

@@ -195,6 +195,7 @@ body {
    */
 /* light colors */
 .md body {
+  --ion-custome-card-color: rgba(250, 250, 250, 1);
   --ion-page-background-color: rgb(255, 255, 255);
   --ion-background-color: #fbf7f7;
   --ion-background-color-rgb: 18, 18, 18;
@@ -235,6 +236,8 @@ body {
 }
 /* dark colors */
 .md body.dark {
+  --ion-custome-card-color: rgba(43, 46, 50, 1);
+
   --ion-searchbar-background: rgba(43, 46, 50, 1);
 
   --ion-page-background-color: rgb(0, 0, 0);

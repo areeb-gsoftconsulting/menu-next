@@ -1,0 +1,83 @@
+.title {
+  font-family: "poppins";
+  font-weight: 700;
+  padding-inline: 0px;
+}
+.cardImg {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.rateIcon {
+  font-size: 20px;
+  color: #fecd00;
+}
+.name {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "poppins";
+  padding-inline: 0px;
+}
+.price {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "poppins";
+  padding-inline: 0px;
+  text-align: end;
+}
+.categoryName {
+  font-size: 14;
+  font-weight: 400;
+  font-family: "poppins";
+  margin-bottom: 20px;
+}
+.flavCard {
+  margin-top: 20px;
+  border-radius: 16px;
+  background-color: var(--ion-custome-card-color);
+  padding: 14px;
+}
+.caption {
+  color: var(--ion-text-color);
+  font-family: "poppins";
+  margin: 0px;
+  font-weight: 800;
+  font-size: 14px;
+}
+.required {
+  background-color: red;
+  padding: 2px 15px;
+  border-radius: 20px;
+  color: white;
+  font-family: "poppins";
+  margin: 0px;
+  font-size: 10px;
+  font-weight: 500;
+}
+.msg {
+  color: var(--ion-text-color);
+  font-family: "poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.priceLabel {
+  color: var(--ion-text-color);
+  text-align: right;
+  font-family: "poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0px;
+}
+.radioBtn {
+  --color: #6e6e6e;
+  --color-checked: red;
+  padding: 5px; /* Adjust the padding to make the radio button smaller */
+  margin-inline-end: 8px !important;
+}
