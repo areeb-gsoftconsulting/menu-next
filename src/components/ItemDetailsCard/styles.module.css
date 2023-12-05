@@ -81,3 +81,79 @@
   padding: 5px; /* Adjust the padding to make the radio button smaller */
   margin-inline-end: 8px !important;
 }
+.optionalCard {
+  margin-top: 20px;
+}
+.optional {
+  background-color: var(--ion-custome-card-color);
+  padding: 2px 15px;
+  border-radius: 20px;
+  font-family: "poppins";
+  margin: 0px;
+  font-size: 10px;
+  font-weight: 500;
+}
+.checkBox {
+  --checkbox-background-checked: red;
+  --checkbox-background: var(--ion-page-background);
+  --border-color: #6e6e6e;
+  --border-color-checked: red;
+  padding: 10px;
+}
+.note {
+  font-family: "poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.textarea {
+  --highlight-color-focused: var(--ion-text-color);
+}
+.leftRow {
+  /* width: 20%; */
+}
+.disableBtn {
+  background-color: var(--ion-custome-card-color);
+  border-radius: 8px;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+.btnTxt {
+  margin: 0px;
+  color: white;
+  padding: 0px;
+}
+.activeBtn {
+  background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+
+  border-radius: 8px;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+.addBtn {
+  width: 65%;
+  --box-shadow: none;
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  /* --padding-bottom: 20px;
+  --padding-top: 20px; */
+  --border-radius: 8px;
+}
+.actionBtn {
+  --box-shadow: none;
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  --border-radius: 8px;
+  --padding-bottom: 0px;
+  --padding-end: 15px;
+  --padding-start: 15px;
+  font-weight: bold;
+  height: 25px;
+  width: 35px;
+  --padding-top: 0px;
+}
