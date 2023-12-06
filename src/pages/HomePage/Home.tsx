@@ -75,7 +75,7 @@ const Home: React.FC = () => {
       <IonContent fullscreen>
         <IonTitle className={styles.menu}>Vegetarian</IonTitle>
         <CategorySlider />
-        <IonList>
+        {/* <IonList>
           <IonItem lines="none">
             <IonIcon slot="start" />
             <IonLabel>Dark Mode</IonLabel>
@@ -85,7 +85,7 @@ const Home: React.FC = () => {
               onIonChange={toggleDarkModeHandler}
             />
           </IonItem>
-        </IonList>
+        </IonList> */}
 
         {[1, 2, 3, 4, 5].map(() => (
           <ItemCard />

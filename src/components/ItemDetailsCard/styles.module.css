@@ -1,7 +1,9 @@
 .title {
-  font-family: "poppins";
-  font-weight: 700;
+  font-family: "poppins-normal";
+  font-weight: 600;
+  font-size: 20px;
   padding-inline: 0px;
+  margin-top: 12px;
 }
 .cardImg {
   width: 100%;
@@ -10,6 +12,7 @@
   border-radius: 16px;
   overflow: hidden;
   margin: 0 auto;
+  margin-top: 16px;
 }
 .rateIcon {
   font-size: 20px;
@@ -18,7 +21,7 @@
 .name {
   font-size: 20px;
   font-weight: 600;
-  font-family: "poppins";
+  font-family: "poppins-normal";
   padding-inline: 0px;
 }
 .price {
@@ -29,10 +32,10 @@
   text-align: end;
 }
 .categoryName {
-  font-size: 14;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 600;
   font-family: "poppins";
-  margin-bottom: 20px;
+  margin: 0px;
 }
 .flavCard {
   margin-top: 20px;
@@ -42,7 +45,7 @@
 }
 .caption {
   color: var(--ion-text-color);
-  font-family: "poppins";
+  font-family: "poppins-normal";
   margin: 0px;
   font-weight: 800;
   font-size: 14px;
@@ -64,6 +67,9 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  margin: 0px;
+  padding-top: 4px;
+  padding-bottom: 10px;
 }
 .priceLabel {
   color: var(--ion-text-color);
@@ -78,7 +84,7 @@
 .radioBtn {
   --color: #6e6e6e;
   --color-checked: red;
-  padding: 5px; /* Adjust the padding to make the radio button smaller */
+  padding: 8px 0px; /* Adjust the padding to make the radio button smaller */
   margin-inline-end: 8px !important;
 }
 .optionalCard {
@@ -98,7 +104,7 @@
   --checkbox-background: var(--ion-page-background);
   --border-color: #6e6e6e;
   --border-color-checked: red;
-  padding: 10px;
+  padding: 8px 0px;
 }
 .note {
   font-family: "poppins";
@@ -106,6 +112,9 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  padding-top: 4px;
+  padding-bottom: 10px;
+  margin: 0px;
 }
 .textarea {
   --highlight-color-focused: var(--ion-text-color);
@@ -156,4 +165,9 @@
   height: 25px;
   width: 35px;
   --padding-top: 0px;
+}
+.description {
+  color: var(--ion-text-color);
+  font-family: "poppins";
+  font-size: 14px;
 }

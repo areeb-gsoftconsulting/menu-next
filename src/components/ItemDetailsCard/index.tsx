@@ -42,32 +42,29 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
           <IonIcon className={styles.rateIcon} icon={starSharp} />
           <IonText
             style={{
-              fontFamily: "poppins",
+              fontFamily: "poppins-normal",
+              color: "var(--ion-text-color)",
+              marginLeft: "4px",
             }}
           >
             4.8
           </IonText>
         </IonRow>
-        <IonRow className="ion-justify-content-between ion-align-items-center">
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              paddingLeft: "5px",
-            }}
-          >
-            <IonTitle className={styles.name}>Meat</IonTitle>
-            <IonLabel className={styles.categoryName}>hoo</IonLabel>
-          </div>
-
-          <IonTitle className={styles.price}>$4.5</IonTitle>
-        </IonRow>
-        <IonText
+        <div
           style={{
-            color: "var(--ion-text-color)",
-            fontFamily: "poppins",
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "16px",
           }}
         >
+          <IonRow className="ion-justify-content-between ion-align-items-center">
+            <IonTitle className={styles.name}>Meat</IonTitle>
+
+            <IonTitle className={styles.price}>$4.5</IonTitle>
+          </IonRow>
+          <IonLabel className={styles.categoryName}>Food</IonLabel>
+        </div>
+        <IonText className={styles.description}>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla soluta
           deserunt sapiente corrupti? Ipsa optio quam illum atque animi impedit,
           adipisci quos voluptate sequi vitae praesentium ullam minus inventore
@@ -141,7 +138,7 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
         </div>
         <div className={styles.optionalCard}>
           <h4 className={`${styles.caption} ion-no-padding`}>
-            Choice of Toppings
+            Special Instructions
           </h4>
           <p className={styles.note}>
             (Please let us know if you are allergic to anything or if we need to
