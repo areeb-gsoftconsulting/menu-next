@@ -24,7 +24,7 @@ const CategorySlider = () => {
             <div>
               <IonImg className={styles.image} src={categoryImg} />
             </div>
-            {o}
+            <p className={styles.name}>{o}</p>
           </IonSegmentButton>
         ))}
       </IonSegment>

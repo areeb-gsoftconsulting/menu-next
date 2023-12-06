@@ -22,6 +22,7 @@ ion-content {
   padding: 1px 15px;
   color: #ffffff;
   width: fit-content;
+  font-size: 12px;
   margin-bottom: 0px;
 }
 
@@ -55,7 +56,7 @@ ion-searchbar.custom {
   --border-radius: 20px;
   --box-shadow: none;
   padding: 0px;
-  --icon-color: var(--ion-search-border);
+  --icon-color: var(--ion-search-icon);
 }
 
 .customSearchbar {

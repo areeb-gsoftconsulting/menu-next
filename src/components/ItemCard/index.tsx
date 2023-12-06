@@ -57,15 +57,35 @@ const ItemCard = () => {
         <IonImg className={styles.cardImg} src={thumbnailImg} />
         <IonRow className="ion-margin-top ion-align-items-center">
           <IonIcon className={styles.rateIcon} icon={starSharp} />
-          <IonText
+          <div
             style={{
-              fontFamily: "poppins-normal",
-              color: "var(--ion-text-color)",
-              marginLeft: "4px",
+              flexDirection: "row",
             }}
           >
-            4.8
-          </IonText>
+            <IonText
+              style={{
+                fontFamily: "poppins-normal",
+                color: "var(--ion-text-color)",
+                marginLeft: "4px",
+                fontSize: "16px",
+                marginTop: "4px",
+              }}
+            >
+              4.8
+            </IonText>
+            <IonText
+              style={{
+                fontFamily: "poppins",
+                color: "var(--ion-text-color)",
+                marginLeft: "4px",
+                fontSize: "14px",
+                marginTop: "4px",
+                fontWeight: "600",
+              }}
+            >
+              (100+)
+            </IonText>
+          </div>
         </IonRow>
 
         <IonText className={styles.description}>
