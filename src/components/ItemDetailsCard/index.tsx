@@ -21,7 +21,7 @@ import {
   IonButton,
 } from "@ionic/react";
 import thumbnailImg from "../../assets/menuImg.png";
-import { starSharp } from "ionicons/icons";
+import { starSharp, add, remove } from "ionicons/icons";
 
 const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
   const modal = useRef<HTMLIonModalElement>(null);
@@ -156,15 +156,24 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
           ></IonTextarea>
         </div>
         <IonRow
-          className={`ion-justify-content-between ion-align-items-center ion-padding-vertical`}
+          className={`ion-justify-content-evenly ion-align-items-center ion-padding-vertical`}
         >
-          <IonRow
-            className={`ion-justify-content-evenly ion-align-items-center ${styles.leftRow}`}
-          >
-            <IonButton className={styles.actionBtn}>-</IonButton>
-            <h3>9</h3>
-            <IonButton className={styles.actionBtn}>+</IonButton>
-          </IonRow>
+          <IonButton className={`${styles.iconBtn} ion-no-padding`}>
+            <IonIcon
+              className={styles.icons}
+              slot="icon-only"
+              icon={remove}
+            ></IonIcon>
+          </IonButton>
+          <h3>9</h3>
+          {/* <IonButton className={styles.actionBtn}>+</IonButton> */}
+          <IonButton className={`${styles.iconBtn} ion-no-padding`}>
+            <IonIcon
+              className={styles.icons}
+              slot="icon-only"
+              icon={add}
+            ></IonIcon>
+          </IonButton>
           <IonButton className={styles.addBtn}>Add to Cart</IonButton>
         </IonRow>
       </IonContent>
