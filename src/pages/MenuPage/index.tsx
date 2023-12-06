@@ -33,12 +33,8 @@ const Menu = () => {
         <IonImg className={styles.bannerImage} src={bannerImage} />
       </IonHeader>
       <IonContent className={styles.container} fullscreen>
-        <IonText className={styles.restName}>
-          <p>Amsterdam</p>
-        </IonText>
-        <IonText className={styles.selectMenu}>
-          <h2>Select Menu</h2>
-        </IonText>
+        <p className={styles.restName}>Amsterdam</p>
+        <p className={styles.selectMenu}>Select Menu</p>
         {/* <IonList>
           <IonItem lines="none">
             <IonIcon slot="start" />

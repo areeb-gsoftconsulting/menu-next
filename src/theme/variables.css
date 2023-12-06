@@ -287,6 +287,10 @@ body {
   font-family: "poppins-bold";
   src: url("../assets/fonts/Poppins-Black.ttf");
 }
+@font-face {
+  font-family: "poppins-normal";
+  src: url("../assets/fonts/Poppins-SemiBold.ttf");
+}
 
 .segment-button-checked > div {
   border: 2px solid red;
