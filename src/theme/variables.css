@@ -300,7 +300,7 @@ body {
 
 .segment-button-checked > div {
   border: 2px solid red;
-  padding: 3px;
+  padding: 2px;
   border-radius: 50%;
 }
 .searchbar-input.sc-ion-searchbar-md {

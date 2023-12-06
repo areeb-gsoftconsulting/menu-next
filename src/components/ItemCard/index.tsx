@@ -23,17 +23,19 @@ const ItemCard = () => {
 
   return (
     <>
-      <IonCard onClick={() => setIsOpen(true)} className={styles.card}>
+      <IonCard onClick={() => setIsOpen(true)} className={`${styles.card}`}>
         <IonRow className="ion-justify-content-between ion-align-items-center">
           <IonRow
             className={`ion-justify-content-between ion-align-items-center ${styles.cardName}`}
           >
-            <IonThumbnail className={styles.thumbnail}>
-              <img
-                alt="Silhouette of mountains"
-                src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
-              />
-            </IonThumbnail>
+            <div className={styles.outerDiv}>
+              <IonThumbnail className={styles.thumbnail}>
+                <img
+                  alt="Silhouette of mountains"
+                  src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
+                />
+              </IonThumbnail>
+            </div>
             <div
               style={{
                 display: "flex",
@@ -42,7 +44,7 @@ const ItemCard = () => {
               }}
             >
               <IonLabel className={styles.name}>Falafel</IonLabel>
-              <IonLabel className={styles.categoryName}>hoo</IonLabel>
+              <IonLabel className={styles.categoryName}>Food</IonLabel>
             </div>
           </IonRow>
           <IonIcon
@@ -57,33 +59,24 @@ const ItemCard = () => {
           <IonIcon className={styles.rateIcon} icon={starSharp} />
           <IonText
             style={{
-              fontFamily: "poppins",
+              fontFamily: "poppins-normal",
+              color: "var(--ion-text-color)",
+              marginLeft: "4px",
             }}
           >
             4.8
           </IonText>
         </IonRow>
 
-        <IonText
-          style={{
-            color: "var(--ion-text-color)",
-            fontFamily: "poppins",
-          }}
-        >
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla soluta
-          deserunt sapiente corrupti? Ipsa optio quam illum atque animi impedit,
-          adipisci quos voluptate sequi vitae praesentium ullam minus inventore
-          quis.
+        <IonText className={styles.description}>
+          Lorem ipsum dolor quis sit, amet consectetur adipisicing elit. Nulla
+          soluta deserunt sapiente corrupti? Ipsa optio quam illum atque animi
+          impedit, adipisci quos voluptate sequi vitae praesentium ullam minus
+          inventore quis.
         </IonText>
-        <br />
-        <IonRow className="ion-margin-top ion-align-items-center">
-          <IonText
-            style={{
-              fontFamily: "poppins",
-            }}
-          >
-            30 minutes ago
-          </IonText>
+        <p className={styles.more}>more</p>
+        <IonRow className="ion-align-items-center">
+          <p className={styles.time}>30 minutes ago</p>
         </IonRow>
       </IonCard>
       {isOpen && <ItemDetailsCard isOpen={isOpen} setIsOpen={setIsOpen} />}
