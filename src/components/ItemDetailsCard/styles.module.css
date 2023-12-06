@@ -52,13 +52,13 @@
 }
 .required {
   background-color: red;
-  padding: 2px 15px;
+  padding: 5px 10px;
   border-radius: 20px;
   color: white;
   font-family: "poppins";
   margin: 0px;
   font-size: 10px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .msg {
   color: var(--ion-text-color);
@@ -77,7 +77,7 @@
   font-family: "poppins";
   font-size: 14px;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
   margin: 0px;
 }
@@ -92,12 +92,12 @@
 }
 .optional {
   background-color: var(--ion-custome-card-color);
-  padding: 2px 15px;
+  padding: 5px 10px;
   border-radius: 20px;
   font-family: "poppins";
   margin: 0px;
   font-size: 10px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .checkBox {
   --checkbox-background-checked: red;

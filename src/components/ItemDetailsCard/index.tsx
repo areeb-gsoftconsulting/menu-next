@@ -54,7 +54,7 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
           style={{
             display: "flex",
             flexDirection: "column",
-            marginBottom: "16px",
+            marginBottom: "8px",
           }}
         >
           <IonRow className="ion-justify-content-between ion-align-items-center">
@@ -77,7 +77,7 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
             <h4 className={`${styles.caption} ion-no-padding`}>
               Choose Flavor
             </h4>
-            <h4 className={`${styles.required}`}>required</h4>
+            <h4 className={`${styles.required}`}>Required</h4>
           </IonRow>
           <p className={styles.msg}>Select any 1</p>
 
@@ -85,7 +85,10 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
             <IonRow
               className={`ion-justify-content-between ion-align-items-center`}
             >
-              <IonRadio className={`${styles.radioBtn}`} labelPlacement="end">
+              <IonRadio
+                className={`${styles.radioBtn} label-text-wrapper`}
+                labelPlacement="end"
+              >
                 <p className={`${styles.priceLabel}`}>Medium</p>
               </IonRadio>
               <p className={`${styles.priceLabel}`}>$ 4.5</p>
