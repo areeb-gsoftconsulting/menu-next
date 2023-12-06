@@ -1,6 +1,6 @@
 ion-content {
-  --padding-start: 20px;
-  --padding-end: 20px;
+  --padding-start: 0px;
+  --padding-end: 0px;
   --background: var(--ion-page-background-color);
 }
 .page {
@@ -27,7 +27,7 @@ ion-content {
 
 .toolbar {
   --background: var(--ion-page-background-color);
-  padding: 0px 20px 0px 20px;
+  padding: 0px 18px 0px 18px;
 }
 .badge {
   position: absolute;
@@ -66,7 +66,7 @@ ion-searchbar.custom {
 }
 .menu {
   font-family: "poppins-normal";
-  padding: 10px 0px;
+  padding: 10px 22px;
   font-size: 20px;
   font-weight: 600;
 }

@@ -17,7 +17,7 @@ const CategorySlider = () => {
     "coffee",
   ];
   return (
-    <IonToolbar className={styles.toolbar}>
+    <IonToolbar className={`${styles.toolbar} ion-no-padding`}>
       <IonSegment scrollable>
         {x.map((o, i) => (
           <IonSegmentButton color="secondary" value={o}>

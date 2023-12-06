@@ -27,11 +27,14 @@
 }
 .container {
   --padding-top: 38px;
+
+  --padding-start: 20px;
+  --padding-end: 20px;
 }
 ion-content {
   --padding-top: 10px;
-  --padding-start: 20px;
-  --padding-end: 20px;
+  --padding-start: 0px;
+  --padding-end: 0px;
   --background: var(--ion-page-background-color);
 }
 .selectMenu {
