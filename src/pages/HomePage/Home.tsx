@@ -67,8 +67,8 @@ const Home: React.FC = () => {
 
           <IonSearchbar
             mode="md"
-            className={`${styles.custom} ${styles.customSearchbar}`} // Applying the custom styles
-            placeholder="Custom Placeholder"
+            className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
+            placeholder="Search"
           ></IonSearchbar>
         </IonToolbar>
       </IonHeader>
