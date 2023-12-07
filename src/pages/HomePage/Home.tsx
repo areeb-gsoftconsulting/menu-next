@@ -35,7 +35,6 @@ const Home: React.FC = () => {
   };
 
   // Example usage
-  console.log("Current theme:", isDark);
 
   return (
     <IonPage className={styles.page}>

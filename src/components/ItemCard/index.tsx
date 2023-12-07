@@ -17,6 +17,7 @@ import { ellipsisHorizontal, starSharp, heartOutline } from "ionicons/icons";
 import thumbnailImg from "../../assets/menuImg.png";
 import ItemDetailsCard from "../ItemDetailsCard";
 import { useState } from "react";
+import { setLikedItems } from "../../store/slices/likeSlice";
 
 const ItemCard = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,7 +53,11 @@ const ItemCard = () => {
             icon={ellipsisHorizontal}
           ></IonIcon>
         </IonRow>
-        <IonIcon className={styles.likeIcon} icon={heartOutline} />
+        <IonIcon
+          onClick={() => dispatch(setLikedItems({ name: "areeb" }))}
+          className={styles.likeIcon}
+          icon={heartOutline}
+        />
 
         <IonImg className={styles.cardImg} src={thumbnailImg} />
         <IonRow className="ion-margin-top ion-align-items-center">
