@@ -2,6 +2,8 @@ import {
   IonBadge,
   IonCol,
   IonContent,
+  IonFab,
+  IonFabButton,
   IonHeader,
   IonIcon,
   IonImg,
@@ -19,11 +21,12 @@ import {
 import styles from "./Home.module.css";
 import lightLogo from "../../assets/logoLight.png";
 import darkLogo from "../../assets/logoDark.png";
-import { logoIonic, heartOutline, cartOutline } from "ionicons/icons";
+import { logoIonic, heartOutline, cartOutline, add } from "ionicons/icons";
 import { useState } from "react";
 import CategorySlider from "../../components/CategorySlider";
 import ItemCard from "../../components/ItemCard";
 import ItemDetailsCard from "../../components/ItemDetailsCard";
+import FavItemsButton from "../../components/FavItemsButton";
 
 const Home: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
@@ -94,6 +97,7 @@ const Home: React.FC = () => {
             <ItemCard />
           ))}
         </div>
+        <FavItemsButton />
       </IonContent>
     </IonPage>
   );

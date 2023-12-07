@@ -2,6 +2,7 @@
   --background: var(--ion-page-background);
   box-shadow: none;
   margin-inline: 0px;
+  cursor: pointer;
 }
 .thumbnail {
   --border-radius: 50%;

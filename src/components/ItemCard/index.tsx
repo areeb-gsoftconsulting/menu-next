@@ -18,10 +18,11 @@ import thumbnailImg from "../../assets/menuImg.png";
 import ItemDetailsCard from "../ItemDetailsCard";
 import { useState } from "react";
 import { setLikedItems } from "../../store/slices/likeSlice";
+import { useDispatch } from "react-redux";
 
 const ItemCard = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const dispatch = useDispatch();
   return (
     <>
       <IonCard onClick={() => setIsOpen(true)} className={`${styles.card}`}>
@@ -54,7 +55,10 @@ const ItemCard = () => {
           ></IonIcon>
         </IonRow>
         <IonIcon
-          onClick={() => dispatch(setLikedItems({ name: "areeb" }))}
+          onClick={(e: any) => {
+            dispatch(setLikedItems({ name: "areeb" }));
+            e.stopPropagation();
+          }}
           className={styles.likeIcon}
           icon={heartOutline}
         />

@@ -13,7 +13,10 @@ export const likeSlice = createSlice({
   initialState,
   reducers: {
     setLikedItems: (state: any, action: any) => {
-      return { ...state, items: action.payload };
+      return {
+        ...state,
+        items: [...state.items, action.payload],
+      };
     },
   },
 });
