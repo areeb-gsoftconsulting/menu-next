@@ -28,10 +28,12 @@ import ItemCard from "../../components/ItemCard";
 import ItemDetailsCard from "../../components/ItemDetailsCard";
 import FavItemsButton from "../../components/FavItemsButton";
 import SelectedItemModal from "../../components/SelectedItemModal";
+import CartModal from "../../components/CartModal";
 
 const Home: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
   const [openFav, setOpenFav] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const toggleDarkModeHandler = () => {
     document.body.classList.toggle("dark");
     return document.body.classList.contains("dark")
@@ -58,7 +60,7 @@ const Home: React.FC = () => {
                   icon={heartOutline}
                 ></IonIcon>
               </IonCol>
-              <IonCol size="6">
+              <IonCol onClick={() => setIsCartOpen(true)} size="6">
                 <IonBadge className={styles.badge}>11</IonBadge>
                 <IonIcon
                   className={styles.cartIcon}
@@ -101,6 +103,9 @@ const Home: React.FC = () => {
         <FavItemsButton setOpenFav={setOpenFav} />
         {openFav && (
           <SelectedItemModal openFav={openFav} setOpenFav={setOpenFav} />
+        )}
+        {isCartOpen && (
+          <CartModal isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
         )}
       </IonContent>
     </IonPage>

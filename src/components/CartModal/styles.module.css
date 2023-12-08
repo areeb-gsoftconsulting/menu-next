@@ -1,0 +1,46 @@
+.header {
+  box-shadow: none;
+}
+.toolbar {
+  --background: var(--ion-page-background-color);
+}
+.backIcon {
+  padding-left: 12px;
+  cursor: pointer;
+}
+.backBtn {
+  font-family: "poppins-normal";
+  text-transform: capitalize;
+  font-size: 16px;
+}
+.priceCard {
+  margin-top: 24px;
+  background-color: var(--ion-custome-card-color);
+  border-radius: 16px;
+  padding: 16px;
+}
+.cardTxt {
+  font-size: 14px;
+  margin: 5px 0px;
+  font-family: "poppins";
+  font-weight: 500;
+  color: var(--ion-text-color);
+}
+.footer {
+  box-shadow: none;
+  background-color: var(--ion-page-background-color);
+  border-top: 1px solid var(--ion-search-border);
+  padding: 10px;
+}
+.checkoutBtn {
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  --box-shadow: none;
+  --border-radius: 8px;
+}
+.footerTxt {
+  font-size: 14px;
+  margin: 0px;
+  font-family: "poppins-normal";
+  font-weight: 500;
+  color: var(--ion-text-color);
+}
