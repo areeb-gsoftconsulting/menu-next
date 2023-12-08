@@ -27,9 +27,11 @@ import CategorySlider from "../../components/CategorySlider";
 import ItemCard from "../../components/ItemCard";
 import ItemDetailsCard from "../../components/ItemDetailsCard";
 import FavItemsButton from "../../components/FavItemsButton";
+import SelectedItemModal from "../../components/SelectedItemModal";
 
 const Home: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
+  const [openFav, setOpenFav] = useState(false);
   const toggleDarkModeHandler = () => {
     document.body.classList.toggle("dark");
     return document.body.classList.contains("dark")
@@ -38,7 +40,6 @@ const Home: React.FC = () => {
   };
 
   // Example usage
-
   return (
     <IonPage className={styles.page}>
       <IonHeader mode="ios" className={`ion-no-border`} translucent={true}>
@@ -97,7 +98,10 @@ const Home: React.FC = () => {
             <ItemCard />
           ))}
         </div>
-        <FavItemsButton />
+        <FavItemsButton setOpenFav={setOpenFav} />
+        {openFav && (
+          <SelectedItemModal openFav={openFav} setOpenFav={setOpenFav} />
+        )}
       </IonContent>
     </IonPage>
   );
