@@ -348,14 +348,17 @@ body {
 
 @font-face {
   font-family: "poppins";
+  font-display: block;
   src: url("../assets/fonts/Poppins-Light.ttf");
 }
 @font-face {
   font-family: "poppins-bold";
+  font-display: block;
   src: url("../assets/fonts/Poppins-Black.ttf");
 }
 @font-face {
   font-family: "poppins-normal";
+  font-display: block;
   src: url("../assets/fonts/Poppins-SemiBold.ttf");
 }
 
