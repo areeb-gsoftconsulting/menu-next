@@ -28,7 +28,8 @@ ion-content {
 
 .toolbar {
   --background: var(--ion-page-background-color);
-  padding: 0px 18px 0px 18px;
+  padding: 18px;
+  border-bottom: 1px solid var(--ion-toolbar-borer);
 }
 .badge {
   position: absolute;
@@ -67,9 +68,10 @@ ion-searchbar.custom {
 }
 .menu {
   font-family: "poppins-normal";
-  padding: 10px 22px;
+  padding: 12px 20px;
   font-size: 20px;
   font-weight: 600;
+  margin: 0px 0px;
 }
 .cartBottomButton {
   bottom: 10px;

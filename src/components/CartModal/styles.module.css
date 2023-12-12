@@ -12,6 +12,7 @@
   font-family: "poppins-normal";
   text-transform: capitalize;
   font-size: 16px;
+  --color: var(--ion-text-color);
 }
 .priceCard {
   margin-top: 24px;

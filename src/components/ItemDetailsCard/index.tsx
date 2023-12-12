@@ -19,10 +19,11 @@ import {
   IonCheckbox,
   IonTextarea,
   IonButton,
+  IonHeader,
 } from "@ionic/react";
 import thumbnailImg from "../../assets/menuImg.png";
 import { starSharp, add, remove } from "ionicons/icons";
-
+import { isPlatform } from "@ionic/react";
 const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
   const modal = useRef<HTMLIonModalElement>(null);
 
@@ -36,8 +37,14 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
       onDidDismiss={() => setIsOpen(false)}
     >
       <IonContent className="ion-padding">
-        <IonTitle className={styles.title}>Customise</IonTitle>
-        <IonImg className={styles.cardImg} src={thumbnailImg} />
+        <IonHeader className="ion-no-border">
+          <IonTitle className={styles.title}>Customise</IonTitle>
+        </IonHeader>
+
+        <IonImg
+          className={isPlatform("ios") ? styles.cardImg : styles.cardImgAndroid}
+          src={thumbnailImg}
+        />
         <IonRow className="ion-margin-top ion-align-items-center">
           <IonIcon className={styles.rateIcon} icon={starSharp} />
           <IonText
@@ -54,13 +61,11 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
           style={{
             display: "flex",
             flexDirection: "column",
-            marginBottom: "8px",
           }}
         >
           <IonRow className="ion-justify-content-between ion-align-items-center">
-            <IonTitle className={styles.name}>Meat</IonTitle>
-
-            <IonTitle className={styles.price}>$4.5</IonTitle>
+            <IonLabel className={styles.name}>Meat</IonLabel>
+            <IonLabel className={styles.price}>$4.5</IonLabel>
           </IonRow>
           <IonLabel className={styles.categoryName}>Food</IonLabel>
         </div>
@@ -86,6 +91,7 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
               className={`ion-justify-content-between ion-align-items-center`}
             >
               <IonRadio
+                mode="md"
                 className={`${styles.radioBtn} label-text-wrapper`}
                 labelPlacement="end"
               >
@@ -96,7 +102,11 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
             <IonRow
               className={`ion-justify-content-between ion-align-items-center`}
             >
-              <IonRadio className={styles.radioBtn} labelPlacement="end">
+              <IonRadio
+                mode="md"
+                className={styles.radioBtn}
+                labelPlacement="end"
+              >
                 <p className={`${styles.priceLabel}`}>Large</p>
               </IonRadio>
               <p className={`${styles.priceLabel}`}>$ 4.5</p>
@@ -117,7 +127,11 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
           <IonRow
             className={`ion-justify-content-between ion-align-items-center`}
           >
-            <IonCheckbox className={styles.checkBox} labelPlacement="end">
+            <IonCheckbox
+              mode="md"
+              className={styles.checkBox}
+              labelPlacement="end"
+            >
               <p className={`${styles.priceLabel}`}>Less Toppings</p>
             </IonCheckbox>
             <p className={`${styles.priceLabel}`}>free</p>
@@ -125,7 +139,11 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
           <IonRow
             className={`ion-justify-content-between ion-align-items-center`}
           >
-            <IonCheckbox className={styles.checkBox} labelPlacement="end">
+            <IonCheckbox
+              mode="md"
+              className={styles.checkBox}
+              labelPlacement="end"
+            >
               <p className={`${styles.priceLabel}`}>Chrysanthemum</p>
             </IonCheckbox>
             <p className={`${styles.priceLabel}`}>$ 4</p>
@@ -133,7 +151,11 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
           <IonRow
             className={`ion-justify-content-between ion-align-items-center`}
           >
-            <IonCheckbox className={styles.checkBox} labelPlacement="end">
+            <IonCheckbox
+              mode="md"
+              className={styles.checkBox}
+              labelPlacement="end"
+            >
               <p className={`${styles.priceLabel}`}>Pink Cactus Pearls</p>
             </IonCheckbox>
             <p className={`${styles.priceLabel}`}>$ 4</p>
@@ -160,16 +182,16 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
         >
           <IonButton className={`${styles.iconBtn} ion-no-padding`}>
             <IonIcon
-              className={styles.icons}
+              className={isPlatform("ios") ? styles.icons : styles.iconsAndroid}
               slot="icon-only"
               icon={remove}
             ></IonIcon>
           </IonButton>
-          <h3>9</h3>
+          <h3>10</h3>
           {/* <IonButton className={styles.actionBtn}>+</IonButton> */}
           <IonButton className={`${styles.iconBtn} ion-no-padding`}>
             <IonIcon
-              className={styles.icons}
+              className={isPlatform("ios") ? styles.icons : styles.iconsAndroid}
               slot="icon-only"
               icon={add}
             ></IonIcon>

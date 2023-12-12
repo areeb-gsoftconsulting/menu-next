@@ -3,7 +3,17 @@
   font-weight: 600;
   font-size: 20px;
   padding-inline: 0px;
-  margin-top: 12px;
+  text-align: left;
+  /* margin-top: 12px; */
+}
+.cardImgAndroid {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 20px;
 }
 .cardImg {
   width: 100%;
@@ -12,7 +22,7 @@
   border-radius: 16px;
   overflow: hidden;
   margin: 0 auto;
-  margin-top: 16px;
+  margin-top: 38px;
 }
 .rateIcon {
   font-size: 20px;
@@ -147,12 +157,13 @@
   cursor: pointer;
 }
 .addBtn {
-  width: 65%;
+  width: 50%;
   --box-shadow: none;
   --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
   /* --padding-bottom: 20px;
   --padding-top: 20px; */
   --border-radius: 8px;
+  text-transform: capitalize;
 }
 .actionBtn {
   --box-shadow: none;
@@ -175,10 +186,14 @@
   --box-shadow: none;
   --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
   --border-radius: 8px;
-  height: 25px;
   padding-inline-start: 0px;
   padding-inline-end: 0px;
 }
 .icons {
+  padding: 0px 10px;
+  height: 25px;
+}
+.iconsAndroid {
   padding: 0px 5px;
+  height: 25px;
 }
