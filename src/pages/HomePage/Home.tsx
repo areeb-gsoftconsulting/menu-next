@@ -56,13 +56,17 @@ const Home: React.FC = () => {
 
             {/*  */}
             <IonRow class="ion-justify-content-between ion-align-items-center">
-              <IonCol size="6">
-                <IonIcon
+              <IonCol size="8">
+                {/* <IonIcon
                   className={styles.heartIcon}
                   icon={heartOutline}
-                ></IonIcon>
+                ></IonIcon> */}
+                <IonToggle
+                  onIonChange={toggleDarkModeHandler}
+                  name="darkMode"
+                />
               </IonCol>
-              <IonCol onClick={() => setIsCartOpen(true)} size="6">
+              <IonCol onClick={() => setIsCartOpen(true)} size="4">
                 <IonBadge className={styles.badge}>11</IonBadge>
                 <IonIcon
                   className={styles.cartIcon}
@@ -82,7 +86,7 @@ const Home: React.FC = () => {
       <IonContent fullscreen>
         <IonTitle className={styles.menu}>Vegetarian</IonTitle>
         <CategorySlider />
-        <IonList>
+        {/* <IonList>
           <IonItem lines="none">
             <IonIcon slot="start" />
             <IonLabel>Dark Mode</IonLabel>
@@ -92,7 +96,7 @@ const Home: React.FC = () => {
               onIonChange={toggleDarkModeHandler}
             />
           </IonItem>
-        </IonList>
+        </IonList> */}
         <div
           style={{
             padding: "0px 20px",
