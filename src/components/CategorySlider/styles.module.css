@@ -21,4 +21,5 @@ ion-segment-button {
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
+  text-transform: capitalize;
 }

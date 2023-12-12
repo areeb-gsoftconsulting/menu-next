@@ -29,6 +29,7 @@ import ItemDetailsCard from "../../components/ItemDetailsCard";
 import FavItemsButton from "../../components/FavItemsButton";
 import SelectedItemModal from "../../components/SelectedItemModal";
 import CartModal from "../../components/CartModal";
+import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
@@ -52,6 +53,7 @@ const Home: React.FC = () => {
 
           <IonRow class="ion-justify-content-between">
             <IonImg src={isDark ? lightLogo : darkLogo} />
+
             {/*  */}
             <IonRow class="ion-justify-content-between ion-align-items-center">
               <IonCol size="6">
@@ -107,6 +109,12 @@ const Home: React.FC = () => {
         {isCartOpen && (
           <CartModal isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
         )}
+
+        <div className={`${styles.cartBottomButton}`}>
+          <p className={styles.itemCount}>2</p>
+          <p>View your cart</p>
+          <p>$ 18.50</p>
+        </div>
       </IonContent>
     </IonPage>
   );
