@@ -115,7 +115,10 @@ const Home: React.FC = () => {
         )}
 
         <div className={`${styles.cartBottomButton}`}>
-          <div className={styles.innerBottomBtn}>
+          <div
+            onClick={() => setIsCartOpen(true)}
+            className={styles.innerBottomBtn}
+          >
             <p className={styles.itemCount}>2</p>
             <p className={styles.cartBtnTxt}>View your cart</p>
             <p className={styles.cartBtnTxt}>$ 18.50</p>
