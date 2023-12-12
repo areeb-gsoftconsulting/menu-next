@@ -8,7 +8,7 @@ const FavItemsButton = ({ setOpenFav }: any) => {
   console.log({ items });
   return (
     <>
-      {items.length == 1 ? (
+      {items.length == 0 ? null : items.length == 1 ? (
         <div onClick={() => setOpenFav(true)} className={styles.btn}>
           <IonImg className={styles.img} src={favImg} />
         </div>
