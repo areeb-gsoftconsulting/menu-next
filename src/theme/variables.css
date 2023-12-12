@@ -152,6 +152,7 @@ body {
    */
 
 .ios body {
+  --ion-toolbar-borer: rgb(255, 255, 255);
   --ion-search-border: rgba(217, 217, 217, 1);
   --ion-search-icon: grey;
 
@@ -195,6 +196,7 @@ body {
   --ion-card-background: #1e1e1e;
 }
 .ios body.dark {
+  --ion-toolbar-borer: rgba(80, 80, 80, 1);
   --ion-search-icon: rgba(217, 217, 217, 1);
   --ion-search-border: rgba(207, 207, 207, 1);
 
@@ -254,6 +256,8 @@ body {
    */
 /* light colors */
 .md body {
+  --ion-toolbar-borer: rgb(255, 255, 255);
+
   --ion-search-border: rgba(217, 217, 217, 1);
   --ion-search-icon: grey;
 
@@ -298,6 +302,8 @@ body {
 }
 /* dark colors */
 .md body.dark {
+  --ion-toolbar-borer: rgba(80, 80, 80, 1);
+
   --ion-search-icon: rgba(217, 217, 217, 1);
   --ion-search-border: rgba(207, 207, 207, 1);
 

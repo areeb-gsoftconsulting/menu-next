@@ -84,7 +84,7 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonTitle className={styles.menu}>Vegetarian</IonTitle>
+        <p className={styles.menu}>Vegetarian</p>
         <CategorySlider />
         {/* <IonList>
           <IonItem lines="none">
