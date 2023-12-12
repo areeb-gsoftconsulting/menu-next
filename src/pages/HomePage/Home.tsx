@@ -111,9 +111,11 @@ const Home: React.FC = () => {
         )}
 
         <div className={`${styles.cartBottomButton}`}>
-          <p className={styles.itemCount}>2</p>
-          <p>View your cart</p>
-          <p>$ 18.50</p>
+          <div className={styles.innerBottomBtn}>
+            <p className={styles.itemCount}>2</p>
+            <p className={styles.cartBtnTxt}>View your cart</p>
+            <p className={styles.cartBtnTxt}>$ 18.50</p>
+          </div>
         </div>
       </IonContent>
     </IonPage>
