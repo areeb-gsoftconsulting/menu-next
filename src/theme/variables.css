@@ -378,7 +378,26 @@ body {
   inset-inline-start: 10px;
   top: 9px;
 }
+ion-toggle {
+  padding: 12px;
+  height: 20px;
+  --handle-width: 15px;
+  --handle-height: 15px;
+  --handle-spacing: 2px;
+}
 
+ion-toggle::part(track),
+ion-toggle.toggle-checked::part(track) {
+  height: 18px;
+  width: 36px;
+  background: var(
+    --pr,
+    linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%)
+  );
+
+  /* Required for iOS handle to overflow the height of the track */
+  overflow: visible;
+}
 html {
   /* For more information on dynamic font scaling, visit the documentation: 
   https://ionicframework.com/docs/layout/dynamic-font-scaling */
