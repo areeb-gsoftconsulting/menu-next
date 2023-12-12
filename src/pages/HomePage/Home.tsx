@@ -2,6 +2,8 @@ import {
   IonBadge,
   IonCol,
   IonContent,
+  IonFab,
+  IonFabButton,
   IonHeader,
   IonIcon,
   IonImg,
@@ -19,14 +21,20 @@ import {
 import styles from "./Home.module.css";
 import lightLogo from "../../assets/logoLight.png";
 import darkLogo from "../../assets/logoDark.png";
-import { logoIonic, heartOutline, cartOutline } from "ionicons/icons";
+import { logoIonic, heartOutline, cartOutline, add } from "ionicons/icons";
 import { useState } from "react";
 import CategorySlider from "../../components/CategorySlider";
 import ItemCard from "../../components/ItemCard";
 import ItemDetailsCard from "../../components/ItemDetailsCard";
+import FavItemsButton from "../../components/FavItemsButton";
+import SelectedItemModal from "../../components/SelectedItemModal";
+import CartModal from "../../components/CartModal";
+import { Link } from "react-router-dom";
 
 const Home: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
+  const [openFav, setOpenFav] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const toggleDarkModeHandler = () => {
     document.body.classList.toggle("dark");
     return document.body.classList.contains("dark")
@@ -35,8 +43,6 @@ const Home: React.FC = () => {
   };
 
   // Example usage
-  console.log("Current theme:", isDark);
-
   return (
     <IonPage className={styles.page}>
       <IonHeader mode="ios" className={`ion-no-border`} translucent={true}>
@@ -47,6 +53,7 @@ const Home: React.FC = () => {
 
           <IonRow class="ion-justify-content-between">
             <IonImg src={isDark ? lightLogo : darkLogo} />
+
             {/*  */}
             <IonRow class="ion-justify-content-between ion-align-items-center">
               <IonCol size="6">
@@ -55,7 +62,7 @@ const Home: React.FC = () => {
                   icon={heartOutline}
                 ></IonIcon>
               </IonCol>
-              <IonCol size="6">
+              <IonCol onClick={() => setIsCartOpen(true)} size="6">
                 <IonBadge className={styles.badge}>11</IonBadge>
                 <IonIcon
                   className={styles.cartIcon}
@@ -67,8 +74,8 @@ const Home: React.FC = () => {
 
           <IonSearchbar
             mode="md"
-            className={`${styles.custom} ${styles.customSearchbar}`} // Applying the custom styles
-            placeholder="Custom Placeholder"
+            className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
+            placeholder="Search"
           ></IonSearchbar>
         </IonToolbar>
       </IonHeader>
@@ -86,10 +93,28 @@ const Home: React.FC = () => {
             />
           </IonItem>
         </IonList>
+        <div
+          style={{
+            padding: "0px 20px",
+          }}
+        >
+          {[1, 2, 3, 4, 5].map(() => (
+            <ItemCard />
+          ))}
+        </div>
+        <FavItemsButton setOpenFav={setOpenFav} />
+        {openFav && (
+          <SelectedItemModal openFav={openFav} setOpenFav={setOpenFav} />
+        )}
+        {isCartOpen && (
+          <CartModal isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
+        )}
 
-        {[1, 2, 3, 4, 5].map(() => (
-          <ItemCard />
-        ))}
+        <div className={`${styles.cartBottomButton}`}>
+          <p className={styles.itemCount}>2</p>
+          <p>View your cart</p>
+          <p>$ 18.50</p>
+        </div>
       </IonContent>
     </IonPage>
   );

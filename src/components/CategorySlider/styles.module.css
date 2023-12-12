@@ -2,8 +2,8 @@
   --background: trasparent;
 }
 .image {
-  height: 75px;
-  width: 75px;
+  height: 63px;
+  width: 63px;
   object-fit: cover;
   border-radius: 50%;
   overflow: hidden;
@@ -12,4 +12,14 @@ ion-segment-button {
   --color-checked: trasparent;
   color: var(--ion-text-color);
   font-family: "poppins";
+  --padding-start: 12px;
+  --padding-end: 12px;
+}
+.name {
+  text-align: center;
+  font-family: "poppins";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  text-transform: capitalize;
 }

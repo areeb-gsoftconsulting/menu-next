@@ -21,7 +21,7 @@ import {
   IonButton,
 } from "@ionic/react";
 import thumbnailImg from "../../assets/menuImg.png";
-import { starSharp } from "ionicons/icons";
+import { starSharp, add, remove } from "ionicons/icons";
 
 const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
   const modal = useRef<HTMLIonModalElement>(null);
@@ -42,32 +42,29 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
           <IonIcon className={styles.rateIcon} icon={starSharp} />
           <IonText
             style={{
-              fontFamily: "poppins",
+              fontFamily: "poppins-normal",
+              color: "var(--ion-text-color)",
+              marginLeft: "4px",
             }}
           >
             4.8
           </IonText>
         </IonRow>
-        <IonRow className="ion-justify-content-between ion-align-items-center">
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              paddingLeft: "5px",
-            }}
-          >
-            <IonTitle className={styles.name}>Meat</IonTitle>
-            <IonLabel className={styles.categoryName}>hoo</IonLabel>
-          </div>
-
-          <IonTitle className={styles.price}>$4.5</IonTitle>
-        </IonRow>
-        <IonText
+        <div
           style={{
-            color: "var(--ion-text-color)",
-            fontFamily: "poppins",
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "8px",
           }}
         >
+          <IonRow className="ion-justify-content-between ion-align-items-center">
+            <IonTitle className={styles.name}>Meat</IonTitle>
+
+            <IonTitle className={styles.price}>$4.5</IonTitle>
+          </IonRow>
+          <IonLabel className={styles.categoryName}>Food</IonLabel>
+        </div>
+        <IonText className={styles.description}>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nulla soluta
           deserunt sapiente corrupti? Ipsa optio quam illum atque animi impedit,
           adipisci quos voluptate sequi vitae praesentium ullam minus inventore
@@ -80,7 +77,7 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
             <h4 className={`${styles.caption} ion-no-padding`}>
               Choose Flavor
             </h4>
-            <h4 className={`${styles.required}`}>required</h4>
+            <h4 className={`${styles.required}`}>Required</h4>
           </IonRow>
           <p className={styles.msg}>Select any 1</p>
 
@@ -88,7 +85,10 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
             <IonRow
               className={`ion-justify-content-between ion-align-items-center`}
             >
-              <IonRadio className={`${styles.radioBtn}`} labelPlacement="end">
+              <IonRadio
+                className={`${styles.radioBtn} label-text-wrapper`}
+                labelPlacement="end"
+              >
                 <p className={`${styles.priceLabel}`}>Medium</p>
               </IonRadio>
               <p className={`${styles.priceLabel}`}>$ 4.5</p>
@@ -141,7 +141,7 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
         </div>
         <div className={styles.optionalCard}>
           <h4 className={`${styles.caption} ion-no-padding`}>
-            Choice of Toppings
+            Special Instructions
           </h4>
           <p className={styles.note}>
             (Please let us know if you are allergic to anything or if we need to
@@ -156,15 +156,24 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
           ></IonTextarea>
         </div>
         <IonRow
-          className={`ion-justify-content-between ion-align-items-center ion-padding-vertical`}
+          className={`ion-justify-content-evenly ion-align-items-center ion-padding-vertical`}
         >
-          <IonRow
-            className={`ion-justify-content-evenly ion-align-items-center ${styles.leftRow}`}
-          >
-            <IonButton className={styles.actionBtn}>-</IonButton>
-            <h3>9</h3>
-            <IonButton className={styles.actionBtn}>+</IonButton>
-          </IonRow>
+          <IonButton className={`${styles.iconBtn} ion-no-padding`}>
+            <IonIcon
+              className={styles.icons}
+              slot="icon-only"
+              icon={remove}
+            ></IonIcon>
+          </IonButton>
+          <h3>9</h3>
+          {/* <IonButton className={styles.actionBtn}>+</IonButton> */}
+          <IonButton className={`${styles.iconBtn} ion-no-padding`}>
+            <IonIcon
+              className={styles.icons}
+              slot="icon-only"
+              icon={add}
+            ></IonIcon>
+          </IonButton>
           <IonButton className={styles.addBtn}>Add to Cart</IonButton>
         </IonRow>
       </IonContent>

@@ -1,0 +1,29 @@
+.img {
+  width: 34px;
+  height: 34px;
+  overflow: hidden;
+  border-radius: 8px;
+  object-fit: cover;
+}
+.icons {
+  padding: 0px 5px;
+  font-size: 16px;
+}
+.iconBtn {
+  --box-shadow: none;
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  --border-radius: 8px;
+  height: 15px;
+  padding-inline-start: 0px;
+  padding-inline-end: 0px;
+}
+.text {
+  font-size: 14px;
+  font-family: "poppins";
+  font-weight: 600;
+}
+.itemCount {
+  font-size: 14px;
+  font-family: "poppins-normal";
+  font-weight: 600;
+}
