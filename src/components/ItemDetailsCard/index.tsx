@@ -91,6 +91,7 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
               className={`ion-justify-content-between ion-align-items-center`}
             >
               <IonRadio
+                mode="md"
                 className={`${styles.radioBtn} label-text-wrapper`}
                 labelPlacement="end"
               >
@@ -101,7 +102,11 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
             <IonRow
               className={`ion-justify-content-between ion-align-items-center`}
             >
-              <IonRadio className={styles.radioBtn} labelPlacement="end">
+              <IonRadio
+                mode="md"
+                className={styles.radioBtn}
+                labelPlacement="end"
+              >
                 <p className={`${styles.priceLabel}`}>Large</p>
               </IonRadio>
               <p className={`${styles.priceLabel}`}>$ 4.5</p>
@@ -122,7 +127,11 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
           <IonRow
             className={`ion-justify-content-between ion-align-items-center`}
           >
-            <IonCheckbox className={styles.checkBox} labelPlacement="end">
+            <IonCheckbox
+              mode="md"
+              className={styles.checkBox}
+              labelPlacement="end"
+            >
               <p className={`${styles.priceLabel}`}>Less Toppings</p>
             </IonCheckbox>
             <p className={`${styles.priceLabel}`}>free</p>
@@ -130,7 +139,11 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
           <IonRow
             className={`ion-justify-content-between ion-align-items-center`}
           >
-            <IonCheckbox className={styles.checkBox} labelPlacement="end">
+            <IonCheckbox
+              mode="md"
+              className={styles.checkBox}
+              labelPlacement="end"
+            >
               <p className={`${styles.priceLabel}`}>Chrysanthemum</p>
             </IonCheckbox>
             <p className={`${styles.priceLabel}`}>$ 4</p>
@@ -138,7 +151,11 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
           <IonRow
             className={`ion-justify-content-between ion-align-items-center`}
           >
-            <IonCheckbox className={styles.checkBox} labelPlacement="end">
+            <IonCheckbox
+              mode="md"
+              className={styles.checkBox}
+              labelPlacement="end"
+            >
               <p className={`${styles.priceLabel}`}>Pink Cactus Pearls</p>
             </IonCheckbox>
             <p className={`${styles.priceLabel}`}>$ 4</p>
