@@ -38,6 +38,7 @@ const ItemCard = () => {
                 />
               </IonThumbnail>
             </div>
+
             <div
               style={{
                 display: "flex",
@@ -62,8 +63,11 @@ const ItemCard = () => {
           className={styles.likeIcon}
           icon={heartOutline}
         />
-
         <IonImg className={styles.cardImg} src={thumbnailImg} />
+        <div className={styles.badge}>
+          <p className={styles.badgeTxt}>2</p>
+        </div>
+
         <IonRow className="ion-margin-top ion-align-items-center">
           <IonIcon className={styles.rateIcon} icon={starSharp} />
           <div

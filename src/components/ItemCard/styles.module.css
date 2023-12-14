@@ -80,3 +80,21 @@
   line-height: normal;
   margin: 0px;
 }
+.badge {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: red;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  right: 0px;
+  top: 35px;
+}
+.badgeTxt {
+  color: white;
+  font-size: 10px;
+  font-family: "poppins-normal";
+}
