@@ -170,6 +170,7 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
             avoid anything)
           </p>
           <IonTextarea
+            mode="md"
             className={styles.textarea}
             placeholder="eg. no mayo"
             autoGrow={true}
