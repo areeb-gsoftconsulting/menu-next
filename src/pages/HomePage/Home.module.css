@@ -80,6 +80,7 @@ ion-searchbar.custom {
   position: fixed;
   padding: 20px;
   bottom: -5px;
+  cursor: pointer;
 }
 .itemCount {
   font-family: "poppins";

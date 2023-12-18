@@ -52,7 +52,9 @@ const Home: React.FC = () => {
           </IonText>
 
           <IonRow class="ion-justify-content-between">
-            <IonImg src={isDark ? lightLogo : darkLogo} />
+            <Link style={{ marginTop: "10px" }} to="/menu">
+              <IonImg src={isDark ? lightLogo : darkLogo} />
+            </Link>
 
             {/*  */}
             <IonRow class="ion-justify-content-between ion-align-items-center">
