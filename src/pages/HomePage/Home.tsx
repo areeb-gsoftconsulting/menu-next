@@ -7,6 +7,8 @@ import {
   IonHeader,
   IonIcon,
   IonImg,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
   IonItem,
   IonLabel,
   IonList,
@@ -35,11 +37,20 @@ const Home: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
   const [openFav, setOpenFav] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [tempArray, setTempArray] = useState([1, 2, 3, 4, 5, 6, 7]);
   const toggleDarkModeHandler = () => {
     document.body.classList.toggle("dark");
     return document.body.classList.contains("dark")
       ? setIsDark(true)
       : setIsDark(false);
+  };
+
+  const onEndReach = async (e: any) => {
+    console.log("ended", e);
+    setTimeout(() => {
+      setTempArray([...tempArray, 1, 2, 3, 4, 5, 6]);
+      e.target.complete();
+    }, 2000);
   };
 
   // Example usage
@@ -104,7 +115,7 @@ const Home: React.FC = () => {
             padding: "0px 20px",
           }}
         >
-          {[1, 2, 3, 4, 5].map(() => (
+          {tempArray.map(() => (
             <ItemCard />
           ))}
         </div>
@@ -116,16 +127,28 @@ const Home: React.FC = () => {
           <CartModal isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
         )}
 
-        <div className={`${styles.cartBottomButton}`}>
-          <div
-            onClick={() => setIsCartOpen(true)}
-            className={styles.innerBottomBtn}
-          >
-            <p className={styles.itemCount}>2</p>
-            <p className={styles.cartBtnTxt}>View your cart</p>
-            <p className={styles.cartBtnTxt}>$ 18.50</p>
+        {true && (
+          <div className={`${styles.cartBottomButton}`}>
+            <div
+              onClick={() => setIsCartOpen(true)}
+              className={styles.innerBottomBtn}
+            >
+              <p className={styles.itemCount}>2</p>
+              <p className={styles.cartBtnTxt}>View your cart</p>
+              <p className={styles.cartBtnTxt}>$ 18.50</p>
+            </div>
           </div>
-        </div>
+        )}
+        <IonInfiniteScroll
+          onIonInfinite={(ev) => {
+            onEndReach(ev);
+          }}
+        >
+          <IonInfiniteScrollContent
+            loadingText="Please wait..."
+            loadingSpinner="bubbles"
+          ></IonInfiniteScrollContent>
+        </IonInfiniteScroll>
       </IonContent>
     </IonPage>
   );
