@@ -23,7 +23,13 @@ import {
 import styles from "./Home.module.css";
 import lightLogo from "../../assets/logoLight.png";
 import darkLogo from "../../assets/logoDark.png";
-import { logoIonic, heartOutline, cartOutline, add } from "ionicons/icons";
+import {
+  logoIonic,
+  heartOutline,
+  cartOutline,
+  search,
+  add,
+} from "ionicons/icons";
 import { useEffect, useState } from "react";
 import CategorySlider from "../../components/CategorySlider";
 import ItemCard from "../../components/ItemCard";
@@ -39,6 +45,7 @@ const Home: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [tempArray, setTempArray] = useState([1, 2, 3, 4, 5, 6, 7]);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   const toggleDarkModeHandler = () => {
     document.body.classList.toggle("dark");
@@ -75,40 +82,75 @@ const Home: React.FC = () => {
           translucent={true}
         >
           <IonToolbar className={`${styles.toolbarScrolled}`}>
-            <div className={styles.headerContainer}>
-              <IonText>
-                <p className={styles.labelContainer}>Amsterdam</p>
-              </IonText>
+            {!showSearch ? (
+              <div className={styles.headerContainer}>
+                <IonText>
+                  <p className={styles.labelContainer}>Amsterdam</p>
+                </IonText>
 
-              <IonRow class="ion-justify-content-between">
-                <Link style={{ marginTop: "10px" }} to="/menu">
-                  <IonImg src={isDark ? lightLogo : darkLogo} />
-                </Link>
+                <IonRow class="ion-justify-content-between">
+                  <Link style={{ marginTop: "10px" }} to="/">
+                    <IonImg src={isDark ? lightLogo : darkLogo} />
+                  </Link>
 
-                {/*  */}
-                <IonRow class="ion-justify-content-between ion-align-items-center">
-                  <IonCol size="8">
-                    {/* <IonIcon
+                  {/*  */}
+                  <IonRow class="ion-justify-content-between ion-align-items-center">
+                    <IonCol size="8">
+                      {/* <IonIcon
                 className={styles.heartIcon}
                 icon={heartOutline}
               ></IonIcon> */}
-                    <IonToggle
+                      {/* <IonToggle
                       onIonChange={toggleDarkModeHandler}
                       name="darkMode"
-                    />
-                  </IonCol>
-                  <IonCol onClick={() => setIsCartOpen(true)} size="4">
-                    <IonBadge className={styles.badge}>11</IonBadge>
-                    <IonIcon
-                      className={styles.cartIcon}
-                      icon={cartOutline}
-                    ></IonIcon>
-                  </IonCol>
+                    /> */}
+                      <IonIcon
+                        className={styles.cartIcon}
+                        icon={search}
+                        onClick={() => setShowSearch(true)}
+                      ></IonIcon>
+                    </IonCol>
+                    <IonCol onClick={() => setIsCartOpen(true)} size="4">
+                      <IonBadge className={styles.badge}>11</IonBadge>
+                      <IonIcon
+                        className={styles.cartIcon}
+                        icon={cartOutline}
+                      ></IonIcon>
+                    </IonCol>
+                  </IonRow>
                 </IonRow>
-              </IonRow>
-            </div>
+              </div>
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  padding: "15px 5px 15px 5px",
+                }}
+              >
+                <IonSearchbar
+                  mode="md"
+                  className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
+                  placeholder="Search"
+                  debounce={1000}
+                  onIonInput={(e) => console.log(e.detail.value)}
+                ></IonSearchbar>
+                <IonText
+                  onClick={() => setShowSearch(false)}
+                  style={{
+                    marginTop: "17px",
+                    cursor: "pointer",
+                    fontSize: "13px",
+                    marginLeft: "5px",
+                  }}
+                >
+                  Cancel
+                </IonText>
+              </div>
+            )}
 
-            <CategorySlider />
+            {!showSearch && <CategorySlider />}
           </IonToolbar>
         </IonHeader>
       ) : (
@@ -121,7 +163,7 @@ const Home: React.FC = () => {
             </IonText>
 
             <IonRow class="ion-justify-content-between">
-              <Link style={{ marginTop: "10px" }} to="/menu">
+              <Link style={{ marginTop: "10px" }} to="/">
                 <IonImg src={isDark ? lightLogo : darkLogo} />
               </Link>
 
