@@ -24,7 +24,7 @@ import styles from "./Home.module.css";
 import lightLogo from "../../assets/logoLight.png";
 import darkLogo from "../../assets/logoDark.png";
 import { logoIonic, heartOutline, cartOutline, add } from "ionicons/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CategorySlider from "../../components/CategorySlider";
 import ItemCard from "../../components/ItemCard";
 import ItemDetailsCard from "../../components/ItemDetailsCard";
@@ -112,12 +112,10 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
       ) : (
-        <IonHeader
-          mode="ios"
-          className={`ion-no-border ${styles.transitionHeader}`}
-          translucent={true}
-        >
-          <IonToolbar className={`${styles.toolbar}`}>
+        <IonHeader mode="ios" className={`ion-no-border`} translucent={true}>
+          <IonToolbar
+            className={`${styles.toolbar} ${styles.transitionHeader}`}
+          >
             <IonText>
               <p className={styles.labelContainer}>Amsterdam</p>
             </IonText>
