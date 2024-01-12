@@ -22,7 +22,7 @@ import {
   IonHeader,
 } from "@ionic/react";
 import thumbnailImg from "../../assets/menuImg.png";
-import { starSharp, add, remove } from "ionicons/icons";
+import { starSharp, add, remove, closeCircleSharp } from "ionicons/icons";
 import { isPlatform } from "@ionic/react";
 const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
   const modal = useRef<HTMLIonModalElement>(null);
@@ -32,13 +32,20 @@ const ItemDetailsCard = ({ isOpen, setIsOpen }: any) => {
       ref={modal}
       isOpen={isOpen}
       trigger="open-modal"
-      initialBreakpoint={0.75}
+      initialBreakpoint={isPlatform("desktop") ? 1 : 0.75}
       breakpoints={[0, 0.5, 0.75, 1]}
       onDidDismiss={() => setIsOpen(false)}
     >
       <IonContent className="ion-padding">
         <IonHeader className="ion-no-border">
-          <IonTitle className={styles.title}>Customise</IonTitle>
+          <IonRow class="ion-justify-content-between">
+            <IonTitle className={styles.title}>Customise</IonTitle>
+            <IonIcon
+              onClick={() => setIsOpen(false)}
+              className={styles.cancelIcon}
+              icon={closeCircleSharp}
+            ></IonIcon>
+          </IonRow>
         </IonHeader>
 
         <IonImg
