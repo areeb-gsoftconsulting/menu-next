@@ -47,13 +47,13 @@ const Menu = () => {
           </IonItem>
         </IonList> */}
 
-        <Link to="/home">
+        <Link to="/factor-girl-berlin/home">
           <IonCol>
             <IonImg className={styles.menuImg} src={menuImg} />
             <p className={styles.labelContainer}>non-veg</p>
           </IonCol>
         </Link>
-        <Link to="/home">
+        <Link to="/factor-girl-berlin/home">
           <IonCol>
             <IonImg className={styles.menuImg} src={menuImg} />
             <p className={styles.labelContainer}>non-veg</p>
