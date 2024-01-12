@@ -25,7 +25,16 @@ ion-content {
   font-size: 12px;
   margin-bottom: 0px;
 }
-
+.headerContainer {
+  padding: 0px 18px 0px 18px;
+}
+.transitionHeader {
+  transition: height 0.5s ease-in; /* Adjust the duration and easing as needed */
+}
+.toolbarScrolled {
+  --background: var(--ion-page-background-color);
+  border-bottom: 1px solid var(--ion-toolbar-borer);
+}
 .toolbar {
   --background: var(--ion-page-background-color);
   padding: 18px;

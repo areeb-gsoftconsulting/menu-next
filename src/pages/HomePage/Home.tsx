@@ -38,6 +38,8 @@ const Home: React.FC = () => {
   const [openFav, setOpenFav] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [tempArray, setTempArray] = useState([1, 2, 3, 4, 5, 6, 7]);
+  const [isScrolled, setIsScrolled] = useState(false);
+
   const toggleDarkModeHandler = () => {
     document.body.classList.toggle("dark");
     return document.body.classList.contains("dark")
@@ -52,51 +54,115 @@ const Home: React.FC = () => {
       e.target.complete();
     }, 2000);
   };
+  const handleScroll = (event: CustomEvent) => {
+    const threshold = 180;
+    const scrollTop = event.detail.scrollTop;
+
+    if (scrollTop > threshold && !isScrolled) {
+      setIsScrolled(true);
+    } else if (scrollTop <= threshold && isScrolled) {
+      setIsScrolled(false);
+    }
+  };
 
   // Example usage
   return (
     <IonPage className={styles.page}>
-      <IonHeader mode="ios" className={`ion-no-border`} translucent={true}>
-        <IonToolbar className={`${styles.toolbar}`}>
-          <IonText>
-            <p className={styles.labelContainer}>Amsterdam</p>
-          </IonText>
+      {isScrolled ? (
+        <IonHeader
+          mode="ios"
+          className={`ion-no-border ${styles.transitionHeader}`}
+          translucent={true}
+        >
+          <IonToolbar className={`${styles.toolbarScrolled}`}>
+            <div className={styles.headerContainer}>
+              <IonText>
+                <p className={styles.labelContainer}>Amsterdam</p>
+              </IonText>
 
-          <IonRow class="ion-justify-content-between">
-            <Link style={{ marginTop: "10px" }} to="/menu">
-              <IonImg src={isDark ? lightLogo : darkLogo} />
-            </Link>
+              <IonRow class="ion-justify-content-between">
+                <Link style={{ marginTop: "10px" }} to="/menu">
+                  <IonImg src={isDark ? lightLogo : darkLogo} />
+                </Link>
 
-            {/*  */}
-            <IonRow class="ion-justify-content-between ion-align-items-center">
-              <IonCol size="8">
-                {/* <IonIcon
-                  className={styles.heartIcon}
-                  icon={heartOutline}
-                ></IonIcon> */}
-                <IonToggle
-                  onIonChange={toggleDarkModeHandler}
-                  name="darkMode"
-                />
-              </IonCol>
-              <IonCol onClick={() => setIsCartOpen(true)} size="4">
-                <IonBadge className={styles.badge}>11</IonBadge>
-                <IonIcon
-                  className={styles.cartIcon}
-                  icon={cartOutline}
-                ></IonIcon>
-              </IonCol>
+                {/*  */}
+                <IonRow class="ion-justify-content-between ion-align-items-center">
+                  <IonCol size="8">
+                    {/* <IonIcon
+                className={styles.heartIcon}
+                icon={heartOutline}
+              ></IonIcon> */}
+                    <IonToggle
+                      onIonChange={toggleDarkModeHandler}
+                      name="darkMode"
+                    />
+                  </IonCol>
+                  <IonCol onClick={() => setIsCartOpen(true)} size="4">
+                    <IonBadge className={styles.badge}>11</IonBadge>
+                    <IonIcon
+                      className={styles.cartIcon}
+                      icon={cartOutline}
+                    ></IonIcon>
+                  </IonCol>
+                </IonRow>
+              </IonRow>
+            </div>
+
+            <CategorySlider />
+          </IonToolbar>
+        </IonHeader>
+      ) : (
+        <IonHeader
+          mode="ios"
+          className={`ion-no-border ${styles.transitionHeader}`}
+          translucent={true}
+        >
+          <IonToolbar className={`${styles.toolbar}`}>
+            <IonText>
+              <p className={styles.labelContainer}>Amsterdam</p>
+            </IonText>
+
+            <IonRow class="ion-justify-content-between">
+              <Link style={{ marginTop: "10px" }} to="/menu">
+                <IonImg src={isDark ? lightLogo : darkLogo} />
+              </Link>
+
+              {/*  */}
+              <IonRow class="ion-justify-content-between ion-align-items-center">
+                <IonCol size="8">
+                  {/* <IonIcon
+                className={styles.heartIcon}
+                icon={heartOutline}
+              ></IonIcon> */}
+                  <IonToggle
+                    onIonChange={toggleDarkModeHandler}
+                    name="darkMode"
+                  />
+                </IonCol>
+                <IonCol onClick={() => setIsCartOpen(true)} size="4">
+                  <IonBadge className={styles.badge}>11</IonBadge>
+                  <IonIcon
+                    className={styles.cartIcon}
+                    icon={cartOutline}
+                  ></IonIcon>
+                </IonCol>
+              </IonRow>
             </IonRow>
-          </IonRow>
 
-          <IonSearchbar
-            mode="md"
-            className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
-            placeholder="Search"
-          ></IonSearchbar>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
+            <IonSearchbar
+              mode="md"
+              className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
+              placeholder="Search"
+            ></IonSearchbar>
+          </IonToolbar>
+        </IonHeader>
+      )}
+
+      <IonContent
+        scrollEvents={true}
+        onIonScroll={(e: CustomEvent) => handleScroll(e)}
+        fullscreen
+      >
         <p className={styles.menu}>Vegetarian</p>
         <CategorySlider />
         {/* <IonList>
