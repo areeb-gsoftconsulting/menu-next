@@ -38,6 +38,8 @@ import FavItemsButton from "../../components/FavItemsButton";
 import SelectedItemModal from "../../components/SelectedItemModal";
 import CartModal from "../../components/CartModal";
 import { Link } from "react-router-dom";
+import HeaderOne from "../../components/HeaderOne";
+import HeaderTwo from "../../components/HeaderTwo";
 
 const Home: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
@@ -45,14 +47,6 @@ const Home: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [tempArray, setTempArray] = useState([1, 2, 3, 4, 5, 6, 7]);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
-
-  const toggleDarkModeHandler = () => {
-    document.body.classList.toggle("dark");
-    return document.body.classList.contains("dark")
-      ? setIsDark(true)
-      : setIsDark(false);
-  };
 
   const onEndReach = async (e: any) => {
     console.log("ended", e);
@@ -76,126 +70,9 @@ const Home: React.FC = () => {
   return (
     <IonPage className={styles.page}>
       {isScrolled ? (
-        <IonHeader
-          mode="ios"
-          className={`ion-no-border ${styles.transitionHeader}`}
-          translucent={true}
-        >
-          <IonToolbar className={`${styles.toolbarScrolled}`}>
-            {!showSearch ? (
-              <div className={styles.headerContainer}>
-                <IonText>
-                  <p className={styles.labelContainer}>Amsterdam</p>
-                </IonText>
-
-                <IonRow class="ion-justify-content-between">
-                  <Link style={{ marginTop: "10px" }} to="/">
-                    <IonImg src={isDark ? lightLogo : darkLogo} />
-                  </Link>
-
-                  {/*  */}
-                  <IonRow class="ion-justify-content-between ion-align-items-center">
-                    <IonCol size="8">
-                      {/* <IonIcon
-                className={styles.heartIcon}
-                icon={heartOutline}
-              ></IonIcon> */}
-                      {/* <IonToggle
-                      onIonChange={toggleDarkModeHandler}
-                      name="darkMode"
-                    /> */}
-                      <IonIcon
-                        className={styles.cartIcon}
-                        icon={search}
-                        onClick={() => setShowSearch(true)}
-                      ></IonIcon>
-                    </IonCol>
-                    <IonCol onClick={() => setIsCartOpen(true)} size="4">
-                      <IonBadge className={styles.badge}>11</IonBadge>
-                      <IonIcon
-                        className={styles.cartIcon}
-                        icon={cartOutline}
-                      ></IonIcon>
-                    </IonCol>
-                  </IonRow>
-                </IonRow>
-              </div>
-            ) : (
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  padding: "15px 5px 15px 5px",
-                }}
-              >
-                <IonSearchbar
-                  mode="md"
-                  className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
-                  placeholder="Search"
-                  debounce={1000}
-                  onIonInput={(e) => console.log(e.detail.value)}
-                ></IonSearchbar>
-                <IonText
-                  onClick={() => setShowSearch(false)}
-                  style={{
-                    marginTop: "17px",
-                    cursor: "pointer",
-                    fontSize: "13px",
-                    marginLeft: "5px",
-                  }}
-                >
-                  Cancel
-                </IonText>
-              </div>
-            )}
-
-            {!showSearch && <CategorySlider />}
-          </IonToolbar>
-        </IonHeader>
+        <HeaderOne setIsCartOpen={setIsCartOpen} />
       ) : (
-        <IonHeader mode="ios" className={`ion-no-border`} translucent={true}>
-          <IonToolbar
-            className={`${styles.toolbar} ${styles.transitionHeader}`}
-          >
-            <IonText>
-              <p className={styles.labelContainer}>Amsterdam</p>
-            </IonText>
-
-            <IonRow class="ion-justify-content-between">
-              <Link style={{ marginTop: "10px" }} to="/">
-                <IonImg src={isDark ? lightLogo : darkLogo} />
-              </Link>
-
-              {/*  */}
-              <IonRow class="ion-justify-content-between ion-align-items-center">
-                <IonCol size="8">
-                  {/* <IonIcon
-                className={styles.heartIcon}
-                icon={heartOutline}
-              ></IonIcon> */}
-                  <IonToggle
-                    onIonChange={toggleDarkModeHandler}
-                    name="darkMode"
-                  />
-                </IonCol>
-                <IonCol onClick={() => setIsCartOpen(true)} size="4">
-                  <IonBadge className={styles.badge}>11</IonBadge>
-                  <IonIcon
-                    className={styles.cartIcon}
-                    icon={cartOutline}
-                  ></IonIcon>
-                </IonCol>
-              </IonRow>
-            </IonRow>
-
-            <IonSearchbar
-              mode="md"
-              className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
-              placeholder="Search"
-            ></IonSearchbar>
-          </IonToolbar>
-        </IonHeader>
+        <HeaderTwo setIsCartOpen={setIsCartOpen} />
       )}
 
       <IonContent

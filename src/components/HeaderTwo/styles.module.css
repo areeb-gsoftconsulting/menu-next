@@ -1,0 +1,148 @@
+ion-content {
+  --padding-start: 0px;
+  --padding-end: 0px;
+  --background: var(--ion-page-background-color);
+}
+.page {
+  max-width: 100%;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .page {
+    max-width: 600px; /* Set a maximum width of 600px for larger screens */
+  }
+}
+.labelContainer {
+  font-family: "poppins";
+  background: var(
+    --pr,
+    linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%)
+  );
+  border-radius: 30px;
+  padding: 1px 15px;
+  color: #ffffff;
+  width: fit-content;
+  font-size: 12px;
+  margin-bottom: 0px;
+}
+.headerContainer {
+  padding: 0px 18px 0px 18px;
+}
+
+.transitionHeader {
+  transform: translateY(0px);
+  animation: fadeInFromTop 0.5s ease-in-out;
+}
+
+@keyframes fadeInFromTop {
+  from {
+    /* opacity: 0; */
+    transform: translateY(-70px);
+  }
+  to {
+    /* opacity: 1; */
+    transform: translateY(0);
+  }
+}
+
+.transitionHeader2 {
+  transform: translateY(0px);
+  animation: fadeOutToTop 0.5s ease-in-out;
+}
+
+/* Add the fade-out animation */
+@keyframes fadeOutToTop {
+  from {
+    transform: translateY(70);
+  }
+  to {
+    transform: translateY(-70px);
+  }
+}
+
+/* Apply the fade-out animation */
+
+.toolbarScrolled {
+  --background: var(--ion-page-background-color);
+  border-bottom: 1px solid var(--ion-toolbar-borer);
+}
+.toolbar {
+  --background: var(--ion-page-background-color);
+  padding: 18px;
+  border-bottom: 1px solid var(--ion-toolbar-borer);
+}
+.badge {
+  position: absolute;
+  top: 0px;
+  left: 15px;
+  border-radius: 20px;
+  font-size: 8px;
+  padding: 4px;
+  background-color: red;
+}
+.cartIcon {
+  color: red;
+  font-size: 1.5em;
+}
+.heartIcon {
+  color: var(--ion-text-color);
+  font-size: 1.5em;
+}
+
+ion-searchbar.custom {
+  --background: var(--ion-searchbar-background);
+  --color: var(--ion-text-color);
+  /* --placeholder-color: #fff;
+      --icon-color: #fff; */
+  --border-radius: 20px;
+  --box-shadow: none;
+  padding: 0px;
+  --icon-color: var(--ion-search-icon);
+}
+
+.customSearchbar {
+  margin-top: 15px;
+  border: 1px solid var(--ion-search-border);
+  border-radius: 50px;
+  background: var(--ion-searchbar-background);
+}
+.menu {
+  font-family: "poppins-normal";
+  padding: 12px 20px;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0px 0px;
+}
+.cartBottomButton {
+  bottom: 10px;
+  width: 100%;
+  border-radius: 8px;
+  position: fixed;
+  padding: 20px;
+  bottom: -5px;
+  cursor: pointer;
+}
+.itemCount {
+  font-family: "poppins";
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid white;
+  padding: 2px 10px;
+  border-radius: 15px;
+}
+.innerBottomBtn {
+  background: var(
+    --pr,
+    linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%)
+  );
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 0px 15px;
+  border-radius: 8px;
+}
+.cartBtnTxt {
+  font-size: 15px;
+  font-weight: 600;
+}
