@@ -41,23 +41,42 @@ import { Link } from "react-router-dom";
 import HeaderOne from "../../components/HeaderOne";
 import HeaderTwo from "../../components/HeaderTwo";
 import { useSelector } from "react-redux";
+import getItems from "../../services/getItems";
 
 const Home: React.FC = () => {
-  const venue = useSelector((data: any) => data.restaurant.venue);
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
-
-  const [isDark, setIsDark] = useState(false);
   const [openFav, setOpenFav] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [tempArray, setTempArray] = useState([1, 2, 3, 4, 5, 6, 7]);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+  const [items, setItems] = useState<any>([]);
+  console.log({ items });
+
+  const getItem = async () => {
+    try {
+      let res = await getItems({
+        menuId: currentMenu._id,
+        params: { page: pageNumber, pageSize: pageSize },
+      });
+      if (res.data.statusCode == 200) {
+        console.log(res.data.data.items);
+        setItems([...items, ...res.data.data.items]);
+      }
+    } catch (error) {
+      console.log({ error });
+    }
+  };
+
+  useEffect(() => {
+    getItem();
+  }, []);
 
   const onEndReach = async (e: any) => {
-    console.log("ended", e);
-    setTimeout(() => {
-      setTempArray([...tempArray, 1, 2, 3, 4, 5, 6]);
-      e.target.complete();
-    }, 2000);
+    setPageNumber(pageNumber + 1);
+    await getItem();
+    e.target.complete();
   };
   const handleScroll = (event: CustomEvent) => {
     const threshold = 180;
@@ -102,8 +121,10 @@ const Home: React.FC = () => {
             padding: "0px 20px",
           }}
         >
-          {tempArray.map(() => (
-            <ItemCard />
+          {items.map((data: any, ind: any) => (
+            <>
+              <ItemCard data={data} />
+            </>
           ))}
         </div>
         <FavItemsButton setOpenFav={setOpenFav} />

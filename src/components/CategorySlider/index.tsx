@@ -22,7 +22,7 @@ const CategorySlider = ({ menuId }: any) => {
         menuId,
         // params: { page: pageNumber, pageSize: pageSize },
       });
-      console.log({ res });
+
       if (res.data.statusCode == 200) {
         setCategories(res.data.data);
       }
@@ -36,25 +36,13 @@ const CategorySlider = ({ menuId }: any) => {
     getCategories();
   }, []);
 
-  let x = [
-    "food",
-    "lunch",
-    "dinner",
-    "fastfood",
-    "burger",
-    "beer",
-    "wine",
-    "milk",
-    "tea",
-    "coffee",
-  ];
   return (
     <IonToolbar className={`${styles.toolbar} ion-no-padding`}>
       <IonSegment mode="md" scroll-y="false" scrollable>
         {categories.map((obj: any, ind: any) => (
           <IonSegmentButton key={ind} color="secondary" value={obj.name}>
             <div>
-              <IonImg className={styles.image} src={categoryImg} />
+              <IonImg className={styles.image} src={obj.imageUrl} />
             </div>
             <p className={styles.name}>{obj.name}</p>
           </IonSegmentButton>

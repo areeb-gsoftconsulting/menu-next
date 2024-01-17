@@ -20,9 +20,16 @@ import { useState } from "react";
 import { setLikedItems } from "../../store/slices/likeSlice";
 import { useDispatch } from "react-redux";
 
-const ItemCard = () => {
+const ItemCard = ({ data }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
+  console.log({ data });
+  let categoryName = data.categories.map((obj: any) => obj.name);
+  categoryName = categoryName.join(" ,");
+  console.log({ categoryName });
+  let desc = JSON.parse(data.description);
+  desc = desc[0]?.children[0]?.text;
+
   return (
     <>
       <IonCard onClick={() => setIsOpen(true)} className={`${styles.card}`}>
@@ -46,14 +53,16 @@ const ItemCard = () => {
                 paddingLeft: "5px",
               }}
             >
-              <IonLabel className={styles.name}>Falafel</IonLabel>
-              <IonLabel className={styles.categoryName}>Food</IonLabel>
+              <IonLabel className={styles.name}>{data.name}</IonLabel>
+              <IonLabel className={styles.categoryName}>
+                {categoryName}
+              </IonLabel>
             </div>
           </IonRow>
-          <IonIcon
+          {/* <IonIcon
             className={styles.moreIcon}
             icon={ellipsisHorizontal}
-          ></IonIcon>
+          ></IonIcon> */}
         </IonRow>
         <IonIcon
           onClick={(e: any) => {
@@ -63,12 +72,12 @@ const ItemCard = () => {
           className={styles.likeIcon}
           icon={heartOutline}
         />
-        <IonImg className={styles.cardImg} src={thumbnailImg} />
+        <IonImg className={styles.cardImg} src={data.imageUrl} />
         <div className={styles.badge}>
           <p className={styles.badgeTxt}>2</p>
         </div>
 
-        <IonRow className="ion-margin-top ion-align-items-center">
+        {/* <IonRow className="ion-margin-top ion-align-items-center">
           <IonIcon className={styles.rateIcon} icon={starSharp} />
           <div
             style={{
@@ -99,18 +108,13 @@ const ItemCard = () => {
               (100+)
             </IonText>
           </div>
-        </IonRow>
+        </IonRow> */}
 
-        <IonText className={styles.description}>
-          Lorem ipsum dolor quis sit, amet consectetur adipisicing elit. Nulla
-          soluta deserunt sapiente corrupti? Ipsa optio quam illum atque animi
-          impedit, adipisci quos voluptate sequi vitae praesentium ullam minus
-          inventore quis.
-        </IonText>
+        <IonText className={styles.description}>{desc}</IonText>
         <p className={styles.more}>more</p>
-        <IonRow className="ion-align-items-center">
+        {/* <IonRow className="ion-align-items-center">
           <p className={styles.time}>30 minutes ago</p>
-        </IonRow>
+        </IonRow> */}
       </IonCard>
       {isOpen && <ItemDetailsCard isOpen={isOpen} setIsOpen={setIsOpen} />}
     </>
