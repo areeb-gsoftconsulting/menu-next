@@ -24,26 +24,32 @@ import "./theme/variables.css";
 import Menu from "./pages/MenuPage";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
+import WelcomePage from "./pages/WelcomePage";
 setupIonicReact();
 
-const App: React.FC = () => (
-  <Provider store={store}>
-    <IonApp>
-      <IonReactRouter>
-        <IonRouterOutlet>
-          <Route exact path="/factor-girl-berlin/home">
-            <Home />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/factor-girl-berlin/menu" />
-          </Route>
-          <Route exact path="/factor-girl-berlin/menu">
-            <Menu />
-          </Route>
-        </IonRouterOutlet>
-      </IonReactRouter>
-    </IonApp>
-  </Provider>
-);
+const App: React.FC = () => {
+  return (
+    <Provider store={store}>
+      <IonApp>
+        <IonReactRouter>
+          <IonRouterOutlet>
+            <Route exact path="/welcome">
+              <WelcomePage />
+            </Route>
+            <Route exact path="/factor-girl-berlin/home">
+              <Home />
+            </Route>
+            <Route exact path="/">
+              <Redirect to="/welcome" />
+            </Route>
+            <Route exact path="/factor-girl-berlin/menu">
+              <Menu />
+            </Route>
+          </IonRouterOutlet>
+        </IonReactRouter>
+      </IonApp>
+    </Provider>
+  );
+};
 
 export default App;
