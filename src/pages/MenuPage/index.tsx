@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   IonCard,
   IonCol,
@@ -20,9 +20,23 @@ import styles from "./styles.module.css";
 import bannerImage from "../../assets/bannerImage.png";
 import menuImg from "../../assets/menuImg.png";
 import { Link } from "react-router-dom";
+import getVenues from "../../services/getVenue";
+import axios from "axios";
 
 const Menu = () => {
   // const toggleDarkModeHandler = () => document.body.classList.toggle("dark");
+  const getVlenue = async () => {
+    try {
+      let res = await getVenues();
+      console.log({ res: res.data.data });
+    } catch (error) {
+      console.log({ error });
+    }
+  };
+
+  useEffect(() => {
+    getVlenue();
+  }, []);
 
   return (
     <IonPage className={styles.page}>
