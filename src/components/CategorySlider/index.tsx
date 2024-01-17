@@ -10,13 +10,16 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import categoryImg from "../../assets/menuImg.png";
 import getCategory from "../../services/getCategory";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setSelectedCategory } from "../../store/slices/restaurantSlice";
 
 const CategorySlider = ({ menuId }: any) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(1);
   const dispatch = useDispatch();
+  const selectedCategory = useSelector(
+    (data: any) => data.restaurant.selectedCategory
+  );
   const [categories, setCategories] = useState<any>([
     {
       _id: "1",
@@ -54,13 +57,18 @@ const CategorySlider = ({ menuId }: any) => {
 
   return (
     <IonToolbar className={`${styles.toolbar} ion-no-padding`}>
-      <IonSegment mode="md" scroll-y="false" scrollable>
+      <IonSegment
+        value={selectedCategory}
+        mode="md"
+        scroll-y="false"
+        scrollable
+      >
         {categories.map((obj: any, ind: any) => (
           <IonSegmentButton
             onClick={() => selectCategory(obj)}
             key={ind}
             color="secondary"
-            value={obj.name}
+            value={obj._id}
           >
             <div>
               <IonImg
