@@ -91,7 +91,7 @@ const Home: React.FC = () => {
     }
   };
 
-  const getCategoryItem = async (e: any) => {
+  const getCategoryItem = async (e: any, { page }: any) => {
     setLoading(true);
 
     let tempFilter = {
@@ -103,7 +103,7 @@ const Home: React.FC = () => {
       let res = await getItems({
         menuId: currentMenu._id,
         params: {
-          page: selectedCategoryPageNum + 1,
+          page: page + 1,
           pageSize: pageSize,
           filters: frilters,
         },
@@ -113,12 +113,13 @@ const Home: React.FC = () => {
           setItemsEnded(true);
         }
         console.log(res.data.data.items);
-        if (selectedCategoryPageNum + 1 === 1) {
+        if (page + 1 === 1) {
           setItems([...res.data.data.items]);
         } else {
           setItems([...items, ...res.data.data.items]);
         }
-        setSelectedCategoryPageNum(selectedCategoryPageNum + 1);
+        setSelectedCategoryPageNum(page + 1);
+
         // setItems([...items, ...res.data.data.items]);
       }
     } catch (error) {
@@ -138,9 +139,9 @@ const Home: React.FC = () => {
       selectedCategory !== ""
     ) {
       setItemsEnded(false);
-
+      console.log("test 1");
       setSelectedCategoryPageNum(0);
-      getCategoryItem();
+      getCategoryItem(undefined, { page: 0 });
     }
     if (selectedCategory == "1" && items.length < 1) {
       setPageNumber(0);
@@ -160,7 +161,7 @@ const Home: React.FC = () => {
 
         getItem(e);
       } else {
-        await getCategoryItem(e);
+        await getCategoryItem(e, { page: selectedCategoryPageNum });
       }
     }
   };
