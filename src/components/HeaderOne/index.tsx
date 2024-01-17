@@ -21,7 +21,7 @@ import { useSelector } from "react-redux";
 type Props = {};
 
 const HeaderOne = ({ setIsCartOpen }: any) => {
-  const [isDark, setIsDark] = useState(false);
+  const isDark = useSelector((data: any) => data.theme.isDark);
   const [showSearch, setShowSearch] = useState(false);
   const venue = useSelector((data: any) => data.restaurant.venue);
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);

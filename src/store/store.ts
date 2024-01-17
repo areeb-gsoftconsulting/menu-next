@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import likeSlice from "./slices/likeSlice";
 import restaurantSlice from "./slices/restaurantSlice";
+import themeSlice from "./slices/themeSlice";
 
 export const store = configureStore({
   reducer: {
     like: likeSlice,
     restaurant: restaurantSlice,
+    theme: themeSlice,
   },
 });
 

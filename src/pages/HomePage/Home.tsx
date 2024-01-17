@@ -1,39 +1,14 @@
 import {
-  IonBadge,
-  IonCol,
   IonContent,
-  IonFab,
-  IonFabButton,
-  IonHeader,
-  IonIcon,
-  IonImg,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
-  IonItem,
-  IonLabel,
-  IonList,
   IonPage,
-  IonRow,
-  IonSearchbar,
-  IonText,
-  IonTitle,
-  IonToggle,
-  IonToolbar,
 } from "@ionic/react";
 import styles from "./Home.module.css";
-import lightLogo from "../../assets/logoLight.png";
-import darkLogo from "../../assets/logoDark.png";
-import {
-  logoIonic,
-  heartOutline,
-  cartOutline,
-  search,
-  add,
-} from "ionicons/icons";
-import { useEffect, useState } from "react";
+
+import { useEffect, useRef, useState } from "react";
 import CategorySlider from "../../components/CategorySlider";
 import ItemCard from "../../components/ItemCard";
-import ItemDetailsCard from "../../components/ItemDetailsCard";
 import FavItemsButton from "../../components/FavItemsButton";
 import SelectedItemModal from "../../components/SelectedItemModal";
 import CartModal from "../../components/CartModal";
@@ -42,6 +17,7 @@ import HeaderOne from "../../components/HeaderOne";
 import HeaderTwo from "../../components/HeaderTwo";
 import { useSelector } from "react-redux";
 import getItems from "../../services/getItems";
+import LoadingCard from "../../components/LoadingCard";
 
 const Home: React.FC = () => {
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
@@ -58,7 +34,7 @@ const Home: React.FC = () => {
   const [items, setItems] = useState<any>([]);
   const [itemsEnded, setItemsEnded] = useState(false);
   const [loading, setLoading] = useState(false);
-  console.log({ selectedCategory });
+  const contentRef = useRef<HTMLIonContentElement>(null);
 
   const getItem = async (e: any, { page }: any) => {
     console.log("get all");
@@ -133,6 +109,10 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
+    if (contentRef.current) {
+      contentRef.current.scrollToTop(300); // Adjust scroll duration if needed
+    }
+
     if (
       selectedCategory &&
       selectedCategory !== "1" &&
@@ -187,6 +167,7 @@ const Home: React.FC = () => {
       <IonContent
         scrollEvents={true}
         onIonScroll={(e: CustomEvent) => handleScroll(e)}
+        ref={contentRef}
         fullscreen
       >
         <p className={styles.menu}>{currentMenu.name}</p>
@@ -207,11 +188,15 @@ const Home: React.FC = () => {
             padding: "0px 20px",
           }}
         >
-          {items.map((data: any, ind: any) => (
-            <>
-              <ItemCard data={data} />
-            </>
-          ))}
+          {loading ? (
+            <LoadingCard />
+          ) : (
+            items.map((data: any, ind: any) => (
+              <>
+                <ItemCard data={data} />
+              </>
+            ))
+          )}
         </div>
         <FavItemsButton setOpenFav={setOpenFav} />
         {openFav && (

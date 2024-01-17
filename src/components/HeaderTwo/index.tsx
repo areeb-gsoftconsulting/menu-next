@@ -17,19 +17,22 @@ import CategorySlider from "../CategorySlider";
 import styles from "./styles.module.css";
 import lightLogo from "../../assets/logoLight.png";
 import darkLogo from "../../assets/logoDark.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsDark } from "../../store/slices/themeSlice";
 
 type Props = {};
 
 const HeaderTwo = ({ setIsCartOpen }: any) => {
-  const [isDark, setIsDark] = useState(false);
+  const isDark = useSelector((data: any) => data.theme.isDark);
+
   const venue = useSelector((data: any) => data.restaurant.venue);
+  const dispatch = useDispatch();
 
   const toggleDarkModeHandler = () => {
     document.body.classList.toggle("dark");
     return document.body.classList.contains("dark")
-      ? setIsDark(true)
-      : setIsDark(false);
+      ? dispatch(setIsDark(true))
+      : dispatch(setIsDark(false));
   };
 
   return (
