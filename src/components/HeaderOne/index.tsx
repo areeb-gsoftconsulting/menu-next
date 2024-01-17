@@ -24,6 +24,7 @@ const HeaderOne = ({ setIsCartOpen }: any) => {
   const [isDark, setIsDark] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const venue = useSelector((data: any) => data.restaurant.venue);
+  const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
 
   return (
     <IonHeader
@@ -100,7 +101,7 @@ const HeaderOne = ({ setIsCartOpen }: any) => {
           </div>
         )}
 
-        {!showSearch && <CategorySlider />}
+        {!showSearch && <CategorySlider menuId={currentMenu._id} />}
       </IonToolbar>
     </IonHeader>
   );

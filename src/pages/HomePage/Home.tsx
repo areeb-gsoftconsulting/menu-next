@@ -49,35 +49,122 @@ const Home: React.FC = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [tempArray, setTempArray] = useState([1, 2, 3, 4, 5, 6, 7]);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(0);
   const [pageSize, setPageSize] = useState(10);
+  const [selectedCategoryPageNum, setSelectedCategoryPageNum] = useState(0);
+  const selectedCategory = useSelector(
+    (data: any) => data.restaurant.selectedCategory
+  );
   const [items, setItems] = useState<any>([]);
-  console.log({ items });
+  const [itemsEnded, setItemsEnded] = useState(false);
+  const [loading, setLoading] = useState(false);
+  console.log({ selectedCategory });
 
-  const getItem = async () => {
+  const getItem = async (e: any) => {
+    console.log({ pageNumber });
+    setLoading(true);
+
     try {
       let res = await getItems({
         menuId: currentMenu._id,
-        params: { page: pageNumber, pageSize: pageSize },
+        params: { page: pageNumber + 1, pageSize: pageSize },
       });
       if (res.data.statusCode == 200) {
         console.log(res.data.data.items);
-        setItems([...items, ...res.data.data.items]);
+        if (res.data.data.items.length == 0) {
+          setItemsEnded(true);
+        }
+        if (pageNumber === 1) {
+          setItems([...res.data.data.items]);
+        } else {
+          setItems([...items, ...res.data.data.items]);
+        }
+        setPageNumber(pageNumber + 1);
       }
     } catch (error) {
       console.log({ error });
+    } finally {
+      if (e) {
+        e.target.complete();
+      }
+      setLoading(false);
+    }
+  };
+
+  const getCategoryItem = async (e: any) => {
+    setLoading(true);
+
+    let tempFilter = {
+      categoryIdsToFilter: [selectedCategory],
+    };
+    const frilters = JSON.stringify(tempFilter);
+
+    try {
+      let res = await getItems({
+        menuId: currentMenu._id,
+        params: {
+          page: selectedCategoryPageNum + 1,
+          pageSize: pageSize,
+          filters: frilters,
+        },
+      });
+      if (res.data.statusCode == 200) {
+        if (res.data.data.items.length == 0) {
+          setItemsEnded(true);
+        }
+        console.log(res.data.data.items);
+        if (selectedCategoryPageNum + 1 === 1) {
+          setItems([...res.data.data.items]);
+        } else {
+          setItems([...items, ...res.data.data.items]);
+        }
+        setSelectedCategoryPageNum(selectedCategoryPageNum + 1);
+        // setItems([...items, ...res.data.data.items]);
+      }
+    } catch (error) {
+      console.log({ error });
+    } finally {
+      if (e) {
+        e.target.complete();
+      }
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    getItem();
-  }, []);
+    if (
+      selectedCategory &&
+      selectedCategory !== "1" &&
+      selectedCategory !== ""
+    ) {
+      setItemsEnded(false);
+
+      setSelectedCategoryPageNum(0);
+      getCategoryItem();
+    }
+    if (selectedCategory == "1" && items.length < 1) {
+      setPageNumber(0);
+      setItemsEnded(false);
+      getItem();
+    }
+  }, [selectedCategory]);
+
+  // useEffect(() => {
+  //   getItem();
+  // }, []);
 
   const onEndReach = async (e: any) => {
-    setPageNumber(pageNumber + 1);
-    await getItem();
-    e.target.complete();
+    if (!loading && items.length > 1) {
+      if (selectedCategory == "1") {
+        console.log("im called");
+
+        getItem(e);
+      } else {
+        await getCategoryItem(e);
+      }
+    }
   };
+
   const handleScroll = (event: CustomEvent) => {
     const threshold = 180;
     const scrollTop = event.detail.scrollTop;
@@ -135,7 +222,7 @@ const Home: React.FC = () => {
           <CartModal isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
         )}
 
-        {true && (
+        {false && (
           <div className={`${styles.cartBottomButton}`}>
             <div
               onClick={() => setIsCartOpen(true)}
@@ -149,13 +236,17 @@ const Home: React.FC = () => {
         )}
         <IonInfiniteScroll
           onIonInfinite={(ev) => {
-            onEndReach(ev);
+            if (!itemsEnded) {
+              onEndReach(ev);
+            }
           }}
         >
-          <IonInfiniteScrollContent
-            loadingText="Please wait..."
-            loadingSpinner="bubbles"
-          ></IonInfiniteScrollContent>
+          {!itemsEnded && (
+            <IonInfiniteScrollContent
+              loadingText="Please wait..."
+              loadingSpinner="bubbles"
+            ></IonInfiniteScrollContent>
+          )}
         </IonInfiniteScroll>
       </IonContent>
     </IonPage>

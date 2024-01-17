@@ -10,11 +10,19 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import categoryImg from "../../assets/menuImg.png";
 import getCategory from "../../services/getCategory";
+import { useDispatch } from "react-redux";
+import { setSelectedCategory } from "../../store/slices/restaurantSlice";
 
 const CategorySlider = ({ menuId }: any) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(1);
-  const [categories, setCategories] = useState<any>([]);
+  const dispatch = useDispatch();
+  const [categories, setCategories] = useState<any>([
+    {
+      _id: "1",
+      name: "All",
+    },
+  ]);
 
   const getCategories = async () => {
     try {
@@ -24,7 +32,7 @@ const CategorySlider = ({ menuId }: any) => {
       });
 
       if (res.data.statusCode == 200) {
-        setCategories(res.data.data);
+        setCategories([...categories, ...res.data.data]);
       }
       // dispatch(setVenue(res.data.data));
     } catch (error) {
@@ -36,13 +44,29 @@ const CategorySlider = ({ menuId }: any) => {
     getCategories();
   }, []);
 
+  const selectCategory = (e: any) => {
+    if (e._id == "1") {
+      dispatch(setSelectedCategory(e._id));
+    } else {
+      dispatch(setSelectedCategory(e._id));
+    }
+  };
+
   return (
     <IonToolbar className={`${styles.toolbar} ion-no-padding`}>
       <IonSegment mode="md" scroll-y="false" scrollable>
         {categories.map((obj: any, ind: any) => (
-          <IonSegmentButton key={ind} color="secondary" value={obj.name}>
+          <IonSegmentButton
+            onClick={() => selectCategory(obj)}
+            key={ind}
+            color="secondary"
+            value={obj.name}
+          >
             <div>
-              <IonImg className={styles.image} src={obj.imageUrl} />
+              <IonImg
+                className={styles.image}
+                src={obj.name == "All" ? categoryImg : obj.imageUrl}
+              />
             </div>
             <p className={styles.name}>{obj.name}</p>
           </IonSegmentButton>

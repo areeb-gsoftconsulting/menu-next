@@ -26,8 +26,9 @@ import { store } from "./store/store";
 import { Provider } from "react-redux";
 import WelcomePage from "./pages/WelcomePage";
 setupIonicReact();
-
 const App: React.FC = () => {
+  console.log("ahtisham");
+
   return (
     <Provider store={store}>
       <IonApp>
