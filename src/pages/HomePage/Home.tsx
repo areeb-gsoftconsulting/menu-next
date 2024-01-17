@@ -60,26 +60,26 @@ const Home: React.FC = () => {
   const [loading, setLoading] = useState(false);
   console.log({ selectedCategory });
 
-  const getItem = async (e: any) => {
-    console.log({ pageNumber });
+  const getItem = async (e: any, { page }: any) => {
+    console.log("get all");
     setLoading(true);
 
     try {
       let res = await getItems({
         menuId: currentMenu._id,
-        params: { page: pageNumber + 1, pageSize: pageSize },
+        params: { page: page + 1, pageSize: pageSize },
       });
       if (res.data.statusCode == 200) {
         console.log(res.data.data.items);
         if (res.data.data.items.length == 0) {
           setItemsEnded(true);
         }
-        if (pageNumber === 1) {
+        if (page + 1 === 1) {
           setItems([...res.data.data.items]);
         } else {
           setItems([...items, ...res.data.data.items]);
         }
-        setPageNumber(pageNumber + 1);
+        setPageNumber(page + 1);
       }
     } catch (error) {
       console.log({ error });
@@ -143,10 +143,10 @@ const Home: React.FC = () => {
       setSelectedCategoryPageNum(0);
       getCategoryItem(undefined, { page: 0 });
     }
-    if (selectedCategory == "1" && items.length < 1) {
+    if (selectedCategory == "1") {
       setPageNumber(0);
       setItemsEnded(false);
-      getItem();
+      getItem(undefined, { page: 0 });
     }
   }, [selectedCategory]);
 
@@ -157,9 +157,7 @@ const Home: React.FC = () => {
   const onEndReach = async (e: any) => {
     if (!loading && items.length > 1) {
       if (selectedCategory == "1") {
-        console.log("im called");
-
-        getItem(e);
+        getItem(e, { page: pageNumber });
       } else {
         await getCategoryItem(e, { page: selectedCategoryPageNum });
       }
