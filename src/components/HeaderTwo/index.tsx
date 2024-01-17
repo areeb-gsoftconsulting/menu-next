@@ -17,11 +17,13 @@ import CategorySlider from "../CategorySlider";
 import styles from "./styles.module.css";
 import lightLogo from "../../assets/logoLight.png";
 import darkLogo from "../../assets/logoDark.png";
+import { useSelector } from "react-redux";
 
 type Props = {};
 
 const HeaderTwo = ({ setIsCartOpen }: any) => {
   const [isDark, setIsDark] = useState(false);
+  const venue = useSelector((data: any) => data.restaurant.venue);
 
   const toggleDarkModeHandler = () => {
     document.body.classList.toggle("dark");
@@ -34,7 +36,7 @@ const HeaderTwo = ({ setIsCartOpen }: any) => {
     <IonHeader mode="ios" className={`ion-no-border`} translucent={true}>
       <IonToolbar className={`${styles.toolbar} ${styles.transitionHeader}`}>
         <IonText>
-          <p className={styles.labelContainer}>Amsterdam</p>
+          <p className={styles.labelContainer}>{venue.name}</p>
         </IonText>
 
         <IonRow class="ion-justify-content-between">

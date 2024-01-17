@@ -21,9 +21,11 @@ import bannerImage from "../../assets/bannerImage.png";
 import menuImg from "../../assets/menuImg.png";
 import { Link } from "react-router-dom";
 import getVenues from "../../services/getVenue";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentMenu } from "../../store/slices/restaurantSlice";
 
 const Menu = () => {
+  const dispatch = useDispatch();
   // const toggleDarkModeHandler = () => document.body.classList.toggle("dark");
   const venue = useSelector((data: any) => data.restaurant.venue);
   console.log({ venue });
@@ -43,7 +45,7 @@ const Menu = () => {
         {venue.menus.map((obj: any, ind: any) => {
           return (
             <Link to="/factor-girl-berlin/home">
-              <IonCol key={ind}>
+              <IonCol onClick={() => dispatch(setCurrentMenu(obj))} key={ind}>
                 <IonImg className={styles.menuImg} src={obj.imageUrl} />
                 <p className={styles.labelContainer}>{obj.name}</p>
               </IonCol>

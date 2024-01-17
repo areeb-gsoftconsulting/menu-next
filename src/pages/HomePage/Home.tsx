@@ -40,8 +40,12 @@ import CartModal from "../../components/CartModal";
 import { Link } from "react-router-dom";
 import HeaderOne from "../../components/HeaderOne";
 import HeaderTwo from "../../components/HeaderTwo";
+import { useSelector } from "react-redux";
 
 const Home: React.FC = () => {
+  const venue = useSelector((data: any) => data.restaurant.venue);
+  const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
+
   const [isDark, setIsDark] = useState(false);
   const [openFav, setOpenFav] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -80,8 +84,8 @@ const Home: React.FC = () => {
         onIonScroll={(e: CustomEvent) => handleScroll(e)}
         fullscreen
       >
-        <p className={styles.menu}>Vegetarian</p>
-        <CategorySlider />
+        <p className={styles.menu}>{currentMenu.name}</p>
+        <CategorySlider menuId={currentMenu._id} />
         {/* <IonList>
           <IonItem lines="none">
             <IonIcon slot="start" />

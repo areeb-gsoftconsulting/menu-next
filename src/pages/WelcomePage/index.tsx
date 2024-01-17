@@ -9,7 +9,7 @@ import {
 } from "@ionic/react";
 import getVenues from "../../services/getVenue";
 import { useDispatch } from "react-redux";
-import { setVenue } from "../../store/slices/restaurantSlice";
+import { setCurrentMenu, setVenue } from "../../store/slices/restaurantSlice";
 import { useIonRouter } from "@ionic/react";
 
 const WelcomePage: React.FC = () => {
@@ -23,8 +23,9 @@ const WelcomePage: React.FC = () => {
         if (res.data.data.menus.length > 1) {
           router.push("/factor-girl-berlin/menu");
         } else {
-          //   router.push("/factor-girl-berlin/home");
-          router.push("/factor-girl-berlin/menu");
+          dispatch(setCurrentMenu(res.data.data.menus[0]));
+          router.push("/factor-girl-berlin/home");
+          //   router.push("/factor-girl-berlin/menu");
         }
         dispatch(setVenue(res.data.data));
       }

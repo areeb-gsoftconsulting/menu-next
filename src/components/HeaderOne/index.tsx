@@ -16,12 +16,14 @@ import CategorySlider from "../CategorySlider";
 import styles from "./styles.module.css";
 import lightLogo from "../../assets/logoLight.png";
 import darkLogo from "../../assets/logoDark.png";
+import { useSelector } from "react-redux";
 
 type Props = {};
 
 const HeaderOne = ({ setIsCartOpen }: any) => {
   const [isDark, setIsDark] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const venue = useSelector((data: any) => data.restaurant.venue);
 
   return (
     <IonHeader
@@ -33,7 +35,7 @@ const HeaderOne = ({ setIsCartOpen }: any) => {
         {!showSearch ? (
           <div className={styles.headerContainer}>
             <IonText>
-              <p className={styles.labelContainer}>Amsterdam</p>
+              <p className={styles.labelContainer}>{venue.name}</p>
             </IonText>
 
             <IonRow class="ion-justify-content-between">
