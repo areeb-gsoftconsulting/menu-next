@@ -35,7 +35,7 @@ const ItemCard = ({ data }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const venue = useSelector((data: any) => data.restaurant.venue);
   const [expanded, setExpanded] = useState(false);
-
+  console.log({ venue });
   const dispatch = useDispatch();
   console.log({ data });
   let categoryName = data.categories.map((obj: any) => obj.name);
@@ -149,7 +149,7 @@ const ItemCard = ({ data }: any) => {
             ))}
           </div>
         )}
-        {expanded && (
+        {expanded && data.prices.length > 1 ? (
           <div className={styles.flavCard}>
             <IonRow
               className={`ion-justify-content-between ion-align-items-center`}
@@ -162,32 +162,34 @@ const ItemCard = ({ data }: any) => {
             <p className={styles.msg}>Select any 1</p>
 
             <IonRadioGroup onClick={(e) => e.stopPropagation()} value="end">
-              <IonRow
-                className={`ion-justify-content-between ion-align-items-center`}
-              >
-                <IonRadio
-                  mode="md"
-                  className={`${styles.radioBtn} label-text-wrapper`}
-                  labelPlacement="end"
+              {data.prices.map((obj: any, ind: any) => (
+                <IonRow
+                  key={ind}
+                  className={`ion-justify-content-between ion-align-items-center`}
                 >
-                  <p className={`${styles.priceLabel}`}>Medium</p>
-                </IonRadio>
-                <p className={`${styles.priceLabel}`}>$ 4.5</p>
-              </IonRow>
-              <IonRow
-                className={`ion-justify-content-between ion-align-items-center`}
-              >
-                <IonRadio
-                  mode="md"
-                  className={styles.radioBtn}
-                  labelPlacement="end"
-                >
-                  <p className={`${styles.priceLabel}`}>Large</p>
-                </IonRadio>
-                <p className={`${styles.priceLabel}`}>$ 4.5</p>
-              </IonRow>
+                  <IonRadio
+                    mode="md"
+                    className={`${styles.radioBtn} label-text-wrapper`}
+                    labelPlacement="end"
+                  >
+                    <p className={`${styles.priceLabel}`}>{obj.description}</p>
+                  </IonRadio>
+                  <p className={`${styles.priceLabel}`}>
+                    {obj.price} {venue.defaultCurrency.sign}
+                  </p>
+                </IonRow>
+              ))}
             </IonRadioGroup>
           </div>
+        ) : (
+          <IonRow
+            className={`ion-justify-content-between ion-align-items-center`}
+          >
+            <p className={`${styles.priceLabel}`}>
+              {data.prices[0].description}
+            </p>
+            <p className={`${styles.priceLabel}`}>{data.prices[0].price}</p>
+          </IonRow>
         )}
         {expanded && (
           <IonRow
@@ -217,6 +219,7 @@ const ItemCard = ({ data }: any) => {
             <IonButton className={styles.addBtn}>Add to Cart</IonButton>
           </IonRow>
         )}
+        {expanded && <p className={styles.more}>less</p>}
       </IonCard>
       {isOpen && <ItemDetailsCard isOpen={isOpen} setIsOpen={setIsOpen} />}
     </>
