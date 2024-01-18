@@ -34,6 +34,7 @@ const Home: React.FC = () => {
   const [items, setItems] = useState<any>([]);
   const [itemsEnded, setItemsEnded] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [categoryItemloading, setCategoryItemLoading] = useState(false);
   const contentRef = useRef<HTMLIonContentElement>(null);
 
   const getItem = async (e: any, { page }: any) => {
@@ -60,10 +61,12 @@ const Home: React.FC = () => {
     } catch (error) {
       console.log({ error });
     } finally {
+      setLoading(false);
+
       if (e) {
         e.target.complete();
       }
-      setLoading(false);
+      setCategoryItemLoading(false);
     }
   };
 
@@ -101,17 +104,20 @@ const Home: React.FC = () => {
     } catch (error) {
       console.log({ error });
     } finally {
+      setLoading(false);
       if (e) {
         e.target.complete();
       }
-      setLoading(false);
+
+      setCategoryItemLoading(false);
     }
   };
 
   useEffect(() => {
-    if (contentRef.current) {
-      contentRef.current.scrollToTop(300); // Adjust scroll duration if needed
-    }
+    setCategoryItemLoading(true);
+    // if (contentRef.current) {
+    //   contentRef.current.scrollToTop(300); // Adjust scroll duration if needed
+    // }
 
     if (
       selectedCategory &&
@@ -119,7 +125,6 @@ const Home: React.FC = () => {
       selectedCategory !== ""
     ) {
       setItemsEnded(false);
-      console.log("test 1");
       setSelectedCategoryPageNum(0);
       getCategoryItem(undefined, { page: 0 });
     }
@@ -135,14 +140,21 @@ const Home: React.FC = () => {
   // }, []);
 
   const onEndReach = async (e: any) => {
-    if (!loading && items.length > 1) {
-      if (selectedCategory == "1") {
-        getItem(e, { page: pageNumber });
-      } else {
-        await getCategoryItem(e, { page: selectedCategoryPageNum });
-      }
+    console.log("test 1", loading, items.length);
+
+    console.log("test 2");
+
+    if (selectedCategory == "1") {
+      console.log("test 3");
+      getItem(e, { page: pageNumber });
+    } else {
+      console.log("test 4");
+
+      await getCategoryItem(e, { page: selectedCategoryPageNum });
     }
   };
+
+  console.log("test", { itemsEnded });
 
   const handleScroll = (event: CustomEvent) => {
     const threshold = 180;
@@ -188,7 +200,7 @@ const Home: React.FC = () => {
             padding: "0px 20px",
           }}
         >
-          {loading ? (
+          {categoryItemloading ? (
             <LoadingCard />
           ) : (
             items.map((data: any, ind: any) => (
