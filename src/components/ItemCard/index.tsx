@@ -221,7 +221,9 @@ const ItemCard = ({ data }: any) => {
         )}
         {expanded && <p className={styles.more}>less</p>}
       </IonCard>
-      {isOpen && <ItemDetailsCard isOpen={isOpen} setIsOpen={setIsOpen} />}
+      {isOpen && (
+        <ItemDetailsCard data={data} isOpen={isOpen} setIsOpen={setIsOpen} />
+      )}
     </>
   );
 };
