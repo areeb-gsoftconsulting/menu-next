@@ -161,7 +161,7 @@ const ItemCard = ({ data }: any) => {
             </IonRow>
             <p className={styles.msg}>Select any 1</p>
 
-            <IonRadioGroup value="end">
+            <IonRadioGroup onClick={(e) => e.stopPropagation()} value="end">
               <IonRow
                 className={`ion-justify-content-between ion-align-items-center`}
               >
@@ -191,6 +191,7 @@ const ItemCard = ({ data }: any) => {
         )}
         {expanded && (
           <IonRow
+            onClick={(e) => e.stopPropagation()}
             className={`ion-justify-content-evenly ion-align-items-center ion-padding-vertical`}
           >
             <IonButton className={`${styles.iconBtn} ion-no-padding`}>
