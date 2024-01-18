@@ -43,32 +43,77 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
   const [customizationErr, setcustomizationErr] = useState([]);
   const [selectedCustomization, setSelectedCustomization] = useState<any>([]);
   const [selectedValue, setSelectedValue] = useState<any>({});
+  console.log("selectedCustomization", selectedCustomization);
 
-  const handleCheckBox = ({ data, maxCount = 0, title }: any) => {
-    const temp = { ...selectedValue };
-    let currentItemData = temp[title]?.data || [];
+  const handleCheckBox = ({ data, parent }: any) => {
+    //that object
+    // its parent
+    //yhn sy rule nikalo
+    //phly us object ko array me rkhwao
+    //ab doora object aya
+    //phly check kro parent
+    //agr same hy to rule check kro
+    //agr add ho skta hy to id check kr k add ya remove krwao
+    //agr add ni ho skta according to rule
+    //to parent ki array sy check kr k existing remove krwa do or new add krdo
+    //agr parent diffrent hy to simly add kra do
 
-    const index = currentItemData.findIndex((e) => e._id === data._id);
+    const maxCount = parent.maxSelectedItems;
+    const index = selectedCustomization.findIndex((e) => e._id === data._id);
+    let commonItems = selectedCustomization.filter((customizationItem) =>
+      parent.prices.some((priceItem) => priceItem._id === customizationItem._id)
+    );
 
     if (index === -1) {
-      if (currentItemData.length == maxCount) {
-        const updatedSelection = [...currentItemData];
-        updatedSelection.pop();
-        temp[title] = { data: [...updatedSelection, data] };
-        setSelectedValue(temp);
+      if (maxCount > commonItems.length) {
+        //yhn check krna hy k rule kitna hy
+        //phir parent ki prices ki array k sath check krna hy k iski koi item phly added to nhi?
+        //agr added hy to usko remove krwa k new add krwani hy
+
+        setSelectedCustomization([...selectedCustomization, data]);
+        return;
+      } else {
+        let item = commonItems.shift();
+        let filtered = selectedCustomization.filter(
+          (data) => data._id !== item._id
+        );
+        setSelectedCustomization([...filtered, data]);
         return;
       }
-      temp[title] = { data: [...currentItemData, data] };
-      setSelectedValue(temp);
     } else {
-      const updatedSelection = [...currentItemData];
-      updatedSelection.splice(index, 1);
-      temp[title] = { data: [updatedSelection] };
-
-      setSelectedValue(temp);
+      let remaining = selectedCustomization.filter(
+        (item: any) => item._id !== data._id
+      );
+      setSelectedCustomization(remaining);
     }
   };
-  console.log("this", selectedCustomization);
+  console.log("testing 1", selectedCustomization);
+
+  // const handleCheckBox = ({ data, maxCount = 0, title }: any) => {
+  //   const temp = { ...selectedValue };
+  //   let currentItemData = temp[title]?.data || [];
+
+  //   const index = currentItemData.findIndex((e) => e._id === data._id);
+
+  //   if (index === -1) {
+  //     if (currentItemData.length == maxCount) {
+  //       const updatedSelection = [...currentItemData];
+  //       updatedSelection.pop();
+  //       temp[title] = { data: [...updatedSelection, data] };
+  //       setSelectedValue(temp);
+  //       return;
+  //     }
+  //     temp[title] = { data: [...currentItemData, data] };
+  //     setSelectedValue(temp);
+  //   } else {
+  //     const updatedSelection = [...currentItemData];
+  //     updatedSelection.splice(index, 1);
+  //     temp[title] = { data: [updatedSelection] };
+
+  //     setSelectedValue(temp);
+  //   }
+  // };
+  console.log("this", selectedValue);
 
   const addToCart = (data: any) => {
     if (data.price.description == "") {
@@ -218,11 +263,12 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
                   if (e.preSelected == true) {
                     handleCheckBox({
                       data: e,
-                      maxCount: obj.maxSelectedItems,
-                      title: obj.name,
+                      parent: obj,
                     });
                   }
                 }, []);
+
+                //poori
 
                 return (
                   <IonRow
@@ -232,7 +278,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
                     <IonCheckbox
                       // checked={e.preSelected}
                       checked={
-                        selectedValue[obj.name]?.data?.some(
+                        selectedCustomization.some(
                           (item: any) => item._id === e._id
                         ) || false
                       }
@@ -240,8 +286,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
                       onIonChange={(ev: any) =>
                         handleCheckBox({
                           data: e,
-                          maxCount: obj.maxSelectedItems,
-                          title: obj.name,
+                          parent: obj,
                         })
                       }
                       className={styles.checkBox}
