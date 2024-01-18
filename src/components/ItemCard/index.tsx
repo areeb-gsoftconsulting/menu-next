@@ -182,14 +182,16 @@ const ItemCard = ({ data }: any) => {
             </IonRadioGroup>
           </div>
         ) : (
-          <IonRow
-            className={`ion-justify-content-between ion-align-items-center`}
-          >
-            <p className={`${styles.priceLabel}`}>
-              {data.prices[0].description}
-            </p>
-            <p className={`${styles.priceLabel}`}>{data.prices[0].price}</p>
-          </IonRow>
+          expanded && (
+            <IonRow
+              className={`ion-justify-content-between ion-align-items-center`}
+            >
+              <p className={`${styles.priceLabel}`}>
+                {data.prices[0].description}
+              </p>
+              <p className={`${styles.priceLabel}`}>{data.prices[0].price}</p>
+            </IonRow>
+          )
         )}
         {expanded && (
           <IonRow

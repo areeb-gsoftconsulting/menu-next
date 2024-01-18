@@ -152,7 +152,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
                   className={`ion-justify-content-between ion-align-items-center`}
                 >
                   <IonCheckbox
-                    checked={obj.preSelected}
+                    checked={e.preSelected}
                     mode="md"
                     className={styles.checkBox}
                     labelPlacement="end"
