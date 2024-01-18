@@ -30,19 +30,37 @@ import ItemDetailsCard from "../ItemDetailsCard";
 import { useState } from "react";
 import { setLikedItems } from "../../store/slices/likeSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { setCartItems } from "../../store/slices/cartSlice";
 
 const ItemCard = ({ data }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const venue = useSelector((data: any) => data.restaurant.venue);
   const [expanded, setExpanded] = useState(false);
-  console.log({ venue });
   const dispatch = useDispatch();
-  console.log({ data });
   let categoryName = data.categories.map((obj: any) => obj.name);
   categoryName = categoryName.join(" ,");
-  console.log({ categoryName });
   let desc = JSON.parse(data.description);
   desc = desc[0]?.children[0]?.text;
+  const [selectedPrice, setSelectedPrice] = useState({
+    _id: "",
+    description: "",
+    price: "",
+  });
+  const [radioErr, setRadioErr] = useState(false);
+  const cart = useSelector((data: any) => data.cart.items);
+  console.log({ cart });
+
+  const addToCart = (data: any) => {
+    if (data.price.description == "") {
+      setRadioErr(true);
+      return;
+    } else {
+      dispatch(setCartItems(data));
+    }
+    console.log("==>", data);
+  };
+
+  console.log("selectedPrice", selectedPrice, "data==", data?.prices);
 
   return (
     <>
@@ -161,13 +179,30 @@ const ItemCard = ({ data }: any) => {
             </IonRow>
             <p className={styles.msg}>Select any 1</p>
 
-            <IonRadioGroup onClick={(e) => e.stopPropagation()} value="end">
+            <IonRadioGroup
+              allowEmptySelection={false}
+              onClick={(e) => e.stopPropagation()}
+              value={selectedPrice._id} // Use a unique identifier as the value
+              onIonChange={(e: any) => {
+                const selectedObj = data.prices.find(
+                  (obj: any) => obj._id === e.detail.value
+                );
+                setRadioErr(false);
+                setSelectedPrice({
+                  _id: selectedObj._id,
+                  description: selectedObj.description,
+                  price: selectedObj.price,
+                });
+                console.log("eeeeeee", selectedObj);
+              }}
+            >
               {data.prices.map((obj: any, ind: any) => (
                 <IonRow
                   key={ind}
                   className={`ion-justify-content-between ion-align-items-center`}
                 >
                   <IonRadio
+                    value={obj._id} // Use a unique identifier as the value
                     mode="md"
                     className={`${styles.radioBtn} label-text-wrapper`}
                     labelPlacement="end"
@@ -180,6 +215,41 @@ const ItemCard = ({ data }: any) => {
                 </IonRow>
               ))}
             </IonRadioGroup>
+
+            {radioErr && <p>Please choose one</p>}
+
+            {/* <IonRadioGroup
+              allowEmptySelection={false}
+              onClick={(e) => e.stopPropagation()}
+              value={selectedPrice}
+              onIonChange={(e: any) => {
+                setSelectedPrice({
+                  _id: e.target.value._id,
+                  description: e.target.value.description, // Fix the typo here
+                  price: e.target.value.price,
+                });
+                console.log("eeeeeee", e.target.value);
+              }}
+            >
+              {data.prices.map((obj: any, ind: any) => (
+                <IonRow
+                  key={ind}
+                  className={`ion-justify-content-between ion-align-items-center`}
+                >
+                  <IonRadio
+                    value={obj}
+                    mode="md"
+                    className={`${styles.radioBtn} label-text-wrapper`}
+                    labelPlacement="end"
+                  >
+                    <p className={`${styles.priceLabel}`}>{obj.description}</p>
+                  </IonRadio>
+                  <p className={`${styles.priceLabel}`}>
+                    {obj.price} {venue.defaultCurrency.sign}
+                  </p>
+                </IonRow>
+              ))}
+            </IonRadioGroup> */}
           </div>
         ) : (
           expanded && (
@@ -218,7 +288,21 @@ const ItemCard = ({ data }: any) => {
                 icon={add}
               ></IonIcon>
             </IonButton>
-            <IonButton className={styles.addBtn}>Add to Cart</IonButton>
+            <IonButton
+              onClick={() =>
+                addToCart({
+                  id: data._id,
+                  name: data.name,
+                  price:
+                    data.prices.length > 1 ? selectedPrice : data.prices[0],
+                  customization: [],
+                  comments: "",
+                })
+              }
+              className={styles.addBtn}
+            >
+              Add to Cart
+            </IonButton>
           </IonRow>
         )}
         {expanded && <p className={styles.more}>less</p>}
