@@ -18,12 +18,14 @@ import thumbnailImg from "../../assets/menuImg.png";
 import ItemDetailsCard from "../ItemDetailsCard";
 import { useState } from "react";
 import { setLikedItems } from "../../store/slices/likeSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ItemCard = ({ data }: any) => {
   const [isOpen, setIsOpen] = useState(false);
+  const venue = useSelector((data: any) => data.restaurant.venue);
+
   const dispatch = useDispatch();
-  console.log({ data });
+  console.log({ venue });
   let categoryName = data.categories.map((obj: any) => obj.name);
   categoryName = categoryName.join(" ,");
   console.log({ categoryName });
@@ -39,10 +41,7 @@ const ItemCard = ({ data }: any) => {
           >
             <div className={styles.outerDiv}>
               <IonThumbnail className={styles.thumbnail}>
-                <img
-                  alt="Silhouette of mountains"
-                  src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
-                />
+                <img alt="Logo" src={venue?.logo} />
               </IonThumbnail>
             </div>
 
