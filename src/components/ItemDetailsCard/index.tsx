@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import {
   IonModal,
@@ -24,14 +24,63 @@ import {
 import thumbnailImg from "../../assets/menuImg.png";
 import { starSharp, add, remove, closeCircleSharp } from "ionicons/icons";
 import { isPlatform } from "@ionic/react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setCartItems } from "../../store/slices/cartSlice";
 const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
   const modal = useRef<HTMLIonModalElement>(null);
   let categoryName = data.categories.map((obj: any) => obj.name);
   categoryName = categoryName.join(" ,");
   const venue = useSelector((data: any) => data.restaurant.venue);
   const [comments, setComments] = useState("");
-  console.log({ comments });
+  const [selectedPrice, setSelectedPrice] = useState({
+    _id: "",
+    description: "",
+    price: "",
+  });
+  const [radioErr, setRadioErr] = useState(false);
+  const dispatch = useDispatch();
+  const cart = useSelector((data: any) => data.cart.items);
+  const [customizationErr, setcustomizationErr] = useState([]);
+  const [selectedCustomization, setSelectedCustomization] = useState<any>([]);
+  const [selectedValue, setSelectedValue] = useState<any>({});
+
+  const handleCheckBox = ({ data, maxCount = 0, title }: any) => {
+    const temp = { ...selectedValue };
+    let currentItemData = temp[title]?.data || [];
+
+    const index = currentItemData.findIndex((e) => e._id === data._id);
+
+    if (index === -1) {
+      if (currentItemData.length == maxCount) {
+        const updatedSelection = [...currentItemData];
+        updatedSelection.pop();
+        temp[title] = { data: [...updatedSelection, data] };
+        setSelectedValue(temp);
+        return;
+      }
+      temp[title] = { data: [...currentItemData, data] };
+      setSelectedValue(temp);
+    } else {
+      const updatedSelection = [...currentItemData];
+      updatedSelection.splice(index, 1);
+      temp[title] = { data: [updatedSelection] };
+
+      setSelectedValue(temp);
+    }
+  };
+  console.log("this", selectedCustomization);
+
+  const addToCart = (data: any) => {
+    if (data.price.description == "") {
+      setRadioErr(true);
+      return;
+    } else {
+      if (data.customization > 0) {
+      }
+      // now i have to make condition for handling customization
+      // dispatch(setCartItems(data));
+    }
+  };
 
   return (
     <IonModal
@@ -97,13 +146,29 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
             </IonRow>
             <p className={styles.msg}>Select any 1</p>
 
-            <IonRadioGroup onClick={(e) => e.stopPropagation()} value="end">
+            <IonRadioGroup
+              allowEmptySelection={false}
+              onClick={(e) => e.stopPropagation()}
+              value={selectedPrice._id} // Use a unique identifier as the value
+              onIonChange={(e: any) => {
+                const selectedObj = data.prices.find(
+                  (obj: any) => obj._id === e.detail.value
+                );
+                setRadioErr(false);
+                setSelectedPrice({
+                  _id: selectedObj._id,
+                  description: selectedObj.description,
+                  price: selectedObj.price,
+                });
+              }}
+            >
               {data.prices.map((obj: any, ind: any) => (
                 <IonRow
                   key={ind}
                   className={`ion-justify-content-between ion-align-items-center`}
                 >
                   <IonRadio
+                    value={obj._id} // Use a unique identifier as the value
                     mode="md"
                     className={`${styles.radioBtn} label-text-wrapper`}
                     labelPlacement="end"
@@ -116,6 +181,8 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
                 </IonRow>
               ))}
             </IonRadioGroup>
+
+            {radioErr && <p>Please choose one</p>}
           </div>
         ) : (
           <IonRow
@@ -146,24 +213,48 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
                 </h4>
               </IonRow>
               <p className={styles.msg}>Select upto {obj.maxSelectedItems}</p>
-              {obj.prices.map((e: any, i: any) => (
-                <IonRow
-                  key={i}
-                  className={`ion-justify-content-between ion-align-items-center`}
-                >
-                  <IonCheckbox
-                    checked={e.preSelected}
-                    mode="md"
-                    className={styles.checkBox}
-                    labelPlacement="end"
+              {obj.prices.map((e: any, i: any) => {
+                useEffect(() => {
+                  if (e.preSelected == true) {
+                    handleCheckBox({
+                      data: e,
+                      maxCount: obj.maxSelectedItems,
+                      title: obj.name,
+                    });
+                  }
+                }, []);
+
+                return (
+                  <IonRow
+                    key={i}
+                    className={`ion-justify-content-between ion-align-items-center`}
                   >
-                    <p className={`${styles.priceLabel}`}>{e.name}</p>
-                  </IonCheckbox>
-                  <p className={`${styles.priceLabel}`}>
-                    {e.price} {venue.defaultCurrency.sign}
-                  </p>
-                </IonRow>
-              ))}
+                    <IonCheckbox
+                      // checked={e.preSelected}
+                      checked={
+                        selectedValue[obj.name]?.data?.some(
+                          (item: any) => item._id === e._id
+                        ) || false
+                      }
+                      mode="md"
+                      onIonChange={(ev: any) =>
+                        handleCheckBox({
+                          data: e,
+                          maxCount: obj.maxSelectedItems,
+                          title: obj.name,
+                        })
+                      }
+                      className={styles.checkBox}
+                      labelPlacement="end"
+                    >
+                      <p className={`${styles.priceLabel}`}>{e.name}</p>
+                    </IonCheckbox>
+                    <p className={`${styles.priceLabel}`}>
+                      {e.price} {venue.defaultCurrency.sign}
+                    </p>
+                  </IonRow>
+                );
+              })}
             </div>
           );
         })}
@@ -206,7 +297,20 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
               icon={add}
             ></IonIcon>
           </IonButton>
-          <IonButton className={styles.addBtn}>Add to Cart</IonButton>
+          <IonButton
+            onClick={() =>
+              addToCart({
+                id: data._id,
+                name: data.name,
+                price: data.prices.length > 1 ? selectedPrice : data.prices[0],
+                customization: selectedCustomization,
+                comments: comments,
+              })
+            }
+            className={styles.addBtn}
+          >
+            Add to Cart
+          </IonButton>
         </IonRow>
       </IonContent>
     </IonModal>

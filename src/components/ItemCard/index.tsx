@@ -47,8 +47,6 @@ const ItemCard = ({ data }: any) => {
     price: "",
   });
   const [radioErr, setRadioErr] = useState(false);
-  const cart = useSelector((data: any) => data.cart.items);
-  console.log({ cart });
 
   const addToCart = (data: any) => {
     if (data.price.description == "") {
@@ -57,10 +55,7 @@ const ItemCard = ({ data }: any) => {
     } else {
       dispatch(setCartItems(data));
     }
-    console.log("==>", data);
   };
-
-  console.log("selectedPrice", selectedPrice, "data==", data?.prices);
 
   return (
     <>
