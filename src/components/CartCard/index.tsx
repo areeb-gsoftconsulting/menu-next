@@ -3,8 +3,12 @@ import React from "react";
 import itemImg from "../../assets/menuImg.png";
 import styles from "./styles.module.css";
 import { remove, add } from "ionicons/icons";
+import { useSelector } from "react-redux";
 
-const CartCard = () => {
+const CartCard = ({ item }: any) => {
+  console.log({ item });
+  const venue = useSelector((data: any) => data.restaurant.venue);
+
   return (
     <>
       <IonRow
@@ -23,17 +27,20 @@ const CartCard = () => {
           }}
         >
           <IonRow class="ion-justify-content-start ion-align-items-center ion-nowrap">
-            <IonImg className={styles.img} src={itemImg} />
+            <IonImg className={styles.img} src={item.image} />
             <p
               style={{
                 paddingLeft: "12px",
               }}
               className={styles.text}
             >
-              Original Egglet
+              {item.name} ({item.price.description})
             </p>
           </IonRow>
-          <p className={styles.text}>$3.40</p>
+          <p className={styles.text}>
+            {" "}
+            {venue.defaultCurrency.sign} {item.price.price}
+          </p>
         </div>
 
         <div

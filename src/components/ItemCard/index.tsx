@@ -47,6 +47,7 @@ const ItemCard = ({ data }: any) => {
     price: "",
   });
   const [radioErr, setRadioErr] = useState(false);
+  console.log({ data });
 
   const addToCart = (data: any) => {
     if (data.price.description == "") {
@@ -293,6 +294,7 @@ const ItemCard = ({ data }: any) => {
                     data.prices.length > 1 ? selectedPrice : data.prices[0],
                   customization: [],
                   comments: "",
+                  image: data.imageUrl,
                 })
               }
               className={styles.addBtn}

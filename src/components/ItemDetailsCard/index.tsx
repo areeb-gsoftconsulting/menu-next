@@ -144,6 +144,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
       price: param.price,
       customization: selectedCustomization,
       comments: param.comments,
+      image: param.image,
     };
     dispatch(setCartItems(cartData));
   };
@@ -378,6 +379,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
                 price: data.prices.length > 1 ? selectedPrice : data.prices[0],
                 customization: selectedCustomization,
                 comments: comments,
+                image: data.imageUrl,
               })
             }
             className={styles.addBtn}

@@ -57,8 +57,9 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <CartCard />
-        <CartCard />
+        {cart.map((item: any) => {
+          return <CartCard item={item} />;
+        })}
         <div className={styles.priceCard}>
           <IonRow class="ion-justify-content-between ion-align-items-center">
             <p className={styles.cardTxt}>Subtotal</p>
