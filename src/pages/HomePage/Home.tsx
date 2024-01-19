@@ -36,7 +36,8 @@ const Home: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [categoryItemloading, setCategoryItemLoading] = useState(false);
   const contentRef = useRef<HTMLIonContentElement>(null);
-
+  const cart = useSelector((data: any) => data.cart.items);
+  console.log({ cart });
   const getItem = async (e: any, { page }: any) => {
     console.log("get all");
     setLoading(true);

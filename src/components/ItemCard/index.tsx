@@ -55,6 +55,7 @@ const ItemCard = ({ data }: any) => {
     } else {
       dispatch(setCartItems(data));
     }
+    console.log("==>", data);
   };
 
   return (

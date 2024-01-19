@@ -21,10 +21,13 @@ import {
 import styles from "./styles.module.css";
 import { chevronBack, star } from "ionicons/icons";
 import CartCard from "../CartCard";
+import { useSelector } from "react-redux";
 
 function CartModal({ isCartOpen, setIsCartOpen }: any) {
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
+  const cart = useSelector((data: any) => data.cart.items);
+  console.log({ cart });
 
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);

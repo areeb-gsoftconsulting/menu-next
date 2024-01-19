@@ -44,6 +44,8 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
   const [selectedCustomization, setSelectedCustomization] = useState<any>([]);
   const [selectedValue, setSelectedValue] = useState<any>({});
   console.log("selectedCustomization", selectedCustomization);
+  const [requiredCustoms, setRequiredCustome] = useState([]);
+  console.log({ requiredCustoms });
 
   const handleCheckBox = ({ data, parent }: any) => {
     //that object
@@ -87,7 +89,6 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
       setSelectedCustomization(remaining);
     }
   };
-  console.log("testing 1", selectedCustomization);
 
   // const handleCheckBox = ({ data, maxCount = 0, title }: any) => {
   //   const temp = { ...selectedValue };
@@ -113,18 +114,38 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
   //     setSelectedValue(temp);
   //   }
   // };
-  console.log("this", selectedValue);
 
-  const addToCart = (data: any) => {
-    if (data.price.description == "") {
+  const addToCart = (param: any) => {
+    let refArray = data.customization;
+    let requiredCustoms = refArray.filter((obj: any) => obj.isRequired == true);
+
+    let unselectedCustoms = requiredCustoms.filter((custom) => {
+      return !custom.prices.some((price) => {
+        return selectedCustomization.some(
+          (selected) => selected._id === price._id
+        );
+      });
+    });
+
+    setRequiredCustome(unselectedCustoms);
+
+    console.log({ unselectedCustoms });
+
+    if (param.price.description == "") {
       setRadioErr(true);
       return;
-    } else {
-      if (data.customization > 0) {
-      }
-      // now i have to make condition for handling customization
-      // dispatch(setCartItems(data));
     }
+    if (unselectedCustoms.length > 0) {
+      return;
+    }
+    let cartData: any = {
+      id: param.id,
+      name: param.name,
+      price: param.price,
+      customization: selectedCustomization,
+      comments: param.comments,
+    };
+    dispatch(setCartItems(cartData));
   };
 
   return (
@@ -227,7 +248,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
               ))}
             </IonRadioGroup>
 
-            {radioErr && <p>Please choose one</p>}
+            {radioErr && <p className={styles.err}>Please choose one</p>}
           </div>
         ) : (
           <IonRow
@@ -245,6 +266,10 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
         {data.customization.map((obj: any, ind: any) => {
           console.log({ obj: obj });
 
+          let err = requiredCustoms.filter((item: any) =>
+            item._id == obj._id ? true : false
+          );
+          console.log({ err }, ind);
           return (
             <div key={ind} className={styles.optionalCard}>
               <IonRow
@@ -300,6 +325,9 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
                   </IonRow>
                 );
               })}
+              {err.length > 0 ? (
+                <p className={styles.err}>This is a required customization</p>
+              ) : null}
             </div>
           );
         })}

@@ -27,6 +27,7 @@ const HeaderTwo = ({ setIsCartOpen }: any) => {
 
   const venue = useSelector((data: any) => data.restaurant.venue);
   const dispatch = useDispatch();
+  const cart = useSelector((data: any) => data.cart.items);
 
   const toggleDarkModeHandler = () => {
     document.body.classList.toggle("dark");
@@ -57,7 +58,9 @@ const HeaderTwo = ({ setIsCartOpen }: any) => {
               <IonToggle onIonChange={toggleDarkModeHandler} name="darkMode" />
             </IonCol>
             <IonCol onClick={() => setIsCartOpen(true)} size="4">
-              <IonBadge className={styles.badge}>11</IonBadge>
+              {cart.length > 0 && (
+                <IonBadge className={styles.badge}>{cart.length}</IonBadge>
+              )}
               <IonIcon className={styles.cartIcon} icon={cartOutline}></IonIcon>
             </IonCol>
           </IonRow>

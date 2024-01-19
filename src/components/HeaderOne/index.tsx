@@ -25,6 +25,7 @@ const HeaderOne = ({ setIsCartOpen }: any) => {
   const [showSearch, setShowSearch] = useState(false);
   const venue = useSelector((data: any) => data.restaurant.venue);
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
+  const cart = useSelector((data: any) => data.cart.items);
 
   return (
     <IonHeader
@@ -62,7 +63,9 @@ const HeaderOne = ({ setIsCartOpen }: any) => {
                   ></IonIcon>
                 </IonCol>
                 <IonCol onClick={() => setIsCartOpen(true)} size="4">
-                  <IonBadge className={styles.badge}>11</IonBadge>
+                  {cart.length > 0 && (
+                    <IonBadge className={styles.badge}>{cart.length}</IonBadge>
+                  )}
                   <IonIcon
                     className={styles.cartIcon}
                     icon={cartOutline}
