@@ -10,10 +10,12 @@ import {
   IonImg,
   IonSearchbar,
   IonTitle,
+  IonIcon,
 } from "@ionic/react";
 import ItemCard from "../ItemCard";
 import styles from "./styles.module.css";
 import { useSelector } from "react-redux";
+import { closeCircleSharp } from "ionicons/icons";
 
 function SelectedItemModal({ openFav, setOpenFav }: any) {
   const modal = useRef<HTMLIonModalElement>(null);
@@ -24,8 +26,8 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
     <IonModal
       ref={modal}
       trigger="open-modal"
-      initialBreakpoint={0.5}
-      breakpoints={[0, 0.5, 0.75, 1]}
+      initialBreakpoint={1}
+      breakpoints={[0, 1]}
       isOpen={openFav}
       onDidDismiss={() => setOpenFav(false)}
     >
@@ -35,7 +37,21 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
             padding: "0px 20px",
           }}
         >
-          <IonTitle className={styles.title}>Selected items</IonTitle>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <IonTitle className={styles.title}>Selected items</IonTitle>
+            <IonIcon
+              onClick={() => setOpenFav(false)}
+              className={styles.cancelIcon}
+              icon={closeCircleSharp}
+            ></IonIcon>
+          </div>
 
           {liked.map((data: any) => (
             <ItemCard data={data} />

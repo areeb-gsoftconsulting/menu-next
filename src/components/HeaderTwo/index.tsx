@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setIsDark } from "../../store/slices/themeSlice";
 import getItems from "../../services/getItems";
 import { setSelectedCategory } from "../../store/slices/restaurantSlice";
+import { useToast } from "../../hooks/useToast";
 
 type Props = {};
 
@@ -38,6 +39,7 @@ const HeaderTwo = ({
   const liked = useSelector((data: any) => data.like.items);
   const [loading, setLoading] = useState(false);
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
+  const { presentToast } = useToast();
 
   const dispatch = useDispatch();
   const getItem = async ({ itemNameSearch }: any) => {
@@ -55,6 +57,7 @@ const HeaderTwo = ({
         console.log("=======>", res.data.data);
         if (res.data.data.length == 0) {
           setItemsEnded(true);
+          presentToast("No item found");
         } else {
           setItemsEnded(true);
           setItems(res.data.data);
@@ -63,6 +66,7 @@ const HeaderTwo = ({
       }
     } catch (error) {
       console.log({ error });
+      presentToast("Please try again later");
     } finally {
       setLoading(false);
 
