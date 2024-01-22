@@ -1,43 +1,118 @@
 import {
+  IonButton,
   IonCard,
   IonCardContent,
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonChip,
   IonCol,
   IonImg,
   IonLabel,
+  IonRadio,
+  IonRadioGroup,
   IonRow,
   IonText,
   IonThumbnail,
+  isPlatform,
 } from "@ionic/react";
 import styles from "./styles.module.css";
 import { IonIcon } from "@ionic/react";
-import { ellipsisHorizontal, starSharp, heartOutline } from "ionicons/icons";
+import {
+  ellipsisHorizontal,
+  starSharp,
+  heartOutline,
+  add,
+  remove,
+  heartSharp,
+} from "ionicons/icons";
 import thumbnailImg from "../../assets/menuImg.png";
 import ItemDetailsCard from "../ItemDetailsCard";
 import { useState } from "react";
-import { setLikedItems } from "../../store/slices/likeSlice";
-import { useDispatch } from "react-redux";
+import { setLiked, setLikedItems } from "../../store/slices/likeSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setCart, setCartItems } from "../../store/slices/cartSlice";
 
-const ItemCard = () => {
+const ItemCard = ({ data }: any) => {
   const [isOpen, setIsOpen] = useState(false);
+  const venue = useSelector((data: any) => data.restaurant.venue);
+  const [expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
+  let categoryName = data.categories.map((obj: any) => obj.name);
+  categoryName = categoryName.join(" ,");
+  let desc = JSON.parse(data.description);
+  desc = desc[0]?.children[0]?.text;
+  const [selectedPrice, setSelectedPrice] = useState({
+    _id: "",
+    description: "",
+    price: "",
+  });
+  const [radioErr, setRadioErr] = useState(false);
+  console.log({ data });
+  const cart = useSelector((data: any) => data.cart.items);
+  const liked = useSelector((data: any) => data.like.items);
+  const numberInCart = cart.filter((item: any) => item.id == data._id);
+
+  const addToCart = (data: any) => {
+    if (data.price.description == "") {
+      setRadioErr(true);
+      return;
+    } else {
+      let tempCart = [...cart];
+      let tempItemIndex = tempCart.findIndex(
+        (item: any) => item.id == data.id && item.price._id == data.price._id
+      );
+      if (tempItemIndex == -1 && data.quantity > 0) {
+        dispatch(setCartItems(data));
+      } else {
+        let updatedItem = { ...tempCart[tempItemIndex] };
+        updatedItem.quantity = updatedItem.quantity + data.quantity;
+
+        // Check if quantity becomes zero, remove the item from the cart
+        if (updatedItem.quantity === 0) {
+          tempCart.splice(tempItemIndex, 1); // Remove the item from the array
+        } else {
+          tempCart[tempItemIndex] = updatedItem;
+        }
+
+        dispatch(setCart(tempCart));
+      }
+    }
+  };
+  const isLiked = liked.findIndex((item: any) => item._id == data._id);
+  const setingLiked = () => {
+    const index = liked.findIndex((item: any) => item._id == data._id);
+
+    if (index == -1) {
+      dispatch(setLikedItems(data));
+    } else {
+      const updatedLiked = liked.filter((item: any) => item._id !== data._id);
+      console.log({ updatedLiked });
+      // Update Redux state with the modified array
+      dispatch(setLiked(updatedLiked));
+    }
+  };
+
   return (
     <>
-      <IonCard onClick={() => setIsOpen(true)} className={`${styles.card}`}>
+      <IonCard
+        onClick={() => {
+          if (data.customization.length < 1) {
+            setExpanded(!expanded);
+          } else setIsOpen(true);
+        }}
+        className={`${styles.card}`}
+      >
         <IonRow className="ion-justify-content-between ion-align-items-center">
           <IonRow
             className={`ion-justify-content-between ion-align-items-center ${styles.cardName}`}
           >
             <div className={styles.outerDiv}>
               <IonThumbnail className={styles.thumbnail}>
-                <img
-                  alt="Silhouette of mountains"
-                  src="https://ionicframework.com/docs/img/demos/thumbnail.svg"
-                />
+                <img alt="Logo" src={venue?.logo} />
               </IonThumbnail>
             </div>
+
             <div
               style={{
                 display: "flex",
@@ -45,26 +120,33 @@ const ItemCard = () => {
                 paddingLeft: "5px",
               }}
             >
-              <IonLabel className={styles.name}>Falafel</IonLabel>
-              <IonLabel className={styles.categoryName}>Food</IonLabel>
+              <IonLabel className={styles.name}>{data.name}</IonLabel>
+              <IonLabel className={styles.categoryName}>
+                {categoryName}
+              </IonLabel>
             </div>
           </IonRow>
-          <IonIcon
+          {/* <IonIcon
             className={styles.moreIcon}
             icon={ellipsisHorizontal}
-          ></IonIcon>
+          ></IonIcon> */}
         </IonRow>
         <IonIcon
           onClick={(e: any) => {
-            dispatch(setLikedItems({ name: "areeb" }));
+            setingLiked();
             e.stopPropagation();
           }}
           className={styles.likeIcon}
-          icon={heartOutline}
+          icon={isLiked == -1 ? heartOutline : heartSharp}
         />
+        <IonImg className={styles.cardImg} src={data.imageUrl} />
+        {numberInCart.length > 0 && (
+          <div className={styles.badge}>
+            <p className={styles.badgeTxt}>{numberInCart[0].quantity}</p>
+          </div>
+        )}
 
-        <IonImg className={styles.cardImg} src={thumbnailImg} />
-        <IonRow className="ion-margin-top ion-align-items-center">
+        {/* <IonRow className="ion-margin-top ion-align-items-center">
           <IonIcon className={styles.rateIcon} icon={starSharp} />
           <div
             style={{
@@ -95,20 +177,202 @@ const ItemCard = () => {
               (100+)
             </IonText>
           </div>
-        </IonRow>
+        </IonRow> */}
 
-        <IonText className={styles.description}>
-          Lorem ipsum dolor quis sit, amet consectetur adipisicing elit. Nulla
-          soluta deserunt sapiente corrupti? Ipsa optio quam illum atque animi
-          impedit, adipisci quos voluptate sequi vitae praesentium ullam minus
-          inventore quis.
-        </IonText>
-        <p className={styles.more}>more</p>
-        <IonRow className="ion-align-items-center">
-          <p className={styles.time}>30 minutes ago</p>
-        </IonRow>
+        {!expanded ? (
+          <IonText className={styles.description}>{desc}</IonText>
+        ) : (
+          <IonText className={styles.descriptionExp}>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+            incidunt enim soluta adipisci ad deleniti eaque, facilis quis quidem
+            voluptates harum ab? Vel modi aliquam libero? Sed accusamus dolorum
+            enim.
+          </IonText>
+        )}
+        {!expanded && <p className={styles.more}>more</p>}
+        {expanded && (
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <p className={styles.tagLabel}>Tags: </p>
+            {data.tags.map((obj: any, ind: any) => (
+              <IonChip className={styles.tags} key={ind}>
+                {obj.name}
+              </IonChip>
+            ))}
+          </div>
+        )}
+        {expanded && data.prices.length > 1 ? (
+          <div className={styles.flavCard}>
+            <IonRow
+              className={`ion-justify-content-between ion-align-items-center`}
+            >
+              <h4 className={`${styles.caption} ion-no-padding`}>
+                Choose Flavor
+              </h4>
+              <h4 className={`${styles.required}`}>Required</h4>
+            </IonRow>
+            <p className={styles.msg}>Select any 1</p>
+
+            <IonRadioGroup
+              allowEmptySelection={false}
+              onClick={(e) => e.stopPropagation()}
+              value={selectedPrice._id} // Use a unique identifier as the value
+              onIonChange={(e: any) => {
+                const selectedObj = data.prices.find(
+                  (obj: any) => obj._id === e.detail.value
+                );
+                setRadioErr(false);
+                setSelectedPrice({
+                  _id: selectedObj._id,
+                  description: selectedObj.description,
+                  price: selectedObj.price,
+                });
+                console.log("eeeeeee", selectedObj);
+              }}
+            >
+              {data.prices.map((obj: any, ind: any) => (
+                <IonRow
+                  key={ind}
+                  className={`ion-justify-content-between ion-align-items-center`}
+                >
+                  <IonRadio
+                    value={obj._id} // Use a unique identifier as the value
+                    mode="md"
+                    className={`${styles.radioBtn} label-text-wrapper`}
+                    labelPlacement="end"
+                  >
+                    <p className={`${styles.priceLabel}`}>{obj.description}</p>
+                  </IonRadio>
+                  <p className={`${styles.priceLabel}`}>
+                    {obj.price} {venue.defaultCurrency.sign}
+                  </p>
+                </IonRow>
+              ))}
+            </IonRadioGroup>
+
+            {radioErr && <p>Please choose one</p>}
+
+            {/* <IonRadioGroup
+              allowEmptySelection={false}
+              onClick={(e) => e.stopPropagation()}
+              value={selectedPrice}
+              onIonChange={(e: any) => {
+                setSelectedPrice({
+                  _id: e.target.value._id,
+                  description: e.target.value.description, // Fix the typo here
+                  price: e.target.value.price,
+                });
+                console.log("eeeeeee", e.target.value);
+              }}
+            >
+              {data.prices.map((obj: any, ind: any) => (
+                <IonRow
+                  key={ind}
+                  className={`ion-justify-content-between ion-align-items-center`}
+                >
+                  <IonRadio
+                    value={obj}
+                    mode="md"
+                    className={`${styles.radioBtn} label-text-wrapper`}
+                    labelPlacement="end"
+                  >
+                    <p className={`${styles.priceLabel}`}>{obj.description}</p>
+                  </IonRadio>
+                  <p className={`${styles.priceLabel}`}>
+                    {obj.price} {venue.defaultCurrency.sign}
+                  </p>
+                </IonRow>
+              ))}
+            </IonRadioGroup> */}
+          </div>
+        ) : (
+          expanded && (
+            <IonRow
+              className={`ion-justify-content-between ion-align-items-center`}
+            >
+              <p className={`${styles.priceLabel}`}>
+                {data.prices[0].description}
+              </p>
+              <p className={`${styles.priceLabel}`}>{data.prices[0].price}</p>
+            </IonRow>
+          )
+        )}
+        {expanded && (
+          <IonRow
+            onClick={(e) => e.stopPropagation()}
+            className={`ion-justify-content-evenly ion-align-items-center ion-padding-vertical`}
+          >
+            <IonButton
+              onClick={() =>
+                addToCart({
+                  id: data._id,
+                  name: data.name,
+                  price:
+                    data.prices.length > 1 ? selectedPrice : data.prices[0],
+                  customization: [],
+                  comments: "",
+                  image: data.imageUrl,
+                  quantity: -1,
+                })
+              }
+              className={`${styles.iconBtn} ion-no-padding`}
+            >
+              <IonIcon
+                className={
+                  isPlatform("ios") ? styles.icons : styles.iconsAndroid
+                }
+                slot="icon-only"
+                icon={remove}
+              ></IonIcon>
+            </IonButton>
+            <h3 className={styles.itemNum}>1</h3>
+            {/* <IonButton className={styles.actionBtn}>+</IonButton> */}
+            <IonButton
+              onClick={() =>
+                addToCart({
+                  id: data._id,
+                  name: data.name,
+                  price:
+                    data.prices.length > 1 ? selectedPrice : data.prices[0],
+                  customization: [],
+                  comments: "",
+                  image: data.imageUrl,
+                  quantity: 1,
+                })
+              }
+              className={`${styles.iconBtn} ion-no-padding`}
+            >
+              <IonIcon
+                className={
+                  isPlatform("ios") ? styles.icons : styles.iconsAndroid
+                }
+                slot="icon-only"
+                icon={add}
+              ></IonIcon>
+            </IonButton>
+            <IonButton
+              onClick={() =>
+                addToCart({
+                  id: data._id,
+                  name: data.name,
+                  price:
+                    data.prices.length > 1 ? selectedPrice : data.prices[0],
+                  customization: [],
+                  comments: "",
+                  image: data.imageUrl,
+                  quantity: 1,
+                })
+              }
+              className={styles.addBtn}
+            >
+              Add to Cart
+            </IonButton>
+          </IonRow>
+        )}
+        {expanded && <p className={styles.more}>less</p>}
       </IonCard>
-      {isOpen && <ItemDetailsCard isOpen={isOpen} setIsOpen={setIsOpen} />}
+      {isOpen && (
+        <ItemDetailsCard data={data} isOpen={isOpen} setIsOpen={setIsOpen} />
+      )}
     </>
   );
 };

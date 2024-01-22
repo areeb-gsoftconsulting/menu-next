@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   IonCard,
   IonCol,
@@ -20,9 +20,15 @@ import styles from "./styles.module.css";
 import bannerImage from "../../assets/bannerImage.png";
 import menuImg from "../../assets/menuImg.png";
 import { Link } from "react-router-dom";
+import getVenues from "../../services/getVenue";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentMenu } from "../../store/slices/restaurantSlice";
 
 const Menu = () => {
+  const dispatch = useDispatch();
   // const toggleDarkModeHandler = () => document.body.classList.toggle("dark");
+  const venue = useSelector((data: any) => data.restaurant.venue);
+  console.log({ venue });
 
   return (
     <IonPage className={styles.page}>
@@ -33,32 +39,19 @@ const Menu = () => {
         <IonImg className={styles.bannerImage} src={bannerImage} />
       </IonHeader>
       <IonContent className={styles.container} fullscreen>
-        <p className={styles.restName}>Amsterdam</p>
+        <p className={styles.restName}>{venue?.name}</p>
         <p className={styles.selectMenu}>Select Menu</p>
-        {/* <IonList>
-          <IonItem lines="none">
-            <IonIcon slot="start" />
-            <IonLabel>Dark Mode</IonLabel>
-            <IonToggle
-              slot="end"
-              name="darkMode"
-              onIonChange={toggleDarkModeHandler}
-            />
-          </IonItem>
-        </IonList> */}
 
-        <Link to="/home">
-          <IonCol>
-            <IonImg className={styles.menuImg} src={menuImg} />
-            <p className={styles.labelContainer}>non-veg</p>
-          </IonCol>
-        </Link>
-        <Link to="/home">
-          <IonCol>
-            <IonImg className={styles.menuImg} src={menuImg} />
-            <p className={styles.labelContainer}>non-veg</p>
-          </IonCol>
-        </Link>
+        {venue.menus.map((obj: any, ind: any) => {
+          return (
+            <Link to="/factor-girl-berlin/home">
+              <IonCol onClick={() => dispatch(setCurrentMenu(obj))} key={ind}>
+                <IonImg className={styles.menuImg} src={obj.imageUrl} />
+                <p className={styles.labelContainer}>{obj.name}</p>
+              </IonCol>
+            </Link>
+          );
+        })}
       </IonContent>
     </IonPage>
   );

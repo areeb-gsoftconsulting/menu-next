@@ -22,4 +22,5 @@ ion-segment-button {
   font-style: normal;
   font-weight: 600;
   text-transform: capitalize;
+  color: var(--ion-text-color);
 }

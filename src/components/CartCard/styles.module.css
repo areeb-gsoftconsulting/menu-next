@@ -4,6 +4,7 @@
   overflow: hidden;
   border-radius: 8px;
   object-fit: cover;
+  min-width: 34px;
 }
 .icons {
   padding: 0px 5px;
@@ -21,9 +22,31 @@
   font-size: 14px;
   font-family: "poppins";
   font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 270px;
+  text-overflow: ellipsis;
+}
+.textPrice {
+  font-size: 14px;
+  font-family: "poppins";
+  font-weight: 600;
+  text-wrap: nowrap;
 }
 .itemCount {
   font-size: 14px;
   font-family: "poppins-normal";
   font-weight: 600;
+}
+.heading {
+  color: gray;
+  font-weight: 800;
+  font-family: "poppins";
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .text {
+    max-width: 200px;
+  }
 }

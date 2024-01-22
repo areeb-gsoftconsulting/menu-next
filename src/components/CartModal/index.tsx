@@ -21,10 +21,13 @@ import {
 import styles from "./styles.module.css";
 import { chevronBack, star } from "ionicons/icons";
 import CartCard from "../CartCard";
+import { useSelector } from "react-redux";
 
 function CartModal({ isCartOpen, setIsCartOpen }: any) {
   const modal = useRef<HTMLIonModalElement>(null);
   const page = useRef(null);
+  const cart = useSelector((data: any) => data.cart.items);
+  console.log({ cart });
 
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
@@ -54,32 +57,38 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        <CartCard />
-        <CartCard />
-        <div className={styles.priceCard}>
-          <IonRow class="ion-justify-content-between ion-align-items-center">
-            <p className={styles.cardTxt}>Subtotal</p>
-            <p className={styles.cardTxt}>$45.5</p>
-          </IonRow>
-          <IonRow class="ion-justify-content-between ion-align-items-center">
-            <p className={styles.cardTxt}>GST</p>
-            <p className={styles.cardTxt}>$1.5</p>
-          </IonRow>
-          <IonRow class="ion-justify-content-between ion-align-items-center">
-            <p className={styles.cardTxt}>Platform fee</p>
-            <p className={styles.cardTxt}>$0.5</p>
-          </IonRow>
-        </div>
+        {cart.map((item: any) => {
+          return <CartCard item={item} />;
+        })}
+        {cart.length > 0 && (
+          <div className={styles.priceCard}>
+            <IonRow class="ion-justify-content-between ion-align-items-center">
+              <p className={styles.cardTxt}>Subtotal</p>
+              <p className={styles.cardTxt}>$45.5</p>
+            </IonRow>
+            <IonRow class="ion-justify-content-between ion-align-items-center">
+              <p className={styles.cardTxt}>GST</p>
+              <p className={styles.cardTxt}>$1.5</p>
+            </IonRow>
+            <IonRow class="ion-justify-content-between ion-align-items-center">
+              <p className={styles.cardTxt}>Platform fee</p>
+              <p className={styles.cardTxt}>$0.5</p>
+            </IonRow>
+          </div>
+        )}
+        {cart.length < 1 && <p className={styles.cardTxt}>Cart is empty</p>}
       </IonContent>
-      <IonFooter className={styles.footer}>
-        <IonRow class="ion-justify-content-between ion-align-items-center">
-          <p className={styles.footerTxt}>Total</p>
-          <p className={styles.footerTxt}>$55.5</p>
-        </IonRow>
-        <IonButton className={styles.checkoutBtn} expand="block">
-          Place Order
-        </IonButton>
-      </IonFooter>
+      {cart.length > 0 && (
+        <IonFooter className={styles.footer}>
+          <IonRow class="ion-justify-content-between ion-align-items-center">
+            <p className={styles.footerTxt}>Total</p>
+            <p className={styles.footerTxt}>$55.5</p>
+          </IonRow>
+          <IonButton className={styles.checkoutBtn} expand="block">
+            Place Order
+          </IonButton>
+        </IonFooter>
+      )}
     </IonModal>
   );
 }

@@ -1,24 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface CounterState {
+export interface cartState {
   items: [];
 }
 
-const initialState: CounterState = {
+const initialState: cartState = {
   items: [],
 };
 
-export const likeSlice = createSlice({
-  name: "likeSlice",
+export const cartSlice = createSlice({
+  name: "cartSlice",
   initialState,
   reducers: {
-    setLikedItems: (state: any, action: any) => {
+    setCartItems: (state: any, action: any) => {
       return {
         ...state,
         items: [...state.items, action.payload],
       };
     },
-    setLiked: (state: any, action: any) => {
+    setCart: (state: any, action: any) => {
       return {
         ...state,
         items: action.payload,
@@ -28,6 +28,6 @@ export const likeSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setLikedItems, setLiked } = likeSlice.actions;
+export const { setCartItems, setCart } = cartSlice.actions;
 
-export default likeSlice.reducer;
+export default cartSlice.reducer;

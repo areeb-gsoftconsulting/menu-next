@@ -1,91 +1,206 @@
 import {
-  IonBadge,
-  IonCol,
   IonContent,
-  IonFab,
-  IonFabButton,
-  IonHeader,
-  IonIcon,
-  IonImg,
-  IonItem,
-  IonLabel,
-  IonList,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
   IonPage,
-  IonRow,
-  IonSearchbar,
-  IonText,
-  IonTitle,
-  IonToggle,
-  IonToolbar,
 } from "@ionic/react";
 import styles from "./Home.module.css";
-import lightLogo from "../../assets/logoLight.png";
-import darkLogo from "../../assets/logoDark.png";
-import { logoIonic, heartOutline, cartOutline, add } from "ionicons/icons";
-import { useState } from "react";
+
+import { useEffect, useRef, useState } from "react";
 import CategorySlider from "../../components/CategorySlider";
 import ItemCard from "../../components/ItemCard";
-import ItemDetailsCard from "../../components/ItemDetailsCard";
 import FavItemsButton from "../../components/FavItemsButton";
 import SelectedItemModal from "../../components/SelectedItemModal";
 import CartModal from "../../components/CartModal";
 import { Link } from "react-router-dom";
+import HeaderOne from "../../components/HeaderOne";
+import HeaderTwo from "../../components/HeaderTwo";
+import { useSelector } from "react-redux";
+import getItems from "../../services/getItems";
+import LoadingCard from "../../components/LoadingCard";
 
 const Home: React.FC = () => {
-  const [isDark, setIsDark] = useState(false);
+  const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
   const [openFav, setOpenFav] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const toggleDarkModeHandler = () => {
-    document.body.classList.toggle("dark");
-    return document.body.classList.contains("dark")
-      ? setIsDark(true)
-      : setIsDark(false);
+  const [tempArray, setTempArray] = useState([1, 2, 3, 4, 5, 6, 7]);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+  const [selectedCategoryPageNum, setSelectedCategoryPageNum] = useState(0);
+  const selectedCategory = useSelector(
+    (data: any) => data.restaurant.selectedCategory
+  );
+  const [items, setItems] = useState<any>([]);
+  const [itemsEnded, setItemsEnded] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [categoryItemloading, setCategoryItemLoading] = useState(false);
+  const contentRef = useRef<HTMLIonContentElement>(null);
+  const cart = useSelector((data: any) => data.cart.items);
+  console.log({ cart });
+  const getItem = async (e: any, { page }: any) => {
+    console.log("get all");
+    setLoading(true);
+
+    try {
+      let res = await getItems({
+        menuId: currentMenu._id,
+        params: { page: page + 1, pageSize: pageSize },
+      });
+      if (res.data.statusCode == 200) {
+        console.log(res.data.data.items);
+        if (res.data.data.items.length == 0) {
+          setItemsEnded(true);
+        }
+        if (page + 1 === 1) {
+          setItems([...res.data.data.items]);
+        } else {
+          setItems([...items, ...res.data.data.items]);
+        }
+        setPageNumber(page + 1);
+      }
+    } catch (error) {
+      console.log({ error });
+    } finally {
+      setLoading(false);
+
+      if (e) {
+        e.target.complete();
+      }
+      setCategoryItemLoading(false);
+    }
+  };
+
+  const getCategoryItem = async (e: any, { page }: any) => {
+    setLoading(true);
+
+    let tempFilter = {
+      categoryIdsToFilter: [selectedCategory],
+    };
+    const frilters = JSON.stringify(tempFilter);
+
+    try {
+      let res = await getItems({
+        menuId: currentMenu._id,
+        params: {
+          page: page + 1,
+          pageSize: pageSize,
+          filters: frilters,
+        },
+      });
+      if (res.data.statusCode == 200) {
+        if (res.data.data.items.length == 0) {
+          setItemsEnded(true);
+        }
+        console.log(res.data.data.items);
+        if (page + 1 === 1) {
+          setItems([...res.data.data.items]);
+        } else {
+          setItems([...items, ...res.data.data.items]);
+        }
+        setSelectedCategoryPageNum(page + 1);
+
+        // setItems([...items, ...res.data.data.items]);
+      }
+    } catch (error) {
+      console.log({ error });
+    } finally {
+      setLoading(false);
+      if (e) {
+        e.target.complete();
+      }
+
+      setCategoryItemLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedCategory && selectedCategory == "2") {
+      return;
+    }
+    setCategoryItemLoading(true);
+    // if (contentRef.current) {
+    //   contentRef.current.scrollToTop(300); // Adjust scroll duration if needed
+    // }
+
+    if (
+      selectedCategory &&
+      selectedCategory !== "1" &&
+      selectedCategory !== ""
+    ) {
+      setItemsEnded(false);
+      setSelectedCategoryPageNum(0);
+      getCategoryItem(undefined, { page: 0 });
+    }
+    if (selectedCategory == "1") {
+      setPageNumber(0);
+      setItemsEnded(false);
+      getItem(undefined, { page: 0 });
+    }
+  }, [selectedCategory]);
+
+  // useEffect(() => {
+  //   getItem();
+  // }, []);
+  console.log("thissssss", items);
+
+  const onEndReach = async (e: any) => {
+    console.log("test 1", loading, items.length);
+
+    console.log("test 2");
+
+    if (selectedCategory == "1") {
+      console.log("test 3");
+      getItem(e, { page: pageNumber });
+    } else {
+      console.log("test 4");
+
+      await getCategoryItem(e, { page: selectedCategoryPageNum });
+    }
+  };
+
+  console.log("test", { itemsEnded });
+
+  const handleScroll = (event: CustomEvent) => {
+    const threshold = 180;
+    const scrollTop = event.detail.scrollTop;
+
+    if (scrollTop > threshold && !isScrolled) {
+      setIsScrolled(true);
+    } else if (scrollTop <= threshold && isScrolled) {
+      setIsScrolled(false);
+    }
   };
 
   // Example usage
   return (
     <IonPage className={styles.page}>
-      <IonHeader mode="ios" className={`ion-no-border`} translucent={true}>
-        <IonToolbar className={`${styles.toolbar}`}>
-          <IonText>
-            <p className={styles.labelContainer}>Amsterdam</p>
-          </IonText>
+      {isScrolled ? (
+        <HeaderOne
+          setItems={setItems}
+          setItemsEnded={setItemsEnded}
+          setOpenFav={setOpenFav}
+          openFav={openFav}
+          setIsCartOpen={setIsCartOpen}
+        />
+      ) : (
+        <HeaderTwo
+          setItems={setItems}
+          setItemsEnded={setItemsEnded}
+          setOpenFav={setOpenFav}
+          openFav={openFav}
+          setIsCartOpen={setIsCartOpen}
+        />
+      )}
 
-          <IonRow class="ion-justify-content-between">
-            <IonImg src={isDark ? lightLogo : darkLogo} />
-
-            {/*  */}
-            <IonRow class="ion-justify-content-between ion-align-items-center">
-              <IonCol size="8">
-                {/* <IonIcon
-                  className={styles.heartIcon}
-                  icon={heartOutline}
-                ></IonIcon> */}
-                <IonToggle
-                  onIonChange={toggleDarkModeHandler}
-                  name="darkMode"
-                />
-              </IonCol>
-              <IonCol onClick={() => setIsCartOpen(true)} size="4">
-                <IonBadge className={styles.badge}>11</IonBadge>
-                <IonIcon
-                  className={styles.cartIcon}
-                  icon={cartOutline}
-                ></IonIcon>
-              </IonCol>
-            </IonRow>
-          </IonRow>
-
-          <IonSearchbar
-            mode="md"
-            className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
-            placeholder="Search"
-          ></IonSearchbar>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <p className={styles.menu}>Vegetarian</p>
-        <CategorySlider />
+      <IonContent
+        scrollEvents={true}
+        onIonScroll={(e: CustomEvent) => handleScroll(e)}
+        ref={contentRef}
+        fullscreen
+      >
+        <p className={styles.menu}>{currentMenu.name}</p>
+        <CategorySlider menuId={currentMenu._id} />
         {/* <IonList>
           <IonItem lines="none">
             <IonIcon slot="start" />
@@ -102,11 +217,17 @@ const Home: React.FC = () => {
             padding: "0px 20px",
           }}
         >
-          {[1, 2, 3, 4, 5].map(() => (
-            <ItemCard />
-          ))}
+          {categoryItemloading ? (
+            <LoadingCard />
+          ) : (
+            items.map((data: any, ind: any) => (
+              <>
+                <ItemCard data={data} />
+              </>
+            ))
+          )}
         </div>
-        <FavItemsButton setOpenFav={setOpenFav} />
+        {/* <FavItemsButton setOpenFav={setOpenFav} /> */}
         {openFav && (
           <SelectedItemModal openFav={openFav} setOpenFav={setOpenFav} />
         )}
@@ -114,16 +235,32 @@ const Home: React.FC = () => {
           <CartModal isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
         )}
 
-        <div className={`${styles.cartBottomButton}`}>
-          <div
-            onClick={() => setIsCartOpen(true)}
-            className={styles.innerBottomBtn}
-          >
-            <p className={styles.itemCount}>2</p>
-            <p className={styles.cartBtnTxt}>View your cart</p>
-            <p className={styles.cartBtnTxt}>$ 18.50</p>
+        {cart.length > 0 && (
+          <div className={`${styles.cartBottomButton}`}>
+            <div
+              onClick={() => setIsCartOpen(true)}
+              className={styles.innerBottomBtn}
+            >
+              <p className={styles.itemCount}>{cart.length}</p>
+              <p className={styles.cartBtnTxt}>View your cart</p>
+              <p className={styles.cartBtnTxt}>$ 18.50</p>
+            </div>
           </div>
-        </div>
+        )}
+        <IonInfiniteScroll
+          onIonInfinite={(ev) => {
+            if (!itemsEnded) {
+              onEndReach(ev);
+            }
+          }}
+        >
+          {!itemsEnded && (
+            <IonInfiniteScrollContent
+              loadingText="Please wait..."
+              loadingSpinner="bubbles"
+            ></IonInfiniteScrollContent>
+          )}
+        </IonInfiniteScroll>
       </IonContent>
     </IonPage>
   );
