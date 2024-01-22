@@ -24,11 +24,12 @@ import {
   heartOutline,
   add,
   remove,
+  heartSharp,
 } from "ionicons/icons";
 import thumbnailImg from "../../assets/menuImg.png";
 import ItemDetailsCard from "../ItemDetailsCard";
 import { useState } from "react";
-import { setLikedItems } from "../../store/slices/likeSlice";
+import { setLiked, setLikedItems } from "../../store/slices/likeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setCart, setCartItems } from "../../store/slices/cartSlice";
 
@@ -49,6 +50,7 @@ const ItemCard = ({ data }: any) => {
   const [radioErr, setRadioErr] = useState(false);
   console.log({ data });
   const cart = useSelector((data: any) => data.cart.items);
+  const liked = useSelector((data: any) => data.like.items);
   console.log({ cart });
 
   const addToCart = (data: any) => {
@@ -75,6 +77,19 @@ const ItemCard = ({ data }: any) => {
 
         dispatch(setCart(tempCart));
       }
+    }
+  };
+  const isLiked = liked.findIndex((item: any) => item._id == data._id);
+  const setingLiked = () => {
+    const index = liked.findIndex((item: any) => item._id == data._id);
+
+    if (index == -1) {
+      dispatch(setLikedItems(data));
+    } else {
+      const updatedLiked = liked.filter((item: any) => item._id !== data._id);
+      console.log({ updatedLiked });
+      // Update Redux state with the modified array
+      dispatch(setLiked(updatedLiked));
     }
   };
 
@@ -118,11 +133,11 @@ const ItemCard = ({ data }: any) => {
         </IonRow>
         <IonIcon
           onClick={(e: any) => {
-            dispatch(setLikedItems(data));
+            setingLiked();
             e.stopPropagation();
           }}
           className={styles.likeIcon}
-          icon={heartOutline}
+          icon={isLiked == -1 ? heartOutline : heartSharp}
         />
         <IonImg className={styles.cardImg} src={data.imageUrl} />
         <div className={styles.badge}>

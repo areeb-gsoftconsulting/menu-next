@@ -18,10 +18,16 @@ export const likeSlice = createSlice({
         items: [...state.items, action.payload],
       };
     },
+    setLiked: (state: any, action: any) => {
+      return {
+        ...state,
+        items: action.payload,
+      };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setLikedItems } = likeSlice.actions;
+export const { setLikedItems, setLiked } = likeSlice.actions;
 
 export default likeSlice.reducer;
