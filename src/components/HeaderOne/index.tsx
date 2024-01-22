@@ -39,6 +39,7 @@ const HeaderOne = ({
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { presentToast } = useToast();
+  console.log({ isDark });
 
   const getItem = async ({ itemNameSearch }: any) => {
     console.log({ itemNameSearch });

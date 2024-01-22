@@ -17,9 +17,10 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import Menu from "./pages/MenuPage";
-import { store } from "./store/store";
-import { Provider } from "react-redux";
+import { store } from "./store/index";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import WelcomePage from "./pages/WelcomePage";
+import { PersistGate } from "redux-persist/es/integration/react";
 
 import {
   Redirect,
@@ -31,11 +32,30 @@ import {
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/HomePage/Home";
+import { useEffect } from "react";
+import { setIsDark } from "./store/slices/themeSlice";
 
 setupIonicReact();
 const DynamicRouteComponent: React.FC = () => {
   const { userName } = useParams<{ userName: string }>();
   const location = useLocation();
+  const dispatch = useDispatch();
+  const isDark = useSelector((data: any) => data.theme.isDark);
+
+  useEffect(() => {
+    if (isDark) {
+      toggleDarkModeHandler("dark");
+    } else {
+      toggleDarkModeHandler("light");
+    }
+  }, [isDark]);
+
+  const toggleDarkModeHandler = (mode: any) => {
+    document.body.classList.toggle(mode);
+    return document.body.classList.contains(mode)
+      ? dispatch(setIsDark(true))
+      : dispatch(setIsDark(false));
+  };
 
   return (
     <IonRouterOutlet>
@@ -56,6 +76,7 @@ const DynamicRouteComponent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Provider store={store}>
+      {/* <PersistGate loading={() => console.log("loading...")}> */}
       <IonApp>
         <IonReactRouter>
           <Switch>
@@ -69,6 +90,7 @@ const App: React.FC = () => {
           </Switch>
         </IonReactRouter>
       </IonApp>
+      {/* </PersistGate> */}
     </Provider>
   );
 };

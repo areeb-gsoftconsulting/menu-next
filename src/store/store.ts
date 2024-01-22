@@ -3,17 +3,20 @@ import likeSlice from "./slices/likeSlice";
 import restaurantSlice from "./slices/restaurantSlice";
 import themeSlice from "./slices/themeSlice";
 import cartSlice from "./slices/cartSlice";
+/*
+ * combines all th existing reducers
+ */
+import { combineReducers } from "@reduxjs/toolkit";
 
-export const store = configureStore({
-  reducer: {
-    like: likeSlice,
-    restaurant: restaurantSlice,
-    theme: themeSlice,
-    cart: cartSlice,
-  },
-});
+const reducers = {
+  like: likeSlice,
+  restaurant: restaurantSlice,
+  theme: themeSlice,
+  cart: cartSlice,
+};
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-export type AppDispatch = typeof store.dispatch;
+// Exports
+
+const rootReducer = combineReducers(reducers);
+export type RootState = ReturnType<typeof rootReducer>;
+export default rootReducer;

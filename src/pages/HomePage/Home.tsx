@@ -3,6 +3,7 @@ import {
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonPage,
+  useIonRouter,
 } from "@ionic/react";
 import styles from "./Home.module.css";
 
@@ -19,9 +20,11 @@ import { useSelector } from "react-redux";
 import getItems from "../../services/getItems";
 import LoadingCard from "../../components/LoadingCard";
 import { useToast } from "../../hooks/useToast";
+import getVenues from "../../services/getVenue";
 
 const Home: React.FC = () => {
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
+  const venue = useSelector((data: any) => data.restaurant.venue);
   const [openFav, setOpenFav] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [tempArray, setTempArray] = useState([1, 2, 3, 4, 5, 6, 7]);
@@ -39,6 +42,11 @@ const Home: React.FC = () => {
   const contentRef = useRef<HTMLIonContentElement>(null);
   const cart = useSelector((data: any) => data.cart.items);
   const { presentToast } = useToast();
+  const router = useIonRouter();
+  const requestedUrl = new URLSearchParams(location.search).get("requestedUrl");
+  const sanitizedUrl = requestedUrl
+    ? requestedUrl.replace(/^\/+|\/+$/g, "")
+    : "";
 
   const getItem = async (e: any, { page }: any) => {
     console.log("get all");
@@ -60,6 +68,7 @@ const Home: React.FC = () => {
           setItems([...items, ...res.data.data.items]);
         }
         setPageNumber(page + 1);
+      } else {
       }
     } catch (error) {
       console.log({ error });

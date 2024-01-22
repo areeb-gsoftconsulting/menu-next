@@ -9,7 +9,11 @@ import {
 } from "@ionic/react";
 import getVenues from "../../services/getVenue";
 import { useDispatch } from "react-redux";
-import { setCurrentMenu, setVenue } from "../../store/slices/restaurantSlice";
+import {
+  setCurrentMenu,
+  setRestSlug,
+  setVenue,
+} from "../../store/slices/restaurantSlice";
 import { useIonRouter } from "@ionic/react";
 import { useLocation, useParams } from "react-router";
 import { useToast } from "../../hooks/useToast";
@@ -26,6 +30,8 @@ const WelcomePage: React.FC = () => {
 
   const dispatch = useDispatch();
   const getVlenue = async () => {
+    dispatch(setRestSlug(sanitizedUrl));
+
     try {
       let res = await getVenues(sanitizedUrl);
 
