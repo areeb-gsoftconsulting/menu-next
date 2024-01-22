@@ -28,10 +28,10 @@ const WelcomePage: React.FC = () => {
 
       if (res.data.statusCode == 200) {
         if (res.data.data.menus.length > 1) {
-          router.push("/factor-girl-berlin/menu");
+          router.push("/factory-girl-berlin/menu");
         } else {
           dispatch(setCurrentMenu(res.data.data.menus[0]));
-          router.push("/factor-girl-berlin/home");
+          router.push("/factory-girl-berlin/home");
           //   router.push("/factor-girl-berlin/menu");
         }
         dispatch(setVenue(res.data.data));
