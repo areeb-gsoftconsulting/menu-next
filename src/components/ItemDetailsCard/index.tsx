@@ -20,6 +20,7 @@ import {
   IonTextarea,
   IonButton,
   IonHeader,
+  IonChip,
 } from "@ionic/react";
 import thumbnailImg from "../../assets/menuImg.png";
 import { starSharp, add, remove, closeCircleSharp } from "ionicons/icons";
@@ -200,6 +201,15 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
         </div>
 
         <IonText className={styles.description}>{data.description}</IonText>
+
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <p className={styles.tagLabel}>Tags: </p>
+          {data.tags.map((obj: any, ind: any) => (
+            <IonChip className={styles.tags} key={ind}>
+              {obj.name}
+            </IonChip>
+          ))}
+        </div>
 
         {data.prices.length > 1 ? (
           <div className={styles.flavCard}>

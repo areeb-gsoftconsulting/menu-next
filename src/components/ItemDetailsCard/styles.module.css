@@ -208,3 +208,11 @@
   color: red;
   font-size: 14px;
 }
+.tags {
+  background-color: var(--ion-custome-card-color);
+  color: var(--ion-text-color);
+}
+.tagLabel {
+  color: var(--ion-text-color);
+  margin: 0px;
+}
