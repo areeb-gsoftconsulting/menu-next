@@ -12,10 +12,12 @@ import categoryImg from "../../assets/menuImg.png";
 import getCategory from "../../services/getCategory";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedCategory } from "../../store/slices/restaurantSlice";
+import { useToast } from "../../hooks/useToast";
 
 const CategorySlider = ({ menuId }: any) => {
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(1);
+  const { presentToast } = useToast();
   const dispatch = useDispatch();
   const selectedCategory = useSelector(
     (data: any) => data.restaurant.selectedCategory
@@ -40,6 +42,7 @@ const CategorySlider = ({ menuId }: any) => {
       // dispatch(setVenue(res.data.data));
     } catch (error) {
       console.log({ error });
+      presentToast("Please try again later");
     }
   };
 

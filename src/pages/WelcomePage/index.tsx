@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { setCurrentMenu, setVenue } from "../../store/slices/restaurantSlice";
 import { useIonRouter } from "@ionic/react";
 import { useLocation, useParams } from "react-router";
+import { useToast } from "../../hooks/useToast";
 
 const WelcomePage: React.FC = () => {
   const router = useIonRouter();
@@ -21,6 +22,7 @@ const WelcomePage: React.FC = () => {
     ? requestedUrl.replace(/^\/+|\/+$/g, "")
     : "";
   console.log("Requested slug:", sanitizedUrl);
+  const { presentToast } = useToast();
 
   const dispatch = useDispatch();
   const getVlenue = async () => {
@@ -40,6 +42,7 @@ const WelcomePage: React.FC = () => {
       }
     } catch (error) {
       console.log({ error });
+      presentToast("Please try again later");
     }
   };
 

@@ -66,6 +66,7 @@ const HeaderTwo = ({
       }
     } catch (error) {
       console.log({ error });
+      presentToast("Please try again later");
     } finally {
       setLoading(false);
 

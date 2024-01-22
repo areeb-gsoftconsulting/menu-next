@@ -18,6 +18,7 @@ import HeaderTwo from "../../components/HeaderTwo";
 import { useSelector } from "react-redux";
 import getItems from "../../services/getItems";
 import LoadingCard from "../../components/LoadingCard";
+import { useToast } from "../../hooks/useToast";
 
 const Home: React.FC = () => {
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
@@ -37,7 +38,8 @@ const Home: React.FC = () => {
   const [categoryItemloading, setCategoryItemLoading] = useState(false);
   const contentRef = useRef<HTMLIonContentElement>(null);
   const cart = useSelector((data: any) => data.cart.items);
-  console.log({ cart });
+  const { presentToast } = useToast();
+
   const getItem = async (e: any, { page }: any) => {
     console.log("get all");
     setLoading(true);
@@ -61,6 +63,7 @@ const Home: React.FC = () => {
       }
     } catch (error) {
       console.log({ error });
+      presentToast("Please try again later");
     } finally {
       setLoading(false);
 
@@ -104,6 +107,7 @@ const Home: React.FC = () => {
       }
     } catch (error) {
       console.log({ error });
+      presentToast("Please try again later");
     } finally {
       setLoading(false);
       if (e) {
