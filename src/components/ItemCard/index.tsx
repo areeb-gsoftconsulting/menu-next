@@ -30,7 +30,7 @@ import ItemDetailsCard from "../ItemDetailsCard";
 import { useState } from "react";
 import { setLikedItems } from "../../store/slices/likeSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { setCartItems } from "../../store/slices/cartSlice";
+import { setCart, setCartItems } from "../../store/slices/cartSlice";
 
 const ItemCard = ({ data }: any) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,15 +48,27 @@ const ItemCard = ({ data }: any) => {
   });
   const [radioErr, setRadioErr] = useState(false);
   console.log({ data });
+  const cart = useSelector((data: any) => data.cart.items);
+  console.log({ cart });
 
   const addToCart = (data: any) => {
     if (data.price.description == "") {
       setRadioErr(true);
       return;
     } else {
-      dispatch(setCartItems(data));
+      let tempCart = [...cart];
+      let tempItemIndex = tempCart.findIndex(
+        (item: any) => item.id == data.id && item.price._id == data.price._id
+      );
+      if (tempItemIndex == -1) {
+        dispatch(setCartItems(data));
+      } else {
+        let updatedItem = { ...tempCart[tempItemIndex] };
+        updatedItem.quantity = updatedItem.quantity + 1;
+        tempCart[tempItemIndex] = updatedItem;
+        dispatch(setCart(tempCart));
+      }
     }
-    console.log("==>", data);
   };
 
   return (
@@ -295,6 +307,7 @@ const ItemCard = ({ data }: any) => {
                   customization: [],
                   comments: "",
                   image: data.imageUrl,
+                  quantity: 1,
                 })
               }
               className={styles.addBtn}
