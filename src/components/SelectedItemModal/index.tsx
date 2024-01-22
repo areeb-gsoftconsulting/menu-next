@@ -13,9 +13,12 @@ import {
 } from "@ionic/react";
 import ItemCard from "../ItemCard";
 import styles from "./styles.module.css";
+import { useSelector } from "react-redux";
 
 function SelectedItemModal({ openFav, setOpenFav }: any) {
   const modal = useRef<HTMLIonModalElement>(null);
+  const liked = useSelector((data: any) => data.like.items);
+  console.log({ liked });
 
   return (
     <IonModal
@@ -34,8 +37,8 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
         >
           <IonTitle className={styles.title}>Selected items</IonTitle>
 
-          {[1, 2].map(() => (
-            <ItemCard />
+          {liked.map((data: any) => (
+            <ItemCard data={data} />
           ))}
         </div>
       </IonContent>

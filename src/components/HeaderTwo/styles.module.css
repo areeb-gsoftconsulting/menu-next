@@ -81,16 +81,30 @@ ion-content {
   background-color: red;
   height: 15px;
   width: 15px;
+  width: 15px;
 }
 .cartIcon {
   color: red;
   font-size: 1.5em;
+  margin-top: 5px;
 }
 .heartIcon {
   color: var(--ion-text-color);
-  font-size: 1.5em;
+  font-size: 20px;
+  margin-right: 8px;
 }
-
+.badgeLike {
+  position: absolute;
+  top: 12px;
+  left: 15px;
+  border-radius: 20px;
+  font-size: 8px;
+  padding: 4px;
+  background-color: red;
+  height: 15px;
+  width: 15px;
+  z-index: 1;
+}
 ion-searchbar.custom {
   --background: var(--ion-searchbar-background);
   --color: var(--ion-text-color);

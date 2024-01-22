@@ -10,7 +10,7 @@ import {
   IonSearchbar,
   IonToggle,
 } from "@ionic/react";
-import { search, cartOutline } from "ionicons/icons";
+import { search, cartOutline, heartOutline } from "ionicons/icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CategorySlider from "../CategorySlider";
@@ -28,6 +28,7 @@ const HeaderTwo = ({ setIsCartOpen }: any) => {
   const venue = useSelector((data: any) => data.restaurant.venue);
   const dispatch = useDispatch();
   const cart = useSelector((data: any) => data.cart.items);
+  const liked = useSelector((data: any) => data.like.items);
 
   const toggleDarkModeHandler = () => {
     document.body.classList.toggle("dark");
@@ -44,18 +45,35 @@ const HeaderTwo = ({ setIsCartOpen }: any) => {
         </IonText>
 
         <IonRow class="ion-justify-content-between">
-          <Link style={{ marginTop: "10px" }} to="/">
+          <Link style={{ marginTop: "15px" }} to="/">
             <IonImg src={isDark ? lightLogo : darkLogo} />
           </Link>
 
           {/*  */}
-          <IonRow class="ion-justify-content-between ion-align-items-center">
+          <IonRow class="ion-justify-content-between ion-align-items-center ion-align-items-center">
             <IonCol size="8">
-              {/* <IonIcon
-              className={styles.heartIcon}
-              icon={heartOutline}
-            ></IonIcon> */}
-              <IonToggle onIonChange={toggleDarkModeHandler} name="darkMode" />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                {liked.length > 0 && (
+                  <IonBadge className={styles.badgeLike}>
+                    {liked.length}
+                  </IonBadge>
+                )}
+                <IonIcon
+                  className={styles.heartIcon}
+                  icon={heartOutline}
+                  size="large"
+                ></IonIcon>
+                <IonToggle
+                  onIonChange={toggleDarkModeHandler}
+                  name="darkMode"
+                />
+              </div>
             </IonCol>
             <IonCol onClick={() => setIsCartOpen(true)} size="4">
               {cart.length > 0 && (

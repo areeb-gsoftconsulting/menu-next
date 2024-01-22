@@ -118,7 +118,7 @@ const ItemCard = ({ data }: any) => {
         </IonRow>
         <IonIcon
           onClick={(e: any) => {
-            dispatch(setLikedItems({ name: "areeb" }));
+            dispatch(setLikedItems(data));
             e.stopPropagation();
           }}
           className={styles.likeIcon}

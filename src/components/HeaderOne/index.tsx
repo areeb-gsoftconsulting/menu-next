@@ -9,7 +9,7 @@ import {
   IonBadge,
   IonSearchbar,
 } from "@ionic/react";
-import { search, cartOutline } from "ionicons/icons";
+import { search, cartOutline, heartOutline } from "ionicons/icons";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CategorySlider from "../CategorySlider";
@@ -26,6 +26,7 @@ const HeaderOne = ({ setIsCartOpen }: any) => {
   const venue = useSelector((data: any) => data.restaurant.venue);
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
   const cart = useSelector((data: any) => data.cart.items);
+  const liked = useSelector((data: any) => data.like.items);
 
   return (
     <IonHeader
@@ -48,19 +49,29 @@ const HeaderOne = ({ setIsCartOpen }: any) => {
               {/*  */}
               <IonRow class="ion-justify-content-between ion-align-items-center">
                 <IonCol size="8">
-                  {/* <IonIcon
-        className={styles.heartIcon}
-        icon={heartOutline}
-      ></IonIcon> */}
-                  {/* <IonToggle
-              onIonChange={toggleDarkModeHandler}
-              name="darkMode"
-            /> */}
-                  <IonIcon
-                    className={styles.cartIcon}
-                    icon={search}
-                    onClick={() => setShowSearch(true)}
-                  ></IonIcon>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    {liked.length > 0 && (
+                      <IonBadge className={styles.badgeLike}>
+                        {liked.length}
+                      </IonBadge>
+                    )}
+                    <IonIcon
+                      className={styles.heartIcon}
+                      icon={heartOutline}
+                      size="medium"
+                    ></IonIcon>
+                    <IonIcon
+                      className={styles.cartIcon}
+                      icon={search}
+                      onClick={() => setShowSearch(true)}
+                    ></IonIcon>
+                  </div>
                 </IonCol>
                 <IonCol onClick={() => setIsCartOpen(true)} size="4">
                   {cart.length > 0 && (
