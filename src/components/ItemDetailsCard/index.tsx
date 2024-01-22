@@ -26,7 +26,7 @@ import thumbnailImg from "../../assets/menuImg.png";
 import { starSharp, add, remove, closeCircleSharp } from "ionicons/icons";
 import { isPlatform } from "@ionic/react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCartItems } from "../../store/slices/cartSlice";
+import { setCart, setCartItems } from "../../store/slices/cartSlice";
 const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
   const modal = useRef<HTMLIonModalElement>(null);
   let categoryName = data.categories.map((obj: any) => obj.name);
@@ -139,15 +139,65 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
     if (unselectedCustoms.length > 0) {
       return;
     }
-    let cartData: any = {
-      id: param.id,
-      name: param.name,
-      price: param.price,
-      customization: selectedCustomization,
-      comments: param.comments,
-      image: param.image,
-    };
-    dispatch(setCartItems(cartData));
+
+    function arraysEqual(arr1, arr2) {
+      if (arr1.length !== arr2.length) {
+        return false;
+      }
+
+      for (let i = 0; i < arr1.length; i++) {
+        if (!objectsEqual(arr1[i], arr2[i])) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    // Function to compare objects
+    function objectsEqual(obj1, obj2) {
+      const keys1 = Object.keys(obj1);
+      const keys2 = Object.keys(obj2);
+
+      if (keys1.length !== keys2.length) {
+        return false;
+      }
+
+      for (let key of keys1) {
+        if (obj1[key] !== obj2[key]) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    // /////////////
+    let tempCart = [...cart];
+    let tempItemIndex = tempCart.findIndex(
+      (item: any) =>
+        item.id == param.id &&
+        item.price._id == param.price._id &&
+        arraysEqual(item.customization, param.customization)
+    );
+    if (tempItemIndex == -1) {
+      dispatch(setCartItems(param));
+    } else {
+      let updatedItem = { ...tempCart[tempItemIndex] };
+      updatedItem.quantity = updatedItem.quantity + 1;
+      tempCart[tempItemIndex] = updatedItem;
+      dispatch(setCart(tempCart));
+    }
+
+    // let cartData: any = {
+    //   id: param.id,
+    //   name: param.name,
+    //   price: param.price,
+    //   customization: selectedCustomization,
+    //   comments: param.comments,
+    //   image: param.image,
+    // };
+    // dispatch(setCartItems(cartData));
   };
 
   return (
@@ -390,6 +440,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
                 customization: selectedCustomization,
                 comments: comments,
                 image: data.imageUrl,
+                quantity: 1,
               })
             }
             className={styles.addBtn}
