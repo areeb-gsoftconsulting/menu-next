@@ -28,3 +28,9 @@
   font-family: "poppins-normal";
   font-weight: 600;
 }
+.heading {
+  color: gray;
+  font-weight: 800;
+  font-family: "poppins";
+  margin-top: 10px;
+}
