@@ -4,6 +4,7 @@
   overflow: hidden;
   border-radius: 8px;
   object-fit: cover;
+  min-width: 34px;
 }
 .icons {
   padding: 0px 5px;

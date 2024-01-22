@@ -34,7 +34,7 @@ const CartCard = ({ item }: any) => {
               }}
               className={styles.text}
             >
-              {item.name} ({item.price.description})
+              {item.name}
             </p>
           </IonRow>
           <p className={styles.text}>
