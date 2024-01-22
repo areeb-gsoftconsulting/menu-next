@@ -16,17 +16,57 @@ import CategorySlider from "../CategorySlider";
 import styles from "./styles.module.css";
 import lightLogo from "../../assets/logoLight.png";
 import darkLogo from "../../assets/logoDark.png";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import getItems from "../../services/getItems";
+import { setSelectedCategory } from "../../store/slices/restaurantSlice";
 
 type Props = {};
 
-const HeaderOne = ({ setIsCartOpen, setOpenFav, openFav }: any) => {
+const HeaderOne = ({
+  setIsCartOpen,
+  setOpenFav,
+  openFav,
+  setItems,
+  setItemsEnded,
+}: any) => {
   const isDark = useSelector((data: any) => data.theme.isDark);
   const [showSearch, setShowSearch] = useState(false);
   const venue = useSelector((data: any) => data.restaurant.venue);
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
   const cart = useSelector((data: any) => data.cart.items);
   const liked = useSelector((data: any) => data.like.items);
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const getItem = async ({ itemNameSearch }: any) => {
+    console.log({ itemNameSearch });
+    setLoading(true);
+
+    try {
+      let res = await getItems({
+        menuId: currentMenu._id,
+        params: {
+          itemNameSearch,
+        },
+      });
+      if (res.data.statusCode == 200) {
+        console.log("=======>", res.data.data);
+        if (res.data.data.length == 0) {
+          setItemsEnded(true);
+        } else {
+          setItemsEnded(true);
+          setItems(res.data.data);
+          dispatch(setSelectedCategory("2"));
+        }
+      }
+    } catch (error) {
+      console.log({ error });
+    } finally {
+      setLoading(false);
+
+      // setCategoryItemLoading(false);
+    }
+  };
+
   return (
     <IonHeader
       mode="ios"
@@ -102,7 +142,7 @@ const HeaderOne = ({ setIsCartOpen, setOpenFav, openFav }: any) => {
               className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
               placeholder="Search"
               debounce={1000}
-              onIonInput={(e) => console.log(e.detail.value)}
+              onIonInput={(e) => getItem({ itemNameSearch: e.detail.value })}
             ></IonSearchbar>
             <IonText
               onClick={() => setShowSearch(false)}

@@ -115,6 +115,9 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
+    if (selectedCategory && selectedCategory == "2") {
+      return;
+    }
     setCategoryItemLoading(true);
     // if (contentRef.current) {
     //   contentRef.current.scrollToTop(300); // Adjust scroll duration if needed
@@ -139,6 +142,7 @@ const Home: React.FC = () => {
   // useEffect(() => {
   //   getItem();
   // }, []);
+  console.log("thissssss", items);
 
   const onEndReach = async (e: any) => {
     console.log("test 1", loading, items.length);
@@ -173,12 +177,16 @@ const Home: React.FC = () => {
     <IonPage className={styles.page}>
       {isScrolled ? (
         <HeaderOne
+          setItems={setItems}
+          setItemsEnded={setItemsEnded}
           setOpenFav={setOpenFav}
           openFav={openFav}
           setIsCartOpen={setIsCartOpen}
         />
       ) : (
         <HeaderTwo
+          setItems={setItems}
+          setItemsEnded={setItemsEnded}
           setOpenFav={setOpenFav}
           openFav={openFav}
           setIsCartOpen={setIsCartOpen}
