@@ -17,7 +17,7 @@ import "@ionic/react/css/display.css";
 /* Theme variables */
 import "./theme/variables.css";
 import Menu from "./pages/MenuPage";
-import { store } from "./store/index";
+import { store, persistor } from "./store/index";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import WelcomePage from "./pages/WelcomePage";
 import { PersistGate } from "redux-persist/es/integration/react";
@@ -76,21 +76,21 @@ const DynamicRouteComponent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      {/* <PersistGate loading={() => console.log("loading...")}> */}
-      <IonApp>
-        <IonReactRouter>
-          <Switch>
-            <Route path="/welcome" exact>
-              <WelcomePage />
-            </Route>
-            <Route path="/:userName">
-              <DynamicRouteComponent />
-            </Route>
-            <Redirect from="/" to="/welcome" exact />
-          </Switch>
-        </IonReactRouter>
-      </IonApp>
-      {/* </PersistGate> */}
+      <PersistGate persistor={persistor}>
+        <IonApp>
+          <IonReactRouter>
+            <Switch>
+              <Route path="/welcome" exact>
+                <WelcomePage />
+              </Route>
+              <Route path="/:userName">
+                <DynamicRouteComponent />
+              </Route>
+              <Redirect from="/" to="/welcome" exact />
+            </Switch>
+          </IonReactRouter>
+        </IonApp>
+      </PersistGate>
     </Provider>
   );
 };
