@@ -136,7 +136,7 @@ const CartCard = ({ item }: any) => {
             </div>
 
             <IonRow class="ion-justify-content-start ion-align-items-center ion-nowrap"></IonRow>
-            <p className={styles.text}>
+            <p className={styles.textPrice}>
               {" "}
               {venue.defaultCurrency.sign} {item.price.price}
             </p>
