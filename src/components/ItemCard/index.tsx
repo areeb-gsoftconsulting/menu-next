@@ -51,7 +51,7 @@ const ItemCard = ({ data }: any) => {
   console.log({ data });
   const cart = useSelector((data: any) => data.cart.items);
   const liked = useSelector((data: any) => data.like.items);
-  console.log({ cart });
+  const numberInCart = cart.filter((item: any) => item.id == data._id);
 
   const addToCart = (data: any) => {
     if (data.price.description == "") {
@@ -140,9 +140,11 @@ const ItemCard = ({ data }: any) => {
           icon={isLiked == -1 ? heartOutline : heartSharp}
         />
         <IonImg className={styles.cardImg} src={data.imageUrl} />
-        <div className={styles.badge}>
-          <p className={styles.badgeTxt}>2</p>
-        </div>
+        {numberInCart.length > 0 && (
+          <div className={styles.badge}>
+            <p className={styles.badgeTxt}>{numberInCart[0].quantity}</p>
+          </div>
+        )}
 
         {/* <IonRow className="ion-margin-top ion-align-items-center">
           <IonIcon className={styles.rateIcon} icon={starSharp} />
