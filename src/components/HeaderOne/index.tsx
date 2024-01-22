@@ -19,6 +19,7 @@ import darkLogo from "../../assets/logoDark.png";
 import { useDispatch, useSelector } from "react-redux";
 import getItems from "../../services/getItems";
 import { setSelectedCategory } from "../../store/slices/restaurantSlice";
+import { useToast } from "../../hooks/useToast";
 
 type Props = {};
 
@@ -37,6 +38,8 @@ const HeaderOne = ({
   const liked = useSelector((data: any) => data.like.items);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const { presentToast } = useToast();
+
   const getItem = async ({ itemNameSearch }: any) => {
     console.log({ itemNameSearch });
     setLoading(true);
@@ -52,6 +55,7 @@ const HeaderOne = ({
         console.log("=======>", res.data.data);
         if (res.data.data.length == 0) {
           setItemsEnded(true);
+          presentToast("No item found");
         } else {
           setItemsEnded(true);
           setItems(res.data.data);
