@@ -16,23 +16,25 @@ import { useLocation, useParams } from "react-router";
 const WelcomePage: React.FC = () => {
   const router = useIonRouter();
   const location = useLocation();
-  const pathname = location.pathname;
-  const pathParts = pathname.split("/");
-  const slug = pathParts[1];
-  console.log("Requested slug:", slug);
+  const requestedUrl = new URLSearchParams(location.search).get("requestedUrl");
+  const sanitizedUrl = requestedUrl
+    ? requestedUrl.replace(/^\/+|\/+$/g, "")
+    : "";
+  console.log("Requested slug:", sanitizedUrl);
 
   const dispatch = useDispatch();
   const getVlenue = async () => {
     try {
-      let res = await getVenues();
+      let res = await getVenues(sanitizedUrl);
 
       if (res.data.statusCode == 200) {
         if (res.data.data.menus.length > 1) {
-          router.push("/factor-girl-berlin/menu");
+          router.push(`/${sanitizedUrl}/menu`);
         } else {
           dispatch(setCurrentMenu(res.data.data.menus[0]));
-          router.push("/factor-girl-berlin/home");
-          //   router.push("/factor-girl-berlin/menu");
+          // router.push("/factory-girl-berlin/home");
+          // router.push("/factor-girl-berlin/menu");
+          router.push(`/${sanitizedUrl}/home`);
         }
         dispatch(setVenue(res.data.data));
       }
