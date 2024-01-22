@@ -20,14 +20,13 @@ import { useSelector } from "react-redux";
 
 type Props = {};
 
-const HeaderOne = ({ setIsCartOpen }: any) => {
+const HeaderOne = ({ setIsCartOpen, setOpenFav, openFav }: any) => {
   const isDark = useSelector((data: any) => data.theme.isDark);
   const [showSearch, setShowSearch] = useState(false);
   const venue = useSelector((data: any) => data.restaurant.venue);
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
   const cart = useSelector((data: any) => data.cart.items);
   const liked = useSelector((data: any) => data.like.items);
-
   return (
     <IonHeader
       mode="ios"
@@ -57,7 +56,10 @@ const HeaderOne = ({ setIsCartOpen }: any) => {
                     }}
                   >
                     {liked.length > 0 && (
-                      <IonBadge className={styles.badgeLike}>
+                      <IonBadge
+                        onClick={() => setOpenFav(!openFav)}
+                        className={styles.badgeLike}
+                      >
                         {liked.length}
                       </IonBadge>
                     )}
@@ -65,6 +67,7 @@ const HeaderOne = ({ setIsCartOpen }: any) => {
                       className={styles.heartIcon}
                       icon={heartOutline}
                       size="medium"
+                      onClick={() => setOpenFav(!openFav)}
                     ></IonIcon>
                     <IonIcon
                       className={styles.cartIcon}

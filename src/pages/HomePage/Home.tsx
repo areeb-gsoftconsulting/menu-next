@@ -172,9 +172,17 @@ const Home: React.FC = () => {
   return (
     <IonPage className={styles.page}>
       {isScrolled ? (
-        <HeaderOne setIsCartOpen={setIsCartOpen} />
+        <HeaderOne
+          setOpenFav={setOpenFav}
+          openFav={openFav}
+          setIsCartOpen={setIsCartOpen}
+        />
       ) : (
-        <HeaderTwo setIsCartOpen={setIsCartOpen} />
+        <HeaderTwo
+          setOpenFav={setOpenFav}
+          openFav={openFav}
+          setIsCartOpen={setIsCartOpen}
+        />
       )}
 
       <IonContent
@@ -211,7 +219,7 @@ const Home: React.FC = () => {
             ))
           )}
         </div>
-        <FavItemsButton setOpenFav={setOpenFav} />
+        {/* <FavItemsButton setOpenFav={setOpenFav} /> */}
         {openFav && (
           <SelectedItemModal openFav={openFav} setOpenFav={setOpenFav} />
         )}
@@ -219,13 +227,13 @@ const Home: React.FC = () => {
           <CartModal isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
         )}
 
-        {false && (
+        {cart.length > 0 && (
           <div className={`${styles.cartBottomButton}`}>
             <div
               onClick={() => setIsCartOpen(true)}
               className={styles.innerBottomBtn}
             >
-              <p className={styles.itemCount}>2</p>
+              <p className={styles.itemCount}>{cart.length}</p>
               <p className={styles.cartBtnTxt}>View your cart</p>
               <p className={styles.cartBtnTxt}>$ 18.50</p>
             </div>

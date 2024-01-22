@@ -22,7 +22,7 @@ import { setIsDark } from "../../store/slices/themeSlice";
 
 type Props = {};
 
-const HeaderTwo = ({ setIsCartOpen }: any) => {
+const HeaderTwo = ({ setIsCartOpen, setOpenFav, openFav }: any) => {
   const isDark = useSelector((data: any) => data.theme.isDark);
 
   const venue = useSelector((data: any) => data.restaurant.venue);
@@ -60,7 +60,10 @@ const HeaderTwo = ({ setIsCartOpen }: any) => {
                 }}
               >
                 {liked.length > 0 && (
-                  <IonBadge className={styles.badgeLike}>
+                  <IonBadge
+                    onClick={() => setOpenFav(!openFav)}
+                    className={styles.badgeLike}
+                  >
                     {liked.length}
                   </IonBadge>
                 )}
@@ -68,6 +71,7 @@ const HeaderTwo = ({ setIsCartOpen }: any) => {
                   className={styles.heartIcon}
                   icon={heartOutline}
                   size="large"
+                  onClick={() => setOpenFav(!openFav)}
                 ></IonIcon>
                 <IonToggle
                   onIonChange={toggleDarkModeHandler}
