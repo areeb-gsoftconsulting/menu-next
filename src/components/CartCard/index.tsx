@@ -62,7 +62,7 @@ const CartCard = ({ item }: any) => {
               icon={remove}
             ></IonIcon>
           </IonButton>
-          <h3 className={styles.itemCount}>10</h3>
+          <h3 className={styles.itemCount}>{item?.quantity}</h3>
           {/* <IonButton className={styles.actionBtn}>+</IonButton> */}
           <IonButton
             size="small"

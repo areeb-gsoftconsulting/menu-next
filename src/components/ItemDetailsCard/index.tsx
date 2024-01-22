@@ -422,7 +422,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
               icon={remove}
             ></IonIcon>
           </IonButton>
-          <h3>10</h3>
+          <h3>1</h3>
           {/* <IonButton className={styles.actionBtn}>+</IonButton> */}
           <IonButton className={`${styles.iconBtn} ion-no-padding`}>
             <IonIcon

@@ -286,7 +286,7 @@ const ItemCard = ({ data }: any) => {
                 icon={remove}
               ></IonIcon>
             </IonButton>
-            <h3 className={styles.itemNum}>10</h3>
+            <h3 className={styles.itemNum}>1</h3>
             {/* <IonButton className={styles.actionBtn}>+</IonButton> */}
             <IonButton className={`${styles.iconBtn} ion-no-padding`}>
               <IonIcon
