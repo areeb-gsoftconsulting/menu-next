@@ -21,7 +21,13 @@ import { store } from "./store/store";
 import { Provider } from "react-redux";
 import WelcomePage from "./pages/WelcomePage";
 
-import { Redirect, Route, Switch, useParams } from "react-router-dom";
+import {
+  Redirect,
+  Route,
+  Switch,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { IonApp, IonRouterOutlet, setupIonicReact } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/HomePage/Home";
@@ -29,6 +35,7 @@ import Home from "./pages/HomePage/Home";
 setupIonicReact();
 const DynamicRouteComponent: React.FC = () => {
   const { userName } = useParams<{ userName: string }>();
+  const location = useLocation();
 
   return (
     <IonRouterOutlet>
@@ -38,7 +45,9 @@ const DynamicRouteComponent: React.FC = () => {
       <Route path={`/${userName}/menu`} exact>
         <Menu />
       </Route>
-      <Redirect to="/welcome" />
+      <Redirect
+        to={`/welcome?requestedUrl=${encodeURIComponent(location.pathname)}`}
+      />
       {/* Add other dynamic routes as needed */}
     </IonRouterOutlet>
   );
