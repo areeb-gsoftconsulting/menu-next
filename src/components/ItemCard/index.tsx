@@ -60,12 +60,19 @@ const ItemCard = ({ data }: any) => {
       let tempItemIndex = tempCart.findIndex(
         (item: any) => item.id == data.id && item.price._id == data.price._id
       );
-      if (tempItemIndex == -1) {
+      if (tempItemIndex == -1 && data.quantity > 0) {
         dispatch(setCartItems(data));
       } else {
         let updatedItem = { ...tempCart[tempItemIndex] };
-        updatedItem.quantity = updatedItem.quantity + 1;
-        tempCart[tempItemIndex] = updatedItem;
+        updatedItem.quantity = updatedItem.quantity + data.quantity;
+
+        // Check if quantity becomes zero, remove the item from the cart
+        if (updatedItem.quantity === 0) {
+          tempCart.splice(tempItemIndex, 1); // Remove the item from the array
+        } else {
+          tempCart[tempItemIndex] = updatedItem;
+        }
+
         dispatch(setCart(tempCart));
       }
     }
@@ -277,7 +284,21 @@ const ItemCard = ({ data }: any) => {
             onClick={(e) => e.stopPropagation()}
             className={`ion-justify-content-evenly ion-align-items-center ion-padding-vertical`}
           >
-            <IonButton className={`${styles.iconBtn} ion-no-padding`}>
+            <IonButton
+              onClick={() =>
+                addToCart({
+                  id: data._id,
+                  name: data.name,
+                  price:
+                    data.prices.length > 1 ? selectedPrice : data.prices[0],
+                  customization: [],
+                  comments: "",
+                  image: data.imageUrl,
+                  quantity: -1,
+                })
+              }
+              className={`${styles.iconBtn} ion-no-padding`}
+            >
               <IonIcon
                 className={
                   isPlatform("ios") ? styles.icons : styles.iconsAndroid
@@ -288,7 +309,21 @@ const ItemCard = ({ data }: any) => {
             </IonButton>
             <h3 className={styles.itemNum}>1</h3>
             {/* <IonButton className={styles.actionBtn}>+</IonButton> */}
-            <IonButton className={`${styles.iconBtn} ion-no-padding`}>
+            <IonButton
+              onClick={() =>
+                addToCart({
+                  id: data._id,
+                  name: data.name,
+                  price:
+                    data.prices.length > 1 ? selectedPrice : data.prices[0],
+                  customization: [],
+                  comments: "",
+                  image: data.imageUrl,
+                  quantity: 1,
+                })
+              }
+              className={`${styles.iconBtn} ion-no-padding`}
+            >
               <IonIcon
                 className={
                   isPlatform("ios") ? styles.icons : styles.iconsAndroid
