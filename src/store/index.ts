@@ -42,7 +42,7 @@ const customStorage = {
 const config = {
   key: "root",
   storage: customStorage,
-  blacklist: [],
+  blacklist: ["category"],
   debug: true, //to get useful logging
 };
 const middleware = [];

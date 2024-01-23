@@ -7,12 +7,14 @@ import cartSlice from "./slices/cartSlice";
  * combines all th existing reducers
  */
 import { combineReducers } from "@reduxjs/toolkit";
+import categorySlice from "./slices/categorySlice";
 
 const reducers = {
   like: likeSlice,
   restaurant: restaurantSlice,
   theme: themeSlice,
   cart: cartSlice,
+  category: categorySlice,
 };
 
 // Exports
