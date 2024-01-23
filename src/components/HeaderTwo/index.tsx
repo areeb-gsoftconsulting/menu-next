@@ -124,7 +124,11 @@ const HeaderTwo = ({
                 />
                 <IonCol onClick={() => setIsCartOpen(true)} size="4">
                   {cart.length > 0 && (
-                    <IonBadge className={styles.badge}>{cart.length}</IonBadge>
+                    <IonBadge className={styles.badge}>
+                      {cart.reduce((accumulator: any, currentItem: any) => {
+                        return accumulator + parseInt(currentItem.quantity);
+                      }, 0)}
+                    </IonBadge>
                   )}
                   <IonIcon
                     className={styles.cartIcon}
