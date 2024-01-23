@@ -1,0 +1,40 @@
+.container {
+  --padding-top: 38px;
+
+  --padding-start: 20px;
+  --padding-end: 20px;
+}
+ion-content {
+  --padding-top: 10px;
+  --padding-start: 0px;
+  --padding-end: 0px;
+  --background: var(--ion-page-background-color);
+}
+.page {
+  max-width: 100%;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .page {
+    max-width: 600px; /* Set a maximum width of 600px for larger screens */
+  }
+}
+.img {
+  width: 60%;
+  height: 500px;
+  margin: auto;
+  display: block;
+}
+.text {
+  color: var(--ion-text-color);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 800;
+  font-family: "poppins";
+  text-align: center;
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+  top: -150px;
+}

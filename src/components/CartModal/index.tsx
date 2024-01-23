@@ -17,11 +17,13 @@ import {
   IonRow,
   IonFooter,
   IonText,
+  IonCol,
 } from "@ionic/react";
 import styles from "./styles.module.css";
 import { chevronBack, star } from "ionicons/icons";
 import CartCard from "../CartCard";
 import { useSelector } from "react-redux";
+import cartImg from "../../assets/emptyCart.png";
 
 function CartModal({ isCartOpen, setIsCartOpen }: any) {
   const modal = useRef<HTMLIonModalElement>(null);
@@ -76,7 +78,12 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
             </IonRow>
           </div>
         )}
-        {cart.length < 1 && <p className={styles.cardTxt}>Cart is empty</p>}
+        {cart.length < 1 && (
+          <IonCol>
+            <IonImg className={styles.img} src={cartImg} />
+            <p className={styles.cartText}>Cart is empty</p>
+          </IonCol>
+        )}
       </IonContent>
       {cart.length > 0 && (
         <IonFooter className={styles.footer}>

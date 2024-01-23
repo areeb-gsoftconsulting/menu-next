@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IonContent,
   IonHeader,
@@ -6,9 +6,11 @@ import {
   IonTitle,
   IonToolbar,
   IonText,
+  IonImg,
+  IonCol,
 } from "@ionic/react";
 import getVenues from "../../services/getVenue";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setCurrentMenu,
   setRestSlug,
@@ -17,8 +19,12 @@ import {
 import { useIonRouter } from "@ionic/react";
 import { useLocation, useParams } from "react-router";
 import { useToast } from "../../hooks/useToast";
+import styles from "./styles.module.css";
+import darkImg from "../../assets/welcomeImgDark.png";
+import lightImg from "../../assets/welcomeImg.png";
 
 const WelcomePage: React.FC = () => {
+  const isDark = useSelector((data: any) => data.theme.isDark);
   const router = useIonRouter();
   const location = useLocation();
   const requestedUrl = new URLSearchParams(location.search).get("requestedUrl");
@@ -27,6 +33,7 @@ const WelcomePage: React.FC = () => {
     : "";
   console.log("Requested slug:", sanitizedUrl);
   const { presentToast } = useToast();
+  const [failed, setFailed] = useState(false);
 
   const dispatch = useDispatch();
   const getVlenue = async () => {
@@ -45,9 +52,12 @@ const WelcomePage: React.FC = () => {
           router.push(`/${sanitizedUrl}/home`);
         }
         dispatch(setVenue(res.data.data));
+      } else {
+        setFailed(true);
       }
     } catch (error) {
       console.log({ error });
+      setFailed(true);
       presentToast("Please try again later");
     }
   };
@@ -56,18 +66,26 @@ const WelcomePage: React.FC = () => {
     getVlenue();
   }, []);
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Welcome to Menu Next</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent className="ion-padding">
-        <IonText>
-          <h2>Please enter your menu address</h2>
-          <p>eg www.menu-next.com/your-restaurant-name</p>
-          <p>or scan your QR code to directly open it</p>
-        </IonText>
+    <IonPage className={styles.page}>
+      <IonContent className={styles.container} fullscreen>
+        <IonImg className={styles.img} src={isDark ? darkImg : lightImg} />
+        {!failed ? (
+          <IonText className={styles.text}>
+            Opening your restaurant menu
+          </IonText>
+        ) : (
+          <IonCol>
+            <IonText className={styles.text}>
+              Oops...!!!
+              <br />
+              No restaurant was found on menunext.com/{sanitizedUrl}. It's
+              possible that there might be a spelling error. Please double-check
+              the URL and try again. If you're still having trouble, ensure that
+              the restaurant is listed on our platform. Thank you for using
+              MenuNext!
+            </IonText>
+          </IonCol>
+        )}
       </IonContent>
     </IonPage>
   );

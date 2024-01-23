@@ -23,9 +23,17 @@
 .cardTxt {
   font-size: 14px;
   margin: 5px 0px;
+  font-family: "poppins-bold";
+  font-weight: 800;
+  color: var(--ion-text-color);
+}
+.cartText {
+  font-size: 14px;
+  margin: 5px 0px;
   font-family: "poppins";
   font-weight: 600;
   color: var(--ion-text-color);
+  text-align: center;
 }
 .footer {
   box-shadow: none;
@@ -44,4 +52,9 @@
   font-family: "poppins-normal";
   font-weight: 500;
   color: var(--ion-text-color);
+}
+.img {
+  width: 60%;
+  margin: auto;
+  display: block;
 }
