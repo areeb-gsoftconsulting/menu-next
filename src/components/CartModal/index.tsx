@@ -30,6 +30,7 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
   const page = useRef(null);
   const cart = useSelector((data: any) => data.cart.items);
   console.log({ cart });
+  const venue = useSelector((data: any) => data.restaurant.venue);
 
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
@@ -66,15 +67,17 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
           <div className={styles.priceCard}>
             <IonRow class="ion-justify-content-between ion-align-items-center">
               <p className={styles.cardTxt}>Subtotal</p>
-              <p className={styles.cardTxt}>$45.5</p>
+              <p className={styles.cardTxt}>
+                {venue.defaultCurrency.sign} 45.5
+              </p>
             </IonRow>
             <IonRow class="ion-justify-content-between ion-align-items-center">
               <p className={styles.cardTxt}>GST</p>
-              <p className={styles.cardTxt}>$1.5</p>
+              <p className={styles.cardTxt}>{venue.defaultCurrency.sign} 1.5</p>
             </IonRow>
             <IonRow class="ion-justify-content-between ion-align-items-center">
               <p className={styles.cardTxt}>Platform fee</p>
-              <p className={styles.cardTxt}>$0.5</p>
+              <p className={styles.cardTxt}>{venue.defaultCurrency.sign} 0.5</p>
             </IonRow>
           </div>
         )}
@@ -89,7 +92,9 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
         <IonFooter className={styles.footer}>
           <IonRow class="ion-justify-content-between ion-align-items-center">
             <p className={styles.footerTxt}>Total</p>
-            <p className={styles.footerTxt}>$55.5</p>
+            <p className={styles.footerTxt}>
+              {venue.defaultCurrency.sign} 55.5
+            </p>
           </IonRow>
           <IonButton className={styles.checkoutBtn} expand="block">
             Place Order

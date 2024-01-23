@@ -45,13 +45,19 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
               alignItems: "center",
             }}
           >
-            <IonTitle className={styles.title}>Selected items</IonTitle>
+            <IonTitle className={styles.title}>Wishlist items</IonTitle>
             <IonIcon
               onClick={() => setOpenFav(false)}
               className={styles.cancelIcon}
               icon={closeCircleSharp}
             ></IonIcon>
           </div>
+
+          {liked.length == 0 && (
+            <div className={styles.msgContainer}>
+              <p className={styles.noItem}>No wishlist items found</p>
+            </div>
+          )}
 
           {liked.map((data: any) => (
             <ItemCard data={data} />
