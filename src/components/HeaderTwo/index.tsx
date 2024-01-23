@@ -30,6 +30,7 @@ const HeaderTwo = ({
   setOpenFav,
   openFav,
   setItems,
+  scrollToTop,
   setItemsEnded,
 }: any) => {
   const isDark = useSelector((data: any) => data.theme.isDark);
@@ -63,6 +64,7 @@ const HeaderTwo = ({
         } else {
           setItemsEnded(true);
           setItems(res.data.data);
+          scrollToTop();
           dispatch(setSelectedCategory("2"));
         }
       }
