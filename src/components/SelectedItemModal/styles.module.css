@@ -11,3 +11,16 @@
   font-size: 1.5em;
   cursor: pointer;
 }
+.msgContainer {
+  margin: auto;
+  display: flex;
+  height: 50vh;
+  justify-content: center;
+  flex-direction: column;
+}
+.noItem {
+  color: var(--ion-text-color);
+  font-size: 15px;
+  text-align: center;
+  font-family: "poppins-normal";
+}

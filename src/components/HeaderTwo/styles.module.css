@@ -88,6 +88,7 @@ ion-content {
   font-size: 1.5em;
   margin-top: 5px;
 }
+
 .heartIcon {
   color: var(--ion-text-color);
   font-size: 20px;
@@ -95,7 +96,7 @@ ion-content {
 }
 .badgeLike {
   position: absolute;
-  top: 12px;
+  top: 7px;
   left: 15px;
   border-radius: 20px;
   font-size: 8px;

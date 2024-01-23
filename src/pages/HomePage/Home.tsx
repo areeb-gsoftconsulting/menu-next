@@ -111,7 +111,6 @@ const Home: React.FC = () => {
           setItems([...items, ...res.data.data.items]);
         }
         setSelectedCategoryPageNum(page + 1);
-
         // setItems([...items, ...res.data.data.items]);
       }
     } catch (error) {
@@ -184,12 +183,22 @@ const Home: React.FC = () => {
       setIsScrolled(false);
     }
   };
+  const scrollEvent = (e) => {
+    const x = e.detail.scrollTop;
+    const threshold = 200;
+  };
+  const scrollToTop = () => {
+    // Replace 'ionContentRef' with a ref to your IonContent component
+    // You can use useRef hook to create a ref and attach it to IonContent
+    contentRef.current.scrollToTop();
+  };
 
   // Example usage
   return (
     <IonPage className={styles.page}>
       {isScrolled ? (
         <HeaderOne
+          scrollToTop={scrollToTop}
           setItems={setItems}
           setItemsEnded={setItemsEnded}
           setOpenFav={setOpenFav}
@@ -198,6 +207,7 @@ const Home: React.FC = () => {
         />
       ) : (
         <HeaderTwo
+          scrollToTop={scrollToTop}
           setItems={setItems}
           setItemsEnded={setItemsEnded}
           setOpenFav={setOpenFav}
@@ -207,7 +217,7 @@ const Home: React.FC = () => {
       )}
 
       <IonContent
-        scrollEvents={true}
+        scrollEvents={scrollEvent}
         onIonScroll={(e: CustomEvent) => handleScroll(e)}
         ref={contentRef}
         fullscreen
@@ -230,6 +240,11 @@ const Home: React.FC = () => {
             padding: "0px 20px",
           }}
         >
+          {items.length == 0 && (
+            <div className={styles.msgContainer}>
+              <p className={styles.noItem}>No items found</p>
+            </div>
+          )}
           {categoryItemloading ? (
             <LoadingCard />
           ) : (
