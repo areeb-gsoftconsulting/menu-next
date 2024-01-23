@@ -123,6 +123,7 @@ const HeaderTwo = ({
                   onClick={() => setOpenFav(!openFav)}
                 ></IonIcon>
                 <IonToggle
+                  checked={isDark}
                   onIonChange={toggleDarkModeHandler}
                   name="darkMode"
                 />
