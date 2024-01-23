@@ -86,19 +86,20 @@ const HeaderOne = ({
               <p className={styles.labelContainer}>{venue.name}</p>
             </IonText>
 
-            <IonRow class="ion-justify-content-between">
-              <Link style={{ marginTop: "10px" }} to="/">
+            <IonRow class="ion-justify-content-between ion-align-items-center">
+              <Link to="/">
                 <IonImg src={isDark ? lightLogo : darkLogo} />
               </Link>
 
               {/*  */}
-              <IonRow class="ion-justify-content-between ion-align-items-center">
-                <IonCol size="8">
+              {/* <IonRow class="ion-justify-content-between ion-align-items-center">
+                <IonCol>
                   <div
                     style={{
                       display: "flex",
                       flexDirection: "row",
                       alignItems: "center",
+                      justifyContent: "space-between",
                     }}
                   >
                     {liked.length > 0 && (
@@ -120,16 +121,64 @@ const HeaderOne = ({
                       icon={search}
                       onClick={() => setShowSearch(true)}
                     ></IonIcon>
+                    <IonCol onClick={() => setIsCartOpen(true)}>
+                      {cart.length > 0 && (
+                        <IonBadge className={styles.badge}>
+                          {cart.length}
+                        </IonBadge>
+                      )}
+                      <IonIcon
+                        className={styles.cartIcon}
+                        icon={cartOutline}
+                      ></IonIcon>
+                    </IonCol>
                   </div>
                 </IonCol>
-                <IonCol onClick={() => setIsCartOpen(true)} size="4">
-                  {cart.length > 0 && (
-                    <IonBadge className={styles.badge}>{cart.length}</IonBadge>
-                  )}
-                  <IonIcon
-                    className={styles.cartIcon}
-                    icon={cartOutline}
-                  ></IonIcon>
+              </IonRow> */}
+              <IonRow class="ion-justify-content-between ion-align-items-center ion-align-items-center">
+                <IonCol>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    {liked.length > 0 && (
+                      <IonBadge
+                        onClick={() => setOpenFav(!openFav)}
+                        className={styles.badgeLike}
+                      >
+                        {liked.length}
+                      </IonBadge>
+                    )}
+                    <IonIcon
+                      className={styles.heartIcon}
+                      icon={heartOutline}
+                      onClick={() => setOpenFav(!openFav)}
+                    ></IonIcon>
+                    <IonIcon
+                      className={styles.cartIcon}
+                      icon={search}
+                      onClick={() => setShowSearch(true)}
+                    ></IonIcon>
+
+                    <IonCol onClick={() => setIsCartOpen(true)} size="4">
+                      {cart.length > 0 && (
+                        <IonBadge className={styles.badge}>
+                          {cart.length}
+                        </IonBadge>
+                      )}
+                      <IonIcon
+                        style={{
+                          marginTop: "4px",
+                        }}
+                        className={styles.cartIcon}
+                        icon={cartOutline}
+                      ></IonIcon>
+                    </IonCol>
+                  </div>
                 </IonCol>
               </IonRow>
             </IonRow>
