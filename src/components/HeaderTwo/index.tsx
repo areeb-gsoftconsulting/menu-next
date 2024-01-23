@@ -57,6 +57,7 @@ const HeaderTwo = ({
         console.log("=======>", res.data.data);
         if (res.data.data.length == 0) {
           setItemsEnded(true);
+          setItems([]);
           presentToast("No item found");
         } else {
           setItemsEnded(true);
