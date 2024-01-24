@@ -33,7 +33,7 @@ const Home: React.FC = () => {
   const [pageSize, setPageSize] = useState(10);
   const [selectedCategoryPageNum, setSelectedCategoryPageNum] = useState(0);
   const selectedCategory = useSelector(
-    (data: any) => data.restaurant.selectedCategory
+    (data: any) => data.category.selectedCategory
   );
   const [items, setItems] = useState<any>([]);
   const [itemsEnded, setItemsEnded] = useState(false);

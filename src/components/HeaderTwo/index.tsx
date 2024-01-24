@@ -20,7 +20,7 @@ import darkLogo from "../../assets/logoDark.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsDark } from "../../store/slices/themeSlice";
 import getItems from "../../services/getItems";
-import { setSelectedCategory } from "../../store/slices/restaurantSlice";
+import { setSelectedCategory } from "../../store/slices/categorySlice";
 import { useToast } from "../../hooks/useToast";
 
 type Props = {};

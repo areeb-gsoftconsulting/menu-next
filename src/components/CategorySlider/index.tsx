@@ -11,7 +11,7 @@ import styles from "./styles.module.css";
 import categoryImg from "../../assets/menuImg.png";
 import getCategory from "../../services/getCategory";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedCategory } from "../../store/slices/restaurantSlice";
+import { setSelectedCategory } from "../../store/slices/categorySlice";
 import { useToast } from "../../hooks/useToast";
 
 const CategorySlider = ({ menuId }: any) => {
@@ -20,7 +20,7 @@ const CategorySlider = ({ menuId }: any) => {
   const { presentToast } = useToast();
   const dispatch = useDispatch();
   const selectedCategory = useSelector(
-    (data: any) => data.restaurant.selectedCategory
+    (data: any) => data.category.selectedCategory
   );
   const [categories, setCategories] = useState<any>([
     {
