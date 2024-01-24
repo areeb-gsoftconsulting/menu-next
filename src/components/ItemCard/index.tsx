@@ -36,6 +36,7 @@ import {
   setCart,
   setCartItems,
 } from "../../store/slices/cartSlice";
+import ItemDescriptionContainer from "../ItemDescriptionContainer";
 
 const ItemCard = ({ data }: any) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -198,12 +199,7 @@ const ItemCard = ({ data }: any) => {
         {!expanded ? (
           <IonText className={styles.description}>{desc}</IonText>
         ) : (
-          <IonText className={styles.descriptionExp}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-            incidunt enim soluta adipisci ad deleniti eaque, facilis quis quidem
-            voluptates harum ab? Vel modi aliquam libero? Sed accusamus dolorum
-            enim.
-          </IonText>
+          <ItemDescriptionContainer data={data.description} />
         )}
         {!expanded && <p className={styles.more}>more</p>}
         {expanded && (

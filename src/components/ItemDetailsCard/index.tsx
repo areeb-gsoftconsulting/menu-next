@@ -31,6 +31,7 @@ import {
   setCart,
   setCartItems,
 } from "../../store/slices/cartSlice";
+import ItemDescriptionContainer from "../ItemDescriptionContainer";
 const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
   const modal = useRef<HTMLIonModalElement>(null);
   let categoryName = data.categories.map((obj: any) => obj.name);
@@ -257,7 +258,8 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
           <IonLabel className={styles.categoryName}>{categoryName}</IonLabel>
         </div>
 
-        <IonText className={styles.description}>{data.description}</IonText>
+        {/* <IonText className={styles.description}>{data.description}</IonText> */}
+        <ItemDescriptionContainer data={data.description} />
 
         <div style={{ display: "flex", alignItems: "center" }}>
           <p className={styles.tagLabel}>Tags: </p>
