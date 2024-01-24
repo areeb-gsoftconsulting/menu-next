@@ -280,7 +280,9 @@ const Home: React.FC = () => {
             >
               <p className={styles.itemCount}>{cart.length}</p>
               <p className={styles.cartBtnTxt}>View your cart</p>
-              <p className={styles.cartBtnTxt}>$ 18.50</p>
+              <p className={styles.cartBtnTxt}>
+                {venue.defaultCurrency.sign} 18.50
+              </p>
             </div>
           </div>
         )}

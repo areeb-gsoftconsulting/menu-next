@@ -1,6 +1,9 @@
 .header {
   box-shadow: none;
 }
+.main {
+  --height: 100% !important;
+}
 .toolbar {
   --background: var(--ion-page-background-color);
 }
