@@ -46,6 +46,7 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
   return (
     <IonModal
       ref={modal}
+      className={styles.main}
       trigger="open-modal"
       presentingElement={presentingElement!}
       isOpen={isCartOpen}
@@ -84,7 +85,7 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
         {cart.length < 1 && (
           <IonCol>
             <IonImg className={styles.img} src={cartImg} />
-            <p className={styles.cartText}>Cart is empty</p>
+            <p className={styles.cartText}>Your cart is empty</p>
           </IonCol>
         )}
       </IonContent>
@@ -93,7 +94,7 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
           <IonRow class="ion-justify-content-between ion-align-items-center">
             <p className={styles.footerTxt}>Total</p>
             <p className={styles.footerTxt}>
-              {venue.defaultCurrency.sign} 55.5
+              {venue.defaultCurrency.sign} 47.5
             </p>
           </IonRow>
           <IonButton className={styles.checkoutBtn} expand="block">

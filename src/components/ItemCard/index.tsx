@@ -28,7 +28,7 @@ import {
 } from "ionicons/icons";
 import thumbnailImg from "../../assets/menuImg.png";
 import ItemDetailsCard from "../ItemDetailsCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { setLiked, setLikedItems } from "../../store/slices/likeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -57,6 +57,12 @@ const ItemCard = ({ data }: any) => {
   const liked = useSelector((data: any) => data.like.items);
   const numberInCart = cart.filter((item: any) => item.id == data._id);
   const [count, setCount] = useState(1);
+
+  useEffect(() => {
+    if (!expanded) {
+      setRadioErr(false);
+    }
+  }, [expanded]);
 
   const addToCart = (data: any) => {
     if (data.price.description == "") {
@@ -259,7 +265,7 @@ const ItemCard = ({ data }: any) => {
               ))}
             </IonRadioGroup>
 
-            {radioErr && <p>Please choose one</p>}
+            {radioErr && <p className={styles.errMsg}>Please choose one</p>}
 
             {/* <IonRadioGroup
               allowEmptySelection={false}
@@ -302,7 +308,9 @@ const ItemCard = ({ data }: any) => {
               <p className={`${styles.priceLabel}`}>
                 {data.prices[0].description}
               </p>
-              <p className={`${styles.priceLabel}`}>{data.prices[0].price}</p>
+              <p className={`${styles.priceLabel}`}>
+                {venue.defaultCurrency.sign} {data.prices[0].price}
+              </p>
             </IonRow>
           )
         )}

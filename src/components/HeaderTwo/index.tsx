@@ -93,7 +93,7 @@ const HeaderTwo = ({
         </IonText>
 
         <IonRow class="ion-justify-content-between ion-align-items-center">
-          <Link to="/">
+          <Link to="/factory-girl-berlin/menu">
             <IonImg src={isDark ? lightLogo : darkLogo} />
           </Link>
 
