@@ -34,7 +34,7 @@ const HeaderTwo = ({
   setItemsEnded,
 }: any) => {
   const isDark = useSelector((data: any) => data.theme.isDark);
-
+  const routeName = useSelector((data: any) => data.restaurant.restSlug);
   const venue = useSelector((data: any) => data.restaurant.venue);
   const cart = useSelector((data: any) => data.cart.items);
   const liked = useSelector((data: any) => data.like.items);
@@ -93,7 +93,7 @@ const HeaderTwo = ({
         </IonText>
 
         <IonRow class="ion-justify-content-between ion-align-items-center">
-          <Link to="/factory-girl-berlin/menu">
+          <Link to={`/${routeName}/menu`}>
             <IonImg src={isDark ? lightLogo : darkLogo} />
           </Link>
 

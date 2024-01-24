@@ -40,6 +40,8 @@ const HeaderOne = ({
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const { presentToast } = useToast();
+  const routeName = useSelector((data: any) => data.restaurant.restSlug);
+
   console.log({ isDark });
 
   const getItem = async ({ itemNameSearch }: any) => {
@@ -91,7 +93,7 @@ const HeaderOne = ({
             </IonText>
 
             <IonRow class="ion-justify-content-between ion-align-items-center">
-              <Link to="/factory-girl-berlin/menu">
+              <Link to={`/${routeName}/menu`}>
                 <IonImg src={isDark ? lightLogo : darkLogo} />
               </Link>
 
