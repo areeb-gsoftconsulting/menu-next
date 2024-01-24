@@ -1,28 +1,23 @@
 import React, { useRef } from "react";
 import {
   createAnimation,
-  IonButtons,
-  IonButton,
   IonModal,
-  IonHeader,
   IonContent,
-  IonToolbar,
-  IonTitle,
-  IonPage,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonAvatar,
-  IonImg,
   IonCol,
   IonGrid,
   IonRow,
 } from "@ionic/react";
 import image from "../../assets/emptyCart.png";
 import styles from "./styles.module.css";
+import cartAnimation from "../../assets/animations/cart.json";
+import Lottie from "lottie-react";
 
 function CartAnimationModal({ addedToCart }: any) {
   const modal = useRef<HTMLIonModalElement>(null);
+  const options = {
+    animationData: cartAnimation,
+    loop: true,
+  };
 
   function dismiss() {
     modal.current?.dismiss();
@@ -73,11 +68,20 @@ function CartAnimationModal({ addedToCart }: any) {
             style={{ height: "100%" }}
           >
             <IonCol size="12" className="ion-text-center">
-              <img
+              {/* <img
                 src={image} // Replace with your image source
                 alt="Modal Image"
                 style={{ width: "200px", height: "200px" }}
-              />
+              /> */}
+              <div
+                style={{
+                  height: "200px",
+                  width: "200px",
+                  margin: "0 auto",
+                }}
+              >
+                <Lottie animationData={cartAnimation} loop={false} />
+              </div>
             </IonCol>
           </IonRow>
         </IonGrid>
