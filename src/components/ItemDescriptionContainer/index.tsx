@@ -30,6 +30,9 @@ const ItemDescriptionContainer = ({ data }: any) => {
         className="editable"
         style={{
           border: "none",
+          color: "var(--ion-text-color)",
+          fontFamily: "poppins",
+          lineHeight: "1.2",
         }}
         renderElement={renderElement}
         renderLeaf={renderLeaf}
