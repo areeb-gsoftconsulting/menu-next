@@ -37,6 +37,8 @@ const Home: React.FC = () => {
   const selectedCategory = useSelector(
     (data: any) => data.category.selectedCategory
   );
+  const totalAmount = useSelector((data: any) => data.cart.totalAmount);
+
   const [items, setItems] = useState<any>([]);
   const [itemsEnded, setItemsEnded] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -281,7 +283,7 @@ const Home: React.FC = () => {
               <p className={styles.itemCount}>{cart.length}</p>
               <p className={styles.cartBtnTxt}>View your cart</p>
               <p className={styles.cartBtnTxt}>
-                {venue.defaultCurrency.sign} 18.50
+                {venue.defaultCurrency.sign} {totalAmount}
               </p>
             </div>
           </div>
