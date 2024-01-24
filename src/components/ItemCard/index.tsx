@@ -52,6 +52,7 @@ const ItemCard = ({ data }: any) => {
   const cart = useSelector((data: any) => data.cart.items);
   const liked = useSelector((data: any) => data.like.items);
   const numberInCart = cart.filter((item: any) => item.id == data._id);
+  const [count, setCount] = useState(1);
 
   const addToCart = (data: any) => {
     if (data.price.description == "") {
@@ -74,8 +75,9 @@ const ItemCard = ({ data }: any) => {
         } else {
           tempCart[tempItemIndex] = updatedItem;
         }
-
         dispatch(setCart(tempCart));
+        setCount(1);
+        setExpanded(false);
       }
     }
   };
@@ -302,18 +304,23 @@ const ItemCard = ({ data }: any) => {
             className={`ion-justify-content-evenly ion-align-items-center ion-padding-vertical`}
           >
             <IonButton
-              onClick={() =>
-                addToCart({
-                  id: data._id,
-                  name: data.name,
-                  price:
-                    data.prices.length > 1 ? selectedPrice : data.prices[0],
-                  customization: [],
-                  comments: "",
-                  image: data.imageUrl,
-                  quantity: -1,
-                })
-              }
+              // onClick={() =>
+              //   addToCart({
+              //     id: data._id,
+              //     name: data.name,
+              //     price:
+              //       data.prices.length > 1 ? selectedPrice : data.prices[0],
+              //     customization: [],
+              //     comments: "",
+              //     image: data.imageUrl,
+              //     quantity: -1,
+              //   })
+              // }
+              onClick={() => {
+                if (count > 1) {
+                  setCount(count - 1);
+                }
+              }}
               className={`${styles.iconBtn} ion-no-padding`}
             >
               <IonIcon
@@ -324,21 +331,24 @@ const ItemCard = ({ data }: any) => {
                 icon={remove}
               ></IonIcon>
             </IonButton>
-            <h3 className={styles.itemNum}>1</h3>
+            <h3 className={styles.itemNum}>{count}</h3>
             {/* <IonButton className={styles.actionBtn}>+</IonButton> */}
             <IonButton
-              onClick={() =>
-                addToCart({
-                  id: data._id,
-                  name: data.name,
-                  price:
-                    data.prices.length > 1 ? selectedPrice : data.prices[0],
-                  customization: [],
-                  comments: "",
-                  image: data.imageUrl,
-                  quantity: 1,
-                })
-              }
+              // onClick={() =>
+              //   addToCart({
+              //     id: data._id,
+              //     name: data.name,
+              //     price:
+              //       data.prices.length > 1 ? selectedPrice : data.prices[0],
+              //     customization: [],
+              //     comments: "",
+              //     image: data.imageUrl,
+              //     quantity: 1,
+              //   })
+              // }
+              onClick={() => {
+                setCount(count + 1);
+              }}
               className={`${styles.iconBtn} ion-no-padding`}
             >
               <IonIcon
@@ -359,7 +369,7 @@ const ItemCard = ({ data }: any) => {
                   customization: [],
                   comments: "",
                   image: data.imageUrl,
-                  quantity: 1,
+                  quantity: count,
                 })
               }
               className={styles.addBtn}

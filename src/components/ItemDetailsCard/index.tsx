@@ -46,7 +46,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
   const [selectedValue, setSelectedValue] = useState<any>({});
   console.log("selectedCustomization", selectedCustomization);
   const [requiredCustoms, setRequiredCustome] = useState([]);
-  console.log({ requiredCustoms });
+  const [count, setCount] = useState(1);
 
   const handleCheckBox = ({ data, parent }: any) => {
     //that object
@@ -182,6 +182,8 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
     );
     if (tempItemIndex == -1 && param.quantity > 0) {
       dispatch(setCartItems(param));
+      setCount(1);
+      setIsOpen(false);
     } else {
       let updatedItem = { ...tempCart[tempItemIndex] };
       updatedItem.quantity = updatedItem.quantity + param.quantity;
@@ -194,17 +196,9 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
       }
 
       dispatch(setCart(tempCart));
+      setCount(1);
+      setIsOpen(false);
     }
-
-    // let cartData: any = {
-    //   id: param.id,
-    //   name: param.name,
-    //   price: param.price,
-    //   customization: selectedCustomization,
-    //   comments: param.comments,
-    //   image: param.image,
-    // };
-    // dispatch(setCartItems(cartData));
   };
 
   return (
@@ -423,17 +417,20 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
           className={`ion-justify-content-evenly ion-align-items-center ion-padding-vertical`}
         >
           <IonButton
-            onClick={() =>
-              addToCart({
-                id: data._id,
-                name: data.name,
-                price: data.prices.length > 1 ? selectedPrice : data.prices[0],
-                customization: selectedCustomization,
-                comments: comments,
-                image: data.imageUrl,
-                quantity: -1,
-              })
-            }
+            // onClick={() =>
+            //   addToCart({
+            //     id: data._id,
+            //     name: data.name,
+            //     price: data.prices.length > 1 ? selectedPrice : data.prices[0],
+            //     customization: selectedCustomization,
+            //     comments: comments,
+            //     image: data.imageUrl,
+            //     quantity: -1,
+            //   })
+            // }
+            onClick={() => {
+              if (count > 1) setCount(count - 1);
+            }}
             className={`${styles.iconBtn} ion-no-padding`}
           >
             <IonIcon
@@ -442,20 +439,23 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
               icon={remove}
             ></IonIcon>
           </IonButton>
-          <h3>1</h3>
+          <h3>{count}</h3>
           {/* <IonButton className={styles.actionBtn}>+</IonButton> */}
           <IonButton
-            onClick={() =>
-              addToCart({
-                id: data._id,
-                name: data.name,
-                price: data.prices.length > 1 ? selectedPrice : data.prices[0],
-                customization: selectedCustomization,
-                comments: comments,
-                image: data.imageUrl,
-                quantity: 1,
-              })
-            }
+            // onClick={() =>
+            //   addToCart({
+            //     id: data._id,
+            //     name: data.name,
+            //     price: data.prices.length > 1 ? selectedPrice : data.prices[0],
+            //     customization: selectedCustomization,
+            //     comments: comments,
+            //     image: data.imageUrl,
+            //     quantity: 1,
+            //   })
+            // }
+            onClick={() => {
+              setCount(count + 1);
+            }}
             className={`${styles.iconBtn} ion-no-padding`}
           >
             <IonIcon
@@ -473,7 +473,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
                 customization: selectedCustomization,
                 comments: comments,
                 image: data.imageUrl,
-                quantity: 1,
+                quantity: count,
               })
             }
             className={styles.addBtn}
