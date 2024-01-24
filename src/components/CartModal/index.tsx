@@ -85,7 +85,7 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
         {cart.length < 1 && (
           <IonCol>
             <IonImg className={styles.img} src={cartImg} />
-            <p className={styles.cartText}>Cart is empty</p>
+            <p className={styles.cartText}>Your cart is empty</p>
           </IonCol>
         )}
       </IonContent>

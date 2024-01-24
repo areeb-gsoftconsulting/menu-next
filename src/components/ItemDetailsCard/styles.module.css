@@ -207,6 +207,7 @@
   margin: 0px;
   color: red;
   font-size: 14px;
+  font-family: "poppins";
 }
 .tags {
   background-color: var(--ion-custome-card-color);

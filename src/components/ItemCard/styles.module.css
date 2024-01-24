@@ -216,3 +216,10 @@
 .itemNum {
   color: var(--ion-text-color);
 }
+
+.errMsg {
+  margin: 0px;
+  color: red;
+  font-size: 14px;
+  font-family: "poppins";
+}
