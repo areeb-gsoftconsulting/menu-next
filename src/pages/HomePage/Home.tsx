@@ -249,7 +249,7 @@ const Home: React.FC = () => {
             padding: "0px 20px",
           }}
         >
-          {items.length == 0 && (
+          {!categoryItemloading && items.length == 0 && (
             <div className={styles.msgContainer}>
               <p className={styles.noItem}>No items found</p>
             </div>
