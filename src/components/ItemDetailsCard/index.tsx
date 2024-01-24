@@ -26,7 +26,11 @@ import thumbnailImg from "../../assets/menuImg.png";
 import { starSharp, add, remove, closeCircleSharp } from "ionicons/icons";
 import { isPlatform } from "@ionic/react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCart, setCartItems } from "../../store/slices/cartSlice";
+import {
+  setAddedToCart,
+  setCart,
+  setCartItems,
+} from "../../store/slices/cartSlice";
 const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
   const modal = useRef<HTMLIonModalElement>(null);
   let categoryName = data.categories.map((obj: any) => obj.name);
@@ -184,6 +188,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
       dispatch(setCartItems(param));
       setCount(1);
       setIsOpen(false);
+      dispatch(setAddedToCart(true));
     } else {
       let updatedItem = { ...tempCart[tempItemIndex] };
       updatedItem.quantity = updatedItem.quantity + param.quantity;
@@ -198,6 +203,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
       dispatch(setCart(tempCart));
       setCount(1);
       setIsOpen(false);
+      dispatch(setAddedToCart(true));
     }
   };
 

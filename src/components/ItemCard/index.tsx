@@ -31,7 +31,11 @@ import ItemDetailsCard from "../ItemDetailsCard";
 import { useState } from "react";
 import { setLiked, setLikedItems } from "../../store/slices/likeSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { setCart, setCartItems } from "../../store/slices/cartSlice";
+import {
+  setAddedToCart,
+  setCart,
+  setCartItems,
+} from "../../store/slices/cartSlice";
 
 const ItemCard = ({ data }: any) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,6 +69,9 @@ const ItemCard = ({ data }: any) => {
       );
       if (tempItemIndex == -1 && data.quantity > 0) {
         dispatch(setCartItems(data));
+        setCount(1);
+        setExpanded(false);
+        dispatch(setAddedToCart(true));
       } else {
         let updatedItem = { ...tempCart[tempItemIndex] };
         updatedItem.quantity = updatedItem.quantity + data.quantity;
@@ -78,6 +85,7 @@ const ItemCard = ({ data }: any) => {
         dispatch(setCart(tempCart));
         setCount(1);
         setExpanded(false);
+        dispatch(setAddedToCart(true));
       }
     }
   };
