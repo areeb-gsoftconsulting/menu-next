@@ -19,6 +19,8 @@ import {
   IonRow,
 } from "@ionic/react";
 import image from "../../assets/emptyCart.png";
+import styles from "./styles.module.css";
+
 function CartAnimationModal({ addedToCart }: any) {
   const modal = useRef<HTMLIonModalElement>(null);
 
@@ -59,6 +61,7 @@ function CartAnimationModal({ addedToCart }: any) {
       trigger="open-modal"
       enterAnimation={enterAnimation}
       leaveAnimation={leaveAnimation}
+      className={styles.main}
     >
       <IonContent>
         <IonGrid
