@@ -16,11 +16,13 @@ import CartModal from "../../components/CartModal";
 import { Link } from "react-router-dom";
 import HeaderOne from "../../components/HeaderOne";
 import HeaderTwo from "../../components/HeaderTwo";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import getItems from "../../services/getItems";
 import LoadingCard from "../../components/LoadingCard";
 import { useToast } from "../../hooks/useToast";
 import getVenues from "../../services/getVenue";
+import { setAddedToCart } from "../../store/slices/cartSlice";
+import CartAnimationModal from "../../components/CartAnimationModal";
 
 const Home: React.FC = () => {
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
@@ -47,6 +49,13 @@ const Home: React.FC = () => {
   const sanitizedUrl = requestedUrl
     ? requestedUrl.replace(/^\/+|\/+$/g, "")
     : "";
+  const addedToCart = useSelector((data: any) => data.cart.addedToCart);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (addedToCart) setTimeout(() => dispatch(setAddedToCart(false)), 3000);
+  }, [addedToCart]);
+
+  console.log({ addedToCart });
 
   const getItem = async (e: any, { page }: any) => {
     console.log("get all");
@@ -288,6 +297,7 @@ const Home: React.FC = () => {
               loadingSpinner="bubbles"
             ></IonInfiniteScrollContent>
           )}
+          {addedToCart && <CartAnimationModal addedToCart={addedToCart} />}
         </IonInfiniteScroll>
       </IonContent>
     </IonPage>

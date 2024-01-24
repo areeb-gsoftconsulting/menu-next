@@ -31,7 +31,11 @@ import ItemDetailsCard from "../ItemDetailsCard";
 import { useState } from "react";
 import { setLiked, setLikedItems } from "../../store/slices/likeSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { setCart, setCartItems } from "../../store/slices/cartSlice";
+import {
+  setAddedToCart,
+  setCart,
+  setCartItems,
+} from "../../store/slices/cartSlice";
 
 const ItemCard = ({ data }: any) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,6 +56,7 @@ const ItemCard = ({ data }: any) => {
   const cart = useSelector((data: any) => data.cart.items);
   const liked = useSelector((data: any) => data.like.items);
   const numberInCart = cart.filter((item: any) => item.id == data._id);
+  const [count, setCount] = useState(1);
 
   const addToCart = (data: any) => {
     if (data.price.description == "") {
@@ -64,6 +69,9 @@ const ItemCard = ({ data }: any) => {
       );
       if (tempItemIndex == -1 && data.quantity > 0) {
         dispatch(setCartItems(data));
+        setCount(1);
+        setExpanded(false);
+        dispatch(setAddedToCart(true));
       } else {
         let updatedItem = { ...tempCart[tempItemIndex] };
         updatedItem.quantity = updatedItem.quantity + data.quantity;
@@ -74,8 +82,10 @@ const ItemCard = ({ data }: any) => {
         } else {
           tempCart[tempItemIndex] = updatedItem;
         }
-
         dispatch(setCart(tempCart));
+        setCount(1);
+        setExpanded(false);
+        dispatch(setAddedToCart(true));
       }
     }
   };
@@ -302,18 +312,23 @@ const ItemCard = ({ data }: any) => {
             className={`ion-justify-content-evenly ion-align-items-center ion-padding-vertical`}
           >
             <IonButton
-              onClick={() =>
-                addToCart({
-                  id: data._id,
-                  name: data.name,
-                  price:
-                    data.prices.length > 1 ? selectedPrice : data.prices[0],
-                  customization: [],
-                  comments: "",
-                  image: data.imageUrl,
-                  quantity: -1,
-                })
-              }
+              // onClick={() =>
+              //   addToCart({
+              //     id: data._id,
+              //     name: data.name,
+              //     price:
+              //       data.prices.length > 1 ? selectedPrice : data.prices[0],
+              //     customization: [],
+              //     comments: "",
+              //     image: data.imageUrl,
+              //     quantity: -1,
+              //   })
+              // }
+              onClick={() => {
+                if (count > 1) {
+                  setCount(count - 1);
+                }
+              }}
               className={`${styles.iconBtn} ion-no-padding`}
             >
               <IonIcon
@@ -324,21 +339,24 @@ const ItemCard = ({ data }: any) => {
                 icon={remove}
               ></IonIcon>
             </IonButton>
-            <h3 className={styles.itemNum}>1</h3>
+            <h3 className={styles.itemNum}>{count}</h3>
             {/* <IonButton className={styles.actionBtn}>+</IonButton> */}
             <IonButton
-              onClick={() =>
-                addToCart({
-                  id: data._id,
-                  name: data.name,
-                  price:
-                    data.prices.length > 1 ? selectedPrice : data.prices[0],
-                  customization: [],
-                  comments: "",
-                  image: data.imageUrl,
-                  quantity: 1,
-                })
-              }
+              // onClick={() =>
+              //   addToCart({
+              //     id: data._id,
+              //     name: data.name,
+              //     price:
+              //       data.prices.length > 1 ? selectedPrice : data.prices[0],
+              //     customization: [],
+              //     comments: "",
+              //     image: data.imageUrl,
+              //     quantity: 1,
+              //   })
+              // }
+              onClick={() => {
+                setCount(count + 1);
+              }}
               className={`${styles.iconBtn} ion-no-padding`}
             >
               <IonIcon
@@ -359,7 +377,7 @@ const ItemCard = ({ data }: any) => {
                   customization: [],
                   comments: "",
                   image: data.imageUrl,
-                  quantity: 1,
+                  quantity: count,
                 })
               }
               className={styles.addBtn}

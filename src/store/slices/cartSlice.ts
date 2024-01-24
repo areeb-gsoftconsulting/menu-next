@@ -2,10 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export interface cartState {
   items: [];
+  addedToCart: boolean;
 }
 
 const initialState: cartState = {
   items: [],
+  addedToCart: false,
 };
 
 export const cartSlice = createSlice({
@@ -24,10 +26,16 @@ export const cartSlice = createSlice({
         items: action.payload,
       };
     },
+    setAddedToCart: (state: any, action: any) => {
+      return {
+        ...state,
+        addedToCart: action.payload,
+      };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setCartItems, setCart } = cartSlice.actions;
+export const { setCartItems, setCart, setAddedToCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
