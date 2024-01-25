@@ -412,7 +412,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
           </p>
           <IonTextarea
             value={comments}
-            onIonInput={(e: any) => console.log("==?", e.target.value)}
+            onIonInput={(e: any) => setComments(e.target.value)}
             mode="md"
             className={styles.textarea}
             placeholder="eg. no mayo"

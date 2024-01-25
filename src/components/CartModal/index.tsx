@@ -24,6 +24,7 @@ import { chevronBack, star } from "ionicons/icons";
 import CartCard from "../CartCard";
 import { useSelector } from "react-redux";
 import cartImg from "../../assets/emptyCart.png";
+import CartItem from "../CartItem";
 
 function CartModal({ isCartOpen, setIsCartOpen }: any) {
   const modal = useRef<HTMLIonModalElement>(null);
@@ -62,8 +63,8 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        {cart.map((item: any) => {
-          return <CartCard item={item} />;
+        {cart.map((item: any, ind: any) => {
+          return <CartItem item={item} ind={ind} />;
         })}
         {cart.length > 0 && (
           <div className={styles.priceCard}>
