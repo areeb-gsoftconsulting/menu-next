@@ -45,6 +45,10 @@ const HeaderTwo = ({
   const dispatch = useDispatch();
   const getItem = async ({ itemNameSearch }: any) => {
     console.log({ itemNameSearch });
+    if (itemNameSearch == "") {
+      dispatch(setSelectedCategory("1"));
+      return;
+    }
     setLoading(true);
 
     try {
