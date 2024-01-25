@@ -171,7 +171,7 @@ const CartItem = ({ item }: any) => {
             className={styles.nameImgBox}
           >
             <IonImg className={styles.img} src={item.image} />
-            <p className={styles.quantity}>{item.name}</p>
+            <p className={styles.itemName}>{item.name}</p>
           </IonRow>
         </IonRow>
         <IonRow

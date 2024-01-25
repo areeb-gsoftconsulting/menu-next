@@ -6,17 +6,35 @@
   padding: 5px 10px;
   border-radius: 3px;
   cursor: pointer;
+  display: flex;
+  flex-wrap: nowrap;
 }
 .quantity {
   font-family: "poppins";
   font-size: 14px;
   color: var(--ion-text-color);
 }
+.itemName {
+  font-family: "poppins";
+  font-size: 14px;
+  color: var(--ion-text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 50px;
+}
 .nameImgBox {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: left;
+  width: 100%;
+  box-sizing: border-box;
 }
 .img {
   height: 34px;
   width: 34px;
+  min-width: 34px;
   object-fit: cover;
   border-radius: 4px;
   overflow: hidden;
@@ -29,15 +47,17 @@
   border-radius: 5px;
 }
 .leftBox {
+  max-width: 80%;
   width: 80%;
   align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
 }
 .rightBox {
   width: 20%;
 }
 .name {
   margin: 0px !important;
-
   color: var(--ion-text-color);
   font-family: "poppins-normal";
   font-weight: 400;
