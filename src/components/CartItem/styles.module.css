@@ -5,6 +5,7 @@
   align-content: center;
   padding: 5px 10px;
   border-radius: 3px;
+  cursor: pointer;
 }
 .quantity {
   font-family: "poppins";
@@ -83,4 +84,12 @@
   border-radius: 5px;
   margin: 0px;
   padding: 5px 10px;
+}
+@media only screen and (max-width: 500px) {
+  .leftBox {
+    width: 75%;
+  }
+  .rightBox {
+    width: 25%;
+  }
 }
