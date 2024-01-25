@@ -1,0 +1,86 @@
+.quantityBox {
+  border: 1px solid var(--ion-search-border);
+  border-radius: 2px;
+  height: 30px;
+  align-content: center;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+.quantity {
+  font-family: "poppins";
+  font-size: 14px;
+  color: var(--ion-text-color);
+}
+.nameImgBox {
+}
+.img {
+  height: 34px;
+  width: 34px;
+  object-fit: cover;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0px 5px;
+}
+.trash {
+  color: white;
+  background-color: red;
+  padding: 7px;
+  border-radius: 5px;
+}
+.leftBox {
+  width: 80%;
+  align-items: center;
+}
+.rightBox {
+  width: 20%;
+}
+.name {
+  margin: 0px !important;
+
+  color: var(--ion-text-color);
+  font-family: "poppins-normal";
+  font-weight: 400;
+  font-size: 14px;
+}
+.heading {
+  margin: 4px 0px !important;
+  color: var(--ion-text-color);
+  font-family: "poppins-normal";
+  font-weight: 400;
+  font-size: 14px;
+}
+.expandCard {
+  background-color: var(--ion-custome-card-color);
+  padding: 16px;
+  border-radius: 16px;
+}
+.text {
+  font-family: "poppins";
+  margin: 0px !important;
+  font-size: 14px;
+}
+.icons {
+  padding: 0px 5px;
+  font-size: 16px;
+}
+.iconBtn {
+  --box-shadow: none;
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  --border-radius: 8px;
+  height: 15px;
+  padding-inline-start: 0px;
+  padding-inline-end: 0px;
+}
+.itemCount {
+  font-size: 14px;
+  font-family: "poppins-normal";
+  font-weight: 600;
+}
+.comments {
+  font-size: 12px;
+  font-family: "poppins";
+  border: 1px solid var(--ion-search-border);
+  border-radius: 5px;
+  margin: 0px;
+  padding: 5px 10px;
+}
