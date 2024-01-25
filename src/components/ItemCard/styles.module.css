@@ -19,7 +19,7 @@
   .name {
     overflow: hidden;
     white-space: nowrap;
-    max-width: 320px;
+    max-width: 280px;
     text-overflow: ellipsis;
   }
 }
@@ -33,6 +33,10 @@
   font-family: "poppins";
   color: var(--ion-text-color);
   font-size: 11px;
+}
+.cardName {
+  display: flex;
+  flex-wrap: nowrap;
 }
 .cardImg {
   margin-top: 10px;
