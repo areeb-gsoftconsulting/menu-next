@@ -42,9 +42,10 @@
 }
 .trash {
   color: white;
-  background-color: red;
+  background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
   padding: 7px;
   border-radius: 5px;
+  cursor: pointer;
 }
 .leftBox {
   max-width: 80%;

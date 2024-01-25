@@ -63,8 +63,8 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
-        {cart.map((item: any) => {
-          return <CartItem item={item} />;
+        {cart.map((item: any, ind: any) => {
+          return <CartItem item={item} ind={ind} />;
         })}
         {cart.length > 0 && (
           <div className={styles.priceCard}>

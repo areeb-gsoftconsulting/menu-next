@@ -18,12 +18,13 @@ import { setCart, setCartItems } from "../../store/slices/cartSlice";
 
 type Props = {};
 
-const CartItem = ({ item }: any) => {
+const CartItem = ({ item, ind }: any) => {
   const venue = useSelector((data: any) => data.restaurant.venue);
   const [expand, setExpand] = useState(false);
   const [showBtn, setShowBtn] = useState(false);
   const dispatch = useDispatch();
   const cart = useSelector((data: any) => data.cart.items);
+  console.log({ ind });
 
   useEffect(() => {
     if (showBtn) {
@@ -88,7 +89,10 @@ const CartItem = ({ item }: any) => {
       dispatch(setCart(tempCart));
     }
   };
-
+  const delItem = () => {
+    let restCart = cart.filter((data: any, index: any) => ind !== index);
+    dispatch(setCart(restCart));
+  };
   return (
     <>
       <IonRow
@@ -186,7 +190,11 @@ const CartItem = ({ item }: any) => {
             icon={expand ? chevronUp : chevronDown}
             onClick={() => setExpand(!expand)}
           />
-          <IonIcon className={styles.trash} icon={trashBinSharp} />
+          <IonIcon
+            onClick={() => delItem()}
+            className={styles.trash}
+            icon={trashBinSharp}
+          />
         </IonRow>
       </IonRow>
       {expand && <ExpandedCartItem item={item} />}
