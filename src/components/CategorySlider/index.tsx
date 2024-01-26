@@ -22,6 +22,8 @@ const CategorySlider = ({ menuId }: any) => {
   const selectedCategory = useSelector(
     (data: any) => data.category.selectedCategory
   );
+
+  console.log({ selectedCategory });
   const [categories, setCategories] = useState<any>([
     {
       _id: "1",

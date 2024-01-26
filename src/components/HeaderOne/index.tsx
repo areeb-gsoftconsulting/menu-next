@@ -45,8 +45,12 @@ const HeaderOne = ({
   console.log({ isDark });
 
   const getItem = async ({ itemNameSearch }: any) => {
-    console.log({ itemNameSearch });
+    console.log("itemNameSearch.length", itemNameSearch.length);
     setLoading(true);
+    if (itemNameSearch == "") {
+      dispatch(setSelectedCategory("1"));
+      return;
+    }
 
     try {
       let res = await getItems({

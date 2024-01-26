@@ -13,7 +13,7 @@ import ItemCard from "../../components/ItemCard";
 import FavItemsButton from "../../components/FavItemsButton";
 import SelectedItemModal from "../../components/SelectedItemModal";
 import CartModal from "../../components/CartModal";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import HeaderOne from "../../components/HeaderOne";
 import HeaderTwo from "../../components/HeaderTwo";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,8 +23,10 @@ import { useToast } from "../../hooks/useToast";
 import getVenues from "../../services/getVenue";
 import { setAddedToCart } from "../../store/slices/cartSlice";
 import CartAnimationModal from "../../components/CartAnimationModal";
+import { setSelectedCategory } from "../../store/slices/restaurantSlice";
 
 const Home: React.FC = () => {
+  const route = useLocation();
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
   const venue = useSelector((data: any) => data.restaurant.venue);
   const [openFav, setOpenFav] = useState(false);
@@ -136,7 +138,7 @@ const Home: React.FC = () => {
       setCategoryItemLoading(false);
     }
   };
-
+  console.log({ selectedCategory });
   useEffect(() => {
     if (selectedCategory && selectedCategory == "2") {
       return;
@@ -160,7 +162,12 @@ const Home: React.FC = () => {
       setItemsEnded(false);
       getItem(undefined, { page: 0 });
     }
-  }, [selectedCategory]);
+  }, [selectedCategory, route.pathname]);
+
+  useEffect(() => {
+    console.log("this==> 1");
+    // dispatch(setSelectedCategory("1"));
+  }, []);
 
   // useEffect(() => {
   //   getItem();

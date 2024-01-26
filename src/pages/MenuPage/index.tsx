@@ -23,13 +23,18 @@ import { Link } from "react-router-dom";
 import getVenues from "../../services/getVenue";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentMenu } from "../../store/slices/restaurantSlice";
+import { setSelectedCategory } from "../../store/slices/categorySlice";
 
 const Menu = () => {
   const dispatch = useDispatch();
   // const toggleDarkModeHandler = () => document.body.classList.toggle("dark");
   const venue = useSelector((data: any) => data.restaurant.venue);
   console.log({ venue });
-
+  const routeName = useSelector((data: any) => data.restaurant.restSlug);
+  const selectedCategory = useSelector(
+    (data: any) => data.category.selectedCategory
+  );
+  console.log("selectedCategory", selectedCategory);
   return (
     <IonPage className={styles.page}>
       <IonHeader
@@ -44,8 +49,15 @@ const Menu = () => {
 
         {venue.menus.map((obj: any, ind: any) => {
           return (
-            <Link to="/factor-girl-berlin/home">
-              <IonCol onClick={() => dispatch(setCurrentMenu(obj))} key={ind}>
+            <Link to={`/${routeName}/home`}>
+              <IonCol
+                onClick={() => {
+                  dispatch(setSelectedCategory("1"));
+                  dispatch(setCurrentMenu(obj));
+                  console.log("qwertyui");
+                }}
+                key={ind}
+              >
                 <IonImg className={styles.menuImg} src={obj.imageUrl} />
                 <p className={styles.labelContainer}>{obj.name}</p>
               </IonCol>
