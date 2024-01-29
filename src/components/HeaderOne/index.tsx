@@ -63,9 +63,9 @@ const HeaderOne = ({
         console.log("=======>", res.data.data);
         if (res.data.data.length == 0) {
           setItemsEnded(true);
-          // setItems([]);
           dispatch(setSelectedCategory("2"));
-          presentToast("No item found");
+          setItems([]);
+          // presentToast("No item found");
         } else {
           setItemsEnded(true);
           setItems(res.data.data);

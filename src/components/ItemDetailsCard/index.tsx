@@ -53,6 +53,31 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
   const [requiredCustoms, setRequiredCustome] = useState([]);
   const [count, setCount] = useState(1);
 
+  const handle1 = (data: any) => {
+    console.log("selectedCustomization === ", data);
+    // let tempArr = selectedCustomization;
+    // tempArr.push(data);
+    // setSelectedCustomization(tempArr);
+  };
+
+  useEffect(() => {
+    const tempPreSelected: any = [];
+    if (Array.isArray(data.customization)) {
+      data.customization.forEach((c: any) => {
+        const prices = c.prices;
+        if (Array.isArray(c.prices)) {
+          c.prices.forEach((price: any) => {
+            if (price.preSelected) {
+              tempPreSelected.push(price);
+            }
+          });
+        }
+      });
+    }
+
+    setSelectedCustomization(tempPreSelected);
+  }, [data]);
+
   const handleCheckBox = ({ data, parent }: any) => {
     //that object
     // its parent
@@ -78,7 +103,10 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
         //phir parent ki prices ki array k sath check krna hy k iski koi item phly added to nhi?
         //agr added hy to usko remove krwa k new add krwani hy
 
-        setSelectedCustomization([...selectedCustomization, data]);
+        console.log("selectedCustomization === ", selectedCustomization);
+        let tempArr = selectedCustomization;
+        tempArr.push(data);
+        setSelectedCustomization(tempArr);
         return;
       } else {
         let item = commonItems.shift();
@@ -353,15 +381,17 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
                 </h4>
               </IonRow>
               <p className={styles.msg}>Select upto {obj.maxSelectedItems}</p>
+
               {obj.prices.map((e: any, i: any) => {
-                useEffect(() => {
-                  if (e.preSelected == true) {
-                    handleCheckBox({
-                      data: e,
-                      parent: obj,
-                    });
-                  }
-                }, []);
+                handle1(e);
+                // useEffect(() => {
+                //   if (e.preSelected == true) {
+                //     handleCheckBox({
+                //       data: e,
+                //       parent: obj,
+                //     });
+                //   }
+                // }, []);
 
                 //poori
 

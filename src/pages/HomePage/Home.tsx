@@ -287,7 +287,11 @@ const Home: React.FC = () => {
               onClick={() => setIsCartOpen(true)}
               className={styles.innerBottomBtn}
             >
-              <p className={styles.itemCount}>{cart.length}</p>
+              <p className={styles.itemCount}>
+                {cart.reduce((accumulator: any, currentItem: any) => {
+                  return accumulator + parseInt(currentItem.quantity);
+                }, 0)}
+              </p>
               <p className={styles.cartBtnTxt}>View your cart</p>
               <p className={styles.cartBtnTxt}>
                 {venue.defaultCurrency.sign} {totalAmount}
