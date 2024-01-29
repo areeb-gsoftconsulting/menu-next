@@ -15,6 +15,7 @@ import itemImg from "../../assets/menuImg.png";
 import ExpandedCartItem from "./expandedCartItem";
 import { useDispatch, useSelector } from "react-redux";
 import { setCart, setCartItems } from "../../store/slices/cartSlice";
+import DeleteAlert from "../DeleteAlert";
 
 type Props = {};
 
@@ -25,6 +26,7 @@ const CartItem = ({ item, ind }: any) => {
   const dispatch = useDispatch();
   const cart = useSelector((data: any) => data.cart.items);
   console.log({ ind });
+  const [isOpenDelete, setOpenDelete] = useState(false);
 
   useEffect(() => {
     if (showBtn) {
@@ -88,6 +90,9 @@ const CartItem = ({ item, ind }: any) => {
 
       dispatch(setCart(tempCart));
     }
+  };
+  const openDeleteModal = () => {
+    setOpenDelete(true);
   };
   const delItem = () => {
     let restCart = cart.filter((data: any, index: any) => ind !== index);
@@ -191,13 +196,20 @@ const CartItem = ({ item, ind }: any) => {
             onClick={() => setExpand(!expand)}
           />
           <IonIcon
-            onClick={() => delItem()}
+            onClick={() => openDeleteModal()}
             className={styles.trash}
             icon={trashBinSharp}
           />
         </IonRow>
       </IonRow>
       {expand && <ExpandedCartItem item={item} />}
+      {isOpenDelete && (
+        <DeleteAlert
+          setOpen={setOpenDelete}
+          isOpen={isOpenDelete}
+          onDelete={delItem}
+        />
+      )}
     </>
   );
 };

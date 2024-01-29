@@ -104,6 +104,7 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
           </IonButton>
         </IonFooter>
       )}
+      {}
     </IonModal>
   );
 }

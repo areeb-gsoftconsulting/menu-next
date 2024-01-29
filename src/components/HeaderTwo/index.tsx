@@ -64,7 +64,7 @@ const HeaderTwo = ({
           setItemsEnded(true);
           dispatch(setSelectedCategory("2"));
           setItems([]);
-          presentToast("No item found");
+          // presentToast("No item found");
         } else {
           setItemsEnded(true);
           setItems(res.data.data);

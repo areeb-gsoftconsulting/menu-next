@@ -1,0 +1,9 @@
+.alert {
+  --background: var(--ion-custome-card-color);
+  font-family: "poppins" !important;
+}
+
+.btn {
+  color: var(--ion-text-color) !important;
+  font-family: "poppins" !important;
+}
