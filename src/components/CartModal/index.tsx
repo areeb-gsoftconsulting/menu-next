@@ -25,6 +25,7 @@ import CartCard from "../CartCard";
 import { useSelector } from "react-redux";
 import cartImg from "../../assets/emptyCart.png";
 import CartItem from "../CartItem";
+import DetailedAddedToCart from "../DetailedAddedToCart";
 
 function CartModal({ isCartOpen, setIsCartOpen }: any) {
   const modal = useRef<HTMLIonModalElement>(null);
@@ -33,6 +34,7 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
   console.log({ cart });
   const venue = useSelector((data: any) => data.restaurant.venue);
   const totalAmount = useSelector((data: any) => data.cart.totalAmount);
+  const [openDetailed, setOpenDetailed] = useState(false);
 
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
@@ -64,7 +66,9 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
       </IonHeader>
       <IonContent className="ion-padding">
         {cart.map((item: any, ind: any) => {
-          return <CartItem item={item} ind={ind} />;
+          return (
+            <CartItem setOpenDetailed={setOpenDetailed} item={item} ind={ind} />
+          );
         })}
         {cart.length > 0 && (
           <div className={styles.priceCard}>
@@ -104,7 +108,9 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
           </IonButton>
         </IonFooter>
       )}
-      {}
+      {openDetailed && (
+        <DetailedAddedToCart open={openDetailed} setOpen={setOpenDetailed} />
+      )}
     </IonModal>
   );
 }
