@@ -7,3 +7,35 @@
   color: var(--ion-text-color) !important;
   font-family: "poppins" !important;
 }
+.cancelIcon {
+  color: var(--ion-text-color);
+  font-size: 1.5em;
+  cursor: pointer;
+}
+.main {
+  --background: var(--ion-custome-card-color);
+  --width: 400px;
+  --min-width: 250px;
+  --max-height: 230px;
+  --border-color: var(--ion-text-color);
+  --border-width: 1px;
+  --backdrop-opacity: none;
+  --border-radius: 16px;
+  --border-style: solid;
+}
+.mainContent {
+  --background: var(--ion-custome-card-color);
+  text-align: center;
+}
+.cancelBtn {
+  --box-shadow: none;
+  --border-radius: 8px;
+  text-transform: capitalize;
+}
+.delBtn {
+  --box-shadow: none;
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  --border-radius: 8px;
+  text-transform: capitalize;
+  --background-hover: linear-gradient(269deg, #e4192a 49.35%, #b62158 85.56%);
+}
