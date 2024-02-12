@@ -34,6 +34,7 @@ function DeleteAlert({ isOpen, setOpen, onDelete }: any) {
         <p>You want to delete this item from the cart?</p>
         <IonRow class="ion-justify-content-center">
           <IonButton
+            size="small"
             onClick={() => setOpen(false)}
             className={styles.cancelBtn}
             mode="ios"
@@ -41,7 +42,12 @@ function DeleteAlert({ isOpen, setOpen, onDelete }: any) {
           >
             Cancel
           </IonButton>
-          <IonButton className={styles.delBtn} onClick={onDelete} mode="ios">
+          <IonButton
+            size="small"
+            className={styles.delBtn}
+            onClick={onDelete}
+            mode="ios"
+          >
             Delete
           </IonButton>
         </IonRow>
