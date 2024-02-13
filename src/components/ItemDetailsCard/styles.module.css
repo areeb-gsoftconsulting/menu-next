@@ -10,7 +10,6 @@
 }
 .cardImgAndroid {
   width: 100%;
-  height: 160px;
   object-fit: cover;
   border-radius: 16px;
   overflow: hidden;
@@ -19,7 +18,6 @@
 }
 .cardImg {
   width: 100%;
-  height: 160px;
   object-fit: cover;
   border-radius: 16px;
   overflow: hidden;

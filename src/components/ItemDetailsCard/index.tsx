@@ -264,7 +264,7 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
 
         <IonImg
           className={isPlatform("ios") ? styles.cardImg : styles.cardImgAndroid}
-          src={thumbnailImg}
+          src={data.imageUrl}
         />
         {/* <IonRow className="ion-margin-top ion-align-items-center">
           <IonIcon className={styles.rateIcon} icon={starSharp} />
