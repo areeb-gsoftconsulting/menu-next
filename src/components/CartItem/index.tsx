@@ -19,7 +19,12 @@ import DeleteAlert from "../DeleteAlert";
 
 type Props = {};
 
-const CartItem = ({ item, ind }: any) => {
+const CartItem = ({
+  setSelectedDetailItem,
+  item,
+  ind,
+  setOpenDetailed,
+}: any) => {
   const venue = useSelector((data: any) => data.restaurant.venue);
   const [expand, setExpand] = useState(false);
   const [showBtn, setShowBtn] = useState(false);
@@ -100,13 +105,13 @@ const CartItem = ({ item, ind }: any) => {
   };
   return (
     <>
-      <IonRow
-        style={{}}
-        class="ion-justify-content-between ion-align-items-center"
-      >
+      <IonRow class="ion-justify-content-between ion-align-items-center">
         <IonRow className={styles.leftBox} class="ion-align-items-center">
           <IonRow
-            onClick={() => setShowBtn(!showBtn)}
+            onClick={(e) => {
+              e.preventDefault();
+              setShowBtn(!showBtn);
+            }}
             class="ion-align-items-center"
             className={styles.quantityBox}
           >
@@ -132,7 +137,8 @@ const CartItem = ({ item, ind }: any) => {
               <IonButton
                 size="small"
                 className={`${styles.iconBtn} ion-no-padding`}
-                onClick={() =>
+                onClick={(e) => {
+                  e.preventDefault();
                   addToCart({
                     id: item.id,
                     name: item.name,
@@ -141,8 +147,8 @@ const CartItem = ({ item, ind }: any) => {
                     comments: item.comments,
                     image: item.image,
                     quantity: -1,
-                  })
-                }
+                  });
+                }}
               >
                 <IonIcon
                   className={styles.icons}
@@ -154,7 +160,8 @@ const CartItem = ({ item, ind }: any) => {
               <IonButton
                 size="small"
                 className={`${styles.iconBtn} ion-no-padding`}
-                onClick={() =>
+                onClick={(e) => {
+                  e.preventDefault();
                   addToCart({
                     id: item.id,
                     name: item.name,
@@ -163,8 +170,8 @@ const CartItem = ({ item, ind }: any) => {
                     comments: item.comments,
                     image: item.image,
                     quantity: +1,
-                  })
-                }
+                  });
+                }}
               >
                 <IonIcon
                   className={styles.icons}
@@ -176,6 +183,11 @@ const CartItem = ({ item, ind }: any) => {
           )}
 
           <IonRow
+            onClick={(e) => {
+              e.preventDefault();
+              setOpenDetailed(true);
+              setSelectedDetailItem([item]);
+            }}
             class="ion-align-items-center ion-justify-content-left"
             className={styles.nameImgBox}
           >

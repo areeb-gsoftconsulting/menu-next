@@ -7,3 +7,50 @@
   color: var(--ion-text-color) !important;
   font-family: "poppins" !important;
 }
+.cancelIcon {
+  color: var(--ion-text-color);
+  font-size: 1.5em;
+  cursor: pointer;
+}
+.main {
+  --backdrop-opacity: 0.3 !important;
+  --backdrop-color: red;
+  --background: var(--ion-page-background-color);
+  --width: 400px;
+  --min-width: 250px;
+  --max-height: 230px;
+  --border-color: white;
+  --border-width: 1px;
+  --backdrop-opacity: none;
+  --border-radius: 16px;
+  --border-style: solid;
+}
+.mainContent {
+  --background: var(--ion-page-background-color);
+  text-align: center;
+}
+.title {
+  margin: 0px !important;
+}
+.cancelBtn {
+  --box-shadow: none;
+  --border-radius: 8px;
+  text-transform: capitalize;
+  --padding-bottom: 13px;
+  --padding-top: 13px;
+  --padding-end: 20px;
+  --padding-start: 20px;
+  font-family: "poppins-normal";
+}
+.delBtn {
+  --box-shadow: none;
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  --border-radius: 8px;
+  text-transform: capitalize;
+  font-family: "poppins-normal";
+  --background-hover: linear-gradient(269deg, #e4192a 49.35%, #b62158 85.56%);
+  --padding-bottom: 13px;
+  --padding-top: 13px;
+  --padding-end: 20px;
+  --padding-start: 20px;
+}

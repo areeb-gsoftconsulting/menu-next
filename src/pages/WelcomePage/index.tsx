@@ -8,6 +8,7 @@ import {
   IonText,
   IonImg,
   IonCol,
+  IonButton,
 } from "@ionic/react";
 import getVenues from "../../services/getVenue";
 import { useDispatch, useSelector } from "react-redux";
@@ -84,6 +85,7 @@ const WelcomePage: React.FC = () => {
               the restaurant is listed on our platform. Thank you for using
               MenuNext!
             </IonText>
+            <IonButton href="/factory-girl-berlin/home">Dummy</IonButton>
           </IonCol>
         )}
       </IonContent>

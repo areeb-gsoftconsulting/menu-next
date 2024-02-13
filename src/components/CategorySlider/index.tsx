@@ -11,7 +11,10 @@ import styles from "./styles.module.css";
 import categoryImg from "../../assets/menuImg.png";
 import getCategory from "../../services/getCategory";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedCategory } from "../../store/slices/categorySlice";
+import {
+  setCategories,
+  setSelectedCategory,
+} from "../../store/slices/categorySlice";
 import { useToast } from "../../hooks/useToast";
 
 const CategorySlider = ({ menuId }: any) => {
@@ -24,12 +27,13 @@ const CategorySlider = ({ menuId }: any) => {
   );
 
   console.log({ selectedCategory });
-  const [categories, setCategories] = useState<any>([
-    {
-      _id: "1",
-      name: "All",
-    },
-  ]);
+  // const [categories, setCategories] = useState<any>([
+  //   {
+  //     _id: "1",
+  //     name: "All",
+  //   },
+  // ]);
+  const categories = useSelector((data: any) => data.category.categories);
 
   const getCategories = async () => {
     try {
@@ -39,7 +43,7 @@ const CategorySlider = ({ menuId }: any) => {
       });
 
       if (res.data.statusCode == 200) {
-        setCategories([...categories, ...res.data.data]);
+        dispatch(setCategories([...categories, ...res.data.data]));
       }
       // dispatch(setVenue(res.data.data));
     } catch (error) {
@@ -49,7 +53,9 @@ const CategorySlider = ({ menuId }: any) => {
   };
 
   useEffect(() => {
-    getCategories();
+    if (categories.length <= 1) {
+      getCategories();
+    }
   }, []);
 
   const selectCategory = (e: any) => {
