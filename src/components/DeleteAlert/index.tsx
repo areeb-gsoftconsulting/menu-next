@@ -30,8 +30,10 @@ function DeleteAlert({ isOpen, setOpen, onDelete }: any) {
             icon={closeCircleSharp}
           ></IonIcon>
         </IonRow>
-        <h3>Delete Item</h3>
-        <p>You want to delete this item from the cart?</p>
+        <h3 style={{ fontFamily: "poppins-normal" }}>Delete Item</h3>
+        <p style={{ fontFamily: "poppins" }}>
+          You want to delete this item from the cart?
+        </p>
         <IonRow class="ion-justify-content-center">
           <IonButton
             size="small"

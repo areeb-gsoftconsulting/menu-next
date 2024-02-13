@@ -37,12 +37,14 @@
   --padding-top: 13px;
   --padding-end: 20px;
   --padding-start: 20px;
+  font-family: "poppins-normal";
 }
 .delBtn {
   --box-shadow: none;
   --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
   --border-radius: 8px;
   text-transform: capitalize;
+  font-family: "poppins-normal";
   --background-hover: linear-gradient(269deg, #e4192a 49.35%, #b62158 85.56%);
   --padding-bottom: 13px;
   --padding-top: 13px;

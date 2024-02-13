@@ -35,6 +35,7 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
   const venue = useSelector((data: any) => data.restaurant.venue);
   const totalAmount = useSelector((data: any) => data.cart.totalAmount);
   const [openDetailed, setOpenDetailed] = useState(false);
+  const [selectDetailItem, setSelectedDetailItem] = useState([]);
 
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
@@ -67,7 +68,12 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
       <IonContent className="ion-padding">
         {cart.map((item: any, ind: any) => {
           return (
-            <CartItem setOpenDetailed={setOpenDetailed} item={item} ind={ind} />
+            <CartItem
+              setSelectedDetailItem={setSelectedDetailItem}
+              setOpenDetailed={setOpenDetailed}
+              item={item}
+              ind={ind}
+            />
           );
         })}
         {cart.length > 0 && (
@@ -109,7 +115,11 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
         </IonFooter>
       )}
       {openDetailed && (
-        <DetailedAddedToCart open={openDetailed} setOpen={setOpenDetailed} />
+        <DetailedAddedToCart
+          selectDetailItem={selectDetailItem}
+          open={openDetailed}
+          setOpen={setOpenDetailed}
+        />
       )}
     </IonModal>
   );

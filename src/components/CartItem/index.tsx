@@ -19,7 +19,12 @@ import DeleteAlert from "../DeleteAlert";
 
 type Props = {};
 
-const CartItem = ({ item, ind, setOpenDetailed }: any) => {
+const CartItem = ({
+  setSelectedDetailItem,
+  item,
+  ind,
+  setOpenDetailed,
+}: any) => {
   const venue = useSelector((data: any) => data.restaurant.venue);
   const [expand, setExpand] = useState(false);
   const [showBtn, setShowBtn] = useState(false);
@@ -181,6 +186,7 @@ const CartItem = ({ item, ind, setOpenDetailed }: any) => {
             onClick={(e) => {
               e.preventDefault();
               setOpenDetailed(true);
+              setSelectedDetailItem([item]);
             }}
             class="ion-align-items-center ion-justify-content-left"
             className={styles.nameImgBox}

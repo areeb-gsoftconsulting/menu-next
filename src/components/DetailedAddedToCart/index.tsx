@@ -1,26 +1,37 @@
-import React, { useRef } from "react";
-import {
-  IonButton,
-  IonModal,
-  IonContent,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonAvatar,
-  IonImg,
-  IonSearchbar,
-  IonTitle,
-  IonIcon,
-} from "@ionic/react";
+import React, { useEffect, useRef, useState } from "react";
+import { IonModal, IonContent, IonTitle, IonIcon } from "@ionic/react";
 import ItemCard from "../ItemCard";
 import styles from "./styles.module.css";
-import { useSelector } from "react-redux";
 import { closeCircleSharp } from "ionicons/icons";
+import getSingleItems from "../../services/getSingleItems";
+import LoadingCard from "../../components/LoadingCard";
 
-function DetailedAddedToCart({ open, setOpen }: any) {
+function DetailedAddedToCart({ selectDetailItem, open, setOpen }: any) {
   const modal = useRef<HTMLIonModalElement>(null);
-  const liked = useSelector((data: any) => data.like.items);
-  console.log({ liked });
+  const [item, setItem] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
+
+  console.log({ selectDetailItem });
+  useEffect(() => {
+    getItemDetail();
+  }, [selectDetailItem]);
+  const getItemDetail = async () => {
+    setLoading(true);
+    try {
+      let res = await getSingleItems({
+        params: {
+          id: selectDetailItem[0].id,
+        },
+      });
+      if (res?.data.statusCode == 200) {
+        setItem([res?.data.data]);
+      }
+    } catch (error) {
+      console.log({ error });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <IonModal
@@ -45,7 +56,7 @@ function DetailedAddedToCart({ open, setOpen }: any) {
               alignItems: "center",
             }}
           >
-            <IonTitle className={styles.title}>Wishlist items</IonTitle>
+            <IonTitle className={styles.title}>Item</IonTitle>
             <IonIcon
               onClick={() => setOpen(false)}
               className={styles.cancelIcon}
@@ -53,13 +64,14 @@ function DetailedAddedToCart({ open, setOpen }: any) {
             ></IonIcon>
           </div>
 
-          {liked.length == 0 && (
+          {!loading && item.length == 0 && (
             <div className={styles.msgContainer}>
-              <p className={styles.noItem}>No wishlist items found</p>
+              <p className={styles.noItem}>No item selectd</p>
             </div>
           )}
+          {loading && <LoadingCard />}
 
-          {liked.map((data: any) => (
+          {item.map((data: any) => (
             <ItemCard data={data} />
           ))}
         </div>
