@@ -56,7 +56,7 @@ function DetailedAddedToCart({ selectDetailItem, open, setOpen }: any) {
               alignItems: "center",
             }}
           >
-            <IonTitle className={styles.title}>Customise</IonTitle>
+            <p className={styles.title}>Customise</p>
             <IonIcon
               onClick={() => setOpen(false)}
               className={styles.cancelIcon}

@@ -23,7 +23,7 @@ function DeleteAlert({ isOpen, setOpen, onDelete }: any) {
     >
       <IonContent className={`ion-padding ${styles.mainContent}`}>
         <IonRow class="ion-justify-content-between">
-          <IonTitle className={styles.title}></IonTitle>
+          <p className={styles.title}></p>
           <IonIcon
             onClick={() => setOpen(false)}
             className={styles.cancelIcon}

@@ -21,6 +21,7 @@ import {
   IonButton,
   IonHeader,
   IonChip,
+  IonToolbar,
 } from "@ionic/react";
 import thumbnailImg from "../../assets/menuImg.png";
 import { starSharp, add, remove, closeCircleSharp } from "ionicons/icons";
@@ -247,8 +248,12 @@ const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
     >
       <IonContent className="ion-padding">
         <IonHeader className="ion-no-border">
-          <IonRow class="ion-justify-content-between">
-            <IonTitle className={styles.title}>Customise</IonTitle>
+          <IonRow
+            style={{ width: "100%" }}
+            ion-align-items-center
+            class="ion-justify-content-between"
+          >
+            <h1 className={styles.title}>Customise</h1>
             <IonIcon
               onClick={() => setIsOpen(false)}
               className={styles.cancelIcon}

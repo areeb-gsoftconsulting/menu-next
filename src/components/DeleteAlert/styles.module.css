@@ -29,6 +29,9 @@
   --background: var(--ion-page-background-color);
   text-align: center;
 }
+.title {
+  margin: 0px !important;
+}
 .cancelBtn {
   --box-shadow: none;
   --border-radius: 8px;

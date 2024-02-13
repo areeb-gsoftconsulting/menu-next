@@ -45,7 +45,7 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
               alignItems: "center",
             }}
           >
-            <IonTitle className={styles.title}>Wishlist items</IonTitle>
+            <h1 className={styles.title}>Wishlist items</h1>
             <IonIcon
               onClick={() => setOpenFav(false)}
               className={styles.cancelIcon}

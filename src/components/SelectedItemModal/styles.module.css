@@ -4,7 +4,8 @@
   font-size: 20px;
   padding-inline: 0px;
   margin-top: 12px;
-  margin-bottom: 23px;
+  /* margin-bottom: 23px; */
+  margin: 12px 0px 0px 0px;
 }
 .cancelIcon {
   color: var(--ion-text-color);
