@@ -1,0 +1,219 @@
+.title {
+  font-family: "poppins-normal";
+  font-weight: 600;
+  font-size: 20px;
+  padding-inline: 0px;
+  text-align: left;
+  width: fit-content;
+  margin: 0px;
+  /* margin-top: 12px; */
+}
+.cardImgAndroid {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.cardImg {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 38px;
+}
+.rateIcon {
+  font-size: 20px;
+  color: #fecd00;
+}
+.name {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "poppins-normal";
+  padding-inline: 0px;
+}
+.price {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "poppins";
+  padding-inline: 0px;
+  text-align: end;
+}
+.categoryName {
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "poppins";
+  margin: 0px;
+}
+.flavCard {
+  margin-top: 20px;
+  border-radius: 16px;
+  background-color: var(--ion-custome-card-color);
+  padding: 14px;
+}
+.caption {
+  color: var(--ion-text-color);
+  font-family: "poppins-normal";
+  margin: 0px;
+  font-weight: 800;
+  font-size: 14px;
+}
+.required {
+  background-color: red;
+  padding: 5px 10px;
+  border-radius: 20px;
+  color: white;
+  font-family: "poppins";
+  margin: 0px;
+  font-size: 10px;
+  font-weight: 600;
+}
+.msg {
+  color: var(--ion-text-color);
+  font-family: "poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0px;
+  padding-top: 4px;
+  padding-bottom: 10px;
+}
+.priceLabel {
+  color: var(--ion-text-color);
+  text-align: right;
+  font-family: "poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0px;
+}
+.radioBtn {
+  --color: #6e6e6e;
+  --color-checked: red;
+  padding: 8px 0px; /* Adjust the padding to make the radio button smaller */
+  margin-inline-end: 8px !important;
+}
+.optionalCard {
+  margin-top: 20px;
+}
+.optional {
+  background-color: var(--ion-custome-card-color);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-family: "poppins";
+  margin: 0px;
+  font-size: 10px;
+  font-weight: 600;
+}
+.checkBox {
+  --checkbox-background-checked: red;
+  --checkbox-background: var(--ion-page-background);
+  --border-color: #6e6e6e;
+  --border-color-checked: red;
+  padding: 8px 0px;
+}
+.note {
+  font-family: "poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-top: 4px;
+  padding-bottom: 10px;
+  margin: 0px;
+}
+.textarea {
+  --highlight-color-focused: var(--ion-text-color);
+}
+.leftRow {
+  /* width: 20%; */
+}
+.disableBtn {
+  background-color: var(--ion-custome-card-color);
+  border-radius: 8px;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+.btnTxt {
+  margin: 0px;
+  color: white;
+  padding: 0px;
+}
+.activeBtn {
+  background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+
+  border-radius: 8px;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+.addBtn {
+  width: 50%;
+  --box-shadow: none;
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  /* --padding-bottom: 20px;
+  --padding-top: 20px; */
+  --border-radius: 8px;
+  text-transform: capitalize;
+}
+.cancelIcon {
+  color: var(--ion-text-color);
+  font-size: 1.5em;
+  cursor: pointer;
+}
+.actionBtn {
+  --box-shadow: none;
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  --border-radius: 8px;
+  --padding-bottom: 0px;
+  --padding-end: 15px;
+  --padding-start: 15px;
+  font-weight: bold;
+  height: 25px;
+  width: 35px;
+  --padding-top: 0px;
+}
+.description {
+  color: var(--ion-text-color);
+  font-family: "poppins";
+  font-size: 14px;
+}
+.iconBtn {
+  --box-shadow: none;
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  --border-radius: 8px;
+  padding-inline-start: 0px;
+  padding-inline-end: 0px;
+}
+.icons {
+  padding: 0px 10px;
+  height: 25px;
+}
+.iconsAndroid {
+  padding: 0px 5px;
+  height: 25px;
+}
+.err {
+  margin: 0px;
+  color: red;
+  font-size: 14px;
+  font-family: "poppins";
+}
+.tags {
+  background-color: var(--ion-custome-card-color);
+  color: var(--ion-text-color);
+}
+.tagLabel {
+  color: var(--ion-text-color);
+  margin: 0px;
+}

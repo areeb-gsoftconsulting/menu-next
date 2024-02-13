@@ -5,6 +5,7 @@ import styles from "./styles.module.css";
 import { closeCircleSharp } from "ionicons/icons";
 import getSingleItems from "../../services/getSingleItems";
 import LoadingCard from "../../components/LoadingCard";
+import DetailItemModalCard from "../DetailedItemModalCard";
 
 function DetailedAddedToCart({ selectDetailItem, open, setOpen }: any) {
   const modal = useRef<HTMLIonModalElement>(null);
@@ -71,9 +72,29 @@ function DetailedAddedToCart({ selectDetailItem, open, setOpen }: any) {
           )}
           {loading && <LoadingCard />}
 
-          {item.map((data: any) => (
-            <ItemCard data={data} expandByDefault={true} />
-          ))}
+          {/* {item.map((data: any) => {
+            data.customization.length < 1 ? (
+              <ItemCard data={data} expandByDefault={true} />
+            ) : (
+              <DetailItemModalCard data={data} setIsOpen={setOpen} />
+            );
+          })} */}
+          {item.map((data: any) => {
+            return data.customization.length < 1 ? (
+              <ItemCard key={data.id} data={data} expandByDefault={true} />
+            ) : (
+              <DetailItemModalCard
+                key={data.id}
+                data={data}
+                setIsOpen={setOpen}
+              />
+            );
+          })}
+          {/* {item.map((data: any) => {
+            data.customization.length < 1
+              ? console.log("111111")
+              : console.log("2222");
+          })} */}
         </div>
       </IonContent>
     </IonModal>
