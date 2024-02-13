@@ -38,10 +38,13 @@ import {
 } from "../../store/slices/cartSlice";
 import ItemDescriptionContainer from "../ItemDescriptionContainer";
 
-const ItemCard = ({ data }: any) => {
+const ItemCard = ({ data, expandByDefault }: any) => {
+  console.log({ expandByDefault });
   const [isOpen, setIsOpen] = useState(false);
   const venue = useSelector((data: any) => data.restaurant.venue);
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(
+    !expandByDefault ? false : expandByDefault
+  );
   const dispatch = useDispatch();
   let categoryName = data.categories.map((obj: any) => obj.name);
   categoryName = categoryName.join(" ,");

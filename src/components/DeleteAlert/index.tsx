@@ -47,7 +47,10 @@ function DeleteAlert({ isOpen, setOpen, onDelete }: any) {
           <IonButton
             size="small"
             className={styles.delBtn}
-            onClick={onDelete}
+            onClick={() => {
+              onDelete();
+              setOpen(false);
+            }}
             mode="ios"
           >
             Delete

@@ -56,7 +56,7 @@ function DetailedAddedToCart({ selectDetailItem, open, setOpen }: any) {
               alignItems: "center",
             }}
           >
-            <IonTitle className={styles.title}>Item</IonTitle>
+            <IonTitle className={styles.title}>Customise</IonTitle>
             <IonIcon
               onClick={() => setOpen(false)}
               className={styles.cancelIcon}
@@ -72,7 +72,7 @@ function DetailedAddedToCart({ selectDetailItem, open, setOpen }: any) {
           {loading && <LoadingCard />}
 
           {item.map((data: any) => (
-            <ItemCard data={data} />
+            <ItemCard data={data} expandByDefault={true} />
           ))}
         </div>
       </IonContent>
