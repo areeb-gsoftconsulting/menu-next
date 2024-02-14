@@ -8,21 +8,24 @@ const ItemDescriptionContainer = ({ data }: any) => {
   const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
 
-  const [text, setText] = useState<any>([]);
-  const description = async () => {
-    console.log("testing 1", data);
-    let temp = await JSON.parse(data);
-    setText(temp);
-  };
+  const [text, setText] = useState<any>(data || []);
+  // const description = async () => {
+  //   console.log("testing 1", data);
+  //   let temp = await JSON.parse(data);
+  //   setText(temp);
+  // };
 
   useEffect(() => {
-    description();
-  }, []);
+    // description();
+    setText(data);
+  }, [data]);
 
-  console.log({ text });
+  console.log("yeh text", text);
   // Render the Slate context.
 
-  return text.length == 0 ? (
+  editor.children = data;
+
+  return false ? (
     <p>Loading...</p>
   ) : (
     <Slate editor={editor} initialValue={text}>

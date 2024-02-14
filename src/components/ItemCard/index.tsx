@@ -202,9 +202,9 @@ const ItemCard = ({ data, expandByDefault }: any) => {
         {!expanded ? (
           <IonText className={styles.description}>{desc}</IonText>
         ) : (
-          <ItemDescriptionContainer data={data.description} />
+          <ItemDescriptionContainer data={JSON.parse(data.description)} />
         )}
-        {!expanded && <p className={styles.more}>more</p>}
+        {!expanded && <p className={styles.more}>see more</p>}
         {expanded && (
           <div style={{ display: "flex", alignItems: "center" }}>
             <p className={styles.tagLabel}>Tags: </p>
@@ -393,7 +393,7 @@ const ItemCard = ({ data, expandByDefault }: any) => {
             </IonButton>
           </IonRow>
         )}
-        {expanded && <p className={styles.more}>less</p>}
+        {expanded && <p className={styles.more}>see less</p>}
       </IonCard>
       {isOpen && (
         <ItemDetailsCard data={data} isOpen={isOpen} setIsOpen={setIsOpen} />
