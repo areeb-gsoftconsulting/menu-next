@@ -55,6 +55,7 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
   console.log("selectedCustomization", selectedCustomization);
   const [requiredCustoms, setRequiredCustome] = useState([]);
   const [count, setCount] = useState(1);
+  const [loadMore, setLoadMore] = useState(false);
 
   const handle1 = (data: any) => {
     console.log("selectedCustomization === ", data);
@@ -238,6 +239,12 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
       dispatch(setAddedToCart(true));
     }
   };
+  console.log("this==>", data.description.length);
+  let description =
+    data.description.length > 190
+      ? JSON.parse(data.description)
+      : data.description;
+
   return (
     <div>
       <IonImg
@@ -270,7 +277,26 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
       </div>
 
       {/* <IonText className={styles.description}>{data.description}</IonText> */}
-      <ItemDescriptionContainer data={data.description} />
+      {!loadMore && data.description.length > 190 ? (
+        <ItemDescriptionContainer data={[description[0]]} />
+      ) : loadMore && data.description.length > 190 ? (
+        <ItemDescriptionContainer data={JSON.parse(data.description)} />
+      ) : (
+        <ItemDescriptionContainer data={JSON.parse(data.description)} />
+      )}
+      {/* <ItemDescriptionContainer data={data.description} /> */}
+      {data.description.length > 190 && (
+        <p
+          style={{
+            color: "red",
+
+            fontFamily: "poppins",
+          }}
+          onClick={() => setLoadMore(!loadMore)}
+        >
+          {loadMore ? "see less" : "see more"}
+        </p>
+      )}
 
       <div style={{ display: "flex", alignItems: "center" }}>
         <p className={styles.tagLabel}>Tags: </p>
