@@ -26,7 +26,8 @@ import {
   remove,
   heartSharp,
 } from "ionicons/icons";
-import thumbnailImg from "../../assets/menuImg.png";
+import placeholderDark from "../../assets/placeholderDark.png";
+import placeholderLight from "../../assets/placeholderLight.png";
 import ItemDetailsCard from "../ItemDetailsCard";
 import { useEffect, useState } from "react";
 import { setLiked, setLikedItems } from "../../store/slices/likeSlice";
@@ -61,6 +62,10 @@ const ItemCard = ({ data, expandByDefault }: any) => {
   const liked = useSelector((data: any) => data.like.items);
   const numberInCart = cart.filter((item: any) => item.id == data._id);
   const [count, setCount] = useState(1);
+  const [loadingImage, setImageLoading] = useState(true);
+  const isDark = useSelector((data: any) => data.theme.isDark);
+
+  console.log({ loadingImage });
 
   useEffect(() => {
     if (!expanded) {
@@ -159,7 +164,19 @@ const ItemCard = ({ data, expandByDefault }: any) => {
           className={styles.likeIcon}
           icon={isLiked == -1 ? heartOutline : heartSharp}
         />
-        <IonImg className={styles.cardImg} src={data.imageUrl} />
+
+        <IonImg
+          onIonImgWillLoad={() => setImageLoading(false)}
+          onIonImgDidLoad={() => setImageLoading(false)}
+          className={styles.cardImg}
+          src={
+            loadingImage
+              ? isDark
+                ? placeholderDark
+                : placeholderLight
+              : data.imageUrl
+          }
+        />
         {numberInCart.length > 0 && (
           <div className={styles.badge}>
             <p className={styles.badgeTxt}>{numberInCart[0].quantity}</p>
