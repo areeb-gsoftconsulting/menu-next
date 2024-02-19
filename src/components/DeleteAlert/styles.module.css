@@ -25,6 +25,19 @@
   --border-radius: 16px;
   --border-style: solid;
 }
+.mainMobile {
+  --backdrop-opacity: 0.3 !important;
+  --backdrop-color: red;
+  --background: var(--ion-page-background-color);
+  --width: 300px;
+  --min-width: 250px;
+  --max-height: 250px;
+  --border-color: white;
+  --border-width: 1px;
+  --backdrop-opacity: none;
+  --border-radius: 16px;
+  --border-style: solid;
+}
 .mainContent {
   --background: var(--ion-page-background-color);
   text-align: center;
