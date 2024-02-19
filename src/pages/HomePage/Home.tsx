@@ -1,8 +1,10 @@
 import {
   IonContent,
+  IonHeader,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
   IonPage,
+  IonToolbar,
   useIonRouter,
 } from "@ionic/react";
 import styles from "./Home.module.css";
@@ -241,7 +243,11 @@ const Home: React.FC = () => {
         fullscreen
       >
         <p className={styles.menu}>{currentMenu.name}</p>
-        <CategorySlider menuId={currentMenu._id} />
+        <IonHeader mode="ios" className={`ion-no-border`}>
+          <IonToolbar className={`${styles.toolbarScrolled}`}>
+            <CategorySlider menuId={currentMenu._id} />
+          </IonToolbar>
+        </IonHeader>
         {/* <IonList>
           <IonItem lines="none">
             <IonIcon slot="start" />
