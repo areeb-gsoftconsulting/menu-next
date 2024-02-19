@@ -35,6 +35,7 @@ const WelcomePage: React.FC = () => {
   console.log("Requested slug:", sanitizedUrl);
   const { presentToast } = useToast();
   const [failed, setFailed] = useState(false);
+  const [notFound, setNotFound] = useState(false);
 
   const dispatch = useDispatch();
   const getVlenue = async () => {
@@ -44,6 +45,12 @@ const WelcomePage: React.FC = () => {
       let res = await getVenues(sanitizedUrl);
 
       if (res.data.statusCode == 200) {
+        if (res.data.data.menus.length == 0) {
+          setNotFound(true);
+
+          return;
+        }
+
         if (res.data.data.menus.length > 1) {
           router.push(`/${sanitizedUrl}/menu`);
         } else {
@@ -70,7 +77,12 @@ const WelcomePage: React.FC = () => {
     <IonPage className={styles.page}>
       <IonContent className={styles.container} fullscreen>
         <IonImg className={styles.img} src={isDark ? darkImg : lightImg} />
-        {!failed ? (
+
+        {notFound ? (
+          <IonText className={styles.text}>
+            Please create at least one menu from admin dashboard
+          </IonText>
+        ) : !notFound && !failed ? (
           <IonText className={styles.text}>
             Opening your restaurant menu
           </IonText>
@@ -85,7 +97,7 @@ const WelcomePage: React.FC = () => {
               the restaurant is listed on our platform. Thank you for using
               MenuNext!
             </IonText>
-            <IonButton href="/factory-girl-berlin/home">Dummy</IonButton>
+            {/* <IonButton href="/factory-girl-berlin/home">Dummy</IonButton> */}
           </IonCol>
         )}
       </IonContent>

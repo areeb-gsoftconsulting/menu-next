@@ -28,7 +28,9 @@ ion-content {
 .headerContainer {
   padding: 0px 18px 0px 18px;
 }
-
+.toolbarScrolled {
+  --background: var(--ion-page-background-color);
+}
 .transitionHeader {
   transform: translateY(0px);
   animation: fadeInFromTop 0.5s ease-in-out;
