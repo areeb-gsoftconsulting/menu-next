@@ -64,8 +64,9 @@ const ItemCard = ({ data, expandByDefault }: any) => {
   const [count, setCount] = useState(1);
   const [loadingImage, setImageLoading] = useState(true);
   const isDark = useSelector((data: any) => data.theme.isDark);
+  const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
 
-  console.log({ loadingImage });
+  console.log({ currentMenu });
 
   useEffect(() => {
     if (!expanded) {
@@ -134,7 +135,7 @@ const ItemCard = ({ data, expandByDefault }: any) => {
           >
             <div className={styles.outerDiv}>
               <IonThumbnail className={styles.thumbnail}>
-                <img alt="Logo" src={venue?.logo} />
+                <img alt="Logo" src={currentMenu?.imageUrl} />
               </IonThumbnail>
             </div>
 
