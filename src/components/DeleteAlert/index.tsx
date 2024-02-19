@@ -10,6 +10,7 @@ import {
   IonRow,
   IonTitle,
   IonToolbar,
+  isPlatform,
 } from "@ionic/react";
 import styles from "./styles.module.css";
 import { starSharp, add, remove, closeCircleSharp } from "ionicons/icons";
@@ -18,7 +19,11 @@ function DeleteAlert({ isOpen, setOpen, onDelete }: any) {
   return (
     <IonModal
       onDidDismiss={() => setOpen(false)}
-      className={styles.main}
+      className={
+        isPlatform("mobileweb") || isPlatform("mobile")
+          ? styles.mainMobile
+          : styles.main
+      }
       isOpen={isOpen}
     >
       <IonContent className={`ion-padding ${styles.mainContent}`}>

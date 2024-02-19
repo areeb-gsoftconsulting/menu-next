@@ -88,7 +88,7 @@ ion-content {
   cursor: pointer;
 }
 .heartIcon {
-  color: var(--ion-text-color);
+  color: red !important;
   font-size: 22px !important;
   margin-right: 8px;
   cursor: pointer;
