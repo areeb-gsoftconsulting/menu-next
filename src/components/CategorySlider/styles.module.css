@@ -24,3 +24,11 @@ ion-segment-button {
   text-transform: capitalize;
   color: var(--ion-text-color);
 }
+.checkedCat {
+  border: 2px solid red;
+  padding: 2px;
+  border-radius: 50%;
+}
+.uncheckedCat {
+  border-radius: 50%;
+}

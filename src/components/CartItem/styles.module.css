@@ -110,9 +110,9 @@
 }
 @media only screen and (max-width: 500px) {
   .leftBox {
-    width: 75%;
+    width: 70%;
   }
   .rightBox {
-    width: 25%;
+    width: 30%;
   }
 }
