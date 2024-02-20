@@ -48,7 +48,7 @@ const HeaderOne = ({
     console.log("itemNameSearch.length", itemNameSearch.length);
     setLoading(true);
     if (itemNameSearch == "") {
-      dispatch(setSelectedCategory("1"));
+      dispatch(setSelectedCategory(["1"]));
       return;
     }
 
@@ -63,13 +63,13 @@ const HeaderOne = ({
         console.log("=======>", res.data.data);
         if (res.data.data.length == 0) {
           setItemsEnded(true);
-          dispatch(setSelectedCategory("2"));
+          dispatch(setSelectedCategory(["2"]));
           setItems([]);
           // presentToast("No item found");
         } else {
           setItemsEnded(true);
           setItems(res.data.data);
-          dispatch(setSelectedCategory("2"));
+          dispatch(setSelectedCategory(["2"]));
           scrollToTop();
         }
       }

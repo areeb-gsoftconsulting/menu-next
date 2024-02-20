@@ -52,7 +52,7 @@ const Menu = () => {
             <Link to={`/${routeName}/home`}>
               <IonCol
                 onClick={() => {
-                  dispatch(setSelectedCategory("1"));
+                  dispatch(setSelectedCategory(["1"]));
                   dispatch(setCurrentMenu(obj));
                   console.log("qwertyui");
                 }}

@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface categorySlice {
-  selectedCategory: string;
+  selectedCategory: [];
   categories: [{}];
 }
 
 const initialState: categorySlice = {
-  selectedCategory: "1",
+  selectedCategory: ["1"],
   categories: [
     {
       _id: "1",

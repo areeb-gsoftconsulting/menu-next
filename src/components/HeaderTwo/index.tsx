@@ -46,7 +46,7 @@ const HeaderTwo = ({
   const getItem = async ({ itemNameSearch }: any) => {
     console.log({ itemNameSearch });
     if (itemNameSearch == "") {
-      dispatch(setSelectedCategory("1"));
+      dispatch(setSelectedCategory(["1"]));
       return;
     }
     setLoading(true);
@@ -62,14 +62,14 @@ const HeaderTwo = ({
         console.log("=======>", res.data.data);
         if (res.data.data.length == 0) {
           setItemsEnded(true);
-          dispatch(setSelectedCategory("2"));
+          dispatch(setSelectedCategory(["2"]));
           setItems([]);
           // presentToast("No item found");
         } else {
           setItemsEnded(true);
           setItems(res.data.data);
           scrollToTop();
-          dispatch(setSelectedCategory("2"));
+          dispatch(setSelectedCategory(["2"]));
         }
       }
     } catch (error) {

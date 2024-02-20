@@ -64,7 +64,8 @@ const Home: React.FC = () => {
   console.log({ addedToCart });
 
   const getItem = async (e: any, { page }: any) => {
-    console.log("get all");
+    console.log("testing all");
+
     setLoading(true);
 
     try {
@@ -99,10 +100,11 @@ const Home: React.FC = () => {
   };
 
   const getCategoryItem = async (e: any, { page }: any) => {
+    console.log("testing getCatItem");
     setLoading(true);
 
     let tempFilter = {
-      categoryIdsToFilter: [selectedCategory],
+      categoryIdsToFilter: selectedCategory,
     };
     const frilters = JSON.stringify(tempFilter);
 
@@ -140,9 +142,10 @@ const Home: React.FC = () => {
       setCategoryItemLoading(false);
     }
   };
-  console.log({ selectedCategory });
+  console.log({ selectedCategory: selectedCategory.includes("1") });
   useEffect(() => {
-    if (selectedCategory && selectedCategory == "2") {
+    if (selectedCategory && selectedCategory.includes("2")) {
+      console.log("testing exception");
       return;
     }
     setCategoryItemLoading(true);
@@ -150,16 +153,12 @@ const Home: React.FC = () => {
     //   contentRef.current.scrollToTop(300); // Adjust scroll duration if needed
     // }
 
-    if (
-      selectedCategory &&
-      selectedCategory !== "1" &&
-      selectedCategory !== ""
-    ) {
+    if (!selectedCategory.includes("1")) {
       setItemsEnded(false);
       setSelectedCategoryPageNum(0);
       getCategoryItem(undefined, { page: 0 });
     }
-    if (selectedCategory == "1") {
+    if (selectedCategory.includes("1")) {
       setPageNumber(0);
       setItemsEnded(false);
       getItem(undefined, { page: 0 });
@@ -177,16 +176,9 @@ const Home: React.FC = () => {
   console.log("thissssss", items);
 
   const onEndReach = async (e: any) => {
-    console.log("test 1", loading, items.length);
-
-    console.log("test 2");
-
-    if (selectedCategory == "1") {
-      console.log("test 3");
+    if (selectedCategory.includes("1")) {
       getItem(e, { page: pageNumber });
     } else {
-      console.log("test 4");
-
       await getCategoryItem(e, { page: selectedCategoryPageNum });
     }
   };

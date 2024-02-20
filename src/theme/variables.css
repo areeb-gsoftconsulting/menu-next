@@ -375,11 +375,11 @@ body {
   src: url("../assets/fonts/Poppins-SemiBold.ttf");
 }
 
-.segment-button-checked > div {
+/* .segment-button-checked > div {
   border: 2px solid red;
   padding: 2px;
   border-radius: 50%;
-}
+} */
 
 .searchbar-input.sc-ion-searchbar-md {
   padding-inline-end: 0px;

@@ -58,13 +58,40 @@ const CategorySlider = ({ menuId }: any) => {
     }
   }, []);
 
+  // const onSelect = (id: any) => {
+  //   if (selectedChannel.includes(id)) {
+  //     let tempSeleted = selectedChannel.filter((data: any) => data !== id);
+  //     dispatch(
+  //       selectedChannelAction.getSelectedChannels({
+  //         channel: tempSeleted,
+  //       })
+  //     );
+  //   } else {
+  //     dispatch(
+  //       selectedChannelAction.getSelectedChannels({
+  //         channel: [id, ...selectedChannel],
+  //       })
+  //     );
+  //   }
+  // };
+
   const selectCategory = (e: any) => {
     if (e._id == "1") {
-      dispatch(setSelectedCategory(e._id));
+      dispatch(setSelectedCategory([e._id]));
+      return;
+    }
+    if (selectedCategory.includes(e._id)) {
+      let tempSeleted = selectedCategory.filter((data: any) => data !== e._id);
+      let updatedCategories = tempSeleted.filter((data) => data !== "1");
+      if (updatedCategories.length == 0) {
+        dispatch(setSelectedCategory(["1"]));
+      } else dispatch(setSelectedCategory(updatedCategories));
     } else {
-      dispatch(setSelectedCategory(e._id));
+      let updatedCategories = selectedCategory.filter((data) => data !== "1");
+      dispatch(setSelectedCategory([e._id, ...updatedCategories]));
     }
   };
+  console.log("testing baahiir", selectedCategory);
 
   return (
     <IonToolbar className={`${styles.toolbar} ion-no-padding`}>
@@ -81,7 +108,13 @@ const CategorySlider = ({ menuId }: any) => {
             color="secondary"
             value={obj._id}
           >
-            <div>
+            <div
+              className={
+                selectedCategory.includes(obj._id)
+                  ? styles.checkedCat
+                  : styles.uncheckedCat
+              }
+            >
               <IonImg
                 className={styles.image}
                 src={obj.name == "All" ? categoryImg : obj.imageUrl}
