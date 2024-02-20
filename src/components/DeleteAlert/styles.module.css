@@ -18,7 +18,7 @@
   --background: var(--ion-page-background-color);
   --width: 400px;
   --min-width: 250px;
-  --max-height: 230px;
+  --max-height: 220px;
   --border-color: white;
   --border-width: 1px;
   --backdrop-opacity: none;
@@ -31,7 +31,7 @@
   --background: var(--ion-page-background-color);
   --width: 300px;
   --min-width: 250px;
-  --max-height: 250px;
+  --max-height: 180px;
   --border-color: white;
   --border-width: 1px;
   --backdrop-opacity: none;
