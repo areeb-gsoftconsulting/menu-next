@@ -33,7 +33,7 @@ export const cartSlice = createSlice({
 
           totalBill += itemPrice * item.quantity;
         });
-        totalAmount = totalBill;
+        totalAmount = totalBill.toFixed(2);
         return totalBill;
       }
       calculateTotalBill(tempCart);
