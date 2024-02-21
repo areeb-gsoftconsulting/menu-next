@@ -210,7 +210,7 @@
   height: 25px;
 }
 .addBtn {
-  width: 50%;
+  width: 100%;
   --box-shadow: none;
   --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
   /* --padding-bottom: 20px;
@@ -230,4 +230,28 @@
 }
 .hiddenImg {
   display: none;
+}
+.btnRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 30%;
+}
+.addBtnDiv {
+  width: 65%;
+}
+@media only screen and (min-width: 426px) {
+  .addBtnDiv {
+    width: 76%;
+  }
+  .btnRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 20%;
+  }
 }
