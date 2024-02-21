@@ -3,4 +3,10 @@
   --max-width: 400px !important;
   --min-height: 200px !important;
   --min-width: 200px !important;
+  --background: transparent;
+  --box-shadow: none;
+}
+.ionContentClass {
+  --background: transparent;
+  box-shadow: none !important;
 }

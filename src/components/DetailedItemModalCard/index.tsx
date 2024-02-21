@@ -457,72 +457,57 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
         ></IonTextarea>
       </div>
       <IonRow
-        className={`ion-justify-content-evenly ion-align-items-center ion-padding-vertical`}
+        className={`ion-justify-content-between ion-align-items-center ion-padding-vertical
+        ion-nowrap
+        `}
       >
-        <IonButton
-          // onClick={() =>
-          //   addToCart({
-          //     id: data._id,
-          //     name: data.name,
-          //     price: data.prices.length > 1 ? selectedPrice : data.prices[0],
-          //     customization: selectedCustomization,
-          //     comments: comments,
-          //     image: data.imageUrl,
-          //     quantity: -1,
-          //   })
-          // }
-          onClick={() => {
-            if (count > 1) setCount(count - 1);
-          }}
-          className={`${styles.iconBtn} ion-no-padding`}
-        >
-          <IonIcon
-            className={isPlatform("ios") ? styles.icons : styles.iconsAndroid}
-            slot="icon-only"
-            icon={remove}
-          ></IonIcon>
-        </IonButton>
-        <h3>{count}</h3>
-        {/* <IonButton className={styles.actionBtn}>+</IonButton> */}
-        <IonButton
-          // onClick={() =>
-          //   addToCart({
-          //     id: data._id,
-          //     name: data.name,
-          //     price: data.prices.length > 1 ? selectedPrice : data.prices[0],
-          //     customization: selectedCustomization,
-          //     comments: comments,
-          //     image: data.imageUrl,
-          //     quantity: 1,
-          //   })
-          // }
-          onClick={() => {
-            setCount(count + 1);
-          }}
-          className={`${styles.iconBtn} ion-no-padding`}
-        >
-          <IonIcon
-            className={isPlatform("ios") ? styles.icons : styles.iconsAndroid}
-            slot="icon-only"
-            icon={add}
-          ></IonIcon>
-        </IonButton>
-        <IonButton
-          onClick={() =>
-            addToCart({
-              id: data._id,
-              name: data.name,
-              price: data.prices.length > 1 ? selectedPrice : data.prices[0],
-              customization: selectedCustomization,
-              comments: comments,
-              image: data.imageUrl,
-              quantity: count,
-            })
-          }
-          className={styles.addBtn}
-        >
-          Add to Cart
-        </IonButton>
+        <div className={styles.btnRow}>
+          <IonButton
+            disabled={count < 2}
+            onClick={() => {
+              if (count > 1) setCount(count - 1);
+            }}
+            className={`${styles.iconBtn} ion-no-padding`}
+          >
+            <IonIcon
+              className={isPlatform("ios") ? styles.icons : styles.iconsAndroid}
+              slot="icon-only"
+              icon={remove}
+            ></IonIcon>
+          </IonButton>
+          <h3>{count}</h3>
+          <IonButton
+            onClick={() => {
+              setCount(count + 1);
+            }}
+            className={`${styles.iconBtn} ion-no-padding`}
+          >
+            <IonIcon
+              className={isPlatform("ios") ? styles.icons : styles.iconsAndroid}
+              slot="icon-only"
+              icon={add}
+            ></IonIcon>
+          </IonButton>
+        </div>
+
+        <div className={styles.addBtnDiv}>
+          <IonButton
+            onClick={() =>
+              addToCart({
+                id: data._id,
+                name: data.name,
+                price: data.prices.length > 1 ? selectedPrice : data.prices[0],
+                customization: selectedCustomization,
+                comments: comments,
+                image: data.imageUrl,
+                quantity: count,
+              })
+            }
+            className={styles.addBtn}
+          >
+            Add to Cart
+          </IonButton>
+        </div>
       </IonRow>
     </div>
   );

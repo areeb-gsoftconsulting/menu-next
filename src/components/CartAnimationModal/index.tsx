@@ -58,7 +58,7 @@ function CartAnimationModal({ addedToCart }: any) {
       leaveAnimation={leaveAnimation}
       className={styles.main}
     >
-      <IonContent>
+      <IonContent className={styles.ionContentClass}>
         <IonGrid
           className="ion-no-padding ion-align-items-center ion-justify-content-center"
           style={{ height: "100%" }}
