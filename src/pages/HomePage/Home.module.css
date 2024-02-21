@@ -65,6 +65,7 @@ ion-content {
 /* Apply the fade-out animation */
 
 .toolbarScrolled {
+  padding: 0px !important;
   --background: var(--ion-page-background-color);
   border-bottom: 1px solid var(--ion-toolbar-borer);
 }

@@ -32,7 +32,7 @@ const WelcomePage: React.FC = () => {
   const sanitizedUrl = requestedUrl
     ? requestedUrl.replace(/^\/+|\/+$/g, "")
     : "";
-  console.log("Requested slug:", sanitizedUrl);
+  console.log({ sanitizedUrl });
   const { presentToast } = useToast();
   const [failed, setFailed] = useState(false);
   const [notFound, setNotFound] = useState(false);
@@ -71,7 +71,9 @@ const WelcomePage: React.FC = () => {
   };
 
   useEffect(() => {
-    getVlenue();
+    if (sanitizedUrl !== "") {
+      getVlenue();
+    }
   }, []);
   return (
     <IonPage className={styles.page}>
@@ -97,9 +99,9 @@ const WelcomePage: React.FC = () => {
               the restaurant is listed on our platform. Thank you for using
               MenuNext!
             </IonText>
-            {/* <IonButton href="/factory-girl-berlin/home">Dummy</IonButton> */}
           </IonCol>
         )}
+        <IonButton href="/scan-qr-code">Dummy</IonButton>
       </IonContent>
     </IonPage>
   );

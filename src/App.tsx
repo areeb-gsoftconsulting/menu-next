@@ -34,6 +34,7 @@ import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/HomePage/Home";
 import { useEffect } from "react";
 import { setIsDark } from "./store/slices/themeSlice";
+import Scanner from "./pages/Scanner";
 
 setupIonicReact();
 const DynamicRouteComponent: React.FC = () => {
@@ -74,6 +75,7 @@ const DynamicRouteComponent: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  console.log("run");
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
@@ -82,6 +84,9 @@ const App: React.FC = () => {
             <Switch>
               <Route path="/welcome" exact>
                 <WelcomePage />
+              </Route>
+              <Route path="/scan-qr-code" exact>
+                <Scanner />
               </Route>
               <Route path="/:userName">
                 <DynamicRouteComponent />
