@@ -68,7 +68,7 @@ ion-content {
 }
 .toolbar {
   --background: var(--ion-page-background-color);
-  padding: 0px 18px 5px 18px;
+  padding: 5px 18px 5px 18px !important;
   border-bottom: 1px solid var(--ion-toolbar-borer);
 }
 .badge {
