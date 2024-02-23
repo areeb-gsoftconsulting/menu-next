@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   IonCard,
   IonCol,
@@ -24,10 +24,14 @@ import getVenues from "../../services/getVenue";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentMenu } from "../../store/slices/restaurantSlice";
 import { setSelectedCategory } from "../../store/slices/categorySlice";
+import placeholderDark from "../../assets/placeholderDark.png";
+import placeholderLight from "../../assets/placeholderLight.png";
 
 const Menu = () => {
   const dispatch = useDispatch();
   // const toggleDarkModeHandler = () => document.body.classList.toggle("dark");
+  const isDark = useSelector((data: any) => data.theme.isDark);
+  const [loadingImage, setImageLoading] = useState(true);
   const venue = useSelector((data: any) => data.restaurant.venue);
   console.log({ venue });
   const routeName = useSelector((data: any) => data.restaurant.restSlug);
@@ -58,7 +62,18 @@ const Menu = () => {
                 }}
                 key={ind}
               >
-                <IonImg className={styles.menuImg} src={obj.imageUrl} />
+                <IonImg
+                  onIonImgWillLoad={() => setImageLoading(false)}
+                  onIonImgDidLoad={() => setImageLoading(false)}
+                  className={styles.menuImg}
+                  src={
+                    loadingImage
+                      ? isDark
+                        ? placeholderDark
+                        : placeholderLight
+                      : obj.imageUrl
+                  }
+                />
                 <p className={styles.labelContainer}>{obj.name}</p>
               </IonCol>
             </Link>

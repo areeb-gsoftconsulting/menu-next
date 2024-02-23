@@ -16,17 +16,21 @@ import {
   setSelectedCategory,
 } from "../../store/slices/categorySlice";
 import { useToast } from "../../hooks/useToast";
+import placeholderDark from "../../assets/placeholderDark.png";
+import placeholderLight from "../../assets/placeholderLight.png";
 
 const CategorySlider = ({ menuId }: any) => {
+  const isDark = useSelector((data: any) => data.theme.isDark);
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(1);
+  const [loadingImage, setImageLoading] = useState(true);
   const { presentToast } = useToast();
   const dispatch = useDispatch();
   const selectedCategory = useSelector(
     (data: any) => data.category.selectedCategory
   );
 
-  console.log({ selectedCategory });
+  console.log("====>loadingImage", { loadingImage });
   // const [categories, setCategories] = useState<any>([
   //   {
   //     _id: "1",
@@ -117,8 +121,19 @@ const CategorySlider = ({ menuId }: any) => {
                 }
               >
                 <IonImg
+                  onIonImgWillLoad={() => setImageLoading(false)}
+                  onIonImgDidLoad={() => setImageLoading(false)}
                   className={styles.image}
-                  src={obj.name == "All" ? categoryImg : obj.imageUrl}
+                  // src={obj.name == "All" ? categoryImg : obj.imageUrl}
+                  src={
+                    loadingImage
+                      ? isDark
+                        ? placeholderDark
+                        : placeholderLight
+                      : obj.name == "All"
+                      ? categoryImg
+                      : obj.imageUrl
+                  }
                 />
               </div>
             </IonSegmentButton>
