@@ -189,6 +189,7 @@
 .tags {
   background-color: var(--ion-custome-card-color);
   color: var(--ion-text-color);
+  margin-left: 0px;
 }
 .tagLabel {
   color: var(--ion-text-color);
