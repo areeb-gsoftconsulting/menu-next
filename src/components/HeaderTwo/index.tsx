@@ -98,6 +98,7 @@ const HeaderTwo = ({
           </Link>
 
           {/*  */}
+
           <IonRow class="ion-justify-content-between ion-align-items-center ion-align-items-center">
             <IonCol>
               <div
@@ -119,7 +120,6 @@ const HeaderTwo = ({
                 <IonIcon
                   className={styles.heartIcon}
                   icon={heartOutline}
-                  size="large"
                   onClick={() => setOpenFav(!openFav)}
                 ></IonIcon>
                 <IonToggle
@@ -127,7 +127,8 @@ const HeaderTwo = ({
                   onIonChange={toggleDarkModeHandler}
                   name="darkMode"
                 />
-                <IonCol onClick={() => setIsCartOpen(true)} size="4">
+
+                {/* <IonCol onClick={() => setIsCartOpen(true)}>
                   {cart.length > 0 && (
                     <IonBadge className={styles.badge}>
                       {cart.reduce((accumulator: any, currentItem: any) => {
@@ -136,10 +137,29 @@ const HeaderTwo = ({
                     </IonBadge>
                   )}
                   <IonIcon
+                    style={{
+                      marginTop: "4px",
+                    }}
                     className={styles.cartIcon}
                     icon={cartOutline}
                   ></IonIcon>
-                </IonCol>
+                </IonCol> */}
+                <>
+                  {cart.length > 0 && (
+                    <IonBadge className={styles.badge}>
+                      {cart.reduce((accumulator: any, currentItem: any) => {
+                        return accumulator + parseInt(currentItem.quantity);
+                      }, 0)}
+                    </IonBadge>
+                  )}
+                  <IonIcon
+                    style={{
+                      marginTop: "4px",
+                    }}
+                    className={styles.cartIcon}
+                    icon={cartOutline}
+                  ></IonIcon>
+                </>
               </div>
             </IonCol>
           </IonRow>

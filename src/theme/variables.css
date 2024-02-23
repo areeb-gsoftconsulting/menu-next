@@ -392,7 +392,7 @@ body {
   top: 9px;
 }
 ion-toggle {
-  padding: 12px;
+  padding: 8px;
   height: 20px;
   --handle-width: 15px;
   --handle-height: 15px;
