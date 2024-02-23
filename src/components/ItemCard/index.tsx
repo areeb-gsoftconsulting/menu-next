@@ -133,11 +133,11 @@ const ItemCard = ({ data, expandByDefault }: any) => {
           <IonRow
             className={`ion-justify-content-between ion-align-items-center ${styles.cardName}`}
           >
-            <div className={styles.outerDiv}>
+            {/* <div className={styles.outerDiv}>
               <IonThumbnail className={styles.thumbnail}>
                 <img alt="Logo" src={currentMenu?.imageUrl} />
               </IonThumbnail>
-            </div>
+            </div> */}
 
             <div
               style={{

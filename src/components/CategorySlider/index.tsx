@@ -102,26 +102,28 @@ const CategorySlider = ({ menuId }: any) => {
         scrollable
       >
         {categories.map((obj: any, ind: any) => (
-          <IonSegmentButton
-            onClick={() => selectCategory(obj)}
-            key={ind}
-            color="secondary"
-            value={obj._id}
-          >
-            <div
-              className={
-                selectedCategory.includes(obj._id)
-                  ? styles.checkedCat
-                  : styles.uncheckedCat
-              }
+          <>
+            <IonSegmentButton
+              onClick={() => selectCategory(obj)}
+              key={ind}
+              color="secondary"
+              value={obj._id}
             >
-              <IonImg
-                className={styles.image}
-                src={obj.name == "All" ? categoryImg : obj.imageUrl}
-              />
-            </div>
+              <div
+                className={
+                  selectedCategory.includes(obj._id)
+                    ? styles.checkedCat
+                    : styles.uncheckedCat
+                }
+              >
+                <IonImg
+                  className={styles.image}
+                  src={obj.name == "All" ? categoryImg : obj.imageUrl}
+                />
+              </div>
+            </IonSegmentButton>
             <p className={styles.name}>{obj.name}</p>
-          </IonSegmentButton>
+          </>
         ))}
       </IonSegment>
     </IonToolbar>
