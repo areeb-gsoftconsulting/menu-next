@@ -220,7 +220,9 @@ const ItemCard = ({ data, expandByDefault }: any) => {
         {!expanded ? (
           <IonText className={styles.description}>{desc}</IonText>
         ) : (
-          <ItemDescriptionContainer data={JSON.parse(data.description)} />
+          <div style={{ paddingTop: "20px" }}>
+            <ItemDescriptionContainer data={JSON.parse(data.description)} />
+          </div>
         )}
         {!expanded && <p className={styles.more}>see more</p>}
         {expanded && (

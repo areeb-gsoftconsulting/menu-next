@@ -48,7 +48,7 @@ const ItemDescriptionContainer = ({ data }: any) => {
 };
 
 const Element = ({ attributes, children, element }) => {
-  const style = { textAlign: element.align, margin: "20px 0px 0px 0px" };
+  const style = { textAlign: element.align, margin: "0px 0px 0px 0px" };
   switch (element.type) {
     case "block-quote":
       return (

@@ -278,11 +278,17 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
 
       {/* <IonText className={styles.description}>{data.description}</IonText> */}
       {!loadMore && data.description.length > 190 ? (
-        <ItemDescriptionContainer data={[description[0]]} />
+        <div style={{ paddingTop: "4px", paddingBottom: "4px" }}>
+          <ItemDescriptionContainer data={[description[0]]} />
+        </div>
       ) : loadMore && data.description.length > 190 ? (
-        <ItemDescriptionContainer data={JSON.parse(data.description)} />
+        <div style={{ paddingTop: "4px", paddingBottom: "4px" }}>
+          <ItemDescriptionContainer data={JSON.parse(data.description)} />
+        </div>
       ) : (
-        <ItemDescriptionContainer data={JSON.parse(data.description)} />
+        <div style={{ paddingTop: "4px", paddingBottom: "4px" }}>
+          <ItemDescriptionContainer data={JSON.parse(data.description)} />
+        </div>
       )}
       {/* <ItemDescriptionContainer data={data.description} /> */}
       {data.description.length > 190 && (
@@ -299,7 +305,6 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
       )}
 
       <div style={{ display: "flex", alignItems: "center" }}>
-        <p className={styles.tagLabel}>Tags: </p>
         {data.tags.map((obj: any, ind: any) => (
           <IonChip className={styles.tags} key={ind}>
             {obj.name}
