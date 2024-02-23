@@ -22,6 +22,7 @@ import { setIsDark } from "../../store/slices/themeSlice";
 import getItems from "../../services/getItems";
 import { setSelectedCategory } from "../../store/slices/categorySlice";
 import { useToast } from "../../hooks/useToast";
+import { setSearchedItemName } from "../../store/slices/searchSlice";
 
 type Props = {};
 
@@ -41,6 +42,7 @@ const HeaderTwo = ({
   const [loading, setLoading] = useState(false);
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
   const { presentToast } = useToast();
+  const searchItem = useSelector((data: any) => data.search.searchedItemName);
 
   const dispatch = useDispatch();
   const getItem = async ({ itemNameSearch }: any) => {
@@ -175,7 +177,11 @@ const HeaderTwo = ({
           className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
           placeholder="Search"
           debounce={1000}
-          onIonInput={(e) => getItem({ itemNameSearch: e.detail.value })}
+          value={searchItem}
+          onIonInput={(e) => {
+            getItem({ itemNameSearch: e.detail.value });
+            dispatch(setSearchedItemName(e.detail.value));
+          }}
         ></IonSearchbar>
       </IonToolbar>
     </IonHeader>

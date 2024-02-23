@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import getItems from "../../services/getItems";
 import { setSelectedCategory } from "../../store/slices/categorySlice";
 import { useToast } from "../../hooks/useToast";
+import { setSearchedItemName } from "../../store/slices/searchSlice";
 
 type Props = {};
 
@@ -41,6 +42,7 @@ const HeaderOne = ({
   const dispatch = useDispatch();
   const { presentToast } = useToast();
   const routeName = useSelector((data: any) => data.restaurant.restSlug);
+  const searchItem = useSelector((data: any) => data.search.searchedItemName);
 
   console.log({ isDark });
 
@@ -164,7 +166,11 @@ const HeaderOne = ({
               className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
               placeholder="Search"
               debounce={1000}
-              onIonInput={(e) => getItem({ itemNameSearch: e.detail.value })}
+              value={searchItem}
+              onIonInput={(e) => {
+                getItem({ itemNameSearch: e.detail.value });
+                dispatch(setSearchedItemName(e.detail.value));
+              }}
             ></IonSearchbar>
             <IonText
               onClick={() => setShowSearch(false)}
