@@ -347,6 +347,7 @@ const ItemCard = ({ data, expandByDefault }: any) => {
                     setCount(count - 1);
                   }
                 }}
+                size={isPlatform("mobile") ? "small" : "default"}
                 className={`${styles.iconBtn} ion-no-padding`}
               >
                 <IonIcon
@@ -362,6 +363,8 @@ const ItemCard = ({ data, expandByDefault }: any) => {
                 onClick={() => {
                   setCount(count + 1);
                 }}
+                slot="icon-only"
+                size={isPlatform("mobile") ? "small" : "default"}
                 className={`${styles.iconBtn} ion-no-padding`}
               >
                 <IonIcon
@@ -388,6 +391,7 @@ const ItemCard = ({ data, expandByDefault }: any) => {
                     quantity: count,
                   })
                 }
+                size={isPlatform("mobile") ? "small" : "default"}
                 className={styles.addBtn}
               >
                 Add to Cart

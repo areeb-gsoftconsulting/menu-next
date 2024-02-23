@@ -473,6 +473,7 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
               if (count > 1) setCount(count - 1);
             }}
             className={`${styles.iconBtn} ion-no-padding`}
+            size={isPlatform("mobile") ? "small" : "default"}
           >
             <IonIcon
               className={isPlatform("ios") ? styles.icons : styles.iconsAndroid}
@@ -480,8 +481,9 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
               icon={remove}
             ></IonIcon>
           </IonButton>
-          <h3>{count}</h3>
+          <h3 className={styles.itemNum}>{count}</h3>
           <IonButton
+            size={isPlatform("mobile") ? "small" : "default"}
             onClick={() => {
               setCount(count + 1);
             }}
@@ -497,6 +499,7 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
 
         <div className={styles.addBtnDiv}>
           <IonButton
+            size={isPlatform("mobile") ? "small" : "default"}
             onClick={() =>
               addToCart({
                 id: data._id,

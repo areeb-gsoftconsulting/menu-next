@@ -204,12 +204,12 @@
   --background-activated: red;
 }
 .icons {
-  padding: 0px 10px;
-  height: 25px;
+  padding: 0px 2px;
+  /* height: 25px; */
 }
 .iconsAndroid {
   padding: 0px 5px;
-  height: 25px;
+  height: 15px;
 }
 .addBtn {
   width: 100%;
@@ -223,6 +223,8 @@
 }
 .itemNum {
   color: var(--ion-text-color);
+  font-size: 17px;
+  margin: 0px;
 }
 
 .errMsg {
@@ -240,10 +242,10 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: nowrap;
-  width: 35%;
+  width: 25%;
 }
 .addBtnDiv {
-  width: 60%;
+  width: 72%;
 }
 @media only screen and (min-width: 426px) {
   .addBtnDiv {
@@ -256,5 +258,10 @@
     align-items: center;
     flex-wrap: nowrap;
     width: 20%;
+  }
+  .itemNum {
+    color: var(--ion-text-color);
+    font-size: 20px;
+    margin: 0px;
   }
 }
