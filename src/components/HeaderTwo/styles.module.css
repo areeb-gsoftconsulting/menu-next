@@ -23,7 +23,7 @@ ion-content {
   color: #ffffff;
   width: fit-content;
   font-size: 12px;
-  margin-bottom: 0px;
+  margin: -10px 0px 0px 0px;
 }
 .headerContainer {
   padding: 0px 18px 0px 18px;
@@ -68,7 +68,7 @@ ion-content {
 }
 .toolbar {
   --background: var(--ion-page-background-color);
-  padding: 18px;
+  padding: 0px 18px 5px 18px;
   border-bottom: 1px solid var(--ion-toolbar-borer);
 }
 .badge {

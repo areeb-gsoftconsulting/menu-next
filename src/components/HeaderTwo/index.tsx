@@ -92,10 +92,6 @@ const HeaderTwo = ({
   return (
     <IonHeader mode="ios" className={`ion-no-border`} translucent={true}>
       <IonToolbar className={`${styles.toolbar} ${styles.transitionHeader}`}>
-        <IonText>
-          <p className={styles.labelContainer}>{venue.name}</p>
-        </IonText>
-
         <IonRow class="ion-justify-content-between ion-align-items-center">
           <Link to={`/${routeName}/menu`}>
             <IonImg src={isDark ? lightLogo : darkLogo} />
@@ -148,6 +144,7 @@ const HeaderTwo = ({
             </IonCol>
           </IonRow>
         </IonRow>
+        <p className={styles.labelContainer}>{venue.name}</p>
 
         <IonSearchbar
           mode="md"

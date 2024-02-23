@@ -23,7 +23,7 @@ ion-content {
   color: #ffffff;
   width: fit-content;
   font-size: 12px;
-  margin-bottom: 0px;
+  margin: -10px 0px 8px 0px;
 }
 .headerContainer {
   padding: 0px 18px 0px 18px;
