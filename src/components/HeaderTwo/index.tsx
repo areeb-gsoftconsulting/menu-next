@@ -146,13 +146,17 @@ const HeaderTwo = ({
                 </IonCol> */}
                 <>
                   {cart.length > 0 && (
-                    <IonBadge className={styles.badge}>
+                    <IonBadge
+                      onClick={() => setIsCartOpen(true)}
+                      className={styles.badge}
+                    >
                       {cart.reduce((accumulator: any, currentItem: any) => {
                         return accumulator + parseInt(currentItem.quantity);
                       }, 0)}
                     </IonBadge>
                   )}
                   <IonIcon
+                    onClick={() => setIsCartOpen(true)}
                     style={{
                       marginTop: "4px",
                     }}
