@@ -73,7 +73,7 @@ ion-content {
 }
 .badge {
   position: absolute;
-  top: 10px;
+  top: 7px;
   right: 0px;
   border-radius: 20px;
   font-size: 8px;
@@ -98,8 +98,8 @@ ion-content {
 }
 .badgeLike {
   position: absolute;
-  top: 7px;
-  left: 15px;
+  top: 4px;
+  left: 17px;
   border-radius: 20px;
   font-size: 8px;
   padding: 4px;
