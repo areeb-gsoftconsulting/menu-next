@@ -8,6 +8,7 @@ import cartSlice from "./slices/cartSlice";
  */
 import { combineReducers } from "@reduxjs/toolkit";
 import categorySlice from "./slices/categorySlice";
+import searchSlice from "./slices/searchSlice";
 
 const reducers = {
   like: likeSlice,
@@ -15,6 +16,7 @@ const reducers = {
   theme: themeSlice,
   cart: cartSlice,
   category: categorySlice,
+  search: searchSlice,
 };
 
 // Exports

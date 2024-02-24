@@ -133,11 +133,11 @@ const ItemCard = ({ data, expandByDefault }: any) => {
           <IonRow
             className={`ion-justify-content-between ion-align-items-center ${styles.cardName}`}
           >
-            <div className={styles.outerDiv}>
+            {/* <div className={styles.outerDiv}>
               <IonThumbnail className={styles.thumbnail}>
                 <img alt="Logo" src={currentMenu?.imageUrl} />
               </IonThumbnail>
-            </div>
+            </div> */}
 
             <div
               style={{
@@ -220,12 +220,13 @@ const ItemCard = ({ data, expandByDefault }: any) => {
         {!expanded ? (
           <IonText className={styles.description}>{desc}</IonText>
         ) : (
-          <ItemDescriptionContainer data={JSON.parse(data.description)} />
+          <div style={{ paddingTop: "20px" }}>
+            <ItemDescriptionContainer data={JSON.parse(data.description)} />
+          </div>
         )}
         {!expanded && <p className={styles.more}>see more</p>}
         {expanded && (
           <div style={{ display: "flex", alignItems: "center" }}>
-            <p className={styles.tagLabel}>Tags: </p>
             {data.tags.map((obj: any, ind: any) => (
               <IonChip className={styles.tags} key={ind}>
                 {obj.name}
@@ -346,6 +347,7 @@ const ItemCard = ({ data, expandByDefault }: any) => {
                     setCount(count - 1);
                   }
                 }}
+                size={isPlatform("mobile") ? "small" : "default"}
                 className={`${styles.iconBtn} ion-no-padding`}
               >
                 <IonIcon
@@ -361,6 +363,8 @@ const ItemCard = ({ data, expandByDefault }: any) => {
                 onClick={() => {
                   setCount(count + 1);
                 }}
+                slot="icon-only"
+                size={isPlatform("mobile") ? "small" : "default"}
                 className={`${styles.iconBtn} ion-no-padding`}
               >
                 <IonIcon
@@ -387,6 +391,7 @@ const ItemCard = ({ data, expandByDefault }: any) => {
                     quantity: count,
                   })
                 }
+                size={isPlatform("mobile") ? "small" : "default"}
                 className={styles.addBtn}
               >
                 Add to Cart

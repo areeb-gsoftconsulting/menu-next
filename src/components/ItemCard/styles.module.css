@@ -189,6 +189,7 @@
 .tags {
   background-color: var(--ion-custome-card-color);
   color: var(--ion-text-color);
+  margin-left: 0px;
 }
 .tagLabel {
   color: var(--ion-text-color);
@@ -200,14 +201,15 @@
   --border-radius: 8px;
   padding-inline-start: 0px;
   padding-inline-end: 0px;
+  --background-activated: red;
 }
 .icons {
-  padding: 0px 10px;
-  height: 25px;
+  padding: 0px 2px;
+  /* height: 25px; */
 }
 .iconsAndroid {
   padding: 0px 5px;
-  height: 25px;
+  height: 15px;
 }
 .addBtn {
   width: 100%;
@@ -216,10 +218,13 @@
   /* --padding-bottom: 20px;
   --padding-top: 20px; */
   --border-radius: 8px;
+  --background-activated: red;
   text-transform: capitalize;
 }
 .itemNum {
   color: var(--ion-text-color);
+  font-size: 17px;
+  margin: 0px;
 }
 
 .errMsg {
@@ -237,14 +242,14 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: nowrap;
-  width: 30%;
+  width: 25%;
 }
 .addBtnDiv {
-  width: 65%;
+  width: 72%;
 }
 @media only screen and (min-width: 426px) {
   .addBtnDiv {
-    width: 76%;
+    width: 78%;
   }
   .btnRow {
     display: flex;
@@ -253,5 +258,10 @@
     align-items: center;
     flex-wrap: nowrap;
     width: 20%;
+  }
+  .itemNum {
+    color: var(--ion-text-color);
+    font-size: 20px;
+    margin: 0px;
   }
 }

@@ -1,5 +1,6 @@
 .toolbar {
   --background: trasparent;
+  --padding-start: 7px;
 }
 .image {
   height: 63px;
@@ -8,16 +9,22 @@
   border-radius: 50%;
   overflow: hidden;
 }
+
 ion-segment-button {
   --color-checked: trasparent;
   color: var(--ion-text-color);
   font-family: "poppins";
-  --padding-start: 12px;
-  --padding-end: 12px;
+  --padding-start: 5px;
+  --padding-end: 5px;
 }
 .name {
+  max-width: 63px;
+  margin: 0px auto;
   text-align: center;
   font-family: "poppins";
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;

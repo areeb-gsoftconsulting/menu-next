@@ -22,6 +22,7 @@ import { setIsDark } from "../../store/slices/themeSlice";
 import getItems from "../../services/getItems";
 import { setSelectedCategory } from "../../store/slices/categorySlice";
 import { useToast } from "../../hooks/useToast";
+import { setSearchedItemName } from "../../store/slices/searchSlice";
 
 type Props = {};
 
@@ -41,6 +42,7 @@ const HeaderTwo = ({
   const [loading, setLoading] = useState(false);
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
   const { presentToast } = useToast();
+  const searchItem = useSelector((data: any) => data.search.searchedItemName);
 
   const dispatch = useDispatch();
   const getItem = async ({ itemNameSearch }: any) => {
@@ -92,16 +94,13 @@ const HeaderTwo = ({
   return (
     <IonHeader mode="ios" className={`ion-no-border`} translucent={true}>
       <IonToolbar className={`${styles.toolbar} ${styles.transitionHeader}`}>
-        <IonText>
-          <p className={styles.labelContainer}>{venue.name}</p>
-        </IonText>
-
         <IonRow class="ion-justify-content-between ion-align-items-center">
           <Link to={`/${routeName}/menu`}>
             <IonImg src={isDark ? lightLogo : darkLogo} />
           </Link>
 
           {/*  */}
+
           <IonRow class="ion-justify-content-between ion-align-items-center ion-align-items-center">
             <IonCol>
               <div
@@ -123,7 +122,6 @@ const HeaderTwo = ({
                 <IonIcon
                   className={styles.heartIcon}
                   icon={heartOutline}
-                  size="large"
                   onClick={() => setOpenFav(!openFav)}
                 ></IonIcon>
                 <IonToggle
@@ -131,7 +129,8 @@ const HeaderTwo = ({
                   onIonChange={toggleDarkModeHandler}
                   name="darkMode"
                 />
-                <IonCol onClick={() => setIsCartOpen(true)} size="4">
+
+                {/* <IonCol onClick={() => setIsCartOpen(true)}>
                   {cart.length > 0 && (
                     <IonBadge className={styles.badge}>
                       {cart.reduce((accumulator: any, currentItem: any) => {
@@ -140,21 +139,49 @@ const HeaderTwo = ({
                     </IonBadge>
                   )}
                   <IonIcon
+                    style={{
+                      marginTop: "4px",
+                    }}
                     className={styles.cartIcon}
                     icon={cartOutline}
                   ></IonIcon>
-                </IonCol>
+                </IonCol> */}
+                <>
+                  {cart.length > 0 && (
+                    <IonBadge
+                      onClick={() => setIsCartOpen(true)}
+                      className={styles.badge}
+                    >
+                      {cart.reduce((accumulator: any, currentItem: any) => {
+                        return accumulator + parseInt(currentItem.quantity);
+                      }, 0)}
+                    </IonBadge>
+                  )}
+                  <IonIcon
+                    onClick={() => setIsCartOpen(true)}
+                    style={{
+                      marginTop: "4px",
+                    }}
+                    className={styles.cartIcon}
+                    icon={cartOutline}
+                  ></IonIcon>
+                </>
               </div>
             </IonCol>
           </IonRow>
         </IonRow>
+        <p className={styles.labelContainer}>{venue.name}</p>
 
         <IonSearchbar
           mode="md"
           className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
           placeholder="Search"
           debounce={1000}
-          onIonInput={(e) => getItem({ itemNameSearch: e.detail.value })}
+          value={searchItem}
+          onIonInput={(e) => {
+            getItem({ itemNameSearch: e.detail.value });
+            dispatch(setSearchedItemName(e.detail.value));
+          }}
         ></IonSearchbar>
       </IonToolbar>
     </IonHeader>

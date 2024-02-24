@@ -107,7 +107,7 @@ const CartItem = ({
     <>
       <IonRow class="ion-justify-content-between ion-align-items-center">
         <IonRow className={styles.leftBox} class="ion-align-items-center">
-          <IonRow
+          {/* <IonRow
             onClick={(e) => {
               e.preventDefault();
               setShowBtn(!showBtn);
@@ -180,7 +180,7 @@ const CartItem = ({
                 ></IonIcon>
               </IonButton>
             </div>
-          )}
+          )} */}
 
           <IonRow
             onClick={(e) => {

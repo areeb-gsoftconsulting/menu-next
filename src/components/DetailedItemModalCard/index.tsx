@@ -278,11 +278,17 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
 
       {/* <IonText className={styles.description}>{data.description}</IonText> */}
       {!loadMore && data.description.length > 190 ? (
-        <ItemDescriptionContainer data={[description[0]]} />
+        <div style={{ paddingTop: "4px", paddingBottom: "4px" }}>
+          <ItemDescriptionContainer data={[description[0]]} />
+        </div>
       ) : loadMore && data.description.length > 190 ? (
-        <ItemDescriptionContainer data={JSON.parse(data.description)} />
+        <div style={{ paddingTop: "4px", paddingBottom: "4px" }}>
+          <ItemDescriptionContainer data={JSON.parse(data.description)} />
+        </div>
       ) : (
-        <ItemDescriptionContainer data={JSON.parse(data.description)} />
+        <div style={{ paddingTop: "4px", paddingBottom: "4px" }}>
+          <ItemDescriptionContainer data={JSON.parse(data.description)} />
+        </div>
       )}
       {/* <ItemDescriptionContainer data={data.description} /> */}
       {data.description.length > 190 && (
@@ -299,7 +305,6 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
       )}
 
       <div style={{ display: "flex", alignItems: "center" }}>
-        <p className={styles.tagLabel}>Tags: </p>
         {data.tags.map((obj: any, ind: any) => (
           <IonChip className={styles.tags} key={ind}>
             {obj.name}
@@ -468,6 +473,7 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
               if (count > 1) setCount(count - 1);
             }}
             className={`${styles.iconBtn} ion-no-padding`}
+            size={isPlatform("mobile") ? "small" : "default"}
           >
             <IonIcon
               className={isPlatform("ios") ? styles.icons : styles.iconsAndroid}
@@ -475,8 +481,9 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
               icon={remove}
             ></IonIcon>
           </IonButton>
-          <h3>{count}</h3>
+          <h3 className={styles.itemNum}>{count}</h3>
           <IonButton
+            size={isPlatform("mobile") ? "small" : "default"}
             onClick={() => {
               setCount(count + 1);
             }}
@@ -492,6 +499,7 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
 
         <div className={styles.addBtnDiv}>
           <IonButton
+            size={isPlatform("mobile") ? "small" : "default"}
             onClick={() =>
               addToCart({
                 id: data._id,

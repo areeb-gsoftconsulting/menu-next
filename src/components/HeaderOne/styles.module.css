@@ -23,7 +23,7 @@ ion-content {
   color: #ffffff;
   width: fit-content;
   font-size: 12px;
-  margin-bottom: 0px;
+  margin: -10px 0px 8px 0px;
 }
 .headerContainer {
   padding: 0px 18px 0px 18px;
@@ -73,8 +73,8 @@ ion-content {
 }
 .badge {
   position: absolute;
-  top: 0px;
-  left: 22px;
+  top: 2px;
+  right: -3px;
   border-radius: 20px;
   font-size: 8px;
   padding: 4px;
@@ -151,15 +151,10 @@ ion-searchbar.custom {
   font-size: 15px;
   font-weight: 600;
 }
-.heartIcon {
-  color: var(--ion-text-color);
-  font-size: 20px;
-  margin-right: 8px;
-  cursor: pointer;
-}
+
 .badgeLike {
   position: absolute;
-  top: 7px;
+  top: 8px;
   left: 17px;
   border-radius: 20px;
   font-size: 8px;

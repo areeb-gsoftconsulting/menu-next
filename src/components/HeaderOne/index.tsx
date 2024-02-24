@@ -20,6 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import getItems from "../../services/getItems";
 import { setSelectedCategory } from "../../store/slices/categorySlice";
 import { useToast } from "../../hooks/useToast";
+import { setSearchedItemName } from "../../store/slices/searchSlice";
 
 type Props = {};
 
@@ -41,6 +42,7 @@ const HeaderOne = ({
   const dispatch = useDispatch();
   const { presentToast } = useToast();
   const routeName = useSelector((data: any) => data.restaurant.restSlug);
+  const searchItem = useSelector((data: any) => data.search.searchedItemName);
 
   console.log({ isDark });
 
@@ -92,59 +94,11 @@ const HeaderOne = ({
       <IonToolbar className={`${styles.toolbarScrolled}`}>
         {!showSearch ? (
           <div className={styles.headerContainer}>
-            <IonText>
-              <p className={styles.labelContainer}>{venue.name}</p>
-            </IonText>
-
             <IonRow class="ion-justify-content-between ion-align-items-center">
               <Link to={`/${routeName}/menu`}>
                 <IonImg src={isDark ? lightLogo : darkLogo} />
               </Link>
 
-              {/*  */}
-              {/* <IonRow class="ion-justify-content-between ion-align-items-center">
-                <IonCol>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    {liked.length > 0 && (
-                      <IonBadge
-                        onClick={() => setOpenFav(!openFav)}
-                        className={styles.badgeLike}
-                      >
-                        {liked.length}
-                      </IonBadge>
-                    )}
-                    <IonIcon
-                      className={styles.heartIcon}
-                      icon={heartOutline}
-                      size="medium"
-                      onClick={() => setOpenFav(!openFav)}
-                    ></IonIcon>
-                    <IonIcon
-                      className={styles.cartIcon}
-                      icon={search}
-                      onClick={() => setShowSearch(true)}
-                    ></IonIcon>
-                    <IonCol onClick={() => setIsCartOpen(true)}>
-                      {cart.length > 0 && (
-                        <IonBadge className={styles.badge}>
-                          {cart.length}
-                        </IonBadge>
-                      )}
-                      <IonIcon
-                        className={styles.cartIcon}
-                        icon={cartOutline}
-                      ></IonIcon>
-                    </IonCol>
-                  </div>
-                </IonCol>
-              </IonRow> */}
               <IonRow class="ion-justify-content-between ion-align-items-center ion-align-items-center">
                 <IonCol>
                   <div
@@ -194,6 +148,9 @@ const HeaderOne = ({
                 </IonCol>
               </IonRow>
             </IonRow>
+            <IonText>
+              <p className={styles.labelContainer}>{venue.name}</p>
+            </IonText>
           </div>
         ) : (
           <div
@@ -209,7 +166,11 @@ const HeaderOne = ({
               className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
               placeholder="Search"
               debounce={1000}
-              onIonInput={(e) => getItem({ itemNameSearch: e.detail.value })}
+              value={searchItem}
+              onIonInput={(e) => {
+                getItem({ itemNameSearch: e.detail.value });
+                dispatch(setSearchedItemName(e.detail.value));
+              }}
             ></IonSearchbar>
             <IonText
               onClick={() => setShowSearch(false)}
