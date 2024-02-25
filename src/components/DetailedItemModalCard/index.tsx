@@ -504,7 +504,13 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
             size={isPlatform("mobile") ? "small" : "default"}
           >
             <IonIcon
-              className={isPlatform("ios") ? styles.icons : styles.iconsAndroid}
+              className={
+                isPlatform("ios")
+                  ? styles.icons
+                  : isPlatform("mobileweb")
+                  ? styles.iconsAndroid
+                  : styles.iconsWeb
+              }
               slot="icon-only"
               icon={remove}
             ></IonIcon>
@@ -518,7 +524,13 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
             className={`${styles.iconBtn} ion-no-padding`}
           >
             <IonIcon
-              className={isPlatform("ios") ? styles.icons : styles.iconsAndroid}
+              className={
+                isPlatform("ios")
+                  ? styles.icons
+                  : isPlatform("mobileweb")
+                  ? styles.iconsAndroid
+                  : styles.iconsWeb
+              }
               slot="icon-only"
               icon={add}
             ></IonIcon>
