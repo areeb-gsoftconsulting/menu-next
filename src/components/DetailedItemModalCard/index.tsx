@@ -528,6 +528,7 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
         <div className={styles.addBtnDiv}>
           <IonButton
             size={isPlatform("mobile") ? "small" : "default"}
+            disabled={!data.inStock}
             onClick={() =>
               addToCart({
                 id: data._id,

@@ -403,6 +403,7 @@ const ItemCard = ({ data, expandByDefault }: any) => {
 
             <div className={styles.addBtnDiv}>
               <IonButton
+                disabled={!data.inStock}
                 onClick={() =>
                   addToCart({
                     id: data._id,
