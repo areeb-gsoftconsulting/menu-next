@@ -23,6 +23,43 @@
     text-overflow: ellipsis;
   }
 }
+.notAvailable {
+  background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  z-index: 9;
+  padding: 2px 20px;
+  height: fit-content;
+  text-align: center;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  left: 0px;
+  top: 62px;
+}
+.notAvailable p {
+  margin: 0px;
+  color: white;
+  font-family: "poppins";
+}
+
+.priceBadge {
+  background-color: white;
+  position: absolute;
+  right: 20px;
+  top: 240px;
+  z-index: 9;
+  padding: 2px 20px;
+  border-radius: 18px;
+  height: fit-content;
+}
+.priceBadge p {
+  margin: 0px;
+  color: red;
+  font-family: "poppins";
+}
 
 .outerDiv {
   border: 1.5px solid red;

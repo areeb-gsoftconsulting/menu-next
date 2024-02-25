@@ -40,7 +40,7 @@ import {
 import ItemDescriptionContainer from "../ItemDescriptionContainer";
 
 const ItemCard = ({ data, expandByDefault }: any) => {
-  console.log({ expandByDefault });
+  console.log({ data });
   const [isOpen, setIsOpen] = useState(false);
   const venue = useSelector((data: any) => data.restaurant.venue);
   const [expanded, setExpanded] = useState(
@@ -171,6 +171,24 @@ const ItemCard = ({ data, expandByDefault }: any) => {
           icon={isLiked == -1 ? heartOutline : heartSharp}
         />
 
+        <div className={styles.priceBadge}>
+          {data.prices.length > 1 ? (
+            <p>
+              {venue.defaultCurrency.sign} {data.prices[0]?.price}
+            </p>
+          ) : (
+            <p>
+              {venue.defaultCurrency.sign} {data.prices[0].price}
+            </p>
+          )}
+        </div>
+
+        {!data.inStock && (
+          <div className={styles.notAvailable}>
+            <p>Not Available</p>
+          </div>
+        )}
+
         <IonImg
           onIonImgWillLoad={() => setImageLoading(false)}
           onIonImgDidLoad={() => setImageLoading(false)}
@@ -183,6 +201,7 @@ const ItemCard = ({ data, expandByDefault }: any) => {
               : data.imageUrl
           }
         />
+
         {numberInCart.length > 0 && (
           <div className={styles.badge}>
             <p className={styles.badgeTxt}>{numberInCart[0].quantity}</p>

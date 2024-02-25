@@ -62,7 +62,7 @@ const Home: React.FC = () => {
     if (addedToCart) setTimeout(() => dispatch(setAddedToCart(false)), 3000);
   }, [addedToCart]);
 
-  console.log({ searchLoading });
+  console.log({ itemsEnded });
 
   const getItem = async (e: any, { page }: any) => {
     console.log("testing all");
@@ -203,6 +203,7 @@ const Home: React.FC = () => {
   const scrollToTop = () => {
     // Replace 'ionContentRef' with a ref to your IonContent component
     // You can use useRef hook to create a ref and attach it to IonContent
+
     contentRef.current.scrollToTop();
   };
 
@@ -231,7 +232,18 @@ const Home: React.FC = () => {
 
       <IonContent
         scrollEvents={scrollEvent}
-        onIonScroll={(e: CustomEvent) => handleScroll(e)}
+        onIonScroll={(e: CustomEvent) => {
+          console.log("ee", e.detail);
+          if (!itemsEnded) {
+            handleScroll(e);
+          } else {
+            if (e.detail.scrollTop > 150) {
+              setIsScrolled(true);
+            } else {
+              setIsScrolled(false);
+            }
+          }
+        }}
         ref={contentRef}
         fullscreen
       >
