@@ -33,12 +33,15 @@ import {
   setCartItems,
 } from "../../store/slices/cartSlice";
 import ItemDescriptionContainer from "../ItemDescriptionContainer";
+import placeholderDark from "../../assets/placeholderDark.png";
+import placeholderLight from "../../assets/placeholderLight.png";
 
 type Props = {};
 
 const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
   let categoryName = data.categories.map((obj: any) => obj.name);
   categoryName = categoryName.join(" ,");
+  const isDark = useSelector((data: any) => data.theme.isDark);
   const venue = useSelector((data: any) => data.restaurant.venue);
   const [comments, setComments] = useState("");
   const [selectedPrice, setSelectedPrice] = useState({
@@ -56,6 +59,7 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
   const [requiredCustoms, setRequiredCustome] = useState([]);
   const [count, setCount] = useState(1);
   const [loadMore, setLoadMore] = useState(false);
+  const [loadingImage, setImageLoading] = useState(true);
 
   const handle1 = (data: any) => {
     console.log("selectedCustomization === ", data);
@@ -248,8 +252,16 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
   return (
     <div>
       <IonImg
+        onIonImgWillLoad={() => setImageLoading(false)}
+        onIonImgDidLoad={() => setImageLoading(false)}
         className={isPlatform("ios") ? styles.cardImg : styles.cardImgAndroid}
-        src={data.imageUrl}
+        src={
+          loadingImage
+            ? isDark
+              ? placeholderDark
+              : placeholderLight
+            : data.imageUrl
+        }
       />
       {/* <IonRow className="ion-margin-top ion-align-items-center">
     <IonIcon className={styles.rateIcon} icon={starSharp} />
