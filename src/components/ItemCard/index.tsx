@@ -66,10 +66,15 @@ const ItemCard = ({ data, expandByDefault }: any) => {
   const isDark = useSelector((data: any) => data.theme.isDark);
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
 
-  console.log({ currentMenu });
-
   useEffect(() => {
     if (!expanded) {
+      setRadioErr(false);
+      setSelectedPrice({
+        _id: "",
+        description: "",
+        price: "",
+      });
+      setCount(1);
       setRadioErr(false);
     }
   }, [expanded]);
