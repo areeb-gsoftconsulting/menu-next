@@ -251,6 +251,11 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
 
   return (
     <div>
+      {!data.inStock && (
+        <div className={styles.notAvailable}>
+          <p>Not Available</p>
+        </div>
+      )}
       <IonImg
         onIonImgWillLoad={() => setImageLoading(false)}
         onIonImgDidLoad={() => setImageLoading(false)}
@@ -263,6 +268,17 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
             : data.imageUrl
         }
       />
+      <div className={styles.priceBadge}>
+        {data.prices.length > 1 ? (
+          <p>
+            {venue.defaultCurrency.sign} {data.prices[0]?.price}
+          </p>
+        ) : (
+          <p>
+            {venue.defaultCurrency.sign} {data.prices[0].price}
+          </p>
+        )}
+      </div>
       {/* <IonRow className="ion-margin-top ion-align-items-center">
     <IonIcon className={styles.rateIcon} icon={starSharp} />
     <IonText
@@ -512,6 +528,7 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
         <div className={styles.addBtnDiv}>
           <IonButton
             size={isPlatform("mobile") ? "small" : "default"}
+            disabled={!data.inStock}
             onClick={() =>
               addToCart({
                 id: data._id,
