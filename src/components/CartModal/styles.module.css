@@ -6,6 +6,11 @@
 }
 .toolbar {
   --background: var(--ion-page-background-color);
+  padding: 0px 5px 0px 5px;
+}
+.content {
+  --padding-start: 25px !important;
+  --padding-end: 25px !important;
 }
 .backIcon {
   padding-left: 12px;
@@ -42,7 +47,7 @@
   box-shadow: none;
   background-color: var(--ion-page-background-color);
   border-top: 1px solid var(--ion-search-border);
-  padding: 10px;
+  padding: 20px 23px 20px 23px;
 }
 .checkoutBtn {
   --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
