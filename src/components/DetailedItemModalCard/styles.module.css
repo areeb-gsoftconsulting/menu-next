@@ -232,6 +232,59 @@
 .addBtnDiv {
   width: 60%;
 }
+.notAvailable {
+  background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  z-index: 9;
+  padding: 2px 20px;
+  height: fit-content;
+  text-align: center;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  left: 16px;
+  top: 80px;
+}
+.notAvailable p {
+  margin: 0px;
+  color: white;
+  font-family: "poppins";
+}
+
+@media only screen and (max-width: 600px) {
+  .priceBadge {
+    top: 180px !important;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .priceBadge {
+    top: 140px !important;
+  }
+}
+@media only screen and (min-width: 451px) {
+  .priceBadge {
+    top: 250px !important;
+  }
+}
+
+.priceBadge {
+  background-color: white;
+  position: absolute;
+  right: 30px;
+  top: 250px;
+  z-index: 9;
+  padding: 2px 20px;
+  border-radius: 18px;
+  height: fit-content;
+}
+.priceBadge p {
+  margin: 0px;
+  color: red;
+  font-family: "poppins";
+}
 
 .itemNum {
   color: var(--ion-text-color);

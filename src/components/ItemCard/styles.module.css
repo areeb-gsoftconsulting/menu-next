@@ -61,16 +61,6 @@
   }
 }
 
-.priceBadgeMobile {
-  background-color: white;
-  position: absolute;
-  right: 15px;
-  top: 170px;
-  z-index: 9;
-  padding: 2px 20px;
-  border-radius: 18px;
-  height: fit-content;
-}
 .priceBadge {
   background-color: white;
   position: absolute;
