@@ -171,18 +171,6 @@ const ItemCard = ({ data, expandByDefault }: any) => {
           icon={isLiked == -1 ? heartOutline : heartSharp}
         />
 
-        <div className={styles.priceBadge}>
-          {data.prices.length > 1 ? (
-            <p>
-              {venue.defaultCurrency.sign} {data.prices[0]?.price}
-            </p>
-          ) : (
-            <p>
-              {venue.defaultCurrency.sign} {data.prices[0].price}
-            </p>
-          )}
-        </div>
-
         {!data.inStock && (
           <div className={styles.notAvailable}>
             <p>Not Available</p>
@@ -201,6 +189,18 @@ const ItemCard = ({ data, expandByDefault }: any) => {
               : data.imageUrl
           }
         />
+
+        <div className={styles.priceBadge}>
+          {data.prices.length > 1 ? (
+            <p>
+              {venue.defaultCurrency.sign} {data.prices[0]?.price}
+            </p>
+          ) : (
+            <p>
+              {venue.defaultCurrency.sign} {data.prices[0].price}
+            </p>
+          )}
+        </div>
 
         {numberInCart.length > 0 && (
           <div className={styles.badge}>
