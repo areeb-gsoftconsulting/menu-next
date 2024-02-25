@@ -20,7 +20,10 @@ import { useDispatch, useSelector } from "react-redux";
 import getItems from "../../services/getItems";
 import { setSelectedCategory } from "../../store/slices/categorySlice";
 import { useToast } from "../../hooks/useToast";
-import { setSearchedItemName } from "../../store/slices/searchSlice";
+import {
+  setSearchLoading,
+  setSearchedItemName,
+} from "../../store/slices/searchSlice";
 
 type Props = {};
 
@@ -49,8 +52,11 @@ const HeaderOne = ({
   const getItem = async ({ itemNameSearch }: any) => {
     console.log("itemNameSearch.length", itemNameSearch.length);
     setLoading(true);
+    dispatch(setSearchLoading(true));
     if (itemNameSearch == "") {
       dispatch(setSelectedCategory(["1"]));
+      dispatch(setSearchLoading(false));
+
       return;
     }
 
@@ -80,6 +86,7 @@ const HeaderOne = ({
       presentToast("Please try again later");
     } finally {
       setLoading(false);
+      dispatch(setSearchLoading(false));
 
       // setCategoryItemLoading(false);
     }

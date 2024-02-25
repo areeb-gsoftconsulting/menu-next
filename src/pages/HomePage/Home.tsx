@@ -42,6 +42,7 @@ const Home: React.FC = () => {
     (data: any) => data.category.selectedCategory
   );
   const totalAmount = useSelector((data: any) => data.cart.totalAmount);
+  const searchLoading = useSelector((data: any) => data.search.searchLoading);
 
   const [items, setItems] = useState<any>([]);
   const [itemsEnded, setItemsEnded] = useState(false);
@@ -61,7 +62,7 @@ const Home: React.FC = () => {
     if (addedToCart) setTimeout(() => dispatch(setAddedToCart(false)), 3000);
   }, [addedToCart]);
 
-  console.log({ addedToCart });
+  console.log({ searchLoading });
 
   const getItem = async (e: any, { page }: any) => {
     console.log("testing all");
@@ -261,7 +262,7 @@ const Home: React.FC = () => {
               <p className={styles.noItem}>No items found</p>
             </div>
           )}
-          {categoryItemloading ? (
+          {categoryItemloading || searchLoading ? (
             <LoadingCard />
           ) : (
             items.map((data: any, ind: any) => (

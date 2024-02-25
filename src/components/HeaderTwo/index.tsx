@@ -22,7 +22,10 @@ import { setIsDark } from "../../store/slices/themeSlice";
 import getItems from "../../services/getItems";
 import { setSelectedCategory } from "../../store/slices/categorySlice";
 import { useToast } from "../../hooks/useToast";
-import { setSearchedItemName } from "../../store/slices/searchSlice";
+import {
+  setSearchLoading,
+  setSearchedItemName,
+} from "../../store/slices/searchSlice";
 
 type Props = {};
 
@@ -47,8 +50,12 @@ const HeaderTwo = ({
   const dispatch = useDispatch();
   const getItem = async ({ itemNameSearch }: any) => {
     console.log({ itemNameSearch });
+    dispatch(setSearchLoading(true));
+
     if (itemNameSearch == "") {
       dispatch(setSelectedCategory(["1"]));
+      dispatch(setSearchLoading(false));
+
       return;
     }
     setLoading(true);
@@ -79,6 +86,7 @@ const HeaderTwo = ({
       presentToast("Please try again later");
     } finally {
       setLoading(false);
+      dispatch(setSearchLoading(false));
 
       // setCategoryItemLoading(false);
     }
