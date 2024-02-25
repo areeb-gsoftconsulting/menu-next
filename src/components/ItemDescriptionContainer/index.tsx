@@ -36,6 +36,7 @@ const ItemDescriptionContainer = ({ data }: any) => {
           color: "var(--ion-text-color)",
           fontFamily: "poppins",
           lineHeight: "1.2",
+          fontSize: "14px",
         }}
         renderElement={renderElement}
         renderLeaf={renderLeaf}

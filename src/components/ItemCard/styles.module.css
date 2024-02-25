@@ -43,6 +43,7 @@
   margin: 0px;
   color: white;
   font-family: "poppins";
+  font-size: 14px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -53,6 +54,11 @@
 @media only screen and (max-width: 375px) {
   .priceBadge {
     top: 150px !important;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .priceBadge {
+    top: 160px !important;
   }
 }
 @media only screen and (min-width: 451px) {
@@ -75,6 +81,7 @@
   margin: 0px;
   color: red;
   font-family: "poppins";
+  font-size: 14px;
 }
 .priceBadgeMobile p {
   margin: 0px;
