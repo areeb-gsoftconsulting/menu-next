@@ -65,7 +65,7 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">
+      <IonContent className={`${styles.content}`}>
         {cart.map((item: any, ind: any) => {
           return (
             <CartItem
@@ -103,7 +103,10 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
       </IonContent>
       {cart.length > 0 && (
         <IonFooter className={styles.footer}>
-          <IonRow class="ion-justify-content-between ion-align-items-center">
+          <IonRow
+            style={{ paddingLeft: "4px", paddingRight: "4px" }}
+            class="ion-justify-content-between ion-align-items-center"
+          >
             <p className={styles.footerTxt}>Total</p>
             <p className={styles.footerTxt}>
               {venue.defaultCurrency.sign} {totalAmount}
