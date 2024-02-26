@@ -166,8 +166,8 @@
   --border-radius: 8px;
   text-transform: capitalize;
   --background-activated: red;
-  --padding-bottom: 12px;
-  --padding-top: 12px;
+  --padding-bottom: 14px;
+  --padding-top: 14px;
 }
 .cancelIcon {
   color: var(--ion-text-color);
@@ -200,8 +200,9 @@
   --background-activated: red;
 }
 .icons {
-  padding: 0px 10px;
+  padding: 0px 2px;
   height: 25px;
+  width: 25px;
 }
 .iconsAndroid {
   padding: 0px 7px;
