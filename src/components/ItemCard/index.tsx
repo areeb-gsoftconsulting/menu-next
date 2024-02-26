@@ -252,7 +252,13 @@ const ItemCard = ({ data, expandByDefault }: any) => {
         {expanded && (
           <div style={{ display: "flex", alignItems: "center" }}>
             {data.tags.map((obj: any, ind: any) => (
-              <IonChip className={styles.tags} key={ind}>
+              <IonChip
+                style={{
+                  backgroundColor: obj.colorCode ? obj.colorCode : "red",
+                }}
+                className={styles.tags}
+                key={ind}
+              >
                 {obj.name}
               </IonChip>
             ))}
