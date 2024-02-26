@@ -53,6 +53,8 @@
   --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
   --box-shadow: none;
   --border-radius: 8px;
+  --padding-bottom: 12px;
+  --padding-top: 12px;
 }
 .footerTxt {
   font-size: 14px;
