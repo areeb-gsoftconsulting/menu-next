@@ -219,8 +219,7 @@
   font-family: "poppins";
 }
 .tags {
-  background-color: var(--ion-custome-card-color);
-  color: var(--ion-text-color);
+  color: white;
   margin-left: 0px;
 }
 .tagLabel {

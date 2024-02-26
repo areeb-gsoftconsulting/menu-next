@@ -154,7 +154,7 @@ body {
 .ios body {
   --ion-skelton-color: #d3d3d3;
 
-  --ion-toolbar-borer: rgb(255, 255, 255);
+  --ion-toolbar-borer: rgb(211, 211, 211);
   --ion-search-border: rgba(217, 217, 217, 1);
   --ion-search-icon: grey;
 
@@ -262,7 +262,7 @@ body {
 .md body {
   --ion-skelton-color: #d3d3d3;
 
-  --ion-toolbar-borer: rgb(255, 255, 255);
+  --ion-toolbar-borer: rgb(211, 211, 211);
 
   --ion-search-border: rgba(217, 217, 217, 1);
   --ion-search-icon: grey;
@@ -397,6 +397,10 @@ ion-toggle {
   --handle-width: 15px;
   --handle-height: 15px;
   --handle-spacing: 2px;
+}
+
+ion-segment::-webkit-scrollbar {
+  display: none !important;
 }
 
 ion-toggle::part(track),

@@ -100,6 +100,7 @@ const CategorySlider = ({ menuId }: any) => {
   return (
     <IonToolbar className={`${styles.toolbar} ion-no-padding`}>
       <IonSegment
+        swipeGesture={true}
         value={selectedCategory}
         mode="md"
         scroll-y="false"

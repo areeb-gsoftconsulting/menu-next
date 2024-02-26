@@ -411,7 +411,10 @@ const ItemCard = ({ data, expandByDefault }: any) => {
 
             <div className={styles.addBtnDiv}>
               <IonButton
-                disabled={!data.inStock}
+                disabled={
+                  (data.prices.length > 1 && selectedPrice._id == "") ||
+                  !data.inStock
+                }
                 onClick={() =>
                   addToCart({
                     id: data._id,
