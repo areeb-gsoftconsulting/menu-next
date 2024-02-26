@@ -269,7 +269,8 @@
 }
 .icons {
   padding: 0px 2px;
-  /* height: 25px; */
+  height: 25px;
+  width: 25px;
 }
 .iconsAndroid {
   padding: 0px 7px;
@@ -285,8 +286,8 @@
   width: 100%;
   --box-shadow: none;
   --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
-  --padding-bottom: 12px;
-  --padding-top: 12px;
+  --padding-bottom: 14px;
+  --padding-top: 14px;
   --border-radius: 8px;
   --background-activated: red;
   text-transform: capitalize;

@@ -18,6 +18,7 @@ import {
   IonFooter,
   IonText,
   IonCol,
+  isPlatform,
 } from "@ionic/react";
 import styles from "./styles.module.css";
 import { chevronBack, star } from "ionicons/icons";
@@ -112,7 +113,11 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
               {venue.defaultCurrency.sign} {totalAmount}
             </p>
           </IonRow>
-          <IonButton className={styles.checkoutBtn} expand="block">
+          <IonButton
+            size={isPlatform("mobile") ? "small" : "default"}
+            className={styles.checkoutBtn}
+            expand="block"
+          >
             Place Order
           </IonButton>
         </IonFooter>
