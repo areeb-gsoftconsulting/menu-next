@@ -60,7 +60,7 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
   const [count, setCount] = useState(1);
   const [loadMore, setLoadMore] = useState(false);
   const [loadingImage, setImageLoading] = useState(true);
-
+  console.log({ data: data.tags });
   const handle1 = (data: any) => {
     console.log("selectedCustomization === ", data);
     // let tempArr = selectedCustomization;
@@ -334,7 +334,11 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
 
       <div style={{ display: "flex", alignItems: "center" }}>
         {data.tags.map((obj: any, ind: any) => (
-          <IonChip className={styles.tags} key={ind}>
+          <IonChip
+            style={{ backgroundColor: obj.colorCode ? obj.colorCode : "red" }}
+            className={`${styles.tags}`}
+            key={ind}
+          >
             {obj.name}
           </IonChip>
         ))}
@@ -540,7 +544,10 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
         <div className={styles.addBtnDiv}>
           <IonButton
             size={isPlatform("mobile") ? "small" : "default"}
-            disabled={!data.inStock}
+            disabled={
+              (data.prices.length > 1 && selectedPrice._id == "") ||
+              !data.inStock
+            }
             onClick={() =>
               addToCart({
                 id: data._id,
