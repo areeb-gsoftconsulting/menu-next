@@ -376,7 +376,11 @@ const ItemCard = ({ data, expandByDefault }: any) => {
               >
                 <IonIcon
                   className={
-                    isPlatform("ios") ? styles.icons : styles.iconsAndroid
+                    isPlatform("ios")
+                      ? styles.icons
+                      : isPlatform("mobileweb")
+                      ? styles.iconsAndroid
+                      : styles.iconsWeb
                   }
                   slot="icon-only"
                   icon={remove}
@@ -393,7 +397,11 @@ const ItemCard = ({ data, expandByDefault }: any) => {
               >
                 <IonIcon
                   className={
-                    isPlatform("ios") ? styles.icons : styles.iconsAndroid
+                    isPlatform("ios")
+                      ? styles.icons
+                      : isPlatform("mobileweb")
+                      ? styles.iconsAndroid
+                      : styles.iconsWeb
                   }
                   slot="icon-only"
                   icon={add}
