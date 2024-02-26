@@ -146,7 +146,7 @@ ion-searchbar.custom {
   justify-content: space-between;
   align-items: center;
   color: white;
-  padding: 0px 15px;
+  padding: 1px 15px;
   border-radius: 8px;
 }
 .cartBtnTxt {
