@@ -39,7 +39,7 @@
   color: var(--ion-text-color);
 }
 .itemName {
-  font-family: "poppins";
+  font-family: "poppins-normal";
   font-size: 14px;
   margin: 0px;
   color: var(--ion-text-color);

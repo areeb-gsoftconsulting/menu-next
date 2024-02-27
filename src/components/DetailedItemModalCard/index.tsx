@@ -38,7 +38,12 @@ import placeholderLight from "../../assets/placeholderLight.png";
 
 type Props = {};
 
-const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
+const DetailItemModalCard = ({
+  data,
+  isOpen,
+  setIsOpen,
+  setCustomiseModal,
+}: any) => {
   let categoryName = data.categories.map((obj: any) => obj.name);
   categoryName = categoryName.join(" ,");
   const isDark = useSelector((data: any) => data.theme.isDark);
@@ -226,6 +231,9 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
       setCount(1);
       setIsOpen(false);
       dispatch(setAddedToCart(true));
+      if (setCustomiseModal) {
+        setCustomiseModal(false);
+      }
     } else {
       let updatedItem = { ...tempCart[tempItemIndex] };
       updatedItem.quantity = updatedItem.quantity + param.quantity;
@@ -241,6 +249,9 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
       setCount(1);
       setIsOpen(false);
       dispatch(setAddedToCart(true));
+      if (setCustomiseModal) {
+        setCustomiseModal(false);
+      }
     }
   };
   console.log("this==>", data.description.length);

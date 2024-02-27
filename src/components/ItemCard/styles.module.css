@@ -18,7 +18,7 @@
 }
 .prices {
   font-size: 14px;
-  font-family: "poppins";
+  font-family: "poppins-normal";
   color: var(--ion-text-color);
 }
 @media only screen and (max-width: 500px) {

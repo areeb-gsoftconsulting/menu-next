@@ -39,8 +39,7 @@ import {
 } from "../../store/slices/cartSlice";
 import ItemDescriptionContainer from "../ItemDescriptionContainer";
 
-const ItemCard = ({ data, expandByDefault }: any) => {
-  console.log({ data });
+const ItemCard = ({ data, expandByDefault, setCustomiseModal }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const venue = useSelector((data: any) => data.restaurant.venue);
   const [expanded, setExpanded] = useState(
@@ -93,6 +92,9 @@ const ItemCard = ({ data, expandByDefault }: any) => {
         setCount(1);
         setExpanded(false);
         dispatch(setAddedToCart(true));
+        if (setCustomiseModal) {
+          setCustomiseModal(false);
+        }
       } else {
         let updatedItem = { ...tempCart[tempItemIndex] };
         updatedItem.quantity = updatedItem.quantity + data.quantity;
@@ -107,6 +109,9 @@ const ItemCard = ({ data, expandByDefault }: any) => {
         setCount(1);
         setExpanded(false);
         dispatch(setAddedToCart(true));
+        if (setCustomiseModal) {
+          setCustomiseModal(false);
+        }
       }
     }
   };
@@ -209,11 +214,11 @@ const ItemCard = ({ data, expandByDefault }: any) => {
           )}
         </div> */}
 
-        {/* {numberInCart.length > 0 && (
+        {numberInCart.length > 0 && (
           <div className={styles.badge}>
             <p className={styles.badgeTxt}>{numberInCart[0].quantity}</p>
           </div>
-        )} */}
+        )}
 
         {/* <IonRow className="ion-margin-top ion-align-items-center">
           <IonIcon className={styles.rateIcon} icon={starSharp} />
