@@ -249,6 +249,9 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
       ? JSON.parse(data.description)
       : data.description;
 
+  const prices = data.prices.map((item: any) => item.price);
+  const smallestPrice = Math.min(...prices);
+
   return (
     <div>
       {!data.inStock && (
@@ -268,7 +271,7 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
             : data.imageUrl
         }
       />
-      <div className={styles.priceBadge}>
+      {/* <div className={styles.priceBadge}>
         {data.prices.length > 1 ? (
           <p>
             {venue.defaultCurrency.sign} {data.prices[0]?.price}
@@ -278,7 +281,7 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
             {venue.defaultCurrency.sign} {data.prices[0].price}
           </p>
         )}
-      </div>
+      </div> */}
       {/* <IonRow className="ion-margin-top ion-align-items-center">
     <IonIcon className={styles.rateIcon} icon={starSharp} />
     <IonText
@@ -297,9 +300,18 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
           flexDirection: "column",
         }}
       >
-        <IonRow className="ion-justify-content-between ion-align-items-center">
+        <IonRow className="ion-justify-content-between ion-no-wrap ion-align-items-baseline">
           <IonLabel className={styles.name}>{data.name}</IonLabel>
           {/* <IonLabel className={styles.price}>$4.5</IonLabel> */}
+          {data.prices.length > 1 ? (
+            <IonLabel class="ion-text-nowrap" className={styles.price}>
+              from {venue.defaultCurrency.sign} {smallestPrice}
+            </IonLabel>
+          ) : (
+            <IonLabel className={styles.price}>
+              {venue.defaultCurrency.sign} {data.prices[0].price}
+            </IonLabel>
+          )}
         </IonRow>
         <IonLabel className={styles.categoryName}>{categoryName}</IonLabel>
       </div>

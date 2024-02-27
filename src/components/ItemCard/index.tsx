@@ -123,6 +123,8 @@ const ItemCard = ({ data, expandByDefault }: any) => {
       dispatch(setLiked(updatedLiked));
     }
   };
+  const prices = data.prices.map((item: any) => item.price);
+  const smallestPrice = Math.min(...prices);
 
   return (
     <>
@@ -134,21 +136,15 @@ const ItemCard = ({ data, expandByDefault }: any) => {
         }}
         className={`${styles.card}`}
       >
-        <IonRow className="ion-justify-content-between ion-align-items-center">
+        <IonRow className="ion-justify-content-between ion-align-items-baseline">
           <IonRow
-            className={`ion-justify-content-between ion-align-items-center ${styles.cardName}`}
+            className={`ion-justify-content-between ion-align-items-baseline ${styles.cardName}`}
           >
-            {/* <div className={styles.outerDiv}>
-              <IonThumbnail className={styles.thumbnail}>
-                <img alt="Logo" src={currentMenu?.imageUrl} />
-              </IonThumbnail>
-            </div> */}
-
             <div
               style={{
                 display: "flex",
                 flexDirection: "column",
-                paddingLeft: "5px",
+                paddingLeft: "0px",
               }}
             >
               <IonLabel className={styles.name}>{data.name}</IonLabel>
@@ -156,6 +152,17 @@ const ItemCard = ({ data, expandByDefault }: any) => {
                 {categoryName}
               </IonLabel>
             </div>
+            {data.prices.length > 1 ? (
+              <div>
+                <IonLabel className={styles.prices}>
+                  from {venue.defaultCurrency.sign} {smallestPrice}
+                </IonLabel>
+              </div>
+            ) : (
+              <IonLabel className={styles.prices}>
+                {venue.defaultCurrency.sign} {data.prices[0].price}
+              </IonLabel>
+            )}
           </IonRow>
           {/* <IonIcon
             className={styles.moreIcon}
@@ -190,7 +197,7 @@ const ItemCard = ({ data, expandByDefault }: any) => {
           }
         />
 
-        <div className={styles.priceBadge}>
+        {/* <div className={styles.priceBadge}>
           {data.prices.length > 1 ? (
             <p>
               {venue.defaultCurrency.sign} {data.prices[0]?.price}
@@ -200,7 +207,7 @@ const ItemCard = ({ data, expandByDefault }: any) => {
               {venue.defaultCurrency.sign} {data.prices[0].price}
             </p>
           )}
-        </div>
+        </div> */}
 
         {numberInCart.length > 0 && (
           <div className={styles.badge}>
