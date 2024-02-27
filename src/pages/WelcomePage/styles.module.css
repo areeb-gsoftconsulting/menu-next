@@ -4,14 +4,45 @@
   --padding-start: 20px;
   --padding-end: 20px;
 }
+
 ion-content {
   --padding-top: 10px;
   --padding-start: 0px;
   --padding-end: 0px;
   --background: var(--ion-page-background-color);
 }
+.logo {
+  max-width: 180px;
+  margin: 0 auto;
+}
 .page {
   max-width: 100%;
+  margin: 0 auto;
+}
+.error {
+  color: red;
+  font-family: "poppins-normal";
+  text-align: center;
+}
+.or {
+  font-family: "poppins-normal";
+  text-align: center;
+  color: var(--ion-text-color);
+  font-size: 20px;
+}
+.text {
+  font-size: 16px;
+  color: var(--ion-text-color);
+  text-align: center;
+  font-family: "poppins-normal";
+}
+.checkoutBtn {
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  --box-shadow: none;
+  --border-radius: 8px;
+  --padding-bottom: 14px;
+  --padding-top: 14px;
+  max-width: 300px;
   margin: 0 auto;
 }
 @media (min-width: 768px) {
@@ -20,21 +51,82 @@ ion-content {
   }
 }
 .img {
-  width: 60%;
-  height: 500px;
-  margin: auto;
-  display: block;
+  max-width: 300px;
+  margin: 50px auto;
 }
-.text {
-  color: var(--ion-text-color);
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 800;
+.imgnotfound {
+  max-width: 235px;
+  margin: 50px auto;
+}
+.customSearchbar {
+  max-width: 300px;
+  margin: 10px auto;
+  border: 1px solid var(--ion-search-border);
+  border-radius: 8px;
+  background: var(--ion-searchbar-background);
+}
+ion-searchbar.custom {
+  --background: var(--ion-searchbar-background);
+  --color: var(--ion-text-color);
+  /* --placeholder-color: #fff;
+      --icon-color: #fff; */
+  --border-radius: 8px;
+  --box-shadow: none;
+  padding: 0px;
+  --icon-color: var(--ion-search-icon);
+}
+.box {
+  margin: 0px auto 35px auto;
+  border-radius: 16px;
+  background-color: var(--ion-custome-card-color);
+  padding: 14px;
+  max-width: 300px;
+}
+.item {
   font-family: "poppins";
+  cursor: pointer;
+  margin: 0px;
+}
+.itemHeader {
+  font-family: "poppins-normal";
+  margin: 0px;
+}
+.loading {
+  font-family: "poppins";
+  cursor: pointer;
   text-align: center;
-  display: flex;
-  max-width: 500px;
-  margin: 0 auto;
-  position: relative;
-  top: -150px;
+  margin: 0px;
+}
+@media screen and (min-width: 425px) {
+  .logo {
+    max-width: 230px;
+    margin: 0 auto;
+  }
+  .imgnotfound {
+    max-width: 300px;
+    margin: 50px auto;
+  }
+  .checkoutBtn {
+    --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+    --box-shadow: none;
+    --border-radius: 8px;
+    --padding-bottom: 14px;
+    --padding-top: 14px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .customSearchbar {
+    max-width: 400px;
+    margin: 10px auto;
+    border: 1px solid var(--ion-search-border);
+    border-radius: 8px;
+    background: var(--ion-searchbar-background);
+  }
+  .box {
+    margin: 0px auto 35px auto;
+    border-radius: 16px;
+    background-color: var(--ion-custome-card-color);
+    padding: 14px;
+    max-width: 400px;
+  }
 }
