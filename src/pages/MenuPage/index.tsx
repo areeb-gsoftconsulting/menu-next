@@ -24,8 +24,8 @@ import getVenues from "../../services/getVenue";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentMenu } from "../../store/slices/restaurantSlice";
 import { setSelectedCategory } from "../../store/slices/categorySlice";
-import placeholderDark from "../../assets/placeholderDark.png";
-import placeholderLight from "../../assets/placeholderLight.png";
+import placeholderDark from "../../assets/menuPlaceholderDark.png";
+import placeholderLight from "../../assets/menuPlaceholderLight.png";
 
 const Menu = () => {
   const dispatch = useDispatch();
