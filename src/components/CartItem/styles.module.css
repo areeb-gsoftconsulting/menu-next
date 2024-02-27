@@ -83,7 +83,7 @@
   flex-wrap: nowrap;
 }
 .rightBox {
-  width: 20%;
+  width: 15%;
 }
 .name {
   margin: 0px !important;
@@ -143,6 +143,6 @@
     width: 70%;
   }
   .rightBox {
-    width: 30%;
+    width: 25%;
   }
 }

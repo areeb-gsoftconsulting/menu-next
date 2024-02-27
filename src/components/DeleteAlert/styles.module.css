@@ -54,8 +54,11 @@
   --padding-end: 20px;
   --padding-start: 20px;
   font-family: "poppins-normal";
+  margin-left: 5px;
 }
 .delBtn {
+  margin-right: 5px;
+
   --box-shadow: none;
   --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
   --border-radius: 8px;
