@@ -1,0 +1,41 @@
+.checkBox {
+  --checkbox-background-checked: red;
+  --checkbox-background: var(--ion-page-background);
+  --border-color: #6e6e6e;
+  --border-color-checked: red;
+  padding: 8px 0px;
+}
+.name {
+  color: var(--ion-text-color);
+  text-align: right;
+  font-family: "poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0px;
+}
+.itemname {
+  color: var(--ion-text-color);
+  text-align: right;
+  font-family: "poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0px;
+  cursor: pointer;
+}
+.mainRow {
+  border-bottom: 1px solid var(--ion-toolbar-borer);
+  padding: 10px 0px;
+}
+.img {
+  height: 34px;
+  width: 34px;
+  min-width: 34px;
+  object-fit: cover;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 0px 5px;
+}
