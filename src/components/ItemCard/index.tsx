@@ -209,11 +209,11 @@ const ItemCard = ({ data, expandByDefault }: any) => {
           )}
         </div> */}
 
-        {numberInCart.length > 0 && (
+        {/* {numberInCart.length > 0 && (
           <div className={styles.badge}>
             <p className={styles.badgeTxt}>{numberInCart[0].quantity}</p>
           </div>
-        )}
+        )} */}
 
         {/* <IonRow className="ion-margin-top ion-align-items-center">
           <IonIcon className={styles.rateIcon} icon={starSharp} />
@@ -357,16 +357,18 @@ const ItemCard = ({ data, expandByDefault }: any) => {
           </div>
         ) : (
           expanded && (
-            <IonRow
-              className={`ion-justify-content-between ion-align-items-center`}
-            >
-              <p className={`${styles.priceLabel}`}>
-                {data.prices[0].description}
-              </p>
-              <p className={`${styles.priceLabel}`}>
-                {venue.defaultCurrency.sign} {data.prices[0].price}
-              </p>
-            </IonRow>
+            <div className={styles.flavCardSingle}>
+              <IonRow
+                className={`ion-justify-content-between ion-align-items-center`}
+              >
+                <p className={`${styles.priceLabel}`}>
+                  {data.prices[0].description}
+                </p>
+                <p className={`${styles.priceLabel}`}>
+                  {venue.defaultCurrency.sign} {data.prices[0].price}
+                </p>
+              </IonRow>
+            </div>
           )
         )}
         {expanded && (
@@ -385,7 +387,9 @@ const ItemCard = ({ data, expandByDefault }: any) => {
                   }
                 }}
                 size={isPlatform("mobile") ? "small" : "default"}
-                className={`${styles.iconBtn} ion-no-padding`}
+                className={`${
+                  isPlatform("mobile") ? styles.iconBtn : styles.iconBtnWeb
+                } ion-no-padding`}
               >
                 <IonIcon
                   className={
@@ -406,7 +410,9 @@ const ItemCard = ({ data, expandByDefault }: any) => {
                 }}
                 slot="icon-only"
                 size={isPlatform("mobile") ? "small" : "default"}
-                className={`${styles.iconBtn} ion-no-padding`}
+                className={`${
+                  isPlatform("mobile") ? styles.iconBtn : styles.iconBtnWeb
+                } ion-no-padding`}
               >
                 <IonIcon
                   className={

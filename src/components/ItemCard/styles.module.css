@@ -222,6 +222,12 @@
   background-color: var(--ion-custome-card-color);
   padding: 14px;
 }
+.flavCardSingle {
+  margin-top: 10px;
+  border-radius: 8px;
+  background-color: var(--ion-custome-card-color);
+  padding: 14px;
+}
 .caption {
   color: var(--ion-text-color);
   font-family: "poppins-normal";
@@ -277,7 +283,17 @@
 .iconBtn {
   --box-shadow: none;
   --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
-  --border-radius: 8px;
+  --border-radius: 100%;
+  padding-inline-start: 0px;
+  padding-inline-end: 0px;
+  --background-activated: red;
+  height: 30px;
+  width: 30px;
+}
+.iconBtnWeb {
+  --box-shadow: none;
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  --border-radius: 100%;
   padding-inline-start: 0px;
   padding-inline-end: 0px;
   --background-activated: red;

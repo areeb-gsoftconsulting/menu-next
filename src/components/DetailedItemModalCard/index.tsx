@@ -516,7 +516,9 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
             onClick={() => {
               if (count > 1) setCount(count - 1);
             }}
-            className={`${styles.iconBtn} ion-no-padding`}
+            className={`${
+              isPlatform("mobile") ? styles.iconBtn : styles.iconBtnWeb
+            } ion-no-padding`}
             size={isPlatform("mobile") ? "small" : "default"}
           >
             <IonIcon
@@ -537,7 +539,9 @@ const DetailItemModalCard = ({ data, isOpen, setIsOpen }: any) => {
             onClick={() => {
               setCount(count + 1);
             }}
-            className={`${styles.iconBtn} ion-no-padding`}
+            className={`${
+              isPlatform("mobile") ? styles.iconBtn : styles.iconBtnWeb
+            } ion-no-padding`}
           >
             <IonIcon
               className={
