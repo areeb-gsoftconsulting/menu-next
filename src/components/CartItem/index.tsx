@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IonButton, IonIcon, IonImg, IonRow } from "@ionic/react";
 import styles from "./styles.module.css";
 import {
@@ -7,7 +7,7 @@ import {
   heartOutline,
   chevronForwardSharp,
   chevronDown,
-  trashBinSharp,
+  trashSharp as trashBinSharp,
   chevronUp,
   chevronForward,
 } from "ionicons/icons";
@@ -16,6 +16,7 @@ import ExpandedCartItem from "./expandedCartItem";
 import { useDispatch, useSelector } from "react-redux";
 import { setCart, setCartItems } from "../../store/slices/cartSlice";
 import DeleteAlert from "../DeleteAlert";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
 
 type Props = {};
 
@@ -32,6 +33,10 @@ const CartItem = ({
   const cart = useSelector((data: any) => data.cart.items);
   console.log({ ind });
   const [isOpenDelete, setOpenDelete] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+  const { height, width } = useWindowDimensions();
+  // const otherNamesRef = useRef(null);
+  console.log({ isOverflowing });
 
   useEffect(() => {
     if (showBtn) {
@@ -103,11 +108,49 @@ const CartItem = ({
     let restCart = cart.filter((data: any, index: any) => ind !== index);
     dispatch(setCart(restCart));
   };
+
+  const customizationNames = item.customization.map((data: any) => data.name);
+  const customizationPrices = item.customization.reduce(
+    (accumulator: any, current: any) => accumulator + current.price,
+    0
+  );
+  console.log("oneeee", customizationNames.join(",").length);
+  // useEffect(() => {
+  //   if (
+  //     width < 770 &&
+  //     width > 425 &&
+  //     customizationNames.join(",").length > 56
+  //   ) {
+  //     setIsOverflowing(true);
+  //   } else if (
+  //     width > 320 &&
+  //     width < 426 &&
+  //     customizationNames.join(",").length > 31
+  //   ) {
+  //     setIsOverflowing(true);
+  //   } else if (width < 375 && customizationNames.join(",").length > 17) {
+  //     setIsOverflowing(true);
+  //   } else {
+  //     setIsOverflowing(false);
+  //   }
+  // }, [width]);
+
+  // useEffect(() => {
+  //   if (otherNamesRef.current) {
+  //     setIsOverflowing(
+  //       otherNamesRef.current.offsetWidth < otherNamesRef.current.scrollWidth
+  //     );
+  //   }
+  // }, [customizationNames]);
+
   return (
     <>
-      <IonRow class="ion-justify-content-between ion-align-items-center">
+      <IonRow
+        className={styles.mainRow}
+        class="ion-justify-content-between ion-align-items-center"
+      >
         <IonRow className={styles.leftBox} class="ion-align-items-center">
-          {/* <IonRow
+          <IonRow
             onClick={(e) => {
               e.preventDefault();
               setShowBtn(!showBtn);
@@ -180,7 +223,7 @@ const CartItem = ({
                 ></IonIcon>
               </IonButton>
             </div>
-          )} */}
+          )}
 
           <IonRow
             onClick={(e) => {
@@ -192,21 +235,37 @@ const CartItem = ({
             className={styles.nameImgBox}
           >
             <IonImg className={styles.img} src={item.image} />
-            <p className={styles.itemName}>{item.name}</p>
+            <div className={styles.textDiv}>
+              <p className={styles.itemName}>{item.name}</p>
+              {expand && (
+                <p className={styles.otherNamesShow}>
+                  {customizationNames.join(",")}
+                </p>
+              )}
+            </div>
           </IonRow>
         </IonRow>
         <IonRow
           className={styles.rightBox}
-          class="ion-align-items-center ion-justify-content-between"
+          class="ion-align-items-center ion-justify-content-between ion-nowrap"
         >
+          {item.customization.length > 0 ? (
+            <IonIcon
+              style={{ cursor: "pointer" }}
+              icon={expand ? chevronUp : chevronDown}
+              onClick={() => setExpand(!expand)}
+            />
+          ) : (
+            <IonIcon
+              className={styles.iconHidder}
+              icon={expand ? chevronUp : chevronDown}
+            />
+          )}
           <p className={styles.quantity}>
-            {venue.defaultCurrency.sign} {item.price.price}
+            {venue.defaultCurrency.sign}{" "}
+            {item.price.price + customizationPrices}
           </p>
-          <IonIcon
-            style={{ cursor: "pointer" }}
-            icon={expand ? chevronUp : chevronDown}
-            onClick={() => setExpand(!expand)}
-          />
+
           <IonIcon
             onClick={() => openDeleteModal()}
             className={styles.trash}
@@ -214,7 +273,8 @@ const CartItem = ({
           />
         </IonRow>
       </IonRow>
-      {expand && <ExpandedCartItem item={item} />}
+
+      {/* {expand && <ExpandedCartItem item={item} />} */}
       {isOpenDelete && (
         <DeleteAlert
           setOpen={setOpenDelete}
