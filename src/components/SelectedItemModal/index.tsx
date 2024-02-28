@@ -147,7 +147,7 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
         </div>
       </IonContent>
       {selectBulk.length > 0 && (
-        <IonFooter>
+        <IonFooter className={styles.elementToFadeInAndOut}>
           <IonRow
             className={styles.footer}
             class="ion-justify-content-between ion-align-items-center"
