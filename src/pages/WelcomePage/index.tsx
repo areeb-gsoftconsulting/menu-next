@@ -96,6 +96,7 @@ const WelcomePage: React.FC = () => {
         dispatch(setVenue(res.data.data));
       } else {
         setFailed(true);
+        setOpening(false);
       }
     } catch (error) {
       console.log({ error });
