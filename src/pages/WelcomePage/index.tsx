@@ -32,6 +32,7 @@ import restNotFound from "../../assets/restNotFound.png";
 import lightLogo from "../../assets/restNotFound.png";
 import darkLogo from "../../assets/logoDark.png";
 import getVenueSlugs from "../../services/getVenueSlugs";
+import { setCategories } from "../../store/slices/categorySlice";
 
 const WelcomePage: React.FC = () => {
   const isDark = useSelector((data: any) => data.theme.isDark);
@@ -70,7 +71,9 @@ const WelcomePage: React.FC = () => {
 
         if (res.data.data.menus.length > 1) {
           router.push(`/${sanitizedUrl}/menu`);
+          dispatch(setCategories([]));
         } else {
+          dispatch(setCategories([]));
           dispatch(setCurrentMenu(res.data.data.menus[0]));
 
           router.push(`/${sanitizedUrl}/home`);

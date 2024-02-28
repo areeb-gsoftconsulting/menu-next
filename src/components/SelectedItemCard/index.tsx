@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { useSelector } from "react-redux";
 import DetailedAddedToCart from "../DetailedAddedToCart";
+import placeholderDark from "../../assets/menuPlaceholderDark.png";
+import placeholderLight from "../../assets/menuPlaceholderLight.png";
 type Props = {};
 
 const SelectedItemCard = ({ selectBulk, setSelectBulk, data }: any) => {
@@ -10,7 +12,8 @@ const SelectedItemCard = ({ selectBulk, setSelectBulk, data }: any) => {
   const prices = data.prices.map((item: any) => item.price);
   const smallestPrice = Math.min(...prices);
   const [openDetailed, setOpenDetailed] = useState(false);
-  const liked = useSelector((data: any) => data.like.items);
+  const isDark = useSelector((data: any) => data.theme.isDark);
+  const [loadingImage, setImageLoading] = useState(true);
 
   const handleCheckboxChange = (event: any) => {
     if (event.detail.checked) {
@@ -40,7 +43,18 @@ const SelectedItemCard = ({ selectBulk, setSelectBulk, data }: any) => {
             className={styles.checkBox}
             labelPlacement="end"
           ></IonCheckbox>
-          <IonImg className={styles.img} src={data.imageUrl} />
+          <IonImg
+            onIonImgWillLoad={() => setImageLoading(false)}
+            onIonImgDidLoad={() => setImageLoading(false)}
+            className={styles.img}
+            src={
+              loadingImage
+                ? isDark
+                  ? placeholderDark
+                  : placeholderLight
+                : data.imageUrl
+            }
+          />
           <p onClick={() => setOpenDetailed(true)} className={styles.itemname}>
             {data.name}
           </p>
