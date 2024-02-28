@@ -42,9 +42,9 @@ const SelectedItemCard = ({
     <>
       <IonRow
         className={styles.mainRow}
-        class="ion-justify-content-between ion-align-items-center"
+        class="ion-justify-content-between ion-align-items-center ion-nowrap"
       >
-        <IonRow class="ion-justify-content-start ion-align-items-center">
+        <IonRow class="ion-justify-content-start ion-align-items-center ion-nowrap">
           <IonCheckbox
             checked={
               selectBulk.some((item: any) => item._id === data._id) || false

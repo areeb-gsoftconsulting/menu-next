@@ -29,8 +29,9 @@ import styles from "./styles.module.css";
 import darkImg from "../../assets/welcomeImgDark.png";
 import lightImg from "../../assets/welcomeImg.png";
 import restNotFound from "../../assets/restNotFound.png";
-import lightLogo from "../../assets/restNotFound.png";
+import lightLogo from "../../assets/logoDark.png";
 import darkLogo from "../../assets/logoDark.png";
+import qrImage from "../../assets/QR.png";
 import getVenueSlugs from "../../services/getVenueSlugs";
 import { setCategories } from "../../store/slices/categorySlice";
 
@@ -145,7 +146,7 @@ const WelcomePage: React.FC = () => {
           </>
         ) : (
           <>
-            <IonImg className={styles.imgnotfound} src={restNotFound} />
+            <IonImg className={styles.imgnotfound} src={qrImage} />
             {failed && <h1 className={styles.error}>Error</h1>}
             {notFound && (
               <p className={styles.text}>Location not found please try again</p>

@@ -14,8 +14,11 @@
   font-weight: 500;
   line-height: normal;
   margin: 0px;
+  text-wrap: nowrap;
 }
 .itemname {
+  text-align: start !important;
+  width: 180px;
   color: var(--ion-text-color);
   text-align: right;
   font-family: "poppins";
@@ -25,6 +28,9 @@
   line-height: normal;
   margin: 0px;
   cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .mainRow {
   padding: 10px 0px 0px 0px;
@@ -40,7 +46,7 @@
   object-fit: cover;
   border-radius: 4px;
   overflow: hidden;
-  margin: 0px 5px;
+  margin: 0px 15px;
 }
 .err {
   font-family: "poppins";
@@ -48,4 +54,14 @@
   margin: 0px;
   padding-top: 5px;
   color: red;
+}
+@media (min-width: 426px) {
+  .itemname {
+    width: 260px;
+  }
+}
+@media (max-width: 320px) {
+  .itemname {
+    width: 120px;
+  }
 }
