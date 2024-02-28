@@ -7,7 +7,13 @@ import placeholderDark from "../../assets/menuPlaceholderDark.png";
 import placeholderLight from "../../assets/menuPlaceholderLight.png";
 type Props = {};
 
-const SelectedItemCard = ({ selectBulk, setSelectBulk, data }: any) => {
+const SelectedItemCard = ({
+  selectBulk,
+  setSelectBulk,
+  data,
+  setErrorItems,
+  errorItems,
+}: any) => {
   const venue = useSelector((data: any) => data.restaurant.venue);
   const prices = data.prices.map((item: any) => item.price);
   const smallestPrice = Math.min(...prices);
@@ -26,6 +32,11 @@ const SelectedItemCard = ({ selectBulk, setSelectBulk, data }: any) => {
       setSelectBulk(filteredBulk);
     }
   };
+
+  console.log(
+    "========>",
+    errorItems.some((item: any) => item._id === data._id)
+  );
 
   return (
     <>
@@ -55,7 +66,16 @@ const SelectedItemCard = ({ selectBulk, setSelectBulk, data }: any) => {
                 : data.imageUrl
             }
           />
-          <p onClick={() => setOpenDetailed(true)} className={styles.itemname}>
+          <p
+            onClick={() => {
+              let temp = errorItems.filter(
+                (item: any) => item._id !== data._id
+              );
+              setErrorItems(temp);
+              setOpenDetailed(true);
+            }}
+            className={styles.itemname}
+          >
             {data.name}
           </p>
         </IonRow>
@@ -69,6 +89,10 @@ const SelectedItemCard = ({ selectBulk, setSelectBulk, data }: any) => {
           </p>
         )}
       </IonRow>
+      {errorItems.some((item: any) => item._id === data._id) && (
+        <p className={styles.err}>item may require customization*</p>
+      )}
+      <div className={styles.border} />
       {openDetailed && (
         <DetailedAddedToCart
           selectDetailItem={[{ id: data._id }]}

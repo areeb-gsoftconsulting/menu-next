@@ -16,6 +16,7 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
   const [selectBulk, setSelectBulk] = useState([]);
   const dispatch = useDispatch();
   const cart = useSelector((data: any) => data.cart.items);
+  const [errorItems, setErrorItems] = useState([]);
 
   const setingLiked = () => {
     const updatedLiked = liked.filter(
@@ -34,6 +35,14 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
         item.customization.length === 0 &&
         item.inStock
     );
+    const tempErrItems = selectBulk.filter(
+      (item: any) =>
+        item.prices.length > 1 ||
+        item.customization.length > 0 ||
+        item.inStock == false
+    );
+
+    setErrorItems(tempErrItems);
 
     const updatedCart = [...cart];
 
@@ -193,6 +202,8 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
               selectBulk={selectBulk}
               setSelectBulk={setSelectBulk}
               data={data}
+              setErrorItems={setErrorItems}
+              errorItems={errorItems}
             />
           ))}
         </div>

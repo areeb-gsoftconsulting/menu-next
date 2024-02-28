@@ -27,8 +27,11 @@
   cursor: pointer;
 }
 .mainRow {
+  padding: 10px 0px 0px 0px;
+}
+.border {
+  padding-top: 10px;
   border-bottom: 1px solid var(--ion-toolbar-borer);
-  padding: 10px 0px;
 }
 .img {
   height: 34px;
@@ -38,4 +41,11 @@
   border-radius: 4px;
   overflow: hidden;
   margin: 0px 5px;
+}
+.err {
+  font-family: "poppins";
+  font-size: 12px;
+  margin: 0px;
+  padding-top: 5px;
+  color: red;
 }
