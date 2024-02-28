@@ -9,19 +9,43 @@
   display: flex;
   flex-wrap: nowrap;
 }
+.mainRow {
+  padding: 5px 0px 5px 0px;
+  border-bottom: 1px solid var(--ion-toolbar-borer);
+}
 .quantity {
   font-family: "poppins";
   font-size: 14px;
   color: var(--ion-text-color);
+  text-wrap: nowrap;
 }
-.itemName {
+.textDiv {
+  max-width: 320px;
+  width: calc(100% - 90px);
+}
+.otherNames {
   font-family: "poppins";
-  font-size: 14px;
+  font-size: 10px;
+  margin: 0px;
   color: var(--ion-text-color);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-right: 50px;
+}
+.otherNamesShow {
+  font-family: "poppins";
+  font-size: 12px;
+  margin: 0px;
+  color: var(--ion-text-color);
+}
+.itemName {
+  font-family: "poppins-normal";
+  font-size: 14px;
+  margin: 0px;
+  color: var(--ion-text-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .nameImgBox {
   display: flex;
@@ -42,11 +66,17 @@
   margin: 0px 5px;
 }
 .trash {
-  color: white;
-  background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
-  padding: 7px;
+  color: red;
+  /* background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%); */
+  /* padding-left: 4px !important; */
+  height: 15px;
+  width: 15px;
   border-radius: 5px;
+  font-size: 1.2em !important;
   cursor: pointer;
+}
+.toggleIcon {
+  font-size: 1em !important;
 }
 .leftBox {
   max-width: 80%;
@@ -56,7 +86,7 @@
   flex-wrap: nowrap;
 }
 .rightBox {
-  width: 20%;
+  width: 15%;
 }
 .name {
   margin: 0px !important;
@@ -86,6 +116,9 @@
   padding: 0px 5px;
   font-size: 16px;
 }
+.iconHidder {
+  color: var(--ion-page-background-color);
+}
 .iconBtn {
   --box-shadow: none;
   --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
@@ -98,7 +131,8 @@
   font-size: 14px;
   font-family: "poppins-normal";
   font-weight: 600;
-  color: black;
+  color: var(--ion-text-color);
+  padding: 0px 3px;
 }
 .comments {
   font-size: 12px;
@@ -113,6 +147,18 @@
     width: 70%;
   }
   .rightBox {
-    width: 30%;
+    width: 25%;
   }
+}
+.floatBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px;
+  position: absolute;
+  left: 70px;
+  background: var(--ion-custome-card-color);
+  padding: 0px 10px;
+  border: 1px solid var(--ion-search-border);
+  border-radius: 4px;
 }

@@ -201,6 +201,17 @@
   padding-inline-start: 0px;
   padding-inline-end: 0px;
   --background-activated: red;
+  --border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+.iconBtnWeb {
+  --box-shadow: none;
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  --border-radius: 100%;
+  padding-inline-start: 0px;
+  padding-inline-end: 0px;
+  --background-activated: red;
 }
 .icons {
   padding: 0px 2px;

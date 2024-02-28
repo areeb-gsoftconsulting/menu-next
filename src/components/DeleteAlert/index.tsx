@@ -58,15 +58,6 @@ function DeleteAlert({ isOpen, setOpen, onDelete }: any) {
         <IonRow class="ion-justify-content-center">
           <IonButton
             size="small"
-            onClick={() => setOpen(false)}
-            className={styles.cancelBtn}
-            mode="ios"
-            color={"dark"}
-          >
-            Cancel
-          </IonButton>
-          <IonButton
-            size="small"
             className={styles.delBtn}
             onClick={() => {
               onDelete();
@@ -75,6 +66,15 @@ function DeleteAlert({ isOpen, setOpen, onDelete }: any) {
             mode="ios"
           >
             Delete
+          </IonButton>
+          <IonButton
+            size="small"
+            onClick={() => setOpen(false)}
+            className={styles.cancelBtn}
+            mode="ios"
+            color={"dark"}
+          >
+            Cancel
           </IonButton>
         </IonRow>
       </IonContent>

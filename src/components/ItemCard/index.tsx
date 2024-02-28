@@ -39,8 +39,7 @@ import {
 } from "../../store/slices/cartSlice";
 import ItemDescriptionContainer from "../ItemDescriptionContainer";
 
-const ItemCard = ({ data, expandByDefault }: any) => {
-  console.log({ data });
+const ItemCard = ({ data, expandByDefault, setCustomiseModal }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const venue = useSelector((data: any) => data.restaurant.venue);
   const [expanded, setExpanded] = useState(
@@ -93,6 +92,9 @@ const ItemCard = ({ data, expandByDefault }: any) => {
         setCount(1);
         setExpanded(false);
         dispatch(setAddedToCart(true));
+        if (setCustomiseModal) {
+          setCustomiseModal(false);
+        }
       } else {
         let updatedItem = { ...tempCart[tempItemIndex] };
         updatedItem.quantity = updatedItem.quantity + data.quantity;
@@ -107,6 +109,9 @@ const ItemCard = ({ data, expandByDefault }: any) => {
         setCount(1);
         setExpanded(false);
         dispatch(setAddedToCart(true));
+        if (setCustomiseModal) {
+          setCustomiseModal(false);
+        }
       }
     }
   };
@@ -357,16 +362,18 @@ const ItemCard = ({ data, expandByDefault }: any) => {
           </div>
         ) : (
           expanded && (
-            <IonRow
-              className={`ion-justify-content-between ion-align-items-center`}
-            >
-              <p className={`${styles.priceLabel}`}>
-                {data.prices[0].description}
-              </p>
-              <p className={`${styles.priceLabel}`}>
-                {venue.defaultCurrency.sign} {data.prices[0].price}
-              </p>
-            </IonRow>
+            <div className={styles.flavCardSingle}>
+              <IonRow
+                className={`ion-justify-content-between ion-align-items-center`}
+              >
+                <p className={`${styles.priceLabel}`}>
+                  {data.prices[0].description}
+                </p>
+                <p className={`${styles.priceLabel}`}>
+                  {venue.defaultCurrency.sign} {data.prices[0].price}
+                </p>
+              </IonRow>
+            </div>
           )
         )}
         {expanded && (
@@ -385,7 +392,9 @@ const ItemCard = ({ data, expandByDefault }: any) => {
                   }
                 }}
                 size={isPlatform("mobile") ? "small" : "default"}
-                className={`${styles.iconBtn} ion-no-padding`}
+                className={`${
+                  isPlatform("mobile") ? styles.iconBtn : styles.iconBtnWeb
+                } ion-no-padding`}
               >
                 <IonIcon
                   className={
@@ -406,7 +415,9 @@ const ItemCard = ({ data, expandByDefault }: any) => {
                 }}
                 slot="icon-only"
                 size={isPlatform("mobile") ? "small" : "default"}
-                className={`${styles.iconBtn} ion-no-padding`}
+                className={`${
+                  isPlatform("mobile") ? styles.iconBtn : styles.iconBtnWeb
+                } ion-no-padding`}
               >
                 <IonIcon
                   className={

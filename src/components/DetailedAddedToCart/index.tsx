@@ -81,9 +81,15 @@ function DetailedAddedToCart({ selectDetailItem, open, setOpen }: any) {
           })} */}
           {item.map((data: any) => {
             return data.customization.length < 1 ? (
-              <ItemCard key={data.id} data={data} expandByDefault={true} />
+              <ItemCard
+                key={data.id}
+                data={data}
+                expandByDefault={true}
+                setCustomiseModal={setOpen}
+              />
             ) : (
               <DetailItemModalCard
+                setCustomiseModal={setOpen}
                 key={data.id}
                 data={data}
                 setIsOpen={setOpen}
