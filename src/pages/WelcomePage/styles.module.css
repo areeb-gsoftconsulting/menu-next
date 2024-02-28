@@ -3,14 +3,9 @@
 
   --padding-start: 20px;
   --padding-end: 20px;
-}
-
-ion-content {
-  --padding-top: 10px;
-  --padding-start: 0px;
-  --padding-end: 0px;
   --background: var(--ion-page-background-color);
 }
+
 .logo {
   max-width: 180px;
   margin: 0 auto;
@@ -44,6 +39,7 @@ ion-content {
   --padding-top: 14px;
   max-width: 300px;
   margin: 0 auto;
+  font-family: "poppins-normal";
 }
 @media (min-width: 768px) {
   .page {
