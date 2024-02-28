@@ -71,9 +71,23 @@ const WelcomePage: React.FC = () => {
 
         if (res.data.data.menus.length > 1) {
           router.push(`/${sanitizedUrl}/menu`);
-          dispatch(setCategories([]));
+          dispatch(
+            setCategories([
+              {
+                _id: "1",
+                name: "All",
+              },
+            ])
+          );
         } else {
-          dispatch(setCategories([]));
+          dispatch(
+            setCategories([
+              {
+                _id: "1",
+                name: "All",
+              },
+            ])
+          );
           dispatch(setCurrentMenu(res.data.data.menus[0]));
 
           router.push(`/${sanitizedUrl}/home`);
