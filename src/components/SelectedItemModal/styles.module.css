@@ -27,5 +27,32 @@
 }
 .icons {
   color: red;
-  font-size: 1.5em;
+  font-size: 2em;
+  margin: 0px;
+  cursor: pointer;
+}
+.footer {
+  box-shadow: none;
+  background-color: var(--ion-page-background-color);
+  border-top: 1px solid var(--ion-search-border);
+  padding: 20px;
+}
+.addBtn {
+  width: 85%;
+  --box-shadow: none;
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  /* --padding-bottom: 20px;
+  --padding-top: 20px; */
+  --border-radius: 8px;
+  text-transform: capitalize;
+  --background-activated: red;
+  --padding-bottom: 14px;
+  --padding-top: 14px;
+  font-family: "poppins-normal";
+}
+
+@media (min-width: 426px) {
+  .addBtn {
+    width: 90%;
+  }
 }

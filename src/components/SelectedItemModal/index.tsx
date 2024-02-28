@@ -1,8 +1,16 @@
 import React, { useRef, useState } from "react";
-import { IonModal, IonContent, IonIcon } from "@ionic/react";
+import {
+  IonModal,
+  IonContent,
+  IonIcon,
+  IonFooter,
+  IonRow,
+  IonButton,
+  isPlatform,
+} from "@ionic/react";
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { closeCircleSharp, heartDislike, addCircleSharp } from "ionicons/icons";
+import { closeCircleSharp, heartSharp, addCircleSharp } from "ionicons/icons";
 import SelectedItemCard from "../SelectedItemCard";
 import { setLiked } from "../../store/slices/likeSlice";
 import {
@@ -120,76 +128,6 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
             </p>
             <p onClick={() => setingLiked()}>remove from favs</p>
           </div> */}
-          {selectBulk.length > 0 && (
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <div></div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  width: "30%",
-                }}
-              >
-                <div
-                  style={{
-                    textAlign: "center",
-                    alignItems: "center",
-                    cursor: "pointer",
-                  }}
-                >
-                  <IonIcon
-                    onClick={() => setingLiked()}
-                    className={styles.icons}
-                    slot="icon-only"
-                    icon={heartDislike}
-                  ></IonIcon>
-                  <p
-                    onClick={() => setingLiked()}
-                    style={{
-                      fontSize: "12px",
-                      textAlign: "center",
-                      margin: "0px",
-                    }}
-                  >
-                    Remove from wishlist
-                  </p>
-                </div>
-                <div
-                  style={{
-                    textAlign: "center",
-                    alignItems: "center",
-                    cursor: "pointer",
-                  }}
-                >
-                  <IonIcon
-                    onClick={() => setAddToCart()}
-                    className={styles.icons}
-                    slot="icon-only"
-                    icon={addCircleSharp}
-                  ></IonIcon>
-                  <p
-                    onClick={() => setAddToCart()}
-                    style={{
-                      fontSize: "12px",
-                      textAlign: "center",
-                      margin: "0px",
-                    }}
-                  >
-                    Add to cart
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
 
           {liked.length == 0 && (
             <div className={styles.msgContainer}>
@@ -208,6 +146,28 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
           ))}
         </div>
       </IonContent>
+      {selectBulk.length > 0 && (
+        <IonFooter>
+          <IonRow
+            className={styles.footer}
+            class="ion-justify-content-between ion-align-items-center"
+          >
+            <IonIcon
+              onClick={() => setingLiked()}
+              className={styles.icons}
+              icon={heartSharp}
+            ></IonIcon>
+            <IonButton
+              expand="block"
+              size={isPlatform("mobile") ? "small" : "default"}
+              className={styles.addBtn}
+              onClick={() => setAddToCart()}
+            >
+              Add to Cart
+            </IonButton>
+          </IonRow>
+        </IonFooter>
+      )}
     </IonModal>
   );
 }
