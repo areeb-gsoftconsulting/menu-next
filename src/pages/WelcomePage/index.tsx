@@ -128,6 +128,12 @@ const WelcomePage: React.FC = () => {
       getVlenue();
     }
   }, [sanitizedUrl]);
+
+  useEffect(() => {
+    if (opening) {
+      setOpening(false);
+    }
+  }, []);
   return (
     <IonPage className={styles.page}>
       <IonContent className={styles.container} fullscreen>
