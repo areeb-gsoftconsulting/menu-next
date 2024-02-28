@@ -72,8 +72,11 @@
   height: 15px;
   width: 15px;
   border-radius: 5px;
-  font-size: 200px !important;
+  font-size: 1.2em !important;
   cursor: pointer;
+}
+.toggleIcon {
+  font-size: 1em !important;
 }
 .leftBox {
   max-width: 80%;
@@ -128,7 +131,8 @@
   font-size: 14px;
   font-family: "poppins-normal";
   font-weight: 600;
-  color: black;
+  color: var(--ion-text-color);
+  padding: 0px 3px;
 }
 .comments {
   font-size: 12px;
@@ -145,4 +149,16 @@
   .rightBox {
     width: 25%;
   }
+}
+.floatBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px;
+  position: absolute;
+  left: 70px;
+  background: var(--ion-custome-card-color);
+  padding: 0px 10px;
+  border: 1px solid var(--ion-search-border);
+  border-radius: 4px;
 }

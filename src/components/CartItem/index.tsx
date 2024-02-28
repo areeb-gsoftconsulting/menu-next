@@ -162,21 +162,7 @@ const CartItem = ({
             <IonIcon icon={showBtn ? chevronForward : chevronDown} />
           </IonRow>
           {showBtn && (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                margin: "0px",
-                width: "80px",
-                position: "absolute",
-                left: "70px",
-                backgroundColor: "white",
-                padding: "0px 10px",
-                border: "1px solid var(--ion-search-border)",
-                borderRadius: "4px",
-              }}
-            >
+            <div className={styles.floatBtn}>
               <IonButton
                 size="small"
                 className={`${styles.iconBtn} ion-no-padding`}
@@ -251,7 +237,7 @@ const CartItem = ({
         >
           {item.customization.length > 0 ? (
             <IonIcon
-              style={{ cursor: "pointer" }}
+              className={styles.toggleIcon}
               icon={expand ? chevronUp : chevronDown}
               onClick={() => setExpand(!expand)}
             />
