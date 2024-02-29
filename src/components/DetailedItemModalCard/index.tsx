@@ -398,7 +398,7 @@ const DetailItemModalCard = ({
             {data.prices.map((obj: any, ind: any) => (
               <IonRow
                 key={ind}
-                className={`ion-justify-content-between ion-align-items-center`}
+                className={`ion-justify-content-between ion-align-items-center ion-nowrap`}
               >
                 <IonRadio
                   value={obj._id} // Use a unique identifier as the value
@@ -467,7 +467,7 @@ const DetailItemModalCard = ({
               return (
                 <IonRow
                   key={i}
-                  className={`ion-justify-content-between ion-align-items-center`}
+                  className={`ion-justify-content-between ion-align-items-center ion-nowrap`}
                 >
                   <IonCheckbox
                     // checked={e.preSelected}

@@ -88,13 +88,14 @@
 }
 .priceLabel {
   color: var(--ion-text-color);
-  text-align: right;
+  text-align: start;
   font-family: "poppins";
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   margin: 0px;
+  text-wrap: wrap;
 }
 .radioBtn {
   --color: #6e6e6e;
