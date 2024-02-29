@@ -43,12 +43,9 @@ const DynamicRouteComponent: React.FC = () => {
   const isDark = useSelector((data: any) => data.theme.isDark);
 
   useEffect(() => {
-    if (isDark) {
-      toggleDarkModeHandler("dark");
-    } else {
-      toggleDarkModeHandler("light");
-    }
-  }, [isDark]);
+    toggleDarkModeHandler("light");
+    dispatch(setIsDark(false));
+  }, []);
 
   const toggleDarkModeHandler = (mode: any) => {
     document.body.classList.toggle(mode);
