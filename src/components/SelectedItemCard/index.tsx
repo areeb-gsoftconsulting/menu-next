@@ -41,6 +41,11 @@ const SelectedItemCard = ({
   return (
     <>
       <IonRow
+        onClick={() => {
+          let temp = errorItems.filter((item: any) => item._id !== data._id);
+          setErrorItems(temp);
+          setOpenDetailed(true);
+        }}
         className={styles.mainRow}
         class="ion-justify-content-between ion-align-items-center ion-nowrap"
       >
@@ -49,7 +54,13 @@ const SelectedItemCard = ({
             checked={
               selectBulk.some((item: any) => item._id === data._id) || false
             }
-            onIonChange={handleCheckboxChange}
+            onIonChange={(e) => {
+              handleCheckboxChange(e);
+              e.stopPropagation();
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
             mode="md"
             className={styles.checkBox}
             labelPlacement="end"

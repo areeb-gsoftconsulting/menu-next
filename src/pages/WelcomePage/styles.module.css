@@ -1,14 +1,21 @@
 .container {
-  --padding-top: 38px;
+  --padding-top: 0px;
 
   --padding-start: 20px;
   --padding-end: 20px;
   --background: var(--ion-page-background-color);
 }
 
+.toolbar {
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+  border-bottom: 1px solid var(--ion-toolbar-borer);
+  --background: var(--ion-page-background-color);
+}
 .logo {
   max-width: 180px;
-  margin: 0 auto;
+  margin-bottom: 5px;
+  margin: 0px auto;
 }
 .page {
   max-width: 100%;
@@ -24,6 +31,7 @@
   text-align: center;
   color: var(--ion-text-color);
   font-size: 20px;
+  margin: 15px auto;
 }
 .text {
   font-size: 16px;
@@ -36,10 +44,11 @@
   --box-shadow: none;
   --border-radius: 8px;
   --padding-bottom: 14px;
-  --padding-top: 14px;
+  --padding-top: 16px;
   max-width: 300px;
-  margin: 0 auto;
+  margin: 0px auto;
   font-family: "poppins-normal";
+  font-size: 16px;
 }
 @media (min-width: 768px) {
   .page {
@@ -52,18 +61,21 @@
 }
 .imgnotfound {
   max-width: 235px;
-  margin: 50px auto;
+  margin: 25px auto;
 }
 .customSearchbar {
   max-width: 300px;
-  margin: 10px auto;
+  margin: 0px auto;
   border: 1px solid var(--ion-search-border);
   border-radius: 8px;
   background: var(--ion-searchbar-background);
 }
+
 ion-searchbar.custom {
   --background: var(--ion-searchbar-background);
   --color: var(--ion-text-color);
+  font-family: "poppins";
+
   /* --placeholder-color: #fff;
       --icon-color: #fff; */
   --border-radius: 8px;
@@ -72,7 +84,7 @@ ion-searchbar.custom {
   --icon-color: var(--ion-search-icon);
 }
 .box {
-  margin: 0px auto 35px auto;
+  margin: 25px auto 35px auto;
   border-radius: 16px;
   background-color: var(--ion-custome-card-color);
   padding: 14px;
@@ -82,10 +94,12 @@ ion-searchbar.custom {
   font-family: "poppins";
   cursor: pointer;
   margin: 0px;
+  font-size: 16px;
 }
 .itemHeader {
   font-family: "poppins-normal";
   margin: 0px;
+  font-size: 16px;
 }
 .loading {
   font-family: "poppins";
@@ -96,30 +110,32 @@ ion-searchbar.custom {
 @media screen and (min-width: 425px) {
   .logo {
     max-width: 230px;
-    margin: 0 auto;
+    margin-bottom: 5px;
+    margin: 0px auto;
   }
   .imgnotfound {
     max-width: 300px;
-    margin: 50px auto;
+    margin: 25px auto;
   }
   .checkoutBtn {
     --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
     --box-shadow: none;
     --border-radius: 8px;
     --padding-bottom: 14px;
-    --padding-top: 14px;
+    --padding-top: 16px;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 0px auto;
+    font-size: 16px;
   }
   .customSearchbar {
     max-width: 400px;
-    margin: 10px auto;
+    margin: 0px auto;
     border: 1px solid var(--ion-search-border);
     border-radius: 8px;
     background: var(--ion-searchbar-background);
   }
   .box {
-    margin: 0px auto 35px auto;
+    margin: 25px auto 35px auto;
     border-radius: 16px;
     background-color: var(--ion-custome-card-color);
     padding: 14px;

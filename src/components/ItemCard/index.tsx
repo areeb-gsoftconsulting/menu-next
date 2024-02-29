@@ -279,7 +279,7 @@ const ItemCard = ({ data, expandByDefault, setCustomiseModal }: any) => {
         {expanded && data.prices.length > 1 ? (
           <div className={styles.flavCard}>
             <IonRow
-              className={`ion-justify-content-between ion-align-items-center`}
+              className={`ion-justify-content-between ion-align-items-center ion-nowrap`}
             >
               <h4 className={`${styles.caption} ion-no-padding`}>
                 Choose Flavor
@@ -308,7 +308,7 @@ const ItemCard = ({ data, expandByDefault, setCustomiseModal }: any) => {
               {data.prices.map((obj: any, ind: any) => (
                 <IonRow
                   key={ind}
-                  className={`ion-justify-content-between ion-align-items-center`}
+                  className={`ion-justify-content-between ion-align-items-center ion-nowrap`}
                 >
                   <IonRadio
                     value={obj._id} // Use a unique identifier as the value
@@ -364,7 +364,7 @@ const ItemCard = ({ data, expandByDefault, setCustomiseModal }: any) => {
           expanded && (
             <div className={styles.flavCardSingle}>
               <IonRow
-                className={`ion-justify-content-between ion-align-items-center`}
+                className={`ion-justify-content-between ion-align-items-center ion-nowrap`}
               >
                 <p className={`${styles.priceLabel}`}>
                   {data.prices[0].description}
@@ -436,7 +436,7 @@ const ItemCard = ({ data, expandByDefault, setCustomiseModal }: any) => {
             <div className={styles.addBtnDiv}>
               <IonButton
                 disabled={
-                  (data.prices.length > 1 && selectedPrice._id == "") ||
+                  // (data.prices.length > 1 && selectedPrice._id == "") ||
                   !data.inStock
                 }
                 onClick={() =>

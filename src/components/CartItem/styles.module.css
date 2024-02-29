@@ -1,13 +1,19 @@
 .quantityBox {
   border: 1px solid var(--ion-search-border);
   border-radius: 2px;
-  height: 30px;
+  /* height: 35px; */
+  /* min-width: 35px; */
+  min-width: 44px;
+  height: 28px;
   align-content: center;
-  padding: 5px 10px;
+  padding: 10px;
   border-radius: 3px;
   cursor: pointer;
   display: flex;
   flex-wrap: nowrap;
+}
+.chevIcon {
+  font-size: 12px !important;
 }
 .mainRow {
   padding: 5px 0px 5px 0px;
@@ -18,6 +24,15 @@
   font-size: 14px;
   color: var(--ion-text-color);
   text-wrap: nowrap;
+  margin: 0px;
+}
+.quantityCards {
+  font-family: "poppins";
+  font-size: 14px;
+  color: var(--ion-text-color);
+  text-wrap: nowrap;
+  margin: 0px;
+  /* padding: 6px; */
 }
 .textDiv {
   max-width: 320px;
@@ -57,8 +72,8 @@
   cursor: pointer;
 }
 .img {
-  height: 34px;
-  width: 34px;
+  height: 35px;
+  width: 35px;
   min-width: 34px;
   object-fit: cover;
   border-radius: 4px;
@@ -69,8 +84,8 @@
   color: red;
   /* background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%); */
   /* padding-left: 4px !important; */
-  height: 15px;
-  width: 15px;
+  /* height: 15px;
+  width: 15px; */
   border-radius: 5px;
   font-size: 1.2em !important;
   cursor: pointer;
@@ -113,20 +128,46 @@
   font-size: 14px;
 }
 .icons {
-  padding: 0px 5px;
-  font-size: 16px;
+  padding: 5px;
+  font-size: 15px;
 }
+
+.iconBtnWeb {
+  --box-shadow: none;
+  --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
+  --border-radius: 100%;
+  padding-inline-start: 0px;
+  padding-inline-end: 0px;
+  --background-activated: red;
+  height: 20px;
+  width: 20px;
+  min-height: 20px !important;
+}
+
 .iconHidder {
   color: var(--ion-page-background-color);
+}
+.iconsAndroid {
+  padding: 3px;
+  font-size: 1.2em;
+}
+.iconsWeb {
+  padding: 0px 5px;
+  height: 25px;
+  width: 25px;
 }
 .iconBtn {
   --box-shadow: none;
   --background: linear-gradient(269deg, #ed1b2d 49.35%, #eb2c71 85.56%);
   --border-radius: 8px;
-  height: 15px;
+  height: 20px;
+  width: 20px;
+  min-height: 20px !important;
   padding-inline-start: 0px;
   padding-inline-end: 0px;
+  --border-radius: 100%;
 }
+
 .itemCount {
   font-size: 14px;
   font-family: "poppins-normal";
@@ -151,6 +192,7 @@
   }
 }
 .floatBtn {
+  height: 28px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -158,7 +200,7 @@
   position: absolute;
   left: 70px;
   background: var(--ion-custome-card-color);
-  padding: 0px 10px;
+  padding: 3px 3px;
   border: 1px solid var(--ion-search-border);
   border-radius: 4px;
 }

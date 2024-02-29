@@ -34,6 +34,7 @@
 }
 .mainRow {
   padding: 10px 0px 0px 0px;
+  cursor: pointer;
 }
 .border {
   padding-top: 10px;

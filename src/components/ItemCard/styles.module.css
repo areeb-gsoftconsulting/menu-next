@@ -3,6 +3,7 @@
   box-shadow: none;
   margin-inline: 0px;
   cursor: pointer;
+  margin: 10px 0px;
 }
 .thumbnail {
   --border-radius: 50%;
@@ -264,13 +265,14 @@
 }
 .priceLabel {
   color: var(--ion-text-color);
-  text-align: right;
+  text-align: start;
   font-family: "poppins";
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
   margin: 0px;
+  text-wrap: wrap;
 }
 .tags {
   color: white;

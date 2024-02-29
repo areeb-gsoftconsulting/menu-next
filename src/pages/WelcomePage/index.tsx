@@ -55,6 +55,8 @@ const WelcomePage: React.FC = () => {
   const [opening, setOpening] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  console.log({ searcNotFound });
+
   const dispatch = useDispatch();
   const getVlenue = async () => {
     dispatch(setRestSlug(sanitizedUrl));
@@ -138,8 +140,12 @@ const WelcomePage: React.FC = () => {
   }, []);
   return (
     <IonPage className={styles.page}>
+      <IonHeader mode="ios" className={`ion-no-border ${styles.header}`}>
+        <IonToolbar className={styles.toolbar}>
+          <IonImg className={styles.logo} src={isDark ? lightLogo : darkLogo} />
+        </IonToolbar>
+      </IonHeader>
       <IonContent className={styles.container} fullscreen>
-        <IonImg className={styles.logo} src={isDark ? lightLogo : darkLogo} />
         {opening ? (
           <>
             <IonImg className={styles.img} src={isDark ? darkImg : lightImg} />
@@ -165,8 +171,10 @@ const WelcomePage: React.FC = () => {
               className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
               placeholder="Search restaurant"
               debounce={1000}
+              onIonClear={() => setSearchNotFound(false)}
               onIonInput={(e) => {
                 const value = e.detail.value.trim();
+
                 if (value !== "") {
                   searchVenu(value);
                 } else {
