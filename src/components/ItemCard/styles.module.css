@@ -3,6 +3,7 @@
   box-shadow: none;
   margin-inline: 0px;
   cursor: pointer;
+  margin: 10px 0px;
 }
 .thumbnail {
   --border-radius: 50%;
