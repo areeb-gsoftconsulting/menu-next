@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { IonButton, IonIcon, IonImg, IonRow } from "@ionic/react";
+import { IonButton, IonIcon, IonImg, IonRow, isPlatform } from "@ionic/react";
 import styles from "./styles.module.css";
 import {
   remove,
@@ -165,7 +165,9 @@ const CartItem = ({
             <div className={styles.floatBtn}>
               <IonButton
                 size="small"
-                className={`${styles.iconBtn} ion-no-padding`}
+                className={`${
+                  isPlatform("mobile") ? styles.iconBtn : styles.iconBtnWeb
+                } ion-no-padding`}
                 onClick={(e) => {
                   e.preventDefault();
                   addToCart({
@@ -180,15 +182,28 @@ const CartItem = ({
                 }}
               >
                 <IonIcon
-                  className={styles.icons}
+                  className={
+                    isPlatform("ios")
+                      ? styles.icons
+                      : isPlatform("mobileweb")
+                      ? styles.iconsAndroid
+                      : styles.iconsWeb
+                  }
                   slot="icon-only"
                   icon={remove}
                 ></IonIcon>
               </IonButton>
-              <h3 className={styles.itemCount}>{item.quantity}</h3>
+              <div
+                style={{
+                  border: "1px solid red",
+                  height: "100%",
+                }}
+              />
               <IonButton
                 size="small"
-                className={`${styles.iconBtn} ion-no-padding`}
+                className={`${
+                  isPlatform("mobile") ? styles.iconBtn : styles.iconBtnWeb
+                } ion-no-padding`}
                 onClick={(e) => {
                   e.preventDefault();
                   addToCart({
@@ -203,7 +218,13 @@ const CartItem = ({
                 }}
               >
                 <IonIcon
-                  className={styles.icons}
+                  className={
+                    isPlatform("ios")
+                      ? styles.icons
+                      : isPlatform("mobileweb")
+                      ? styles.iconsAndroid
+                      : styles.iconsWeb
+                  }
                   slot="icon-only"
                   icon={add}
                 ></IonIcon>

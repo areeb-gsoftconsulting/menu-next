@@ -7,8 +7,10 @@
 .toolbar {
   --background: var(--ion-page-background-color);
   padding: 0px 5px 0px 5px;
+  border-bottom: 1px solid var(--ion-toolbar-borer);
 }
 .content {
+  --padding-top: 0px;
   --padding-start: 25px !important;
   --padding-end: 25px !important;
 }
