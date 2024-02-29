@@ -138,8 +138,12 @@ const WelcomePage: React.FC = () => {
   }, []);
   return (
     <IonPage className={styles.page}>
+      <IonHeader mode="ios" className={`ion-no-border ${styles.header}`}>
+        <IonToolbar className={styles.toolbar}>
+          <IonImg className={styles.logo} src={isDark ? lightLogo : darkLogo} />
+        </IonToolbar>
+      </IonHeader>
       <IonContent className={styles.container} fullscreen>
-        <IonImg className={styles.logo} src={isDark ? lightLogo : darkLogo} />
         {opening ? (
           <>
             <IonImg className={styles.img} src={isDark ? darkImg : lightImg} />
