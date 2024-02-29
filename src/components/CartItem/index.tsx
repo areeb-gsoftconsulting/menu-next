@@ -155,11 +155,14 @@ const CartItem = ({
               e.preventDefault();
               setShowBtn(!showBtn);
             }}
-            class="ion-align-items-center"
+            class="ion-align-items-center ion-justify-content-between"
             className={styles.quantityBox}
           >
-            <p className={styles.quantity}>{item.quantity}</p>
-            <IonIcon icon={showBtn ? chevronForward : chevronDown} />
+            <p className={styles.quantityCards}>{item.quantity}</p>
+            <IonIcon
+              className={styles.chevIcon}
+              icon={showBtn ? chevronForward : chevronDown}
+            />
           </IonRow>
           {showBtn && (
             <div className={styles.floatBtn}>
