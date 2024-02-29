@@ -64,6 +64,7 @@
   font-weight: 800;
   font-size: 14px;
 }
+
 .required {
   background-color: red;
   padding: 5px 10px;
@@ -75,7 +76,7 @@
   font-weight: 600;
 }
 .msg {
-  color: var(--ion-text-color);
+  color: grey;
   font-family: "poppins";
   font-size: 14px;
   font-style: normal;

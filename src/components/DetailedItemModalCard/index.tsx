@@ -409,7 +409,7 @@ const DetailItemModalCard = ({
                   <p className={`${styles.priceLabel}`}>{obj.description}</p>
                 </IonRadio>
                 <p className={`${styles.priceLabel}`}>
-                  {obj.price} {venue.defaultCurrency.sign}
+                  {venue.defaultCurrency.sign} {obj.price}
                 </p>
               </IonRow>
             ))}
@@ -423,7 +423,7 @@ const DetailItemModalCard = ({
         >
           <p className={`${styles.priceLabel}`}>{data.prices[0].description}</p>
           <p className={`${styles.priceLabel}`}>
-            {data.prices[0].price} {venue.defaultCurrency.sign}
+            {venue.defaultCurrency.sign} {data.prices[0].price}
           </p>
         </IonRow>
       )}
@@ -441,7 +441,11 @@ const DetailItemModalCard = ({
               className={`ion-justify-content-between ion-align-items-center`}
             >
               <h4 className={`${styles.caption} ion-no-padding`}>{obj.name}</h4>
-              <h4 className={`${styles.optional}`}>
+              <h4
+                className={`${
+                  obj.isRequired ? styles.required : styles.optional
+                }`}
+              >
                 {obj.isRequired ? "Required" : "Optional"}
               </h4>
             </IonRow>
@@ -485,7 +489,7 @@ const DetailItemModalCard = ({
                     <p className={`${styles.priceLabel}`}>{e.name}</p>
                   </IonCheckbox>
                   <p className={`${styles.priceLabel}`}>
-                    {e.price} {venue.defaultCurrency.sign}
+                    {venue.defaultCurrency.sign} {e.price}
                   </p>
                 </IonRow>
               );
