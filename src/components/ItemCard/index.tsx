@@ -436,7 +436,7 @@ const ItemCard = ({ data, expandByDefault, setCustomiseModal }: any) => {
             <div className={styles.addBtnDiv}>
               <IonButton
                 disabled={
-                  (data.prices.length > 1 && selectedPrice._id == "") ||
+                  // (data.prices.length > 1 && selectedPrice._id == "") ||
                   !data.inStock
                 }
                 onClick={() =>

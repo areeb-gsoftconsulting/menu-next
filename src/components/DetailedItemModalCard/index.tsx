@@ -576,7 +576,7 @@ const DetailItemModalCard = ({
           <IonButton
             size={isPlatform("mobile") ? "small" : "default"}
             disabled={
-              (data.prices.length > 1 && selectedPrice._id == "") ||
+              // (data.prices.length > 1 && selectedPrice._id == "") ||
               !data.inStock
             }
             onClick={() =>
