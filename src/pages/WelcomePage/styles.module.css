@@ -44,11 +44,11 @@
   --box-shadow: none;
   --border-radius: 8px;
   --padding-bottom: 14px;
-  --padding-top: 14px;
+  --padding-top: 16px;
   max-width: 300px;
   margin: 0px auto;
   font-family: "poppins-normal";
-  font-size: 14px;
+  font-size: 16px;
 }
 @media (min-width: 768px) {
   .page {
@@ -70,9 +70,12 @@
   border-radius: 8px;
   background: var(--ion-searchbar-background);
 }
+
 ion-searchbar.custom {
   --background: var(--ion-searchbar-background);
   --color: var(--ion-text-color);
+  font-family: "poppins";
+
   /* --placeholder-color: #fff;
       --icon-color: #fff; */
   --border-radius: 8px;
@@ -119,9 +122,10 @@ ion-searchbar.custom {
     --box-shadow: none;
     --border-radius: 8px;
     --padding-bottom: 14px;
-    --padding-top: 14px;
+    --padding-top: 16px;
     max-width: 400px;
     margin: 0px auto;
+    font-size: 16px;
   }
   .customSearchbar {
     max-width: 400px;
