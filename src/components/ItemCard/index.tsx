@@ -318,7 +318,7 @@ const ItemCard = ({ data, expandByDefault, setCustomiseModal }: any) => {
                   >
                     <p className={`${styles.priceLabel}`}>{obj.description}</p>
                   </IonRadio>
-                  <p className={`${styles.priceLabel}`}>
+                  <p className={`${styles.pricesLabel}`}>
                     {obj.price} {venue.defaultCurrency.sign}
                   </p>
                 </IonRow>
