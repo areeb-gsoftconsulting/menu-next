@@ -18,6 +18,7 @@ import {
 import { useToast } from "../../hooks/useToast";
 import placeholderDark from "../../assets/placeholderDark.png";
 import placeholderLight from "../../assets/placeholderLight.png";
+import { setSearchedItemName } from "../../store/slices/searchSlice";
 
 const CategorySlider = ({ menuId }: any) => {
   const isDark = useSelector((data: any) => data.theme.isDark);
@@ -80,6 +81,7 @@ const CategorySlider = ({ menuId }: any) => {
   // };
 
   const selectCategory = (e: any) => {
+    dispatch(setSearchedItemName(""));
     if (e._id == "1") {
       dispatch(setSelectedCategory([e._id]));
       return;

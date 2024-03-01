@@ -26,6 +26,7 @@ import getVenues from "../../services/getVenue";
 import { setAddedToCart } from "../../store/slices/cartSlice";
 import CartAnimationModal from "../../components/CartAnimationModal";
 import { setSelectedCategory } from "../../store/slices/restaurantSlice";
+import { setSearchedItemName } from "../../store/slices/searchSlice";
 
 const Home: React.FC = () => {
   const route = useLocation();
@@ -162,6 +163,7 @@ const Home: React.FC = () => {
     if (selectedCategory.includes("1")) {
       setPageNumber(0);
       setItemsEnded(false);
+      dispatch(setSearchedItemName(""));
       getItem(undefined, { page: 0 });
     }
   }, [selectedCategory, route.pathname]);
