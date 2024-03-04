@@ -1,4 +1,4 @@
-import { IonCheckbox, IonImg, IonRow } from "@ionic/react";
+import { IonCheckbox, IonImg, IonRow, IonText } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
 import { useSelector } from "react-redux";
@@ -91,13 +91,13 @@ const SelectedItemCard = ({
           </p>
         </IonRow>
         {data.prices.length > 1 ? (
-          <p className={styles.name}>
+          <IonText class="ion-text-nowrap" className={styles.name}>
             from {venue.defaultCurrency.sign} {smallestPrice}
-          </p>
+          </IonText>
         ) : (
-          <p className={styles.name}>
+          <IonText class="ion-text-nowrap" className={styles.name}>
             {venue.defaultCurrency.sign} {data.prices[0].price}
-          </p>
+          </IonText>
         )}
       </IonRow>
       {errorItems.some((item: any) => item._id === data._id) && (
