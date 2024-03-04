@@ -44,7 +44,7 @@ const Home: React.FC = () => {
   );
   const totalAmount = useSelector((data: any) => data.cart.totalAmount);
   const searchLoading = useSelector((data: any) => data.search.searchLoading);
-
+  const itemRef = useRef(null);
   const [items, setItems] = useState<any>([]);
   const [itemsEnded, setItemsEnded] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -198,6 +198,17 @@ const Home: React.FC = () => {
       setIsScrolled(false);
     }
   };
+  const handleScrollTwo = (id) => {
+    let next = parseInt(id) - 1;
+    if (next < 0) {
+      const scrollTop = contentRef.current.scrollToTop(1000);
+    } else {
+      const element = document.getElementById(`${next < 0 ? 0 : next}`);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
   const scrollEvent = (e) => {
     const x = e.detail.scrollTop;
     const threshold = 200;
@@ -281,7 +292,11 @@ const Home: React.FC = () => {
           ) : (
             items.map((data: any, ind: any) => (
               <>
-                <ItemCard data={data} />
+                <ItemCard
+                  ind={ind}
+                  data={data}
+                  handleScrollTwo={handleScrollTwo}
+                />
               </>
             ))
           )}
