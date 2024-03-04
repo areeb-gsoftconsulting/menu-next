@@ -326,11 +326,19 @@ const ItemCard = ({
                     className={`${styles.radioBtn} label-text-wrapper`}
                     labelPlacement="end"
                   >
-                    <p className={`${styles.priceLabel}`}>{obj.description}</p>
+                    <IonText
+                      class="ion-text-wrap"
+                      className={`${styles.priceLabel}`}
+                    >
+                      {obj.description}
+                    </IonText>
                   </IonRadio>
-                  <p className={`${styles.pricesLabel}`}>
+                  <IonText
+                    class="ion-text-nowrap"
+                    className={`${styles.pricesLabel}`}
+                  >
                     {obj.price} {venue.defaultCurrency.sign}
-                  </p>
+                  </IonText>
                 </IonRow>
               ))}
             </IonRadioGroup>
@@ -376,12 +384,18 @@ const ItemCard = ({
               <IonRow
                 className={`ion-justify-content-between ion-align-items-center ion-nowrap`}
               >
-                <p className={`${styles.priceLabel}`}>
+                <IonText
+                  class="ion-text-wrap"
+                  className={`${styles.priceLabel}`}
+                >
                   {data.prices[0].description}
-                </p>
-                <p className={`${styles.priceLabel}`}>
+                </IonText>
+                <IonText
+                  class="ion-text-nowrap"
+                  className={`${styles.priceLabel}`}
+                >
                   {venue.defaultCurrency.sign} {data.prices[0].price}
-                </p>
+                </IonText>
               </IonRow>
             </div>
           )

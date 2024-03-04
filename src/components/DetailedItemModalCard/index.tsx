@@ -311,17 +311,19 @@ const DetailItemModalCard = ({
           flexDirection: "column",
         }}
       >
-        <IonRow className="ion-justify-content-between ion-no-wrap ion-align-items-baseline">
-          <IonLabel className={styles.name}>{data.name}</IonLabel>
+        <IonRow className="ion-justify-content-between ion-nowrap ion-align-items-baseline">
+          <IonText class="ion-text-wrap" className={styles.name}>
+            {data.name}
+          </IonText>
           {/* <IonLabel className={styles.price}>$4.5</IonLabel> */}
           {data.prices.length > 1 ? (
-            <IonLabel class="ion-text-nowrap" className={styles.price}>
+            <IonText class="ion-text-nowrap" className={styles.price}>
               from {venue.defaultCurrency.sign} {smallestPrice}
-            </IonLabel>
+            </IonText>
           ) : (
-            <IonLabel class="ion-text-nowrap" className={styles.price}>
+            <IonText class="ion-text-nowrap" className={styles.price}>
               {venue.defaultCurrency.sign} {data.prices[0].price}
-            </IonLabel>
+            </IonText>
           )}
         </IonRow>
         <IonLabel className={styles.categoryName}>{categoryName}</IonLabel>
@@ -406,11 +408,19 @@ const DetailItemModalCard = ({
                   className={`${styles.radioBtn} label-text-wrapper`}
                   labelPlacement="end"
                 >
-                  <p className={`${styles.priceLabel}`}>{obj.description}</p>
+                  <IonText
+                    class="ion-text-wrap"
+                    className={`${styles.priceLabel}`}
+                  >
+                    {obj.description}
+                  </IonText>
                 </IonRadio>
-                <p className={`${styles.pricesLabel}`}>
+                <IonText
+                  class="ion-text-nowrap"
+                  className={`${styles.pricesLabel}`}
+                >
                   {venue.defaultCurrency.sign} {obj.price}
-                </p>
+                </IonText>
               </IonRow>
             ))}
           </IonRadioGroup>
@@ -486,11 +496,19 @@ const DetailItemModalCard = ({
                     className={styles.checkBox}
                     labelPlacement="end"
                   >
-                    <p className={`${styles.priceLabel}`}>{e.name}</p>
+                    <IonText
+                      class="ion-text-wrap"
+                      className={`${styles.priceLabel}`}
+                    >
+                      {e.name}
+                    </IonText>
                   </IonCheckbox>
-                  <p className={`${styles.pricesLabel}`}>
+                  <IonText
+                    class="ion-text-nowrap"
+                    className={`${styles.pricesLabel}`}
+                  >
                     {venue.defaultCurrency.sign} {e.price}
-                  </p>
+                  </IonText>
                 </IonRow>
               );
             })}
