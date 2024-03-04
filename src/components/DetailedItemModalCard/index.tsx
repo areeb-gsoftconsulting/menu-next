@@ -319,7 +319,7 @@ const DetailItemModalCard = ({
               from {venue.defaultCurrency.sign} {smallestPrice}
             </IonLabel>
           ) : (
-            <IonLabel className={styles.price}>
+            <IonLabel class="ion-text-nowrap" className={styles.price}>
               {venue.defaultCurrency.sign} {data.prices[0].price}
             </IonLabel>
           )}
@@ -370,7 +370,7 @@ const DetailItemModalCard = ({
       {data.prices.length > 1 ? (
         <div className={styles.flavCard}>
           <IonRow
-            className={`ion-justify-content-between ion-align-items-center`}
+            className={`ion-justify-content-between ion-align-items-center ion-nowrap`}
           >
             <h4 className={`${styles.caption} ion-no-padding`}>
               Choose Flavor
@@ -408,7 +408,7 @@ const DetailItemModalCard = ({
                 >
                   <p className={`${styles.priceLabel}`}>{obj.description}</p>
                 </IonRadio>
-                <p className={`${styles.priceLabel}`}>
+                <p className={`${styles.pricesLabel}`}>
                   {venue.defaultCurrency.sign} {obj.price}
                 </p>
               </IonRow>
@@ -422,7 +422,7 @@ const DetailItemModalCard = ({
           className={`ion-justify-content-between ion-align-items-center`}
         >
           <p className={`${styles.priceLabel}`}>{data.prices[0].description}</p>
-          <p className={`${styles.priceLabel}`}>
+          <p className={`${styles.pricesLabel}`}>
             {venue.defaultCurrency.sign} {data.prices[0].price}
           </p>
         </IonRow>
@@ -438,7 +438,7 @@ const DetailItemModalCard = ({
         return (
           <div key={ind} className={styles.optionalCard}>
             <IonRow
-              className={`ion-justify-content-between ion-align-items-center`}
+              className={`ion-justify-content-between ion-align-items-center ion-nowrap`}
             >
               <h4 className={`${styles.caption} ion-no-padding`}>{obj.name}</h4>
               <h4
@@ -488,7 +488,7 @@ const DetailItemModalCard = ({
                   >
                     <p className={`${styles.priceLabel}`}>{e.name}</p>
                   </IonCheckbox>
-                  <p className={`${styles.priceLabel}`}>
+                  <p className={`${styles.pricesLabel}`}>
                     {venue.defaultCurrency.sign} {e.price}
                   </p>
                 </IonRow>

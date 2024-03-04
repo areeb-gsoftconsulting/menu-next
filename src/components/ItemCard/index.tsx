@@ -39,7 +39,13 @@ import {
 } from "../../store/slices/cartSlice";
 import ItemDescriptionContainer from "../ItemDescriptionContainer";
 
-const ItemCard = ({ data, expandByDefault, setCustomiseModal }: any) => {
+const ItemCard = ({
+  data,
+  expandByDefault,
+  setCustomiseModal,
+  handleScrollTwo,
+  ind,
+}: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const venue = useSelector((data: any) => data.restaurant.venue);
   const [expanded, setExpanded] = useState(
@@ -79,6 +85,9 @@ const ItemCard = ({ data, expandByDefault, setCustomiseModal }: any) => {
   }, [expanded]);
 
   const addToCart = (data: any) => {
+    if (handleScrollTwo) {
+      handleScrollTwo(`${ind}`);
+    }
     if (data.price.description == "") {
       setRadioErr(true);
       return;
@@ -134,6 +143,7 @@ const ItemCard = ({ data, expandByDefault, setCustomiseModal }: any) => {
   return (
     <>
       <IonCard
+        id={`${ind ? ind : 0}`}
         onClick={() => {
           if (data.customization.length < 1) {
             setExpanded(!expanded);
@@ -318,7 +328,7 @@ const ItemCard = ({ data, expandByDefault, setCustomiseModal }: any) => {
                   >
                     <p className={`${styles.priceLabel}`}>{obj.description}</p>
                   </IonRadio>
-                  <p className={`${styles.priceLabel}`}>
+                  <p className={`${styles.pricesLabel}`}>
                     {obj.price} {venue.defaultCurrency.sign}
                   </p>
                 </IonRow>

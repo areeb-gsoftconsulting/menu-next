@@ -156,7 +156,7 @@ const CartItem = ({
               setShowBtn(!showBtn);
             }}
             class="ion-align-items-center ion-justify-content-between"
-            className={styles.quantityBox}
+            className={showBtn ? styles.quantityBoxBig : styles.quantityBox}
           >
             <p className={styles.quantityCards}>{item.quantity}</p>
             <IonIcon
@@ -167,7 +167,7 @@ const CartItem = ({
           {showBtn && (
             <div className={styles.floatBtn}>
               <IonButton
-                size="small"
+                size="default"
                 className={`${
                   isPlatform("mobile") ? styles.iconBtn : styles.iconBtnWeb
                 } ion-no-padding`}
@@ -196,14 +196,15 @@ const CartItem = ({
                   icon={remove}
                 ></IonIcon>
               </IonButton>
-              <div
+              {/* <div
                 style={{
-                  border: "1px solid red",
-                  height: "100%",
+                  // border: "1px solid red",
+                  margin: "3px",
+                  height: "20px",
                 }}
-              />
+              /> */}
               <IonButton
-                size="small"
+                size="default"
                 className={`${
                   isPlatform("mobile") ? styles.iconBtn : styles.iconBtnWeb
                 } ion-no-padding`}

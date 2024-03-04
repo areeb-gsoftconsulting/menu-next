@@ -5,7 +5,10 @@
   --padding-end: 20px;
   --background: var(--ion-page-background-color);
 }
-
+.border {
+  border: 1px solid var(--ion-toolbar-borer);
+  margin: 10px 0px;
+}
 .toolbar {
   --padding-top: 20px;
   --padding-bottom: 20px;

@@ -26,6 +26,7 @@ import getVenues from "../../services/getVenue";
 import { setAddedToCart } from "../../store/slices/cartSlice";
 import CartAnimationModal from "../../components/CartAnimationModal";
 import { setSelectedCategory } from "../../store/slices/restaurantSlice";
+import { setSearchedItemName } from "../../store/slices/searchSlice";
 
 const Home: React.FC = () => {
   const route = useLocation();
@@ -43,7 +44,7 @@ const Home: React.FC = () => {
   );
   const totalAmount = useSelector((data: any) => data.cart.totalAmount);
   const searchLoading = useSelector((data: any) => data.search.searchLoading);
-
+  const itemRef = useRef(null);
   const [items, setItems] = useState<any>([]);
   const [itemsEnded, setItemsEnded] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -162,6 +163,7 @@ const Home: React.FC = () => {
     if (selectedCategory.includes("1")) {
       setPageNumber(0);
       setItemsEnded(false);
+      dispatch(setSearchedItemName(""));
       getItem(undefined, { page: 0 });
     }
   }, [selectedCategory, route.pathname]);
@@ -194,6 +196,17 @@ const Home: React.FC = () => {
       setIsScrolled(true);
     } else if (scrollTop <= threshold && isScrolled) {
       setIsScrolled(false);
+    }
+  };
+  const handleScrollTwo = (id) => {
+    let next = parseInt(id) - 1;
+    if (next < 0) {
+      const scrollTop = contentRef.current.scrollToTop(1000);
+    } else {
+      const element = document.getElementById(`${next < 0 ? 0 : next}`);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
   const scrollEvent = (e) => {
@@ -279,7 +292,11 @@ const Home: React.FC = () => {
           ) : (
             items.map((data: any, ind: any) => (
               <>
-                <ItemCard data={data} />
+                <ItemCard
+                  ind={ind}
+                  data={data}
+                  handleScrollTwo={handleScrollTwo}
+                />
               </>
             ))
           )}
