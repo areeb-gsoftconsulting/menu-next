@@ -59,11 +59,11 @@ const Home: React.FC = () => {
     : "";
   const addedToCart = useSelector((data: any) => data.cart.addedToCart);
   const dispatch = useDispatch();
+  const searchItem = useSelector((data: any) => data.search.searchedItemName);
+
   useEffect(() => {
     if (addedToCart) setTimeout(() => dispatch(setAddedToCart(false)), 3000);
   }, [addedToCart]);
-
-  console.log({ itemsEnded });
 
   const getItem = async (e: any, { page }: any) => {
     console.log("testing all");
@@ -144,7 +144,6 @@ const Home: React.FC = () => {
       setCategoryItemLoading(false);
     }
   };
-  console.log({ selectedCategory: selectedCategory.includes("1") });
   useEffect(() => {
     if (selectedCategory && selectedCategory.includes("2")) {
       console.log("testing exception");
@@ -179,6 +178,10 @@ const Home: React.FC = () => {
   console.log("thissssss", items);
 
   const onEndReach = async (e: any) => {
+    if (searchItem.length > 0) {
+      e.target.complete();
+      return;
+    }
     if (selectedCategory.includes("1")) {
       getItem(e, { page: pageNumber });
     } else {
