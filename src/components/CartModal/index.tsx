@@ -52,10 +52,11 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
   return (
     <IonModal
       ref={modal}
-      className={styles.main}
+      className={isPlatform("ios") ? styles.mainIos : styles.main}
       trigger="open-modal"
       presentingElement={presentingElement!}
       isOpen={isCartOpen}
+      breakpoints={[0, 1]}
       onDidDismiss={() => setIsCartOpen(false)}
     >
       <IonHeader className={styles.header}>
@@ -66,7 +67,7 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className={`${styles.content}`}>
+      <IonContent fullscreen={true} className={`${styles.content}`}>
         {cart.map((item: any, ind: any) => {
           return (
             <CartItem
