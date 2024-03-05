@@ -140,7 +140,7 @@ const WelcomePage: React.FC = () => {
   }, []);
   return (
     <IonPage className={styles.page}>
-      <IonHeader
+      {/* <IonHeader
         translucent={true}
         mode="ios"
         className={`ion-no-border ${styles.header}`}
@@ -148,79 +148,93 @@ const WelcomePage: React.FC = () => {
         <IonToolbar className={styles.toolbar}>
           <IonImg className={styles.logo} src={isDark ? lightLogo : darkLogo} />
         </IonToolbar>
-      </IonHeader>
+      </IonHeader> */}
       <IonContent className={styles.container} fullscreen>
-        {opening ? (
-          <>
-            <IonImg className={styles.img} src={isDark ? darkImg : lightImg} />
-            <p className={styles.text}>Opening your restaurant</p>
-          </>
-        ) : (
-          <>
-            <IonImg className={styles.imgnotfound} src={qrImage} />
-            {failed && <h1 className={styles.error}>Error</h1>}
-            {notFound && (
-              <p className={styles.text}>Location not found please try again</p>
-            )}
-            <IonButton
-              size={isPlatform("mobile") ? "small" : "default"}
-              className={styles.checkoutBtn}
-              expand="block"
-            >
-              Scan QR Code
-            </IonButton>
-            <h1 className={styles.or}>OR</h1>
-            <IonSearchbar
-              mode="md"
-              className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
-              placeholder="Search restaurant"
-              debounce={1000}
-              onIonClear={() => setSearchNotFound(false)}
-              onIonInput={(e) => {
-                const value = e.detail.value.trim();
-
-                if (value !== "") {
-                  searchVenu(value);
-                } else {
-                  setRestaurants([]);
-                }
-              }}
-            ></IonSearchbar>
-            {searcNotFound && (
-              <div className={styles.box}>
+        <div className={styles.innerContainer}>
+          <IonHeader translucent={true} mode="ios" className={`ion-no-border`}>
+            <IonToolbar className={styles.toolbar}>
+              <IonImg
+                className={styles.logo}
+                src={isDark ? lightLogo : darkLogo}
+              />
+            </IonToolbar>
+          </IonHeader>
+          {opening ? (
+            <>
+              <IonImg
+                className={styles.img}
+                src={isDark ? darkImg : lightImg}
+              />
+              <p className={styles.text}>Opening your restaurant</p>
+            </>
+          ) : (
+            <>
+              <IonImg className={styles.imgnotfound} src={qrImage} />
+              {failed && <h1 className={styles.error}>Error</h1>}
+              {notFound && (
                 <p className={styles.text}>
                   Location not found please try again
                 </p>
-              </div>
-            )}
+              )}
+              <IonButton
+                size={"default"}
+                className={styles.checkoutBtn}
+                expand="block"
+              >
+                Scan QR Code
+              </IonButton>
+              <h1 className={styles.or}>OR</h1>
+              <IonSearchbar
+                mode="md"
+                className={`${styles.custom} ${styles.customSearchbar} ion-no-padding`} // Applying the custom styles
+                placeholder="Search restaurant"
+                debounce={1000}
+                onIonClear={() => setSearchNotFound(false)}
+                onIonInput={(e) => {
+                  const value = e.detail.value.trim();
 
-            {loading && (
-              <div className={styles.box}>
-                <div style={{ margin: "0 auto", width: "fit-content" }}>
-                  <IonSpinner name="circles"></IonSpinner>
+                  if (value !== "") {
+                    searchVenu(value);
+                  } else {
+                    setRestaurants([]);
+                  }
+                }}
+              ></IonSearchbar>
+
+              {searcNotFound && (
+                <div className={styles.box}>
+                  <p className={styles.text}>
+                    Location not found please try again
+                  </p>
                 </div>
-                <p className={styles.loading}>Loading...</p>
-              </div>
-            )}
-
-            {restaurants.length > 0 && (
-              <div className={styles.box}>
-                <p className={styles.itemHeader}>Search results:</p>
-                <div className={styles.border} />
-                {restaurants.map((result: any) => (
-                  <>
-                    <p
-                      onClick={() => setSanitizedUrl(result.slug)}
-                      className={styles.item}
-                    >
-                      {result.slug}
-                    </p>
-                  </>
-                ))}
-              </div>
-            )}
-          </>
-        )}
+              )}
+              {loading && (
+                <div className={styles.box}>
+                  <div style={{ margin: "0 auto", width: "fit-content" }}>
+                    <IonSpinner name="circles"></IonSpinner>
+                  </div>
+                  <p className={styles.loading}>Loading...</p>
+                </div>
+              )}
+              {restaurants.length > 0 && (
+                <div className={styles.box}>
+                  <p className={styles.itemHeader}>Search results:</p>
+                  <div className={styles.border} />
+                  {restaurants.map((result: any) => (
+                    <>
+                      <p
+                        onClick={() => setSanitizedUrl(result.slug)}
+                        className={styles.item}
+                      >
+                        {result.slug}
+                      </p>
+                    </>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
+        </div>
       </IonContent>
     </IonPage>
   );
