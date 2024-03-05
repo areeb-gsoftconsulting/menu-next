@@ -3,6 +3,7 @@ ion-content {
   --padding-end: 0px;
   --background: var(--ion-page-background-color);
 }
+
 .page {
   max-width: 100%;
   margin: 0 auto;

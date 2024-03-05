@@ -1,6 +1,7 @@
 .toolbar {
   --background: trasparent;
   --padding-start: 10px;
+  padding: 0px !important;
 }
 .image {
   height: 63px;
