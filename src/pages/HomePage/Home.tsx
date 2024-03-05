@@ -5,6 +5,7 @@ import {
   IonInfiniteScrollContent,
   IonPage,
   IonToolbar,
+  isPlatform,
   useIonRouter,
 } from "@ionic/react";
 import styles from "./Home.module.css";
@@ -264,11 +265,21 @@ const Home: React.FC = () => {
         fullscreen
       >
         <p className={styles.menu}>{currentMenu.name}</p>
-        <IonHeader mode="ios" className={`ion-no-border`}>
+        {isPlatform("ios") ? (
           <IonToolbar className={`${styles.toolbarScrolled}`}>
             <CategorySlider menuId={currentMenu._id} />
           </IonToolbar>
-        </IonHeader>
+        ) : (
+          <IonHeader
+            mode="ios"
+            className={`ion-no-border ${styles.homeHeader}`}
+          >
+            <IonToolbar className={`${styles.toolbarScrolled}`}>
+              <CategorySlider menuId={currentMenu._id} />
+            </IonToolbar>
+          </IonHeader>
+        )}
+
         {/* <IonList>
           <IonItem lines="none">
             <IonIcon slot="start" />
