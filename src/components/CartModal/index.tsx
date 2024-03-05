@@ -52,7 +52,13 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
   return (
     <IonModal
       ref={modal}
-      className={isPlatform("ios") ? styles.mainIos : styles.main}
+      className={
+        isPlatform("mobileweb")
+          ? styles.main
+          : isPlatform("android")
+          ? styles.main
+          : styles.mainIos
+      }
       trigger="open-modal"
       presentingElement={presentingElement!}
       isOpen={isCartOpen}
