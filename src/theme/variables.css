@@ -380,7 +380,23 @@ body {
   padding: 2px;
   border-radius: 50%;
 } */
+body.barcode-scanner-active {
+  visibility: hidden;
+  --background: transparent;
+  --ion-background-color: transparent;
+}
 
+/* Show only the barcode scanner modal */
+.barcode-scanner-modal {
+  visibility: visible;
+}
+
+@media (prefers-color-scheme: dark) {
+  .barcode-scanner-modal {
+    --background: transparent;
+    --ion-background-color: transparent;
+  }
+}
 .searchbar-input.sc-ion-searchbar-md {
   padding-inline-end: 0px;
   padding-top: 4px;

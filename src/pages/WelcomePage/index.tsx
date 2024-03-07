@@ -180,6 +180,7 @@ const WelcomePage: React.FC = () => {
                 size={"default"}
                 className={styles.checkoutBtn}
                 expand="block"
+                onClick={() => router.push("/scanner")}
               >
                 Scan QR Code
               </IonButton>
