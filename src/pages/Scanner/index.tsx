@@ -156,6 +156,7 @@ const Scanner = () => {
                   className={styles.cancelBtn}
                   mode="ios"
                   color={"dark"}
+                  onClick={() => router.replace("/welcome")}
                 >
                   Cancel
                 </IonButton>
