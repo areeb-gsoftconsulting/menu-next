@@ -34,6 +34,7 @@ import darkLogo from "../../assets/logoDark.png";
 import qrImage from "../../assets/QR.png";
 import getVenueSlugs from "../../services/getVenueSlugs";
 import { setCategories } from "../../store/slices/categorySlice";
+import { App } from "@capacitor/app";
 
 const WelcomePage: React.FC = () => {
   const isDark = useSelector((data: any) => data.theme.isDark);
@@ -55,7 +56,13 @@ const WelcomePage: React.FC = () => {
   const [opening, setOpening] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  console.log({ searcNotFound });
+  document.addEventListener("ionBackButton", (ev) => {
+    ev.detail.register(-1, () => {
+      if (!router.canGoBack()) {
+        App.exitApp();
+      }
+    });
+  });
 
   const dispatch = useDispatch();
   const getVlenue = async () => {
