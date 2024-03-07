@@ -4,7 +4,14 @@ import {
   BarcodeFormat,
   LensFacing,
 } from "@capacitor-mlkit/barcode-scanning";
-import { IonButton, IonContent, IonPage } from "@ionic/react";
+import {
+  IonButton,
+  IonContent,
+  IonPage,
+  IonRow,
+  IonSpinner,
+  IonText,
+} from "@ionic/react";
 import { useDispatch } from "react-redux";
 import {
   setCurrentMenu,
@@ -14,6 +21,7 @@ import {
 import getVenues from "../../services/getVenue";
 import { useHistory } from "react-router";
 import { useToast } from "../../hooks/useToast";
+import styles from "./styles.module.css";
 
 const Scanner = () => {
   const [permissionDenied, setPermissionDenied] = useState(false);
@@ -22,10 +30,11 @@ const Scanner = () => {
   const dispatch = useDispatch();
   const router = useHistory();
   const { presentToast } = useToast();
+  const [opeing, setOpening] = useState(false);
 
   const getVlenue = async (sanitizedUrl: any) => {
     dispatch(setRestSlug(sanitizedUrl));
-
+    setOpening(true);
     try {
       let res = await getVenues(sanitizedUrl);
 
@@ -50,6 +59,7 @@ const Scanner = () => {
       }
     } catch (error) {
       console.log({ error });
+      setOpening(false);
       setFailed(true);
       presentToast("Please try again later");
     }
@@ -132,14 +142,39 @@ const Scanner = () => {
 
   return (
     <IonPage>
-      <IonContent fullscreen>
+      <IonContent className={styles.content} fullscreen>
         {permissionDenied && (
-          <div>
-            <h4>
-              Please open settings and allow MenuNext camera permissions or
-              search your restaurant by search
-            </h4>
-            <IonButton onClick={openSettings}>Settings</IonButton>
+          <div className={styles.container}>
+            <div className={styles.card}>
+              <IonText className={styles.msg}>
+                Oops! It seems like camera permission is denied. To use this
+                feature, please enable camera access in your device settings.
+              </IonText>
+              <div className={styles.btnsContainer}>
+                <IonButton
+                  size="small"
+                  className={styles.cancelBtn}
+                  mode="ios"
+                  color={"dark"}
+                >
+                  Cancel
+                </IonButton>
+                <IonButton
+                  size="small"
+                  className={styles.setting}
+                  mode="ios"
+                  onClick={openSettings}
+                >
+                  Settings
+                </IonButton>
+              </div>
+            </div>
+          </div>
+        )}
+        {opeing && (
+          <div className={styles.container}>
+            <IonSpinner name="circles"></IonSpinner>
+            <IonText className={styles.msg}>Loading...</IonText>
           </div>
         )}
       </IonContent>
