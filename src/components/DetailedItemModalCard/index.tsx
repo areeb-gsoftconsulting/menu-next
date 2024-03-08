@@ -317,9 +317,23 @@ const DetailItemModalCard = ({
           </IonText>
           {/* <IonLabel className={styles.price}>$4.5</IonLabel> */}
           {data.prices.length > 1 ? (
-            <IonText class="ion-text-nowrap" className={styles.price}>
-              from {venue.defaultCurrency.sign} {smallestPrice}
-            </IonText>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "center",
+                textAlign: "center",
+                alignItems: "center",
+                flexWrap: "nowrap",
+              }}
+            >
+              <IonText class="ion-text-nowrap" className={styles.fromprice}>
+                from
+              </IonText>
+              <IonText class="ion-text-nowrap" className={styles.price}>
+                {venue.defaultCurrency.sign} {smallestPrice}
+              </IonText>
+            </div>
           ) : (
             <IonText class="ion-text-nowrap" className={styles.price}>
               {venue.defaultCurrency.sign} {data.prices[0].price}
