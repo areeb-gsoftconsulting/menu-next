@@ -80,7 +80,7 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
     if (filterItems.length > 0) {
       dispatch(setAddedToCart(true));
     }
-    setSelectBulk([]);
+    setSelectBulk(tempErrItems);
     // setOpenFav(false);
   };
 

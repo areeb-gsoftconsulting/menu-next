@@ -101,7 +101,10 @@ const SelectedItemCard = ({
         )}
       </IonRow>
       {errorItems.some((item: any) => item._id === data._id) && (
-        <p className={styles.err}>item may require customization*</p>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <p className={styles.err}>item may require customization*</p>
+          <p className={styles.underlineErr}> click here</p>
+        </div>
       )}
       <div className={styles.border} />
       {openDetailed && (

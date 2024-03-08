@@ -231,8 +231,6 @@ const WelcomePage: React.FC = () => {
               )}
               {restaurants.length > 0 && (
                 <div className={styles.box}>
-                  <p className={styles.itemHeader}>Search results:</p>
-                  <div className={styles.border} />
                   {restaurants.map((result: any) => (
                     <>
                       <p
