@@ -57,7 +57,9 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
           ? styles.main
           : isPlatform("android")
           ? styles.main
-          : styles.mainIos
+          : isPlatform("ios")
+          ? styles.mainIos
+          : styles.main
       }
       trigger="open-modal"
       presentingElement={presentingElement!}
