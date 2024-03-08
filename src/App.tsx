@@ -35,6 +35,7 @@ import Home from "./pages/HomePage/Home";
 import { useEffect } from "react";
 import { setIsDark } from "./store/slices/themeSlice";
 import Scanner from "./pages/Scanner";
+import CameraPage from "./pages/Camera";
 
 setupIonicReact();
 const DynamicRouteComponent: React.FC = () => {
@@ -65,6 +66,9 @@ const DynamicRouteComponent: React.FC = () => {
       </Route>
       <Route path={`/scanner`} exact>
         <Scanner />
+      </Route>
+      <Route path={`/camera`} exact>
+        <CameraPage />
       </Route>
       <Redirect
         to={`/welcome?requestedUrl=${encodeURIComponent(location.pathname)}`}
