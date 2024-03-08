@@ -38,8 +38,8 @@ function DetailedAddedToCart({ selectDetailItem, open, setOpen }: any) {
     <IonModal
       ref={modal}
       trigger="open-modal"
-      initialBreakpoint={1}
-      breakpoints={[0, 1]}
+      initialBreakpoint={0.8}
+      breakpoints={[0, 0.8, 1]}
       isOpen={open}
       onDidDismiss={() => setOpen(false)}
     >
