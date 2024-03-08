@@ -25,6 +25,7 @@ import {
   add,
   remove,
   heartSharp,
+  cartOutline,
 } from "ionicons/icons";
 import placeholderDark from "../../assets/placeholderDark.png";
 import placeholderLight from "../../assets/placeholderLight.png";
@@ -192,6 +193,18 @@ const ItemCard = ({
           className={styles.likeIcon}
           icon={isLiked == -1 ? heartOutline : heartSharp}
         />
+        {numberInCart.length > 0 && (
+          <div className={styles.numInCart}>
+            <p className={styles.cartNum}>{numberInCart[0].quantity}</p>
+            <IonIcon
+              onClick={(e: any) => {
+                setingLiked();
+                e.stopPropagation();
+              }}
+              icon={cartOutline}
+            />
+          </div>
+        )}
 
         {!data.inStock && (
           <div className={styles.notAvailable}>
@@ -224,11 +237,11 @@ const ItemCard = ({
           )}
         </div> */}
 
-        {numberInCart.length > 0 && (
+        {/* {numberInCart.length > 0 && (
           <div className={styles.badge}>
             <p className={styles.badgeTxt}>{numberInCart[0].quantity}</p>
           </div>
-        )}
+        )} */}
 
         {/* <IonRow className="ion-margin-top ion-align-items-center">
           <IonIcon className={styles.rateIcon} icon={starSharp} />
