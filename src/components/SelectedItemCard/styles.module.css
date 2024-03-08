@@ -8,7 +8,7 @@
 .name {
   color: var(--ion-text-color);
   text-align: right;
-  font-family: "poppins";
+  font-family: "poppins-normal";
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -21,7 +21,7 @@
   width: 180px;
   color: var(--ion-text-color);
   text-align: right;
-  font-family: "poppins";
+  font-family: "poppins-normal";
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
