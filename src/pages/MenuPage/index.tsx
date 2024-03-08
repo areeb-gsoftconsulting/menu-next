@@ -39,6 +39,7 @@ const Menu = () => {
     (data: any) => data.category.selectedCategory
   );
   console.log("selectedCategory", selectedCategory);
+
   return (
     <IonPage className={styles.page}>
       <IonHeader

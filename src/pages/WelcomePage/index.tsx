@@ -23,7 +23,7 @@ import {
   setVenue,
 } from "../../store/slices/restaurantSlice";
 import { useIonRouter } from "@ionic/react";
-import { useLocation, useParams } from "react-router";
+import { useHistory, useLocation, useParams } from "react-router";
 import { useToast } from "../../hooks/useToast";
 import styles from "./styles.module.css";
 import darkImg from "../../assets/welcomeImgDark.png";
@@ -57,8 +57,13 @@ const WelcomePage: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
   document.addEventListener("ionBackButton", (ev) => {
-    ev.detail.register(-1, () => {
-      if (!router.canGoBack()) {
+    ev.detail.register(10, () => {
+      let parts = ev.target.location.pathname.split("/");
+      if (parts[parts.length - 1] == "menu") {
+        router.push("/welcome");
+      } else if (parts[parts.length - 1] == "home") {
+        router.goBack();
+      } else if (parts[parts.length - 1] == "welcome") {
         App.exitApp();
       }
     });
