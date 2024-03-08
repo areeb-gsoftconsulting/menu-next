@@ -57,7 +57,9 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
           ? styles.main
           : isPlatform("android")
           ? styles.main
-          : styles.mainIos
+          : isPlatform("ios")
+          ? styles.mainIos
+          : styles.main
       }
       trigger="open-modal"
       presentingElement={presentingElement!}
@@ -84,24 +86,7 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
             />
           );
         })}
-        {cart.length > 0 && (
-          <div className={styles.priceCard}>
-            <IonRow class="ion-justify-content-between ion-align-items-center">
-              <p className={styles.cardTxt}>Subtotal</p>
-              <p className={styles.cardTxt}>
-                {venue.defaultCurrency.sign} {totalAmount}
-              </p>
-            </IonRow>
-            <IonRow class="ion-justify-content-between ion-align-items-center">
-              <p className={styles.cardTxt}>GST</p>
-              <p className={styles.cardTxt}>{venue.defaultCurrency.sign} 0</p>
-            </IonRow>
-            <IonRow class="ion-justify-content-between ion-align-items-center">
-              <p className={styles.cardTxt}>Platform fee</p>
-              <p className={styles.cardTxt}>{venue.defaultCurrency.sign} 0</p>
-            </IonRow>
-          </div>
-        )}
+
         {cart.length < 1 && (
           <IonCol>
             <IonImg className={styles.img} src={cartImg} />
@@ -111,6 +96,24 @@ function CartModal({ isCartOpen, setIsCartOpen }: any) {
       </IonContent>
       {cart.length > 0 && (
         <IonFooter className={styles.footer}>
+          {cart.length > 0 && (
+            <div className={styles.priceCard}>
+              <IonRow class="ion-justify-content-between ion-align-items-center">
+                <p className={styles.cardTxt}>Subtotal</p>
+                <p className={styles.cardTxt}>
+                  {venue.defaultCurrency.sign} {totalAmount}
+                </p>
+              </IonRow>
+              <IonRow class="ion-justify-content-between ion-align-items-center">
+                <p className={styles.cardTxt}>GST</p>
+                <p className={styles.cardTxt}>{venue.defaultCurrency.sign} 0</p>
+              </IonRow>
+              <IonRow class="ion-justify-content-between ion-align-items-center">
+                <p className={styles.cardTxt}>Platform fee</p>
+                <p className={styles.cardTxt}>{venue.defaultCurrency.sign} 0</p>
+              </IonRow>
+            </div>
+          )}
           <IonRow
             style={{ paddingLeft: "4px", paddingRight: "4px" }}
             class="ion-justify-content-between ion-align-items-center"

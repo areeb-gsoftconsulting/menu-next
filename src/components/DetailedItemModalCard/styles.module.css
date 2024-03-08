@@ -38,6 +38,14 @@
   min-width: 150px;
   text-wrap: wrap;
 }
+.fromprice {
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "poppins";
+  padding-inline: 0px;
+  text-align: center;
+  padding-right: 5px;
+}
 .price {
   font-size: 20px;
   font-weight: 600;

@@ -23,7 +23,7 @@ import {
   setVenue,
 } from "../../store/slices/restaurantSlice";
 import { useIonRouter } from "@ionic/react";
-import { useLocation, useParams } from "react-router";
+import { useHistory, useLocation, useParams } from "react-router";
 import { useToast } from "../../hooks/useToast";
 import styles from "./styles.module.css";
 import darkImg from "../../assets/welcomeImgDark.png";
@@ -34,6 +34,7 @@ import darkLogo from "../../assets/logoDark.png";
 import qrImage from "../../assets/QR.png";
 import getVenueSlugs from "../../services/getVenueSlugs";
 import { setCategories } from "../../store/slices/categorySlice";
+import { App } from "@capacitor/app";
 
 const WelcomePage: React.FC = () => {
   const isDark = useSelector((data: any) => data.theme.isDark);
@@ -55,7 +56,18 @@ const WelcomePage: React.FC = () => {
   const [opening, setOpening] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  console.log({ searcNotFound });
+  document.addEventListener("ionBackButton", (ev) => {
+    ev.detail.register(10, () => {
+      let parts = ev.target.location.pathname.split("/");
+      if (parts[parts.length - 1] == "menu") {
+        router.push("/welcome");
+      } else if (parts[parts.length - 1] == "home") {
+        router.goBack();
+      } else if (parts[parts.length - 1] == "welcome") {
+        App.exitApp();
+      }
+    });
+  });
 
   const dispatch = useDispatch();
   const getVlenue = async () => {
@@ -180,6 +192,7 @@ const WelcomePage: React.FC = () => {
                 size={"default"}
                 className={styles.checkoutBtn}
                 expand="block"
+                onClick={() => router.push("/scanner")}
               >
                 Scan QR Code
               </IonButton>
@@ -218,8 +231,6 @@ const WelcomePage: React.FC = () => {
               )}
               {restaurants.length > 0 && (
                 <div className={styles.box}>
-                  <p className={styles.itemHeader}>Search results:</p>
-                  <div className={styles.border} />
                   {restaurants.map((result: any) => (
                     <>
                       <p

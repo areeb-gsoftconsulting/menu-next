@@ -34,6 +34,7 @@ import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/HomePage/Home";
 import { useEffect } from "react";
 import { setIsDark } from "./store/slices/themeSlice";
+import Scanner from "./pages/Scanner";
 
 setupIonicReact();
 const DynamicRouteComponent: React.FC = () => {
@@ -61,6 +62,9 @@ const DynamicRouteComponent: React.FC = () => {
       </Route>
       <Route path={`/${userName}/menu`} exact>
         <Menu />
+      </Route>
+      <Route path={`/scanner`} exact>
+        <Scanner />
       </Route>
       <Redirect
         to={`/welcome?requestedUrl=${encodeURIComponent(location.pathname)}`}
