@@ -75,8 +75,8 @@ function CartAnimationModal({ addedToCart }: any) {
               /> */}
               <div
                 style={{
-                  height: "200px",
-                  width: "200px",
+                  height: "75px",
+                  width: "75px",
                   margin: "0 auto",
                 }}
               >
