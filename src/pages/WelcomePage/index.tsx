@@ -40,6 +40,7 @@ const WelcomePage: React.FC = () => {
   const isDark = useSelector((data: any) => data.theme.isDark);
   const router = useIonRouter();
   const location = useLocation();
+
   const requestedUrl = new URLSearchParams(location.search).get("requestedUrl");
   // const sanitizedUrl = requestedUrl
   //   ? requestedUrl.replace(/^\/+|\/+$/g, "")
@@ -187,7 +188,12 @@ const WelcomePage: React.FC = () => {
                 size={"default"}
                 className={styles.checkoutBtn}
                 expand="block"
-                onClick={() => router.push("/camera")}
+                disabled={isPlatform("desktop")}
+                onClick={() => {
+                  isPlatform("mobileweb")
+                    ? router.push("/camera")
+                    : router.push("/scanner");
+                }}
               >
                 Scan QR Code
               </IonButton>
