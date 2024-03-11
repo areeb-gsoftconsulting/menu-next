@@ -66,23 +66,32 @@ const Scanner = () => {
   };
 
   const scanSingleBarcode = async () => {
-    return new Promise(async (resolve) => {
-      document.querySelector("body")?.classList.add("barcode-scanner-active");
+    try {
+      return new Promise(async (resolve, reject) => {
+        document.querySelector("body")?.classList.add("barcode-scanner-active");
 
-      const listener = await BarcodeScanner.addListener(
-        "barcodeScanned",
-        async (result) => {
-          await listener.remove();
-          document
-            .querySelector("body")
-            ?.classList.remove("barcode-scanner-active");
-          await BarcodeScanner.stopScan();
-          resolve(result.barcode);
-        }
-      );
+        const listener = await BarcodeScanner.addListener(
+          "barcodeScanned",
+          async (result) => {
+            try {
+              await listener.remove();
+              document
+                .querySelector("body")
+                ?.classList.remove("barcode-scanner-active");
+              await BarcodeScanner.stopScan();
+              resolve(result.barcode);
+            } catch (error) {
+              reject(error);
+            }
+          }
+        );
 
-      await BarcodeScanner.startScan();
-    });
+        await BarcodeScanner.startScan();
+      });
+    } catch (error) {
+      console.error("Error occurred during barcode scanning:", error);
+      throw error;
+    }
   };
 
   const checkPermissions = async () => {
