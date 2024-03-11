@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   BarcodeScanner,
   BarcodeFormat,
@@ -34,6 +34,19 @@ const Scanner = () => {
   const router = useHistory();
   const { presentToast } = useToast();
   const [opeing, setOpening] = useState(false);
+
+  document.addEventListener("ionBackButton", (ev) => {
+    ev.detail.register(10, () => {
+      let parts = ev.target.location.pathname.split("/");
+      if (parts[parts.length - 1] == "scanner") {
+        document
+          .querySelector("body")
+          ?.classList.remove("barcode-scanner-active");
+        router.goBack();
+        BarcodeScanner.stopScan();
+      }
+    });
+  });
 
   const getVlenue = async (sanitizedUrl: any) => {
     dispatch(setRestSlug(sanitizedUrl));
@@ -106,9 +119,14 @@ const Scanner = () => {
         camera == "prompt-with-rationale" ||
         camera == "limited"
       ) {
+        console.log("fdsa");
+
         requestPermissions();
       }
+      console.log("camera", camera);
+
       if (camera == "granted") {
+        console.log("granted");
         let { displayValue } = await scanSingleBarcode();
 
         const parts = displayValue.split("/");
@@ -157,7 +175,13 @@ const Scanner = () => {
       <IonContent className={styles.content} fullscreen>
         <div className="scanner-header">
           <IonIcon
-            onClick={() => router.goBack()}
+            onClick={() => {
+              document
+                .querySelector("body")
+                ?.classList.remove("barcode-scanner-active");
+              router.goBack();
+              BarcodeScanner.stopScan();
+            }}
             size="small"
             icon={chevronBack}
           ></IonIcon>
