@@ -35,6 +35,7 @@ import Home from "./pages/HomePage/Home";
 import { useEffect } from "react";
 import { setIsDark } from "./store/slices/themeSlice";
 import Scanner from "./pages/Scanner";
+import { SplashScreen } from "@capacitor/splash-screen";
 
 setupIonicReact();
 const DynamicRouteComponent: React.FC = () => {
@@ -46,7 +47,6 @@ const DynamicRouteComponent: React.FC = () => {
   useEffect(() => {
     toggleDarkModeHandler("light");
     dispatch(setIsDark(false));
-    // showSplashScreen();
   }, []);
 
   const toggleDarkModeHandler = (mode: any) => {
@@ -76,6 +76,15 @@ const DynamicRouteComponent: React.FC = () => {
 };
 
 const App: React.FC = () => {
+  const showSplash = async () => {
+    await SplashScreen.show({
+      showDuration: 2000,
+      autoHide: true,
+    });
+  };
+  useEffect(() => {
+    showSplash();
+  }, []);
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
