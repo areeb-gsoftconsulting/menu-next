@@ -12,6 +12,7 @@ import {
   IonRow,
   IonSpinner,
   IonText,
+  isPlatform,
 } from "@ionic/react";
 import { chevronBack } from "ionicons/icons";
 
@@ -173,7 +174,11 @@ const Scanner = () => {
   return (
     <IonPage>
       <IonContent className={styles.content} fullscreen>
-        <div className="scanner-header">
+        <div
+          className={
+            isPlatform("ios") ? "scanner-header-ios" : "scanner-header"
+          }
+        >
           <IonIcon
             onClick={() => {
               document
