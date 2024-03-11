@@ -390,7 +390,75 @@ body.barcode-scanner-active {
 .barcode-scanner-modal {
   visibility: visible;
 }
+.scanner-header {
+  visibility: visible;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 80px;
+  box-sizing: border-box;
+  z-index: 999;
+  border: 1px solid rgb(249, 248, 248);
+  background-color: #ffffff;
+  z-index: 999999;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  align-items: center;
+}
+.scanner-overlay {
+  visibility: visible;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 999; /* Ensure it's above the scanner preview */
+  /* background-color: rgba(0, 0, 0, 0.5); */
+}
 
+.scanner-overlay-vertical {
+  visibility: visible;
+  position: relative;
+  flex: 1;
+  box-sizing: border-box;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.scanner-box {
+  visibility: visible;
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  z-index: 999;
+}
+.scanner-box-centered-child {
+  visibility: visible;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  z-index: 999;
+  width: 250px;
+}
+.scanner-box-child {
+  visibility: visible;
+  position: relative;
+  flex: 0.5;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 @media (prefers-color-scheme: dark) {
   .barcode-scanner-modal {
     --background: transparent;

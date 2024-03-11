@@ -7,11 +7,14 @@ import {
 import {
   IonButton,
   IonContent,
+  IonIcon,
   IonPage,
   IonRow,
   IonSpinner,
   IonText,
 } from "@ionic/react";
+import { chevronBack } from "ionicons/icons";
+
 import { useDispatch } from "react-redux";
 import {
   setCurrentMenu,
@@ -152,6 +155,30 @@ const Scanner = () => {
   return (
     <IonPage>
       <IonContent className={styles.content} fullscreen>
+        <div className="scanner-header">
+          <IonIcon
+            onClick={() => router.goBack()}
+            size="small"
+            icon={chevronBack}
+          ></IonIcon>
+          <h5
+            style={{
+              fontFamily: "poppins-normal",
+            }}
+          >
+            Scan QR Code
+          </h5>
+          <p></p>
+        </div>
+        <div className="scanner-overlay">
+          <div className="scanner-overlay-vertical"></div>
+          <div className="scanner-box">
+            <div className="scanner-box-child"></div>
+            <div className="scanner-box-centered-child"></div>
+            <div className="scanner-box-child"></div>
+          </div>
+          <div className="scanner-overlay-vertical"></div>
+        </div>
         {permissionDenied && (
           <div className={styles.container}>
             <div className={styles.card}>
