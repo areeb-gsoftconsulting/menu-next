@@ -46,6 +46,7 @@ const DynamicRouteComponent: React.FC = () => {
   useEffect(() => {
     toggleDarkModeHandler("light");
     dispatch(setIsDark(false));
+    // showSplashScreen();
   }, []);
 
   const toggleDarkModeHandler = (mode: any) => {
