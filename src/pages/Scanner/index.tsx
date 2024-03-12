@@ -13,6 +13,7 @@ import {
   IonSpinner,
   IonText,
   isPlatform,
+  useIonRouter,
 } from "@ionic/react";
 import { chevronBack } from "ionicons/icons";
 
@@ -26,6 +27,7 @@ import getVenues from "../../services/getVenue";
 import { useHistory } from "react-router";
 import { useToast } from "../../hooks/useToast";
 import styles from "./styles.module.css";
+import { App } from "@capacitor/app";
 
 const Scanner = () => {
   const [permissionDenied, setPermissionDenied] = useState(false);
@@ -33,18 +35,28 @@ const Scanner = () => {
   const [notFound, setNotFound] = useState(false);
   const dispatch = useDispatch();
   const router = useHistory();
+  const navigation = useIonRouter();
   const { presentToast } = useToast();
   const [opeing, setOpening] = useState(false);
 
   document.addEventListener("ionBackButton", (ev) => {
-    ev.detail.register(10, () => {
+    console.log("ev.target.location", ev.target.location);
+    ev.detail.register(9999, () => {
       let parts = ev.target.location.pathname.split("/");
-      if (parts[parts.length - 1] == "scanner") {
+      if (parts[parts.length - 1] == "menu") {
+        navigation.push("/welcome");
+      } else if (parts[parts.length - 1] == "home") {
+        navigation.goBack();
+      } else if (parts[parts.length - 1] == "scanner") {
         document
           .querySelector("body")
           ?.classList.remove("barcode-scanner-active");
         router.goBack();
         BarcodeScanner.stopScan();
+      } else if (parts[parts.length - 1] == "welcome") {
+        App.exitApp();
+      } else {
+        App.exitApp();
       }
     });
   });
