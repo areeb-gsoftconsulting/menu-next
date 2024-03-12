@@ -17,6 +17,13 @@
   font-size: 14px;
   flex-wrap: nowrap;
 }
+.loadingCard {
+  height: 200px;
+  width: 100%;
+  background-color: var(--ion-skelton-color);
+  border-radius: 16px;
+}
+
 .prices {
   font-size: 14px;
   font-family: "poppins-normal";

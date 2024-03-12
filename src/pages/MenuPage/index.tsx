@@ -12,6 +12,7 @@ import {
   IonList,
   IonPage,
   IonRow,
+  IonSkeletonText,
   IonText,
   IonTitle,
   IonToggle,
@@ -71,17 +72,24 @@ const Menu = () => {
                 }}
                 key={ind}
               >
+                <IonSkeletonText
+                  animated
+                  style={{
+                    display: !loadingImage ? "none" : "block",
+                    paddingTop: loadingImage ? "calc(200 / 351 * 100%)" : "0px",
+                  }}
+                  className={styles.loadingCard}
+                />
+
                 <IonImg
                   onIonImgWillLoad={() => setImageLoading(false)}
                   onIonImgDidLoad={() => setImageLoading(false)}
                   className={styles.menuImg}
-                  src={
-                    loadingImage
-                      ? isDark
-                        ? placeholderDark
-                        : placeholderLight
-                      : obj.imageUrl
-                  }
+                  style={{
+                    height: loadingImage ? "0px" : "auto",
+                    opacity: loadingImage ? 0 : 1,
+                  }}
+                  src={obj.imageUrl}
                 />
                 <p className={styles.labelContainer}>{obj.name}</p>
               </IonCol>

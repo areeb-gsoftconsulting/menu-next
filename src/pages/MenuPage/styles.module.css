@@ -58,7 +58,6 @@ ion-content {
 .menuImg {
   width: 100%; /* Make the image take full width */
   height: auto; /* Maintain aspect ratio */
-  display: block;
   border-radius: 10px !important;
   overflow: hidden;
 }
@@ -78,4 +77,10 @@ ion-content {
 }
 .menuLabel {
   color: #0c0c0c;
+}
+.loadingCard {
+  height: 200px;
+  width: 100%;
+  background-color: var(--ion-skelton-color);
+  border-radius: 16px;
 }
