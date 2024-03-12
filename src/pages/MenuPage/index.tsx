@@ -15,6 +15,7 @@ import {
   IonText,
   IonTitle,
   IonToggle,
+  IonToolbar,
 } from "@ionic/react";
 import styles from "./styles.module.css";
 import bannerImage from "../../assets/bannerImage.png";
@@ -26,6 +27,8 @@ import { setCurrentMenu } from "../../store/slices/restaurantSlice";
 import { setSelectedCategory } from "../../store/slices/categorySlice";
 import placeholderDark from "../../assets/menuPlaceholderDark.png";
 import placeholderLight from "../../assets/menuPlaceholderLight.png";
+import lightLogo from "../../assets/logoLight.png";
+import darkLogo from "../../assets/logoDark.png";
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -46,7 +49,12 @@ const Menu = () => {
         className={`${styles.header} ion-no-border`}
         translucent={true}
       >
-        <IonImg className={styles.bannerImage} src={bannerImage} />
+        <IonToolbar className={styles.menupagetoolbar}>
+          <IonImg
+            className={styles.bannerImage}
+            src={isDark ? lightLogo : darkLogo}
+          />
+        </IonToolbar>
       </IonHeader>
       <IonContent className={styles.container} fullscreen>
         <p className={styles.restName}>{venue?.name}</p>

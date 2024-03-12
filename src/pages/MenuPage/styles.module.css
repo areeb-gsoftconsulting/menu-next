@@ -8,14 +8,20 @@
   }
 }
 .bannerImage {
-  max-width: 262px;
+  max-width: 202px;
   margin: 0 auto;
   position: relative;
-  bottom: -55px;
+  /* bottom: -55px; */
 }
 .header {
-  background-color: black;
-  height: 176px;
+}
+.menupagetoolbar {
+  --background: var(--ion-page-background-color);
+
+  /* --background: red; */
+
+  --padding-top: 20px;
+  --padding-bottom: 20px;
 }
 .restName {
   font-family: "poppins";
@@ -26,7 +32,7 @@
   color: rgba(140, 136, 136, 1);
 }
 .container {
-  --padding-top: 38px;
+  /* --padding-top: 38px; */
 
   --padding-start: 20px;
   --padding-end: 20px;
