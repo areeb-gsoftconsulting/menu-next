@@ -114,7 +114,7 @@ const CartItem = ({
     (accumulator: any, current: any) => accumulator + current.price,
     0
   );
-  console.log("oneeee", customizationNames.join(",").length);
+  console.log("oneeee", item);
   // useEffect(() => {
   //   if (
   //     width < 770 &&
@@ -249,9 +249,15 @@ const CartItem = ({
             <div className={styles.textDiv}>
               <p className={styles.itemName}>{item.name}</p>
               {expand && (
-                <p className={styles.otherNamesShow}>
-                  {customizationNames.join(",")}
-                </p>
+                <>
+                  {" "}
+                  <p className={styles.otherNamesShow}>
+                    {customizationNames.join(",")}
+                  </p>
+                  <p className={styles.otherNamesShow}>
+                    comments: {item.comments}
+                  </p>
+                </>
               )}
             </div>
           </IonRow>
@@ -260,7 +266,7 @@ const CartItem = ({
           className={styles.rightBox}
           class="ion-align-items-center ion-justify-content-between ion-nowrap"
         >
-          {item.customization.length > 0 ? (
+          {item.customization.length > 0 || item.comments.length > 0 ? (
             <IonIcon
               className={styles.toggleIcon}
               icon={expand ? chevronUp : chevronDown}
