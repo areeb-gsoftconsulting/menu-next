@@ -135,10 +135,11 @@ const CategorySlider = ({ menuId }: any) => {
                   className={styles.loadingCard}
                 />
                 <IonImg
-                  onIonImgWillLoad={() => setImageLoading(false)}
+                  // onIonImgWillLoad={() => setImageLoading(false)}
                   onIonImgDidLoad={() => setImageLoading(false)}
                   className={styles.image}
                   style={{
+                    // position: loadingImage ? "absolute" : "relative",
                     height: loadingImage ? "0px" : "63px",
                     opacity: loadingImage ? 0 : 1,
                   }}

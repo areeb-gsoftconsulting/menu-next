@@ -82,11 +82,11 @@ const Menu = () => {
                 />
 
                 <IonImg
-                  onIonImgWillLoad={() => setImageLoading(false)}
                   onIonImgDidLoad={() => setImageLoading(false)}
                   className={styles.menuImg}
                   style={{
                     height: loadingImage ? "0px" : "auto",
+                    // position: loadingImage ? "absolute" : "relative",
                     opacity: loadingImage ? 0 : 1,
                   }}
                   src={obj.imageUrl}
