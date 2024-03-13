@@ -4,6 +4,7 @@ import {
   IonInfiniteScrollContent,
   IonSegment,
   IonSegmentButton,
+  IonSkeletonText,
   IonToolbar,
 } from "@ionic/react";
 import React, { useEffect, useState } from "react";
@@ -118,25 +119,31 @@ const CategorySlider = ({ menuId }: any) => {
             >
               <div
                 className={
-                  selectedCategory.includes(obj._id)
+                  loadingImage
+                    ? styles.uncheckedCat
+                    : selectedCategory.includes(obj._id)
                     ? styles.checkedCat
                     : styles.uncheckedCat
                 }
               >
+                <IonSkeletonText
+                  animated
+                  style={{
+                    display: !loadingImage ? "none" : "block",
+                    paddingTop: loadingImage ? "100%" : "0px",
+                  }}
+                  className={styles.loadingCard}
+                />
                 <IonImg
                   onIonImgWillLoad={() => setImageLoading(false)}
                   onIonImgDidLoad={() => setImageLoading(false)}
                   className={styles.image}
+                  style={{
+                    height: loadingImage ? "0px" : "63px",
+                    opacity: loadingImage ? 0 : 1,
+                  }}
                   // src={obj.name == "All" ? categoryImg : obj.imageUrl}
-                  src={
-                    loadingImage
-                      ? isDark
-                        ? placeholderDark
-                        : placeholderLight
-                      : obj.name == "All"
-                      ? categoryImg
-                      : obj.imageUrl
-                  }
+                  src={obj.name == "All" ? categoryImg : obj.imageUrl}
                 />
               </div>
             </IonSegmentButton>

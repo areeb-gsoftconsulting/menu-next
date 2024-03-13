@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   BarcodeScanner,
   BarcodeFormat,
@@ -7,11 +7,16 @@ import {
 import {
   IonButton,
   IonContent,
+  IonIcon,
   IonPage,
   IonRow,
   IonSpinner,
   IonText,
+  isPlatform,
+  useIonRouter,
 } from "@ionic/react";
+import { chevronBack } from "ionicons/icons";
+
 import { useDispatch } from "react-redux";
 import {
   setCurrentMenu,
@@ -22,6 +27,7 @@ import getVenues from "../../services/getVenue";
 import { useHistory } from "react-router";
 import { useToast } from "../../hooks/useToast";
 import styles from "./styles.module.css";
+import { App } from "@capacitor/app";
 
 const Scanner = () => {
   const [permissionDenied, setPermissionDenied] = useState(false);
@@ -29,8 +35,31 @@ const Scanner = () => {
   const [notFound, setNotFound] = useState(false);
   const dispatch = useDispatch();
   const router = useHistory();
+  const navigation = useIonRouter();
   const { presentToast } = useToast();
   const [opeing, setOpening] = useState(false);
+
+  document.addEventListener("ionBackButton", (ev) => {
+    console.log("ev.target.location", ev.target.location);
+    ev.detail.register(9999, () => {
+      let parts = ev.target.location.pathname.split("/");
+      if (parts[parts.length - 1] == "menu") {
+        navigation.push("/welcome");
+      } else if (parts[parts.length - 1] == "home") {
+        navigation.goBack();
+      } else if (parts[parts.length - 1] == "scanner") {
+        document
+          .querySelector("body")
+          ?.classList.remove("barcode-scanner-active");
+        router.goBack();
+        BarcodeScanner.stopScan();
+      } else if (parts[parts.length - 1] == "welcome") {
+        App.exitApp();
+      } else {
+        App.exitApp();
+      }
+    });
+  });
 
   const getVlenue = async (sanitizedUrl: any) => {
     dispatch(setRestSlug(sanitizedUrl));
@@ -66,23 +95,32 @@ const Scanner = () => {
   };
 
   const scanSingleBarcode = async () => {
-    return new Promise(async (resolve) => {
-      document.querySelector("body")?.classList.add("barcode-scanner-active");
+    try {
+      return new Promise(async (resolve, reject) => {
+        document.querySelector("body")?.classList.add("barcode-scanner-active");
 
-      const listener = await BarcodeScanner.addListener(
-        "barcodeScanned",
-        async (result) => {
-          await listener.remove();
-          document
-            .querySelector("body")
-            ?.classList.remove("barcode-scanner-active");
-          await BarcodeScanner.stopScan();
-          resolve(result.barcode);
-        }
-      );
+        const listener = await BarcodeScanner.addListener(
+          "barcodeScanned",
+          async (result) => {
+            try {
+              await listener.remove();
+              document
+                .querySelector("body")
+                ?.classList.remove("barcode-scanner-active");
+              await BarcodeScanner.stopScan();
+              resolve(result.barcode);
+            } catch (error) {
+              reject(error);
+            }
+          }
+        );
 
-      await BarcodeScanner.startScan();
-    });
+        await BarcodeScanner.startScan();
+      });
+    } catch (error) {
+      console.error("Error occurred during barcode scanning:", error);
+      throw error;
+    }
   };
 
   const checkPermissions = async () => {
@@ -94,9 +132,14 @@ const Scanner = () => {
         camera == "prompt-with-rationale" ||
         camera == "limited"
       ) {
+        console.log("fdsa");
+
         requestPermissions();
       }
+      console.log("camera", camera);
+
       if (camera == "granted") {
+        console.log("granted");
         let { displayValue } = await scanSingleBarcode();
 
         const parts = displayValue.split("/");
@@ -143,6 +186,40 @@ const Scanner = () => {
   return (
     <IonPage>
       <IonContent className={styles.content} fullscreen>
+        <div
+          className={
+            isPlatform("ios") ? "scanner-header-ios" : "scanner-header"
+          }
+        >
+          <IonIcon
+            onClick={() => {
+              document
+                .querySelector("body")
+                ?.classList.remove("barcode-scanner-active");
+              router.goBack();
+              BarcodeScanner.stopScan();
+            }}
+            size="small"
+            icon={chevronBack}
+          ></IonIcon>
+          <h5
+            style={{
+              fontFamily: "poppins-normal",
+            }}
+          >
+            Scan QR Code
+          </h5>
+          <p></p>
+        </div>
+        <div className="scanner-overlay">
+          <div className="scanner-overlay-vertical"></div>
+          <div className="scanner-box">
+            <div className="scanner-box-child"></div>
+            <div className="scanner-box-centered-child"></div>
+            <div className="scanner-box-child"></div>
+          </div>
+          <div className="scanner-overlay-vertical"></div>
+        </div>
         {permissionDenied && (
           <div className={styles.container}>
             <div className={styles.card}>

@@ -35,6 +35,7 @@ import qrImage from "../../assets/QR.png";
 import getVenueSlugs from "../../services/getVenueSlugs";
 import { setCategories } from "../../store/slices/categorySlice";
 import { App } from "@capacitor/app";
+import { BarcodeScanner } from "@capacitor-mlkit/barcode-scanning";
 
 const WelcomePage: React.FC = () => {
   const isDark = useSelector((data: any) => data.theme.isDark);
@@ -56,20 +57,29 @@ const WelcomePage: React.FC = () => {
   const [opening, setOpening] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const dispatch = useDispatch();
+
   document.addEventListener("ionBackButton", (ev) => {
-    ev.detail.register(10, () => {
+    console.log("ev.target.location", ev.target.location);
+    ev.detail.register(9999, () => {
       let parts = ev.target.location.pathname.split("/");
       if (parts[parts.length - 1] == "menu") {
         router.push("/welcome");
       } else if (parts[parts.length - 1] == "home") {
         router.goBack();
+      } else if (parts[parts.length - 1] == "scanner") {
+        document
+          .querySelector("body")
+          ?.classList.remove("barcode-scanner-active");
+        router.goBack();
+        BarcodeScanner.stopScan();
       } else if (parts[parts.length - 1] == "welcome") {
+        App.exitApp();
+      } else {
         App.exitApp();
       }
     });
   });
-
-  const dispatch = useDispatch();
   const getVlenue = async () => {
     dispatch(setRestSlug(sanitizedUrl));
     setOpening(true);

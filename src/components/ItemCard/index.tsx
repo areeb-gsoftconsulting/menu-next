@@ -12,6 +12,7 @@ import {
   IonRadio,
   IonRadioGroup,
   IonRow,
+  IonSkeletonText,
   IonText,
   IonThumbnail,
   isPlatform,
@@ -212,17 +213,24 @@ const ItemCard = ({
           </div>
         )}
 
+        <IonSkeletonText
+          animated
+          style={{
+            display: !loadingImage ? "none" : "block",
+            paddingTop: loadingImage ? "calc(150 / 351 * 100%)" : "0px",
+          }}
+          className={styles.loadingCard}
+        />
+
         <IonImg
           onIonImgWillLoad={() => setImageLoading(false)}
           onIonImgDidLoad={() => setImageLoading(false)}
           className={styles.cardImg}
-          src={
-            loadingImage
-              ? isDark
-                ? placeholderDark
-                : placeholderLight
-              : data.imageUrl
-          }
+          style={{
+            height: loadingImage ? "0px" : "auto",
+            opacity: loadingImage ? 0 : 1,
+          }}
+          src={data.imageUrl}
         />
 
         {/* <div className={styles.priceBadge}>

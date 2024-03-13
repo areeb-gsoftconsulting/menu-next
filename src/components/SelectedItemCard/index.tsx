@@ -103,7 +103,19 @@ const SelectedItemCard = ({
       {errorItems.some((item: any) => item._id === data._id) && (
         <div style={{ display: "flex", flexDirection: "row" }}>
           <p className={styles.err}>item may require customization*</p>
-          <p className={styles.underlineErr}> click here</p>
+          <p
+            className={styles.underlineErr}
+            onClick={() => {
+              let temp = errorItems.filter(
+                (item: any) => item._id !== data._id
+              );
+              setErrorItems(temp);
+              setOpenDetailed(true);
+            }}
+          >
+            {" "}
+            click here
+          </p>
         </div>
       )}
       <div className={styles.border} />

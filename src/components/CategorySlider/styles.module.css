@@ -10,6 +10,12 @@
   border-radius: 50%;
   overflow: hidden;
 }
+.loadingCard {
+  height: 63px;
+  width: 63px;
+  background-color: var(--ion-skelton-color);
+  border-radius: 50%;
+}
 
 ion-segment-button {
   --color-checked: trasparent;

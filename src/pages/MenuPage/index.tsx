@@ -12,9 +12,11 @@ import {
   IonList,
   IonPage,
   IonRow,
+  IonSkeletonText,
   IonText,
   IonTitle,
   IonToggle,
+  IonToolbar,
 } from "@ionic/react";
 import styles from "./styles.module.css";
 import bannerImage from "../../assets/bannerImage.png";
@@ -26,6 +28,8 @@ import { setCurrentMenu } from "../../store/slices/restaurantSlice";
 import { setSelectedCategory } from "../../store/slices/categorySlice";
 import placeholderDark from "../../assets/menuPlaceholderDark.png";
 import placeholderLight from "../../assets/menuPlaceholderLight.png";
+import lightLogo from "../../assets/logoLight.png";
+import darkLogo from "../../assets/logoDark.png";
 
 const Menu = () => {
   const dispatch = useDispatch();
@@ -46,7 +50,12 @@ const Menu = () => {
         className={`${styles.header} ion-no-border`}
         translucent={true}
       >
-        <IonImg className={styles.bannerImage} src={bannerImage} />
+        <IonToolbar className={styles.menupagetoolbar}>
+          <IonImg
+            className={styles.bannerImage}
+            src={isDark ? lightLogo : darkLogo}
+          />
+        </IonToolbar>
       </IonHeader>
       <IonContent className={styles.container} fullscreen>
         <p className={styles.restName}>{venue?.name}</p>
@@ -63,17 +72,24 @@ const Menu = () => {
                 }}
                 key={ind}
               >
+                <IonSkeletonText
+                  animated
+                  style={{
+                    display: !loadingImage ? "none" : "block",
+                    paddingTop: loadingImage ? "calc(200 / 351 * 100%)" : "0px",
+                  }}
+                  className={styles.loadingCard}
+                />
+
                 <IonImg
                   onIonImgWillLoad={() => setImageLoading(false)}
                   onIonImgDidLoad={() => setImageLoading(false)}
                   className={styles.menuImg}
-                  src={
-                    loadingImage
-                      ? isDark
-                        ? placeholderDark
-                        : placeholderLight
-                      : obj.imageUrl
-                  }
+                  style={{
+                    height: loadingImage ? "0px" : "auto",
+                    opacity: loadingImage ? 0 : 1,
+                  }}
+                  src={obj.imageUrl}
                 />
                 <p className={styles.labelContainer}>{obj.name}</p>
               </IonCol>
