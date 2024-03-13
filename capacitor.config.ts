@@ -5,7 +5,7 @@ const config: CapacitorConfig = {
   appName: "Menu-Next",
   webDir: "dist",
   server: {
-    androidScheme: "https",
+    allowNavigation: ["https://menu-next-ckib.vercel.app/"],
   },
   plugins: {},
 };
