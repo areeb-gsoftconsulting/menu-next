@@ -223,10 +223,11 @@ const ItemCard = ({
         />
 
         <IonImg
-          onIonImgWillLoad={() => setImageLoading(false)}
+          // onIonImgWillLoad={() => setImageLoading(false)}
           onIonImgDidLoad={() => setImageLoading(false)}
           className={styles.cardImg}
           style={{
+            // position: loadingImage ? "absolute" : "relative",
             height: loadingImage ? "0px" : "auto",
             opacity: loadingImage ? 0 : 1,
           }}

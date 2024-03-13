@@ -157,6 +157,9 @@ const Scanner = () => {
       console.log(camera);
       if (camera == "denied" || camera == "prompt-with-rationale") {
         setPermissionDenied(true);
+        document
+          .querySelector("body")
+          ?.classList.remove("barcode-scanner-active");
       }
       if (camera == "granted") {
         let { displayValue } = await scanSingleBarcode();
@@ -211,15 +214,17 @@ const Scanner = () => {
           </h5>
           <p></p>
         </div>
-        <div className="scanner-overlay">
-          <div className="scanner-overlay-vertical"></div>
-          <div className="scanner-box">
-            <div className="scanner-box-child"></div>
-            <div className="scanner-box-centered-child"></div>
-            <div className="scanner-box-child"></div>
+        {!permissionDenied && (
+          <div className="scanner-overlay">
+            <div className="scanner-overlay-vertical"></div>
+            <div className="scanner-box">
+              <div className="scanner-box-child"></div>
+              <div className="scanner-box-centered-child"></div>
+              <div className="scanner-box-child"></div>
+            </div>
+            <div className="scanner-overlay-vertical"></div>
           </div>
-          <div className="scanner-overlay-vertical"></div>
-        </div>
+        )}
         {permissionDenied && (
           <div className={styles.container}>
             <div className={styles.card}>
