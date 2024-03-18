@@ -89,7 +89,17 @@ const App: React.FC = () => {
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <IonApp>
-          <h1 style={{ color: "red" }}>ertyuio</h1>
+          <IonReactRouter>
+            <Switch>
+              <Route path="/welcome" exact>
+                <WelcomePage />
+              </Route>
+              <Route path="/:userName">
+                <DynamicRouteComponent />
+              </Route>
+              <Redirect from="/" to="/welcome" exact />
+            </Switch>
+          </IonReactRouter>
         </IonApp>
       </PersistGate>
     </Provider>
