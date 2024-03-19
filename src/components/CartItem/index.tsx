@@ -254,9 +254,7 @@ const CartItem = ({
                   <p className={styles.otherNamesShow}>
                     {customizationNames.join(",")}
                   </p>
-                  <p className={styles.otherNamesShow}>
-                    comments: {item.comments}
-                  </p>
+                  <p className={styles.otherNamesShow}>{item.comments}</p>
                 </>
               )}
             </div>

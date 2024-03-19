@@ -7,6 +7,7 @@ import {
   IonRow,
   IonButton,
   isPlatform,
+  IonCheckbox,
 } from "@ionic/react";
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -115,19 +116,6 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
               icon={closeCircleSharp}
             ></IonIcon>
           </div>
-          {/* <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "end",
-              alignItems: "center",
-            }}
-          >
-            <p onClick={() => setAddToCart()} style={{ marginRight: "10px" }}>
-              Add to cart
-            </p>
-            <p onClick={() => setingLiked()}>remove from favs</p>
-          </div> */}
 
           {liked.length == 0 && (
             <div className={styles.msgContainer}>
@@ -135,6 +123,27 @@ function SelectedItemModal({ openFav, setOpenFav }: any) {
             </div>
           )}
 
+          {selectBulk.length > 0 && (
+            <IonRow class="ion-justify-content-start ion-align-items-center">
+              <IonCheckbox
+                checked={selectBulk.length == liked.length}
+                onIonChange={(e) => {
+                  if (liked.length > 0 && selectBulk.length !== liked.length) {
+                    setSelectBulk([...liked]);
+                  } else {
+                    setSelectBulk([]);
+                  }
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+                mode="md"
+                className={styles.checkBox}
+                labelPlacement="end"
+              ></IonCheckbox>
+              <p className={styles.selectAll}>All</p>
+            </IonRow>
+          )}
           {liked.map((data: any) => (
             <SelectedItemCard
               selectBulk={selectBulk}

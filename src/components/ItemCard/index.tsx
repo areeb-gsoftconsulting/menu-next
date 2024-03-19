@@ -359,7 +359,7 @@ const ItemCard = ({
                     class="ion-text-nowrap"
                     className={`${styles.pricesLabel}`}
                   >
-                    {obj.price} {venue.defaultCurrency.sign}
+                    {venue.defaultCurrency.sign} {obj.price}
                   </IonText>
                 </IonRow>
               ))}
