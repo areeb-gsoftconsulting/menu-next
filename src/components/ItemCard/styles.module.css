@@ -29,6 +29,12 @@
   font-family: "poppins-normal";
   color: var(--ion-text-color);
 }
+.pricesfrom {
+  font-size: 14px;
+  font-family: "poppins";
+  color: var(--ion-text-color);
+  padding-right: 3px;
+}
 @media only screen and (max-width: 500px) {
   .name {
     overflow: hidden;
