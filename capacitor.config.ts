@@ -2,7 +2,7 @@ import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
   appId: "com.menunext",
-  appName: "Menu-Next",
+  appName: "MenuNext",
   webDir: "dist",
   plugins: {},
 };

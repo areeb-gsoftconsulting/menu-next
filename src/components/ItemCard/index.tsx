@@ -170,9 +170,16 @@ const ItemCard = ({
               </IonLabel>
             </div>
             {data.prices.length > 1 ? (
-              <div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <IonLabel className={styles.pricesfrom}>from </IonLabel>
                 <IonLabel className={styles.prices}>
-                  from {venue.defaultCurrency.sign} {smallestPrice}
+                  {venue.defaultCurrency.sign} {smallestPrice}
                 </IonLabel>
               </div>
             ) : (
@@ -359,7 +366,7 @@ const ItemCard = ({
                     class="ion-text-nowrap"
                     className={`${styles.pricesLabel}`}
                   >
-                    {obj.price} {venue.defaultCurrency.sign}
+                    {venue.defaultCurrency.sign} {obj.price}
                   </IonText>
                 </IonRow>
               ))}

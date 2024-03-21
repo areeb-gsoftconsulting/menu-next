@@ -247,7 +247,7 @@ const WelcomePage: React.FC = () => {
                         onClick={() => setSanitizedUrl(result.slug)}
                         className={styles.item}
                       >
-                        {result.slug}
+                        {result.name}
                       </p>
                     </>
                   ))}

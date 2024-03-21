@@ -12,6 +12,18 @@
   font-size: 1.5em;
   cursor: pointer;
 }
+.selectAll {
+  margin: 0px 16px;
+  font-family: "poppins-normal";
+  font-size: 14px;
+}
+.checkBox {
+  --checkbox-background-checked: red;
+  --checkbox-background: var(--ion-page-background);
+  --border-color: #6e6e6e;
+  --border-color-checked: red;
+  padding: 8px 0px;
+}
 .msgContainer {
   margin: auto;
   display: flex;
