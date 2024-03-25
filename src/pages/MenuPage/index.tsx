@@ -50,12 +50,14 @@ const Menu = () => {
         className={`${styles.header} ion-no-border`}
         translucent={true}
       >
-        <IonToolbar className={styles.menupagetoolbar}>
-          <IonImg
-            className={styles.bannerImage}
-            src={isDark ? lightLogo : darkLogo}
-          />
-        </IonToolbar>
+        <Link to={`/welcome`}>
+          <IonToolbar className={styles.menupagetoolbar}>
+            <IonImg
+              className={styles.bannerImage}
+              src={isDark ? lightLogo : darkLogo}
+            />
+          </IonToolbar>
+        </Link>
       </IonHeader>
       <IonContent className={styles.container} fullscreen>
         <p className={styles.restName}>{venue?.name}</p>
