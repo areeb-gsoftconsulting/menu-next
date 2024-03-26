@@ -31,8 +31,9 @@ const CategorySlider = ({ menuId }: any) => {
   const selectedCategory = useSelector(
     (data: any) => data.category.selectedCategory
   );
+  const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
 
-  console.log("====>loadingImage", { loadingImage });
+  console.log("====>loadingImage", currentMenu);
   // const [categories, setCategories] = useState<any>([
   //   {
   //     _id: "1",
@@ -144,7 +145,7 @@ const CategorySlider = ({ menuId }: any) => {
                     opacity: loadingImage ? 0 : 1,
                   }}
                   // src={obj.name == "All" ? categoryImg : obj.imageUrl}
-                  src={obj.name == "All" ? categoryImg : obj.imageUrl}
+                  src={obj.name == "All" ? currentMenu.imageUrl : obj.imageUrl}
                 />
               </div>
             </IonSegmentButton>
