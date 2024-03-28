@@ -72,13 +72,6 @@ function DetailedAddedToCart({ selectDetailItem, open, setOpen }: any) {
           )}
           {loading && <LoadingCard />}
 
-          {/* {item.map((data: any) => {
-            data.customization.length < 1 ? (
-              <ItemCard data={data} expandByDefault={true} />
-            ) : (
-              <DetailItemModalCard data={data} setIsOpen={setOpen} />
-            );
-          })} */}
           {item.map((data: any) => {
             return data.customization.length < 1 ? (
               <ItemCard
@@ -96,11 +89,6 @@ function DetailedAddedToCart({ selectDetailItem, open, setOpen }: any) {
               />
             );
           })}
-          {/* {item.map((data: any) => {
-            data.customization.length < 1
-              ? console.log("111111")
-              : console.log("2222");
-          })} */}
         </div>
       </IonContent>
     </IonModal>

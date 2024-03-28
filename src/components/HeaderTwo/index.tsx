@@ -68,12 +68,10 @@ const HeaderTwo = ({
         },
       });
       if (res.data.statusCode == 200) {
-        console.log("=======>", res.data.data);
         if (res.data.data.length == 0) {
           setItemsEnded(true);
           dispatch(setSelectedCategory(["2"]));
           setItems([]);
-          // presentToast("No item found");
         } else {
           setItemsEnded(true);
           setItems(res.data.data);
@@ -87,8 +85,6 @@ const HeaderTwo = ({
     } finally {
       setLoading(false);
       dispatch(setSearchLoading(false));
-
-      // setCategoryItemLoading(false);
     }
   };
 
@@ -138,22 +134,6 @@ const HeaderTwo = ({
                   name="darkMode"
                 />
 
-                {/* <IonCol onClick={() => setIsCartOpen(true)}>
-                  {cart.length > 0 && (
-                    <IonBadge className={styles.badge}>
-                      {cart.reduce((accumulator: any, currentItem: any) => {
-                        return accumulator + parseInt(currentItem.quantity);
-                      }, 0)}
-                    </IonBadge>
-                  )}
-                  <IonIcon
-                    style={{
-                      marginTop: "4px",
-                    }}
-                    className={styles.cartIcon}
-                    icon={cartOutline}
-                  ></IonIcon>
-                </IonCol> */}
                 <>
                   {cart.length > 0 && (
                     <IonBadge

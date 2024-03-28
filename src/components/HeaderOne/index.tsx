@@ -47,10 +47,7 @@ const HeaderOne = ({
   const routeName = useSelector((data: any) => data.restaurant.restSlug);
   const searchItem = useSelector((data: any) => data.search.searchedItemName);
 
-  console.log({ isDark });
-
   const getItem = async ({ itemNameSearch }: any) => {
-    console.log("itemNameSearch.length", itemNameSearch.length);
     setLoading(true);
     dispatch(setSearchLoading(true));
     if (itemNameSearch == "") {
@@ -68,12 +65,10 @@ const HeaderOne = ({
         },
       });
       if (res.data.statusCode == 200) {
-        console.log("=======>", res.data.data);
         if (res.data.data.length == 0) {
           setItemsEnded(true);
           dispatch(setSelectedCategory(["2"]));
           setItems([]);
-          // presentToast("No item found");
         } else {
           setItemsEnded(true);
           setItems(res.data.data);
@@ -87,8 +82,6 @@ const HeaderOne = ({
     } finally {
       setLoading(false);
       dispatch(setSearchLoading(false));
-
-      // setCategoryItemLoading(false);
     }
   };
 
@@ -192,7 +185,6 @@ const HeaderOne = ({
             </IonText>
           </div>
         )}
-
         {!showSearch && <CategorySlider menuId={currentMenu._id} />}
       </IonToolbar>
     </IonHeader>

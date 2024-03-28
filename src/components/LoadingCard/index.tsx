@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  IonCard,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonCardContent,
-  IonSkeletonText,
-} from "@ionic/react";
+import { IonCard, IonCardHeader, IonSkeletonText } from "@ionic/react";
 import { useSelector } from "react-redux";
 
 const LoadingCard: React.FC = () => {

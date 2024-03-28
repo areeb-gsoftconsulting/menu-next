@@ -1,7 +1,5 @@
 import {
   IonImg,
-  IonInfiniteScroll,
-  IonInfiniteScrollContent,
   IonSegment,
   IonSegmentButton,
   IonSkeletonText,
@@ -9,7 +7,6 @@ import {
 } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.css";
-import categoryImg from "../../assets/menuImg.png";
 import getCategory from "../../services/getCategory";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,14 +14,9 @@ import {
   setSelectedCategory,
 } from "../../store/slices/categorySlice";
 import { useToast } from "../../hooks/useToast";
-import placeholderDark from "../../assets/placeholderDark.png";
-import placeholderLight from "../../assets/placeholderLight.png";
 import { setSearchedItemName } from "../../store/slices/searchSlice";
 
 const CategorySlider = ({ menuId }: any) => {
-  const isDark = useSelector((data: any) => data.theme.isDark);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [pageSize, setPageSize] = useState(1);
   const [loadingImage, setImageLoading] = useState(true);
   const { presentToast } = useToast();
   const dispatch = useDispatch();
@@ -32,27 +24,17 @@ const CategorySlider = ({ menuId }: any) => {
     (data: any) => data.category.selectedCategory
   );
   const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
-
-  console.log("====>loadingImage", currentMenu);
-  // const [categories, setCategories] = useState<any>([
-  //   {
-  //     _id: "1",
-  //     name: "All",
-  //   },
-  // ]);
   const categories = useSelector((data: any) => data.category.categories);
 
   const getCategories = async () => {
     try {
       let res = await getCategory({
         menuId,
-        // params: { page: pageNumber, pageSize: pageSize },
       });
 
       if (res.data.statusCode == 200) {
         dispatch(setCategories([...categories, ...res.data.data]));
       }
-      // dispatch(setVenue(res.data.data));
     } catch (error) {
       console.log({ error });
       presentToast("Please try again later");
@@ -64,23 +46,6 @@ const CategorySlider = ({ menuId }: any) => {
       getCategories();
     }
   }, []);
-
-  // const onSelect = (id: any) => {
-  //   if (selectedChannel.includes(id)) {
-  //     let tempSeleted = selectedChannel.filter((data: any) => data !== id);
-  //     dispatch(
-  //       selectedChannelAction.getSelectedChannels({
-  //         channel: tempSeleted,
-  //       })
-  //     );
-  //   } else {
-  //     dispatch(
-  //       selectedChannelAction.getSelectedChannels({
-  //         channel: [id, ...selectedChannel],
-  //       })
-  //     );
-  //   }
-  // };
 
   const selectCategory = (e: any) => {
     dispatch(setSearchedItemName(""));
@@ -99,7 +64,6 @@ const CategorySlider = ({ menuId }: any) => {
       dispatch(setSelectedCategory([e._id, ...updatedCategories]));
     }
   };
-  console.log("testing baahiir", selectedCategory);
 
   return (
     <IonToolbar className={`${styles.toolbar} ion-no-padding`}>
@@ -136,15 +100,12 @@ const CategorySlider = ({ menuId }: any) => {
                   className={styles.loadingCard}
                 />
                 <IonImg
-                  // onIonImgWillLoad={() => setImageLoading(false)}
                   onIonImgDidLoad={() => setImageLoading(false)}
                   className={styles.image}
                   style={{
-                    // position: loadingImage ? "absolute" : "relative",
                     height: loadingImage ? "0px" : "63px",
                     opacity: loadingImage ? 0 : 1,
                   }}
-                  // src={obj.name == "All" ? categoryImg : obj.imageUrl}
                   src={obj.name == "All" ? currentMenu.imageUrl : obj.imageUrl}
                 />
               </div>

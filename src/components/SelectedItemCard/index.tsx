@@ -35,11 +35,6 @@ const SelectedItemCard = ({
     }
   };
 
-  console.log(
-    "========>",
-    errorItems.some((item: any) => item._id === data._id)
-  );
-
   return (
     <>
       <IonRow

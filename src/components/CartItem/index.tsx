@@ -4,15 +4,12 @@ import styles from "./styles.module.css";
 import {
   remove,
   add,
-  heartOutline,
-  chevronForwardSharp,
   chevronDown,
   trashSharp as trashBinSharp,
   chevronUp,
   chevronForward,
 } from "ionicons/icons";
-import itemImg from "../../assets/menuImg.png";
-import ExpandedCartItem from "./expandedCartItem";
+
 import { useDispatch, useSelector } from "react-redux";
 import { setCart, setCartItems } from "../../store/slices/cartSlice";
 import DeleteAlert from "../DeleteAlert";
@@ -31,12 +28,7 @@ const CartItem = ({
   const [showBtn, setShowBtn] = useState(false);
   const dispatch = useDispatch();
   const cart = useSelector((data: any) => data.cart.items);
-  console.log({ ind });
   const [isOpenDelete, setOpenDelete] = useState(false);
-  const [isOverflowing, setIsOverflowing] = useState(false);
-  const { height, width } = useWindowDimensions();
-  // const otherNamesRef = useRef(null);
-  console.log({ isOverflowing });
 
   useEffect(() => {
     if (showBtn) {
@@ -49,31 +41,25 @@ const CartItem = ({
       if (arr1.length !== arr2.length) {
         return false;
       }
-
       for (let i = 0; i < arr1.length; i++) {
         if (!objectsEqual(arr1[i], arr2[i])) {
           return false;
         }
       }
-
       return true;
     }
-
     // Function to compare objects
     function objectsEqual(obj1, obj2) {
       const keys1 = Object.keys(obj1);
       const keys2 = Object.keys(obj2);
-
       if (keys1.length !== keys2.length) {
         return false;
       }
-
       for (let key of keys1) {
         if (obj1[key] !== obj2[key]) {
           return false;
         }
       }
-
       return true;
     }
 
@@ -114,34 +100,6 @@ const CartItem = ({
     (accumulator: any, current: any) => accumulator + current.price,
     0
   );
-  console.log("oneeee", item);
-  // useEffect(() => {
-  //   if (
-  //     width < 770 &&
-  //     width > 425 &&
-  //     customizationNames.join(",").length > 56
-  //   ) {
-  //     setIsOverflowing(true);
-  //   } else if (
-  //     width > 320 &&
-  //     width < 426 &&
-  //     customizationNames.join(",").length > 31
-  //   ) {
-  //     setIsOverflowing(true);
-  //   } else if (width < 375 && customizationNames.join(",").length > 17) {
-  //     setIsOverflowing(true);
-  //   } else {
-  //     setIsOverflowing(false);
-  //   }
-  // }, [width]);
-
-  // useEffect(() => {
-  //   if (otherNamesRef.current) {
-  //     setIsOverflowing(
-  //       otherNamesRef.current.offsetWidth < otherNamesRef.current.scrollWidth
-  //     );
-  //   }
-  // }, [customizationNames]);
 
   return (
     <>
@@ -196,13 +154,7 @@ const CartItem = ({
                   icon={remove}
                 ></IonIcon>
               </IonButton>
-              {/* <div
-                style={{
-                  // border: "1px solid red",
-                  margin: "3px",
-                  height: "20px",
-                }}
-              /> */}
+
               <IonButton
                 size="default"
                 className={`${
@@ -292,7 +244,6 @@ const CartItem = ({
         </IonRow>
       </IonRow>
 
-      {/* {expand && <ExpandedCartItem item={item} />} */}
       {isOpenDelete && (
         <DeleteAlert
           setOpen={setOpenDelete}

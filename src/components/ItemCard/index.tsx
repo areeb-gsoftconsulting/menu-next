@@ -1,10 +1,6 @@
 import {
   IonButton,
   IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
   IonChip,
   IonCol,
   IonImg,
@@ -28,8 +24,7 @@ import {
   heartSharp,
   cartOutline,
 } from "ionicons/icons";
-import placeholderDark from "../../assets/placeholderDark.png";
-import placeholderLight from "../../assets/placeholderLight.png";
+
 import ItemDetailsCard from "../ItemDetailsCard";
 import { useEffect, useState } from "react";
 import { setLiked, setLikedItems } from "../../store/slices/likeSlice";
@@ -70,8 +65,6 @@ const ItemCard = ({
   const numberInCart = cart.filter((item: any) => item.id == data._id);
   const [count, setCount] = useState(1);
   const [loadingImage, setImageLoading] = useState(true);
-  const isDark = useSelector((data: any) => data.theme.isDark);
-  const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
 
   useEffect(() => {
     if (!expanded) {
@@ -188,10 +181,6 @@ const ItemCard = ({
               </IonLabel>
             )}
           </IonRow>
-          {/* <IonIcon
-            className={styles.moreIcon}
-            icon={ellipsisHorizontal}
-          ></IonIcon> */}
         </IonRow>
         <IonIcon
           onClick={(e: any) => {
@@ -230,67 +219,14 @@ const ItemCard = ({
         />
 
         <IonImg
-          // onIonImgWillLoad={() => setImageLoading(false)}
           onIonImgDidLoad={() => setImageLoading(false)}
           className={styles.cardImg}
           style={{
-            // position: loadingImage ? "absolute" : "relative",
             height: loadingImage ? "0px" : "auto",
             opacity: loadingImage ? 0 : 1,
           }}
           src={data.imageUrl ? data.imageUrl : notFoundImg}
         />
-
-        {/* <div className={styles.priceBadge}>
-          {data.prices.length > 1 ? (
-            <p>
-              {venue.defaultCurrency.sign} {data.prices[0]?.price}
-            </p>
-          ) : (
-            <p>
-              {venue.defaultCurrency.sign} {data.prices[0].price}
-            </p>
-          )}
-        </div> */}
-
-        {/* {numberInCart.length > 0 && (
-          <div className={styles.badge}>
-            <p className={styles.badgeTxt}>{numberInCart[0].quantity}</p>
-          </div>
-        )} */}
-
-        {/* <IonRow className="ion-margin-top ion-align-items-center">
-          <IonIcon className={styles.rateIcon} icon={starSharp} />
-          <div
-            style={{
-              flexDirection: "row",
-            }}
-          >
-            <IonText
-              style={{
-                fontFamily: "poppins-normal",
-                color: "var(--ion-text-color)",
-                marginLeft: "4px",
-                fontSize: "16px",
-                marginTop: "4px",
-              }}
-            >
-              4.8
-            </IonText>
-            <IonText
-              style={{
-                fontFamily: "poppins",
-                color: "var(--ion-text-color)",
-                marginLeft: "4px",
-                fontSize: "14px",
-                marginTop: "4px",
-                fontWeight: "600",
-              }}
-            >
-              (100+)
-            </IonText>
-          </div>
-        </IonRow> */}
 
         {!expanded ? (
           <IonText className={styles.description}>{desc}</IonText>
@@ -373,39 +309,6 @@ const ItemCard = ({
             </IonRadioGroup>
 
             {radioErr && <p className={styles.errMsg}>Please choose one</p>}
-
-            {/* <IonRadioGroup
-              allowEmptySelection={false}
-              onClick={(e) => e.stopPropagation()}
-              value={selectedPrice}
-              onIonChange={(e: any) => {
-                setSelectedPrice({
-                  _id: e.target.value._id,
-                  description: e.target.value.description, // Fix the typo here
-                  price: e.target.value.price,
-                });
-                console.log("eeeeeee", e.target.value);
-              }}
-            >
-              {data.prices.map((obj: any, ind: any) => (
-                <IonRow
-                  key={ind}
-                  className={`ion-justify-content-between ion-align-items-center`}
-                >
-                  <IonRadio
-                    value={obj}
-                    mode="md"
-                    className={`${styles.radioBtn} label-text-wrapper`}
-                    labelPlacement="end"
-                  >
-                    <p className={`${styles.priceLabel}`}>{obj.description}</p>
-                  </IonRadio>
-                  <p className={`${styles.priceLabel}`}>
-                    {obj.price} {venue.defaultCurrency.sign}
-                  </p>
-                </IonRow>
-              ))}
-            </IonRadioGroup> */}
           </div>
         ) : (
           expanded && (
@@ -488,10 +391,7 @@ const ItemCard = ({
 
             <div className={styles.addBtnDiv}>
               <IonButton
-                disabled={
-                  // (data.prices.length > 1 && selectedPrice._id == "") ||
-                  !data.inStock
-                }
+                disabled={!data.inStock}
                 onClick={() =>
                   addToCart({
                     id: data._id,

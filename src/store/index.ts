@@ -20,8 +20,6 @@ const init = () => {
 };
 const customStorage = {
   getItem: async (key: any) => {
-    console.log("this====>", this);
-
     let store = init();
 
     const value = await store.get(key);
@@ -47,13 +45,7 @@ const config = {
 };
 const middleware = [];
 const sagaMiddleware = createSagaMiddleware();
-
 middleware.push(sagaMiddleware);
-
-// if (__DEV__) {
-//  middleware.push(createLogger());
-// }
-
 const reducers = persistReducer(config, rootReducers);
 const enhancers = [...middleware];
 const persistConfig: any = { enhancers };
