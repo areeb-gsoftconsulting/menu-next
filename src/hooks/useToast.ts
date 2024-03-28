@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { useIonToast } from "@ionic/react";
 
 export const useToast = () => {

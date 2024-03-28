@@ -9,19 +9,10 @@ const ItemDescriptionContainer = ({ data }: any) => {
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
 
   const [text, setText] = useState<any>(data || []);
-  // const description = async () => {
-  //   console.log("testing 1", data);
-  //   let temp = await JSON.parse(data);
-  //   setText(temp);
-  // };
 
   useEffect(() => {
-    // description();
     setText(data);
   }, [data]);
-
-  console.log("yeh text", text);
-  // Render the Slate context.
 
   editor.children = data;
 

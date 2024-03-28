@@ -1,12 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
 import {
-  IonModal,
-  IonContent,
-  IonSearchbar,
-  IonList,
-  IonItem,
-  IonAvatar,
   IonImg,
   IonLabel,
   IonTitle,
@@ -35,6 +29,7 @@ import {
 import ItemDescriptionContainer from "../ItemDescriptionContainer";
 import placeholderDark from "../../assets/placeholderDark.png";
 import placeholderLight from "../../assets/placeholderLight.png";
+import notFound from "../../assets/placeholderLight.png";
 
 type Props = {};
 
@@ -57,21 +52,11 @@ const DetailItemModalCard = ({
   const [radioErr, setRadioErr] = useState(false);
   const dispatch = useDispatch();
   const cart = useSelector((data: any) => data.cart.items);
-  const [customizationErr, setcustomizationErr] = useState([]);
   const [selectedCustomization, setSelectedCustomization] = useState<any>([]);
-  const [selectedValue, setSelectedValue] = useState<any>({});
-  console.log("selectedCustomization", selectedCustomization);
   const [requiredCustoms, setRequiredCustome] = useState([]);
   const [count, setCount] = useState(1);
   const [loadMore, setLoadMore] = useState(false);
   const [loadingImage, setImageLoading] = useState(true);
-  console.log({ data: data.tags });
-  const handle1 = (data: any) => {
-    console.log("selectedCustomization === ", data);
-    // let tempArr = selectedCustomization;
-    // tempArr.push(data);
-    // setSelectedCustomization(tempArr);
-  };
 
   useEffect(() => {
     const tempPreSelected: any = [];
@@ -136,31 +121,6 @@ const DetailItemModalCard = ({
       setSelectedCustomization(remaining);
     }
   };
-
-  // const handleCheckBox = ({ data, maxCount = 0, title }: any) => {
-  //   const temp = { ...selectedValue };
-  //   let currentItemData = temp[title]?.data || [];
-
-  //   const index = currentItemData.findIndex((e) => e._id === data._id);
-
-  //   if (index === -1) {
-  //     if (currentItemData.length == maxCount) {
-  //       const updatedSelection = [...currentItemData];
-  //       updatedSelection.pop();
-  //       temp[title] = { data: [...updatedSelection, data] };
-  //       setSelectedValue(temp);
-  //       return;
-  //     }
-  //     temp[title] = { data: [...currentItemData, data] };
-  //     setSelectedValue(temp);
-  //   } else {
-  //     const updatedSelection = [...currentItemData];
-  //     updatedSelection.splice(index, 1);
-  //     temp[title] = { data: [updatedSelection] };
-
-  //     setSelectedValue(temp);
-  //   }
-  // };
 
   const addToCart = (param: any) => {
     let refArray = data.customization;
@@ -254,7 +214,6 @@ const DetailItemModalCard = ({
       }
     }
   };
-  console.log("this==>", data.description.length);
   let description =
     data.description.length > 190
       ? JSON.parse(data.description)
@@ -270,6 +229,7 @@ const DetailItemModalCard = ({
           <p>Not Available</p>
         </div>
       )}
+
       <IonImg
         onIonImgWillLoad={() => setImageLoading(false)}
         onIonImgDidLoad={() => setImageLoading(false)}
@@ -279,32 +239,10 @@ const DetailItemModalCard = ({
             ? isDark
               ? placeholderDark
               : placeholderLight
-            : data.imageUrl
+            : data.imageUrl || notFound
         }
       />
-      {/* <div className={styles.priceBadge}>
-        {data.prices.length > 1 ? (
-          <p>
-            {venue.defaultCurrency.sign} {data.prices[0]?.price}
-          </p>
-        ) : (
-          <p>
-            {venue.defaultCurrency.sign} {data.prices[0].price}
-          </p>
-        )}
-      </div> */}
-      {/* <IonRow className="ion-margin-top ion-align-items-center">
-    <IonIcon className={styles.rateIcon} icon={starSharp} />
-    <IonText
-      style={{
-        fontFamily: "poppins-normal",
-        color: "var(--ion-text-color)",
-        marginLeft: "4px",
-      }}
-    >
-      4.8
-    </IonText>
-  </IonRow> */}
+
       <div
         style={{
           display: "flex",
@@ -315,7 +253,6 @@ const DetailItemModalCard = ({
           <IonText class="ion-text-wrap" className={styles.name}>
             {data.name}
           </IonText>
-          {/* <IonLabel className={styles.price}>$4.5</IonLabel> */}
           {data.prices.length > 1 ? (
             <div
               style={{
@@ -343,7 +280,6 @@ const DetailItemModalCard = ({
         <IonLabel className={styles.categoryName}>{categoryName}</IonLabel>
       </div>
 
-      {/* <IonText className={styles.description}>{data.description}</IonText> */}
       {!loadMore && data.description.length > 190 ? (
         <div style={{ paddingTop: "4px", paddingBottom: "4px" }}>
           <ItemDescriptionContainer data={[description[0]]} />
@@ -357,7 +293,6 @@ const DetailItemModalCard = ({
           <ItemDescriptionContainer data={JSON.parse(data.description)} />
         </div>
       )}
-      {/* <ItemDescriptionContainer data={data.description} /> */}
       {data.description.length > 190 && (
         <p
           style={{
@@ -476,25 +411,12 @@ const DetailItemModalCard = ({
             <p className={styles.msg}>Select upto {obj.maxSelectedItems}</p>
 
             {obj.prices.map((e: any, i: any) => {
-              handle1(e);
-              // useEffect(() => {
-              //   if (e.preSelected == true) {
-              //     handleCheckBox({
-              //       data: e,
-              //       parent: obj,
-              //     });
-              //   }
-              // }, []);
-
-              //poori
-
               return (
                 <IonRow
                   key={i}
                   className={`ion-justify-content-between ion-align-items-center ion-nowrap`}
                 >
                   <IonCheckbox
-                    // checked={e.preSelected}
                     checked={
                       selectedCustomization.some(
                         (item: any) => item._id === e._id

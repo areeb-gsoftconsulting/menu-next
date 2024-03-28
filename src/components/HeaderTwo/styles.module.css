@@ -82,9 +82,7 @@ ion-content {
   font-size: 8px;
   padding: 4px;
   background-color: red;
-  height: 15px;
-  width: 15px;
-  width: 15px;
+  min-width: 17px;
   cursor: pointer;
 }
 .cartIcon {

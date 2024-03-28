@@ -42,10 +42,7 @@ const WelcomePage: React.FC = () => {
   const router = useIonRouter();
   const location = useLocation();
   const requestedUrl = new URLSearchParams(location.search).get("requestedUrl");
-  // const sanitizedUrl = requestedUrl
-  //   ? requestedUrl.replace(/^\/+|\/+$/g, "")
-  //   : "";
-  // console.log("Requested slug:", sanitizedUrl);
+
   const [sanitizedUrl, setSanitizedUrl] = useState<any>(
     requestedUrl ? requestedUrl.replace(/^\/+|\/+$/g, "") : ""
   );
@@ -59,8 +56,7 @@ const WelcomePage: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  document.addEventListener("ionBackButton", (ev) => {
-    console.log("ev.target.location", ev.target.location);
+  document.addEventListener("ionBackButton", (ev: any) => {
     ev.detail.register(9999, () => {
       let parts = ev.target.location.pathname.split("/");
       if (parts[parts.length - 1] == "menu") {
@@ -162,15 +158,6 @@ const WelcomePage: React.FC = () => {
   }, []);
   return (
     <IonPage className={styles.page}>
-      {/* <IonHeader
-        translucent={true}
-        mode="ios"
-        className={`ion-no-border ${styles.header}`}
-      >
-        <IonToolbar className={styles.toolbar}>
-          <IonImg className={styles.logo} src={isDark ? lightLogo : darkLogo} />
-        </IonToolbar>
-      </IonHeader> */}
       <IonContent className={styles.container} fullscreen>
         <div className={styles.innerContainer}>
           <IonHeader translucent={true} mode="ios" className={`ion-no-border`}>
@@ -213,7 +200,7 @@ const WelcomePage: React.FC = () => {
                 placeholder="Search restaurant"
                 debounce={1000}
                 onIonClear={() => setSearchNotFound(false)}
-                onIonInput={(e) => {
+                onIonInput={(e: any) => {
                   const value = e.detail.value.trim();
 
                   if (value !== "") {

@@ -1,38 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import styles from "./styles.module.css";
-import {
-  IonModal,
-  IonContent,
-  IonSearchbar,
-  IonList,
-  IonItem,
-  IonAvatar,
-  IonImg,
-  IonLabel,
-  IonTitle,
-  IonIcon,
-  IonRow,
-  IonText,
-  IonCol,
-  IonRadioGroup,
-  IonRadio,
-  IonCheckbox,
-  IonTextarea,
-  IonButton,
-  IonHeader,
-  IonChip,
-  IonToolbar,
-} from "@ionic/react";
-import thumbnailImg from "../../assets/menuImg.png";
-import { starSharp, add, remove, closeCircleSharp } from "ionicons/icons";
+import { IonModal, IonContent, IonIcon, IonRow, IonHeader } from "@ionic/react";
+
+import { closeCircleSharp } from "ionicons/icons";
 import { isPlatform } from "@ionic/react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  setAddedToCart,
-  setCart,
-  setCartItems,
-} from "../../store/slices/cartSlice";
-import ItemDescriptionContainer from "../ItemDescriptionContainer";
 import DetailItemModalCard from "../DetailedItemModalCard";
 const ItemDetailsCard = ({ data, isOpen, setIsOpen }: any) => {
   const modal = useRef<HTMLIonModalElement>(null);

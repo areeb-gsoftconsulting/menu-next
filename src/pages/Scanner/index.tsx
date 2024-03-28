@@ -1,22 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  BarcodeScanner,
-  BarcodeFormat,
-  LensFacing,
-} from "@capacitor-mlkit/barcode-scanning";
+import { BarcodeScanner } from "@capacitor-mlkit/barcode-scanning";
 import {
   IonButton,
   IonContent,
   IonIcon,
   IonPage,
-  IonRow,
   IonSpinner,
   IonText,
   isPlatform,
   useIonRouter,
 } from "@ionic/react";
 import { chevronBack } from "ionicons/icons";
-
 import { useDispatch } from "react-redux";
 import {
   setCurrentMenu,
@@ -39,8 +33,7 @@ const Scanner = () => {
   const { presentToast } = useToast();
   const [opeing, setOpening] = useState(false);
 
-  document.addEventListener("ionBackButton", (ev) => {
-    console.log("ev.target.location", ev.target.location);
+  document.addEventListener("ionBackButton", (ev: any) => {
     ev.detail.register(9999, () => {
       let parts = ev.target.location.pathname.split("/");
       if (parts[parts.length - 1] == "menu") {
@@ -70,16 +63,12 @@ const Scanner = () => {
       if (res.data.statusCode == 200) {
         if (res.data.data.menus.length == 0) {
           setNotFound(true);
-
           return;
         }
-
         if (res.data.data.menus.length > 1) {
           router.push(`/${sanitizedUrl}/menu`);
         } else {
           dispatch(setCurrentMenu(res.data.data.menus[0]));
-          // router.push("/factory-girl-berlin/home");
-          // router.push("/factor-girl-berlin/menu");
           router.push(`/${sanitizedUrl}/home`);
         }
         dispatch(setVenue(res.data.data));
@@ -98,7 +87,6 @@ const Scanner = () => {
     try {
       return new Promise(async (resolve, reject) => {
         document.querySelector("body")?.classList.add("barcode-scanner-active");
-
         const listener = await BarcodeScanner.addListener(
           "barcodeScanned",
           async (result) => {
@@ -136,10 +124,8 @@ const Scanner = () => {
 
         requestPermissions();
       }
-      console.log("camera", camera);
 
       if (camera == "granted") {
-        console.log("granted");
         let { displayValue } = await scanSingleBarcode();
 
         const parts = displayValue.split("/");

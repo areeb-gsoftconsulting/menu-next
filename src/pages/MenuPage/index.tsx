@@ -33,16 +33,10 @@ import darkLogo from "../../assets/logoDark.png";
 
 const Menu = () => {
   const dispatch = useDispatch();
-  // const toggleDarkModeHandler = () => document.body.classList.toggle("dark");
   const isDark = useSelector((data: any) => data.theme.isDark);
   const [loadingImage, setImageLoading] = useState(true);
   const venue = useSelector((data: any) => data.restaurant.venue);
-  console.log({ venue });
   const routeName = useSelector((data: any) => data.restaurant.restSlug);
-  const selectedCategory = useSelector(
-    (data: any) => data.category.selectedCategory
-  );
-  console.log("selectedCategory", selectedCategory);
 
   return (
     <IonPage className={styles.page}>
@@ -70,7 +64,6 @@ const Menu = () => {
                 onClick={() => {
                   dispatch(setSelectedCategory(["1"]));
                   dispatch(setCurrentMenu(obj));
-                  console.log("qwertyui");
                 }}
                 key={ind}
               >
@@ -88,7 +81,6 @@ const Menu = () => {
                   className={styles.menuImg}
                   style={{
                     height: loadingImage ? "0px" : "auto",
-                    // position: loadingImage ? "absolute" : "relative",
                     opacity: loadingImage ? 0 : 1,
                   }}
                   src={obj.imageUrl}

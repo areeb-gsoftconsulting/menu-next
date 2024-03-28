@@ -31,21 +31,19 @@ import { setSearchedItemName } from "../../store/slices/searchSlice";
 
 const Home: React.FC = () => {
   const route = useLocation();
-  const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
-  const venue = useSelector((data: any) => data.restaurant.venue);
+  const [pageSize, setPageSize] = useState(10);
+  const [pageNumber, setPageNumber] = useState(0);
   const [openFav, setOpenFav] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [tempArray, setTempArray] = useState([1, 2, 3, 4, 5, 6, 7]);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [pageNumber, setPageNumber] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
+  const venue = useSelector((data: any) => data.restaurant.venue);
+  const currentMenu = useSelector((data: any) => data.restaurant.currentMenu);
   const [selectedCategoryPageNum, setSelectedCategoryPageNum] = useState(0);
   const selectedCategory = useSelector(
     (data: any) => data.category.selectedCategory
   );
   const totalAmount = useSelector((data: any) => data.cart.totalAmount);
   const searchLoading = useSelector((data: any) => data.search.searchLoading);
-  const itemRef = useRef(null);
   const [items, setItems] = useState<any>([]);
   const [itemsEnded, setItemsEnded] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -53,11 +51,6 @@ const Home: React.FC = () => {
   const contentRef = useRef<HTMLIonContentElement>(null);
   const cart = useSelector((data: any) => data.cart.items);
   const { presentToast } = useToast();
-  const router = useIonRouter();
-  const requestedUrl = new URLSearchParams(location.search).get("requestedUrl");
-  const sanitizedUrl = requestedUrl
-    ? requestedUrl.replace(/^\/+|\/+$/g, "")
-    : "";
   const addedToCart = useSelector((data: any) => data.cart.addedToCart);
   const dispatch = useDispatch();
   const searchItem = useSelector((data: any) => data.search.searchedItemName);
@@ -67,10 +60,7 @@ const Home: React.FC = () => {
   }, [addedToCart]);
 
   const getItem = async (e: any, { page }: any) => {
-    console.log("testing all");
-
     setLoading(true);
-
     try {
       let res = await getItems({
         menuId: currentMenu._id,
@@ -94,7 +84,6 @@ const Home: React.FC = () => {
       presentToast("Please try again later");
     } finally {
       setLoading(false);
-
       if (e) {
         e.target.complete();
       }
@@ -131,7 +120,6 @@ const Home: React.FC = () => {
           setItems([...items, ...res.data.data.items]);
         }
         setSelectedCategoryPageNum(page + 1);
-        // setItems([...items, ...res.data.data.items]);
       }
     } catch (error) {
       console.log({ error });
@@ -141,7 +129,6 @@ const Home: React.FC = () => {
       if (e) {
         e.target.complete();
       }
-
       setCategoryItemLoading(false);
     }
   };
@@ -151,9 +138,6 @@ const Home: React.FC = () => {
       return;
     }
     setCategoryItemLoading(true);
-    // if (contentRef.current) {
-    //   contentRef.current.scrollToTop(300); // Adjust scroll duration if needed
-    // }
 
     if (!selectedCategory.includes("1")) {
       setItemsEnded(false);
@@ -168,16 +152,6 @@ const Home: React.FC = () => {
     }
   }, [selectedCategory, route.pathname]);
 
-  useEffect(() => {
-    console.log("this==> 1");
-    // dispatch(setSelectedCategory("1"));
-  }, []);
-
-  // useEffect(() => {
-  //   getItem();
-  // }, []);
-  console.log("thissssss", items);
-
   const onEndReach = async (e: any) => {
     if (searchItem.length > 0) {
       e.target.complete();
@@ -189,8 +163,6 @@ const Home: React.FC = () => {
       await getCategoryItem(e, { page: selectedCategoryPageNum });
     }
   };
-
-  console.log("test", { itemsEnded });
 
   const handleScroll = (event: CustomEvent) => {
     const threshold = 180;
@@ -218,13 +190,9 @@ const Home: React.FC = () => {
     const threshold = 200;
   };
   const scrollToTop = () => {
-    // Replace 'ionContentRef' with a ref to your IonContent component
-    // You can use useRef hook to create a ref and attach it to IonContent
-
     contentRef.current.scrollToTop();
   };
 
-  // Example usage
   return (
     <IonPage className={styles.page}>
       {isScrolled ? (
@@ -279,18 +247,6 @@ const Home: React.FC = () => {
             </IonToolbar>
           </IonHeader>
         )}
-
-        {/* <IonList>
-          <IonItem lines="none">
-            <IonIcon slot="start" />
-            <IonLabel>Dark Mode</IonLabel>
-            <IonToggle
-              slot="end"
-              name="darkMode"
-              onIonChange={toggleDarkModeHandler}
-            />
-          </IonItem>
-        </IonList> */}
         <div
           style={{
             padding: "0px 20px",
@@ -315,7 +271,7 @@ const Home: React.FC = () => {
             ))
           )}
         </div>
-        {/* <FavItemsButton setOpenFav={setOpenFav} /> */}
+
         {openFav && (
           <SelectedItemModal openFav={openFav} setOpenFav={setOpenFav} />
         )}

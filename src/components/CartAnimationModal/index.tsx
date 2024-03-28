@@ -7,21 +7,12 @@ import {
   IonGrid,
   IonRow,
 } from "@ionic/react";
-import image from "../../assets/emptyCart.png";
 import styles from "./styles.module.css";
 import cartAnimation from "../../assets/animations/cart.json";
 import Lottie from "lottie-react";
 
 function CartAnimationModal({ addedToCart }: any) {
   const modal = useRef<HTMLIonModalElement>(null);
-  const options = {
-    animationData: cartAnimation,
-    loop: true,
-  };
-
-  function dismiss() {
-    modal.current?.dismiss();
-  }
 
   const enterAnimation = (baseEl: HTMLElement) => {
     const root = baseEl.shadowRoot;
@@ -68,11 +59,6 @@ function CartAnimationModal({ addedToCart }: any) {
             style={{ height: "100%" }}
           >
             <IonCol size="12" className="ion-text-center">
-              {/* <img
-                src={image} // Replace with your image source
-                alt="Modal Image"
-                style={{ width: "200px", height: "200px" }}
-              /> */}
               <div
                 style={{
                   height: "75px",
