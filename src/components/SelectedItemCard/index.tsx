@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import DetailedAddedToCart from "../DetailedAddedToCart";
 import placeholderDark from "../../assets/menuPlaceholderDark.png";
 import placeholderLight from "../../assets/menuPlaceholderLight.png";
+import notFound from "../../assets/placeholderLight.png";
+
 type Props = {};
 
 const SelectedItemCard = ({
@@ -74,7 +76,7 @@ const SelectedItemCard = ({
                 ? isDark
                   ? placeholderDark
                   : placeholderLight
-                : data.imageUrl
+                : data.imageUrl || notFound
             }
           />
           <p

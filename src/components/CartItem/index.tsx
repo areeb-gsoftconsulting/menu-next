@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCart, setCartItems } from "../../store/slices/cartSlice";
 import DeleteAlert from "../DeleteAlert";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
-
+import notFound from "../../assets/placeholderLight.png";
 type Props = {};
 
 const CartItem = ({
@@ -245,7 +245,10 @@ const CartItem = ({
             class="ion-align-items-center ion-justify-content-left"
             className={styles.nameImgBox}
           >
-            <IonImg className={styles.img} src={item.image} />
+            <IonImg
+              className={styles.img}
+              src={item.image ? item.image : notFound}
+            />
             <div className={styles.textDiv}>
               <p className={styles.itemName}>{item.name}</p>
               {expand && (

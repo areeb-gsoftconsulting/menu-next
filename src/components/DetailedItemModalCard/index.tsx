@@ -35,6 +35,7 @@ import {
 import ItemDescriptionContainer from "../ItemDescriptionContainer";
 import placeholderDark from "../../assets/placeholderDark.png";
 import placeholderLight from "../../assets/placeholderLight.png";
+import notFound from "../../assets/placeholderLight.png";
 
 type Props = {};
 
@@ -270,6 +271,7 @@ const DetailItemModalCard = ({
           <p>Not Available</p>
         </div>
       )}
+
       <IonImg
         onIonImgWillLoad={() => setImageLoading(false)}
         onIonImgDidLoad={() => setImageLoading(false)}
@@ -279,7 +281,7 @@ const DetailItemModalCard = ({
             ? isDark
               ? placeholderDark
               : placeholderLight
-            : data.imageUrl
+            : data.imageUrl || notFound
         }
       />
       {/* <div className={styles.priceBadge}>

@@ -40,7 +40,7 @@ import {
   setCartItems,
 } from "../../store/slices/cartSlice";
 import ItemDescriptionContainer from "../ItemDescriptionContainer";
-
+import notFoundImg from "../../assets/placeholderLight.png";
 const ItemCard = ({
   data,
   expandByDefault,
@@ -238,7 +238,7 @@ const ItemCard = ({
             height: loadingImage ? "0px" : "auto",
             opacity: loadingImage ? 0 : 1,
           }}
-          src={data.imageUrl}
+          src={data.imageUrl ? data.imageUrl : notFoundImg}
         />
 
         {/* <div className={styles.priceBadge}>
